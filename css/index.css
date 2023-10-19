@@ -2846,10 +2846,8 @@ body {
   background-color: transparent;
 }
 * {
-  scrollbar-width: unset;
+  scrollbar-width: thin;
   scrollbar-color: var(--scrollbar-color) transparent;
-  scrollbar-track-color: var(--scrollbar-color) transparent;
-  -ms-scrollbar-track-color: var(--scrollbar-color) transparent;
 }
 input::placeholder {
   color: var(--font-color);
@@ -4957,11 +4955,12 @@ body[data-type='about'] #web_bg {
     background: none;
     padding: 0;
     width: auto;
+    backdrop-filter: unset;
   }
   .author-content-item .card-content .banner-button-group .banner-button i,
   .author-content-item .card-content .banner-button-group .banner-button svg {
     margin-right: 0.25rem;
-    font-size: 22px;
+    font-size: 1.5rem;
     background: #fff;
     border-radius: 50%;
     padding: 6px;
@@ -4986,6 +4985,7 @@ body[data-type='about'] #web_bg {
     -ms-flex-pack: center;
     -webkit-justify-content: center;
     justify-content: center;
+    color: var(--anzhiyu-fontcolor);
   }
   .author-content-item .card-content .banner-button-group .banner-button:hover i {
     background: var(--anzhiyu-background) !important;
