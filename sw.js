@@ -2,7 +2,7 @@
 
 (() => {
     /** 缓存库名称 */
-    const CACHE_NAME = 'Joker2YueBlogCache'
+    const CACHE_NAME = 'AnZhiYuThemeCache'
     /** 控制信息存储地址（必须以`/`结尾） */
     const CTRL_PATH = 'https://id.v3/'
 
