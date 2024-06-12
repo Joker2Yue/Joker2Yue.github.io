@@ -2,7 +2,7 @@
 
 (() => {
     /** 缓存库名称 */
-    const CACHE_NAME = 'AnZhiYuThemeCache'
+    const CACHE_NAME = 'Joker2YueBlogCache'
     /** 控制信息存储地址（必须以`/`结尾） */
     const CTRL_PATH = 'https://id.v3/'
 
@@ -121,7 +121,8 @@ match: url =>
                 "lf9-cdn-tos.bytecdntp.com",
                 "cdn.staticfile.org",
                 "npm.elemecdn.com",
-            ].includes(url.host) && url.pathname.match(/\.(js|css|woff2|woff|ttf|cur)$/)}
+                "resource.joker2yue.cn"
+            ].includes(url.host) && url.pathname.match(/\.(js|css|woff2|woff|ttf|cur|png|jpg|gif|svg|ico)$/)}
 }
 
 let getSpareUrls = srcUrl => {
