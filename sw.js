@@ -119,8 +119,9 @@ match: url =>
                 "lf6-cdn-tos.bytecdntp.com",
                 "lf3-cdn-tos.bytecdntp.com",
                 "lf9-cdn-tos.bytecdntp.com",
-                "cdn.staticfile.org",
                 "npm.elemecdn.com",
+                "cdn.staticfile.org",
+                "cdn.jsdelivr.net",
                 "resource.joker2yue.cn"
             ].includes(url.host) && url.pathname.match(/\.(js|css|woff2|woff|ttf|cur|png|jpg|gif|svg|ico)$/)}
 }
@@ -133,11 +134,17 @@ let getSpareUrls = srcUrl => {
             list: [
                 srcUrl,
                 `https://cdn.cbd.int${pathname}`,
-                `https://cdn.jsdelivr.net${pathname}`,
                 `https://unpkg.com${pathname}`,
                 `https://cdnjs.cloudflare.com${pathname}`,
+                `https://cdn.jsdelivr.net${pathname}`,
                 `https://onmicrosoft.com${pathname}`,
             ],
+        };
+    }
+    if (srcUrl.startsWith("https://resource.joker2yue.cn")) {
+        return {
+            timeout: 3000,
+            list: [srcUrl, `https://cdn.jsdelivr.net/gh/Joker2Yue/jsdelivr-cdn/${new URL(srcUrl).pathname}`],
         };
     }
 }
