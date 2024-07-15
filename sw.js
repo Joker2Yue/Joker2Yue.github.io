@@ -106,7 +106,7 @@ clean: true,
 search: false,
 match: url => {
             const allowedHost = ejectDomain;
-            const allowedPaths = ["/404.html", "/css/index.css"];
+            const allowedPaths = ["/404.html", "/css/index.css", "/css/joker.css","/js/joker.js"];
             return url.host === allowedHost && allowedPaths.includes(url.pathname);
         }}
 ,
@@ -114,16 +114,16 @@ cdn: {
 clean: true,
 match: url =>
             [
+                "npm.elemecdn.com",
                 "cdn.cbd.int",
+                "cdn.jsdelivr.net",
+                "cdn.staticfile.org",
+                "cdnjs.cloudflare.com",
                 "lf26-cdn-tos.bytecdntp.com",
                 "lf6-cdn-tos.bytecdntp.com",
                 "lf3-cdn-tos.bytecdntp.com",
                 "lf9-cdn-tos.bytecdntp.com",
-                "npm.elemecdn.com",
-                "cdn.staticfile.org",
-                "cdn.jsdelivr.net",
-                "resource.joker2yue.cn"
-            ].includes(url.host) && url.pathname.match(/\.(js|css|woff2|woff|ttf|cur|png|jpg|gif|svg|ico)$/)}
+            ].includes(url.host) && url.pathname.match(/\.(js|css|woff2|woff|ttf|cur)$/)}
 }
 
 let getSpareUrls = srcUrl => {
@@ -145,6 +145,28 @@ let getSpareUrls = srcUrl => {
         return {
             timeout: 3000,
             list: [srcUrl, `https://cdn.jsdelivr.net/gh/Joker2Yue/jsdelivr-cdn/${new URL(srcUrl).pathname}`],
+        };
+    }
+    // if (srcUrl.startsWith("http://localhost:4000")) {
+    //     const url = new URL(srcUrl);
+    //     const pathname = url.pathname;
+    //     const extension = pathname.split('.').pop();
+    //     if (['png', 'jpg', 'jpeg', 'gif', 'bmp', 'svg', 'webp'].includes(extension)) {
+    //         const newPathname = pathname.replace(/^\/\d{4}\/\d{2}\/\d{2}\//, '/blog/post/');
+    //         const newImageUrl = `https://resource.joker2yue.cn/${newPathname}`;
+    //         return {
+    //             timeout: 1000,
+    //             list: [srcUrl, newImageUrl],
+    //         };
+    //     }
+    // }
+    const regex = /^(https?:\/\/)?([^/]+)\/(\d{4})\/(\d{2})\/(\d{2})\/([^/]+\/[^/]+\.(png|jpg|jpeg|gif|bmp|svg|webp))$/;
+    if (regex.test(srcUrl)) {
+        const match = srcUrl.match(regex);
+        const newPathname = `/blog/post/${match[3]}/${match[4]}/${match[5]}/${match[6]}`;
+        return {
+            timeout: 2000,
+            list: [srcUrl, `https://resource.joker2yue.cn${newPathname}`],
         };
     }
 }
