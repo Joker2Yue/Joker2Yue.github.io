@@ -99,75 +99,94 @@
     }
 
     // noinspection JSFileReferences
-    let skipRequest = request => request.url.startsWith('https://i0.hdslb.com')
+    let skipRequest = request => {
+    const skipUrls = [
+        'https://i0.hdslb.com',
+        'https://img2color-go.joker2yue.cn',
+        'https://hexo-circle-of-firends.joker2yue.cn',
+        'https://meting-api.joker2yue.cn',
+    ];
+
+    return skipUrls.some(url => request.url.startsWith(url));
+}
 let cacheRules = {
 simple: {
 clean: true,
 search: false,
 match: url => {
             const allowedHost = ejectDomain;
-            const allowedPaths = ["/404.html", "/css/index.css", "/css/joker.css","/js/joker.js"];
+            const allowedPaths = ["/404.html", "/css/index.css", "/css/joker.css", "/js/joker.js"];
             return url.host === allowedHost && allowedPaths.includes(url.pathname);
         }}
 ,
 cdn: {
 clean: true,
 match: url =>
-            [
-                "npm.elemecdn.com",
-                "cdn.cbd.int",
-                "cdn.jsdelivr.net",
-                "cdn.staticfile.org",
-                "cdnjs.cloudflare.com",
-                "lf26-cdn-tos.bytecdntp.com",
-                "lf6-cdn-tos.bytecdntp.com",
-                "lf3-cdn-tos.bytecdntp.com",
-                "lf9-cdn-tos.bytecdntp.com",
-            ].includes(url.host) && url.pathname.match(/\.(js|css|woff2|woff|ttf|cur)$/)}
+            ["cdn", "unpkg", "npm"].some(keyword => url.host.includes(keyword)) && url.pathname.match(/\.(js|css|woff2|woff|ttf|cur)$/)}
+,
+analytics: {
+clean: false,
+match: url =>
+            ["sdk.51.la", "busuanzi"].some(keyword => url.host.includes(keyword))}
+,
+theme: {
+clean: false,
+match: url =>
+            ["anheyu", "anzhiyu"].some(keyword => url.host.includes(keyword))}
 }
 
+let modifyRequest = request => {
+    const url = request.url
+    if (url.includes('sdk.51.la') && url.match(/\.(js)$/)) {
+        const newUrl = url.replace('sdk.51.la', 'resource.joker2yue.cn/blog/js');
+        return new Request(newUrl, request);
+    }
+    if (url.includes('lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/qrcodejs/1.0.0/qrcode.min.js')) {
+        return new Request('https://cdn.bootcdn.net/ajax/libs/qrcodejs/1.0.0/qrcode.min.js', request);
+    }
+}
 let getSpareUrls = srcUrl => {
-    if (srcUrl.startsWith("https://npm.elemecdn.com")) {
+    if (srcUrl.startsWith("https://cdn.cbd.int")) {
         const pathname = new URL(srcUrl).pathname;
         return {
             timeout: 3000,
             list: [
                 srcUrl,
-                `https://cdn.cbd.int${pathname}`,
+                `https://cdn.anheyu.com/npm/${pathname}`,
+                `https://npm.onmicrosoft.cn${pathname}`,
+                `https://npm.elemecdn.com${pathname}`,
                 `https://unpkg.com${pathname}`,
-                `https://cdnjs.cloudflare.com${pathname}`,
-                `https://cdn.jsdelivr.net${pathname}`,
-                `https://onmicrosoft.com${pathname}`,
+                `https://cdn.jsdelivr.net/npm${pathname}`,
+            ],
+        };
+    }
+    if (srcUrl.startsWith("https://cdn.bootcdn.net")) {
+        const pathname = new URL(srcUrl).pathname;
+        return {
+            timeout: 3000,
+            list: [
+                srcUrl,
+                `https://mirrors.sustech.edu.cn/cdnjs/ajax/libs${pathname}`,
+                `https://cdnjs.cloudflare.com/ajax/libs${pathname}`,
             ],
         };
     }
     if (srcUrl.startsWith("https://resource.joker2yue.cn")) {
         return {
-            timeout: 3000,
-            list: [srcUrl, `https://cdn.jsdelivr.net/gh/Joker2Yue/jsdelivr-cdn/${new URL(srcUrl).pathname}`],
+            timeout: 5000,
+            list: [srcUrl, `https://cdn.jsdelivr.net/gh/Joker2Yue/jsdelivr-cdn${new URL(srcUrl).pathname}`],
         };
     }
-    // if (srcUrl.startsWith("http://localhost:4000")) {
-    //     const url = new URL(srcUrl);
-    //     const pathname = url.pathname;
-    //     const extension = pathname.split('.').pop();
-    //     if (['png', 'jpg', 'jpeg', 'gif', 'bmp', 'svg', 'webp'].includes(extension)) {
-    //         const newPathname = pathname.replace(/^\/\d{4}\/\d{2}\/\d{2}\//, '/blog/post/');
-    //         const newImageUrl = `https://resource.joker2yue.cn/${newPathname}`;
-    //         return {
-    //             timeout: 1000,
-    //             list: [srcUrl, newImageUrl],
-    //         };
-    //     }
-    // }
-    const regex = /^(https?:\/\/)?([^/]+)\/(\d{4})\/(\d{2})\/(\d{2})\/([^/]+\/[^/]+\.(png|jpg|jpeg|gif|bmp|svg|webp))$/;
-    if (regex.test(srcUrl)) {
-        const match = srcUrl.match(regex);
-        const newPathname = `/blog/post/${match[3]}/${match[4]}/${match[5]}/${match[6]}`;
-        return {
-            timeout: 2000,
-            list: [srcUrl, `https://resource.joker2yue.cn${newPathname}`],
-        };
+    if (['png', 'jpg', 'jpeg', 'gif', 'bmp', 'svg', 'webp'].includes(srcUrl.split('.').pop())) {
+        const regex = /^(https?:\/\/)?([^/]+)\/(\d{4})\/(\d{2})\/(\d{2})\/([^/]+\/[^/]+\.(png|jpg|jpeg|gif|bmp|svg|webp))$/;
+        if (regex.test(srcUrl)) {
+            const match = srcUrl.match(regex);
+            const newPathname = `/blog/post/${match[3]}/${match[4]}/${match[5]}/${match[6]}`;
+            return {
+                timeout: 2000,
+                list: [srcUrl, "https://resource.joker2yue.cn" + newPathname],
+            };
+        }
     }
 }
 let isCors = () => false
@@ -254,7 +273,13 @@ const fetchFile = (request, banCache, urls = null) => {
         let url = new URL(request.url)
         // [blockRequest call]
         if (request.method !== 'GET' || !request.url.startsWith('http')) return
-        // [modifyRequest call]
+        
+                const modify = modifyRequest(request)
+                if (modify) {
+                    request = modify
+                    url = new URL(request.url)
+                }
+            
         if (skipRequest(request)) return;
         let cacheKey = url.hostname + url.pathname + url.search
         let cache
@@ -307,7 +332,9 @@ const fetchFile = (request, banCache, urls = null) => {
         } else {
             const urls = getSpareUrls(request.url)
             if (urls) handleFetch(fetchFile(request, false, urls))
-            // [modifyRequest else-if]
+            
+                else if (modify) handleFetch(fetchWithCache(request, false).catch(err => new Response(err, {status: 499})))
+            
             else handleFetch(fetchWithCache(request).catch(err => new Response(err, {status: 499})))
         }
     })
