@@ -106,8 +106,11 @@
         'https://hexo-circle-of-firends.joker2yue.cn',
         'https://meting-api.joker2yue.cn',
     ];
+    const skipPaths = [
+        '/cw-cgi/api?type=config'
+    ]
 
-    return skipUrls.some(url => request.url.startsWith(url));
+    return skipUrls.some(url => request.url.startsWith(url)) || skipPaths.includes(request.url.pathname);
 }
 let cacheRules = {
 simple: {
@@ -115,7 +118,7 @@ clean: true,
 search: false,
 match: url => {
             const allowedHost = ejectDomain;
-            const allowedPaths = ["/404.html", "/css/index.css", "/css/joker.css", "/js/joker.js"];
+            const allowedPaths = ["/js/joker.js", "/css/joker.css",];
             return url.host === allowedHost && allowedPaths.includes(url.pathname);
         }}
 ,
@@ -137,9 +140,12 @@ match: url =>
 
 let modifyRequest = request => {
     const url = request.url
-    if (url.includes('sdk.51.la') && url.match(/\.(js)$/)) {
+    if (url.includes('sdk.51.la') && url.endsWith(".js")) {
         const newUrl = url.replace('sdk.51.la', 'resource.joker2yue.cn/blog/js');
         return new Request(newUrl, request);
+    }
+    if(url.includes('busuanzi.sukap.cn/busuanzi.pure.mini.js')){
+        return new Request("https://resource.joker2yue.cn/blog/js/busuanzi.pure.mini.js", request);
     }
     if (url.includes('lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/qrcodejs/1.0.0/qrcode.min.js')) {
         return new Request('https://cdn.bootcdn.net/ajax/libs/qrcodejs/1.0.0/qrcode.min.js', request);
@@ -167,14 +173,9 @@ let getSpareUrls = srcUrl => {
             list: [
                 srcUrl,
                 `https://mirrors.sustech.edu.cn/cdnjs/ajax/libs${pathname}`,
+                `https://cdn.staticfile.net/${pathname}`,
                 `https://cdnjs.cloudflare.com/ajax/libs${pathname}`,
             ],
-        };
-    }
-    if (srcUrl.startsWith("https://resource.joker2yue.cn")) {
-        return {
-            timeout: 5000,
-            list: [srcUrl, `https://cdn.jsdelivr.net/gh/Joker2Yue/jsdelivr-cdn${new URL(srcUrl).pathname}`],
         };
     }
     if (['png', 'jpg', 'jpeg', 'gif', 'bmp', 'svg', 'webp'].includes(srcUrl.split('.').pop())) {

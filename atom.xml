@@ -119,11 +119,13 @@
       
         
         
-    <summary type="html">&lt;h1&gt;在Ollama上启用amd780m(gfx1103)GPU加速&lt;/h1&gt;
-&lt;blockquote&gt;
+    <summary type="html">&lt;blockquote&gt;
 &lt;p&gt;喜欢种地怎么你了？（快速靠近）&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h4 id=&quot;准备与安装&quot;&gt;准备与安装&lt;a class=&quot;headerlink&quot;</summary>
+&lt;h4 id=&quot;准备与安装&quot;&gt;准备与安装&lt;a class=&quot;headerlink&quot; href=&quot;#准备与安装&quot;&gt;&lt;/a&gt;&lt;/h4&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li</summary>
         
       
     
@@ -184,12 +186,11 @@
       
         
         
-    <summary type="html">&lt;h1&gt;下午题-面向对象的程序设计与实现&lt;/h1&gt;
-&lt;p&gt;&lt;strong&gt;C++基本语法、Java基本语法、解题技巧、真题讲解&lt;/strong&gt;&lt;/p&gt;
+    <summary type="html">&lt;p&gt;&lt;strong&gt;C++基本语法、Java基本语法、解题技巧、真题讲解&lt;/strong&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;NULL&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h4 id=&quot;大纲&quot;&gt;大纲&lt;a</summary>
+&lt;h4 id=&quot;大纲&quot;&gt;大纲&lt;a class=&quot;headerlink&quot;</summary>
         
       
     
@@ -220,12 +221,11 @@
       
         
         
-    <summary type="html">&lt;h1&gt;下午题-算法设计与c语言实现&lt;/h1&gt;
-&lt;p&gt;&lt;strong&gt;程序设计语言、算法分析、算法分类、解题技巧、真题讲解&lt;/strong&gt;&lt;/p&gt;
+    <summary type="html">&lt;p&gt;&lt;strong&gt;程序设计语言、算法分析、算法分类、解题技巧、真题讲解&lt;/strong&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;NULL&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h4 id=&quot;大纲&quot;&gt;大纲&lt;a</summary>
+&lt;h4 id=&quot;大纲&quot;&gt;大纲&lt;a class=&quot;headerlink&quot;</summary>
         
       
     
@@ -256,12 +256,11 @@
       
         
         
-    <summary type="html">&lt;h1&gt;下午题-UML建模&lt;/h1&gt;
-&lt;p&gt;&lt;strong&gt;用例图、类图、序列图、通信图、活动图、状态图、解题技巧、真题讲解&lt;/strong&gt;&lt;/p&gt;
+    <summary type="html">&lt;p&gt;&lt;strong&gt;用例图、类图、序列图、通信图、活动图、状态图、解题技巧、真题讲解&lt;/strong&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;NULL&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h4 id=&quot;大纲&quot;&gt;大纲&lt;a</summary>
+&lt;h4 id=&quot;大纲&quot;&gt;大纲&lt;a class=&quot;headerlink&quot;</summary>
         
       
     
@@ -292,12 +291,11 @@
       
         
         
-    <summary type="html">&lt;h1&gt;下午题-数据库设计&lt;/h1&gt;
-&lt;p&gt;&lt;strong&gt;E-R图和关系模式、E-R转换为关系模式、解题技巧、真题讲解&lt;/strong&gt;&lt;/p&gt;
+    <summary type="html">&lt;p&gt;&lt;strong&gt;E-R图和关系模式、E-R转换为关系模式、解题技巧、真题讲解&lt;/strong&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;NULL&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h4 id=&quot;大纲&quot;&gt;大纲&lt;a</summary>
+&lt;h4 id=&quot;大纲&quot;&gt;大纲&lt;a class=&quot;headerlink&quot;</summary>
         
       
     
@@ -328,12 +326,11 @@
       
         
         
-    <summary type="html">&lt;h1&gt;下午题-数据流图&lt;/h1&gt;
-&lt;p&gt;&lt;strong&gt;数据流图基本概念、数据流图设计原则、解题技巧、真题讲解&lt;/strong&gt;&lt;/p&gt;
+    <summary type="html">&lt;p&gt;&lt;strong&gt;数据流图基本概念、数据流图设计原则、解题技巧、真题讲解&lt;/strong&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;NULL&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h4 id=&quot;大纲&quot;&gt;大纲&lt;a</summary>
+&lt;h4 id=&quot;大纲&quot;&gt;大纲&lt;a class=&quot;headerlink&quot;</summary>
         
       
     
@@ -364,8 +361,7 @@
       
         
         
-    <summary type="html">&lt;h1&gt;面向对象技术&lt;/h1&gt;
-&lt;p&gt;&lt;strong&gt;面向对象基础、UML、设计模式&lt;/strong&gt;&lt;/p&gt;
+    <summary type="html">&lt;p&gt;&lt;strong&gt;面向对象基础、UML、设计模式&lt;/strong&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;NULL&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -400,10 +396,11 @@
       
         
         
-    <summary type="html">&lt;h1&gt;结构化开发方法&lt;/h1&gt;
-&lt;p&gt;&lt;strong&gt;系统分析与设计、需求分析、需求工程、结构化分析与设计、测试基础知识、系统运行与维护、软件架构介绍&lt;/strong&gt;&lt;/p&gt;
+    <summary type="html">&lt;p&gt;&lt;strong&gt;系统分析与设计、需求分析、需求工程、结构化分析与设计、测试基础知识、系统运行与维护、软件架构介绍&lt;/strong&gt;&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;SA，Structural</summary>
+&lt;p&gt;SA，Structural Analysis，结构化分析&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4</summary>
         
       
     
@@ -434,8 +431,7 @@
       
         
         
-    <summary type="html">&lt;h1&gt;软件工程基础&lt;/h1&gt;
-&lt;p&gt;&lt;strong&gt;软件工程概述、软件过程模型、软件开发方法、软件工具与软件开发环境、软件项目管理、软件风险管理、软件度量&lt;/strong&gt;&lt;/p&gt;
+    <summary type="html">&lt;p&gt;&lt;strong&gt;软件工程概述、软件过程模型、软件开发方法、软件工具与软件开发环境、软件项目管理、软件风险管理、软件度量&lt;/strong&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;CMM，Capability Maturity</summary>
         
@@ -468,8 +464,7 @@
       
         
         
-    <summary type="html">&lt;h1&gt;算法基础&lt;/h1&gt;
-&lt;p&gt;&lt;strong&gt;常用算法、数据挖掘、智能优化&lt;/strong&gt;&lt;/p&gt;
+    <summary type="html">&lt;p&gt;&lt;strong&gt;常用算法、数据挖掘、智能优化&lt;/strong&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;ANN，Artificial Neural Network，人工神经网络&lt;/p&gt;
 &lt;p&gt;SA，Simulated</summary>
@@ -503,8 +498,7 @@
       
         
         
-    <summary type="html">&lt;h1&gt;算法基础&lt;/h1&gt;
-&lt;p&gt;&lt;strong&gt;算法基础知识、算法分析基础、查找、排序、常用算法原理&lt;/strong&gt;&lt;/p&gt;
+    <summary type="html">&lt;p&gt;&lt;strong&gt;算法基础知识、算法分析基础、查找、排序、常用算法原理&lt;/strong&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;NULL&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -539,8 +533,7 @@
       
         
         
-    <summary type="html">&lt;h1&gt;数据结构&lt;/h1&gt;
-&lt;p&gt;&lt;strong&gt;线性结构，数组、矩阵和广义表，树与二叉树，图&lt;/strong&gt;&lt;/p&gt;
+    <summary type="html">&lt;p&gt;&lt;strong&gt;线性结构，数组、矩阵和广义表，树与二叉树，图&lt;/strong&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;NULL&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -575,8 +568,7 @@
       
         
         
-    <summary type="html">&lt;h1&gt;标准化与知识产权&lt;/h1&gt;
-&lt;p&gt;&lt;strong&gt;知识产权基础知识、标准化基础知识&lt;/strong&gt;&lt;/p&gt;
+    <summary type="html">&lt;p&gt;&lt;strong&gt;知识产权基础知识、标准化基础知识&lt;/strong&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;NULL&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -611,8 +603,7 @@
       
         
         
-    <summary type="html">&lt;h1&gt;程序设计语言基础知识&lt;/h1&gt;
-&lt;p&gt;&lt;strong&gt;程序设计语言概述、语言处理程序基础&lt;/strong&gt;&lt;/p&gt;
+    <summary type="html">&lt;p&gt;&lt;strong&gt;程序设计语言概述、语言处理程序基础&lt;/strong&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;NULL&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -647,10 +638,9 @@
       
         
         
-    <summary type="html">&lt;h1&gt;计算机网络&lt;/h1&gt;
-&lt;p&gt;&lt;strong&gt;网络概述、网络互联硬件、网络的协议、网络的应用、网络安全、多媒体&lt;/strong&gt;&lt;/p&gt;
+    <summary type="html">&lt;p&gt;&lt;strong&gt;网络概述、网络互联硬件、网络的协议、网络的应用、网络安全、多媒体&lt;/strong&gt;&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;OSI/RM, Open Systems Interconnection/Reference</summary>
+&lt;p&gt;OSI/RM, Open Systems Interconnection/Reference Model,</summary>
         
       
     
@@ -681,11 +671,11 @@
       
         
         
-    <summary type="html">&lt;h1&gt;数据库技术基础&lt;/h1&gt;
-&lt;p&gt;&lt;strong&gt;数据库基础知识、规范化基础知识、新技术基础&lt;/strong&gt;&lt;/p&gt;
+    <summary type="html">&lt;p&gt;&lt;strong&gt;数据库基础知识、规范化基础知识、新技术基础&lt;/strong&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;DBS：Database System，数据库系统&lt;/p&gt;
-&lt;p&gt;1NF：First Normal</summary>
+&lt;p&gt;1NF：First Normal Form，第一范式&lt;/p&gt;
+&lt;p&gt;2NF：Second</summary>
         
       
     
