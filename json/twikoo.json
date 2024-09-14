@@ -1,0 +1,980 @@
+{
+  "颜文字": {
+    "type": "emoticon",
+    "container": [
+      {
+        "icon": "OωO",
+        "text": "Author: DIYgod"
+      },
+      {
+        "icon": "|´・ω・)ノ",
+        "text": "Hi"
+      },
+      {
+        "icon": "ヾ(≧∇≦*)ゝ",
+        "text": "开心"
+      },
+      {
+        "icon": "(☆ω☆)",
+        "text": "星星眼"
+      },
+      {
+        "icon": "（╯‵□′）╯︵┴─┴",
+        "text": "掀桌"
+      },
+      {
+        "icon": "￣﹃￣",
+        "text": "流口水"
+      },
+      {
+        "icon": "(/ω＼)",
+        "text": "捂脸"
+      },
+      {
+        "icon": "∠( ᐛ 」∠)＿",
+        "text": "给跪"
+      },
+      {
+        "icon": "(๑•̀ㅁ•́ฅ)",
+        "text": "Hi"
+      },
+      {
+        "icon": "→_→",
+        "text": "斜眼"
+      },
+      {
+        "icon": "୧(๑•̀⌄•́๑)૭",
+        "text": "加油"
+      },
+      {
+        "icon": "٩(ˊᗜˋ*)و",
+        "text": "有木有WiFi"
+      },
+      {
+        "icon": "(ノ°ο°)ノ",
+        "text": "前方高能预警"
+      },
+      {
+        "icon": "(´இ皿இ｀)",
+        "text": "我从未见过如此厚颜无耻之人"
+      },
+      {
+        "icon": "⌇●﹏●⌇",
+        "text": "吓死宝宝惹"
+      },
+      {
+        "icon": "(ฅ´ω`ฅ)",
+        "text": "已阅留爪"
+      },
+      {
+        "icon": "(╯°A°)╯︵○○○",
+        "text": "去吧大师球"
+      },
+      {
+        "icon": "φ(￣∇￣o)",
+        "text": "太萌惹"
+      },
+      {
+        "icon": "ヾ(´･ ･｀｡)ノ\"",
+        "text": "咦咦咦"
+      },
+      {
+        "icon": "( ง ᵒ̌皿ᵒ̌)ง⁼³₌₃",
+        "text": "气呼呼"
+      },
+      {
+        "icon": "(ó﹏ò｡)",
+        "text": "我受到了惊吓"
+      },
+      {
+        "icon": "Σ(っ °Д °;)っ",
+        "text": "什么鬼"
+      },
+      {
+        "icon": "( ,,´･ω･)ﾉ\"(´っω･｀｡)",
+        "text": "摸摸头"
+      },
+      {
+        "icon": "╮(╯▽╰)╭ ",
+        "text": "无奈"
+      },
+      {
+        "icon": "o(*////▽////*)q ",
+        "text": "脸红"
+      },
+      {
+        "icon": "＞﹏＜",
+        "text": ""
+      },
+      {
+        "icon": "( ๑´•ω•) \"(ㆆᴗㆆ)",
+        "text": ""
+      }
+    ]
+  },
+  "Emoji": {
+    "type": "emoji",
+    "container": [
+      {
+        "icon": "😂",
+        "text": ""
+      },
+      {
+        "icon": "😀",
+        "text": ""
+      },
+      {
+        "icon": "😅",
+        "text": ""
+      },
+      {
+        "icon": "😊",
+        "text": ""
+      },
+      {
+        "icon": "🙂",
+        "text": ""
+      },
+      {
+        "icon": "🙃",
+        "text": ""
+      },
+      {
+        "icon": "😌",
+        "text": ""
+      },
+      {
+        "icon": "😍",
+        "text": ""
+      },
+      {
+        "icon": "😘 ",
+        "text": ""
+      },
+      {
+        "icon": "😜",
+        "text": ""
+      },
+      {
+        "icon": "😝",
+        "text": ""
+      },
+      {
+        "icon": "😏",
+        "text": ""
+      },
+      {
+        "icon": "😒",
+        "text": ""
+      },
+      {
+        "icon": "🙄",
+        "text": ""
+      },
+      {
+        "icon": "😳 ",
+        "text": ""
+      },
+      {
+        "icon": "😡",
+        "text": ""
+      },
+      {
+        "icon": "😔",
+        "text": ""
+      },
+      {
+        "icon": "😫",
+        "text": ""
+      },
+      {
+        "icon": "😱",
+        "text": ""
+      },
+      {
+        "icon": "😭",
+        "text": ""
+      },
+      {
+        "icon": "💩",
+        "text": ""
+      },
+      {
+        "icon": "👻",
+        "text": ""
+      },
+      {
+        "icon": "🙌",
+        "text": ""
+      },
+      {
+        "icon": "🖕",
+        "text": ""
+      },
+      {
+        "icon": "👍",
+        "text": ""
+      },
+      {
+        "icon": "👫",
+        "text": ""
+      },
+      {
+        "icon": "👬",
+        "text": ""
+      },
+      {
+        "icon": "👭",
+        "text": ""
+      },
+      {
+        "icon": "🌚",
+        "text": ""
+      },
+      {
+        "icon": "🌝",
+        "text": ""
+      },
+      {
+        "icon": "🙈",
+        "text": ""
+      },
+      {
+        "icon": "💊",
+        "text": ""
+      },
+      {
+        "icon": "😶",
+        "text": ""
+      },
+      {
+        "icon": "🙏",
+        "text": ""
+      },
+      {
+        "icon": "🍦",
+        "text": ""
+      },
+      {
+        "icon": "🍉",
+        "text": ""
+      },
+      {
+        "icon": "😣",
+        "text": ""
+      }
+    ]
+  },
+  "Bilibili": {
+    "type": "image",
+    "container": [
+      {
+        "icon": "<img src=\"https://owo.imaegoo.com/bilibili/6ea59c827c414b4a2955fe79e0f6fd3dcd515e24.png\">",
+        "text": "tv_doge"
+      },
+      {
+        "icon": "<img src=\"https://owo.imaegoo.com/bilibili/a8111ad55953ef5e3be3327ef94eb4a39d535d06.png\">",
+        "text": "tv_亲亲"
+      },
+      {
+        "icon": "<img src=\"https://owo.imaegoo.com/bilibili/bb690d4107620f1c15cff29509db529a73aee261.png\">",
+        "text": "tv_偷笑"
+      },
+      {
+        "icon": "<img src=\"https://owo.imaegoo.com/bilibili/180129b8ea851044ce71caf55cc8ce44bd4a4fc8.png\">",
+        "text": "tv_再见"
+      },
+      {
+        "icon": "<img src=\"https://owo.imaegoo.com/bilibili/b9cbc755c2b3ee43be07ca13de84e5b699a3f101.png\">",
+        "text": "tv_冷漠"
+      },
+      {
+        "icon": "<img src=\"https://owo.imaegoo.com/bilibili/34ba3cd204d5b05fec70ce08fa9fa0dd612409ff.png\">",
+        "text": "tv_发怒"
+      },
+      {
+        "icon": "<img src=\"https://owo.imaegoo.com/bilibili/34db290afd2963723c6eb3c4560667db7253a21a.png\">",
+        "text": "tv_发财"
+      },
+      {
+        "icon": "<img src=\"https://owo.imaegoo.com/bilibili/9e55fd9b500ac4b96613539f1ce2f9499e314ed9.png\">",
+        "text": "tv_可爱"
+      },
+      {
+        "icon": "<img src=\"https://owo.imaegoo.com/bilibili/09dd16a7aa59b77baa1155d47484409624470c77.png\">",
+        "text": "tv_吐血"
+      },
+      {
+        "icon": "<img src=\"https://owo.imaegoo.com/bilibili/fe1179ebaa191569b0d31cecafe7a2cd1c951c9d.png\">",
+        "text": "tv_呆"
+      },
+      {
+        "icon": "<img src=\"https://owo.imaegoo.com/bilibili/9f996894a39e282ccf5e66856af49483f81870f3.png\">",
+        "text": "tv_呕吐"
+      },
+      {
+        "icon": "<img src=\"https://owo.imaegoo.com/bilibili/241ee304e44c0af029adceb294399391e4737ef2.png\">",
+        "text": "tv_困"
+      },
+      {
+        "icon": "<img src=\"https://owo.imaegoo.com/bilibili/1f0b87f731a671079842116e0991c91c2c88645a.png\">",
+        "text": "tv_坏笑"
+      },
+      {
+        "icon": "<img src=\"https://owo.imaegoo.com/bilibili/093c1e2c490161aca397afc45573c877cdead616.png\">",
+        "text": "tv_大佬"
+      },
+      {
+        "icon": "<img src=\"https://owo.imaegoo.com/bilibili/23269aeb35f99daee28dda129676f6e9ea87934f.png\">",
+        "text": "tv_大哭"
+      },
+      {
+        "icon": "<img src=\"https://owo.imaegoo.com/bilibili/d04dba7b5465779e9755d2ab6f0a897b9b33bb77.png\">",
+        "text": "tv_委屈"
+      },
+      {
+        "icon": "<img src=\"https://owo.imaegoo.com/bilibili/a37683fb5642fa3ddfc7f4e5525fd13e42a2bdb1.png\">",
+        "text": "tv_害羞"
+      },
+      {
+        "icon": "<img src=\"https://owo.imaegoo.com/bilibili/7cfa62dafc59798a3d3fb262d421eeeff166cfa4.png\">",
+        "text": "tv_尴尬"
+      },
+      {
+        "icon": "<img src=\"https://owo.imaegoo.com/bilibili/70dc5c7b56f93eb61bddba11e28fb1d18fddcd4c.png\">",
+        "text": "tv_微笑"
+      },
+      {
+        "icon": "<img src=\"https://owo.imaegoo.com/bilibili/90cf159733e558137ed20aa04d09964436f618a1.png\">",
+        "text": "tv_思考"
+      },
+      {
+        "icon": "<img src=\"https://owo.imaegoo.com/bilibili/0d15c7e2ee58e935adc6a7193ee042388adc22af.png\">",
+        "text": "tv_惊吓"
+      }
+    ]
+  },
+  "aru": {
+    "type": "image",
+    "container": [
+      {
+        "text": "azukisan-001",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/Saidosi/azuki-emoji-for-waline@1.0/azukisan/001.png'>"
+      },
+      {
+        "text": "azukisan-002",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/Saidosi/azuki-emoji-for-waline@1.0/azukisan/002.png'>"
+      },
+      {
+        "text": "azukisan-003",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/Saidosi/azuki-emoji-for-waline@1.0/azukisan/003.png'>"
+      },
+      {
+        "text": "azukisan-004",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/Saidosi/azuki-emoji-for-waline@1.0/azukisan/004.png'>"
+      },
+      {
+        "text": "azukisan-005",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/Saidosi/azuki-emoji-for-waline@1.0/azukisan/005.png'>"
+      },
+      {
+        "text": "azukisan-006",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/Saidosi/azuki-emoji-for-waline@1.0/azukisan/006.png'>"
+      },
+      {
+        "text": "azukisan-007",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/Saidosi/azuki-emoji-for-waline@1.0/azukisan/007.png'>"
+      },
+      {
+        "text": "azukisan-008",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/Saidosi/azuki-emoji-for-waline@1.0/azukisan/008.png'>"
+      },
+      {
+        "text": "azukisan-009",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/Saidosi/azuki-emoji-for-waline@1.0/azukisan/009.png'>"
+      },
+      {
+        "text": "azukisan-010",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/Saidosi/azuki-emoji-for-waline@1.0/azukisan/010.png'>"
+      },
+      {
+        "text": "azukisan-011",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/Saidosi/azuki-emoji-for-waline@1.0/azukisan/011.png'>"
+      },
+      {
+        "text": "azukisan-012",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/Saidosi/azuki-emoji-for-waline@1.0/azukisan/012.png'>"
+      },
+      {
+        "text": "azukisan-013",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/Saidosi/azuki-emoji-for-waline@1.0/azukisan/013.png'>"
+      },
+      {
+        "text": "azukisan-014",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/Saidosi/azuki-emoji-for-waline@1.0/azukisan/014.png'>"
+      },
+      {
+        "text": "azukisan-015",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/Saidosi/azuki-emoji-for-waline@1.0/azukisan/015.png'>"
+      },
+      {
+        "text": "azukisan-016",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/Saidosi/azuki-emoji-for-waline@1.0/azukisan/016.png'>"
+      },
+      {
+        "text": "azukisan-017",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/Saidosi/azuki-emoji-for-waline@1.0/azukisan/017.png'>"
+      },
+      {
+        "text": "azukisan-018",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/Saidosi/azuki-emoji-for-waline@1.0/azukisan/018.png'>"
+      },
+      {
+        "text": "azukisan-019",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/Saidosi/azuki-emoji-for-waline@1.0/azukisan/019.png'>"
+      },
+      {
+        "text": "azukisan-020",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/Saidosi/azuki-emoji-for-waline@1.0/azukisan/020.png'>"
+      },
+      {
+        "text": "azukisan-021",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/Saidosi/azuki-emoji-for-waline@1.0/azukisan/021.png'>"
+      },
+      {
+        "text": "azukisan-022",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/Saidosi/azuki-emoji-for-waline@1.0/azukisan/022.png'>"
+      },
+      {
+        "text": "azukisan-023",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/Saidosi/azuki-emoji-for-waline@1.0/azukisan/023.png'>"
+      },
+      {
+        "text": "azukisan-024",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/Saidosi/azuki-emoji-for-waline@1.0/azukisan/024.png'>"
+      },
+      {
+        "text": "azukisan-025",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/Saidosi/azuki-emoji-for-waline@1.0/azukisan/025.png'>"
+      },
+      {
+        "text": "azukisan-026",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/Saidosi/azuki-emoji-for-waline@1.0/azukisan/026.png'>"
+      },
+      {
+        "text": "azukisan-027",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/Saidosi/azuki-emoji-for-waline@1.0/azukisan/027.png'>"
+      },
+      {
+        "text": "azukisan-028",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/Saidosi/azuki-emoji-for-waline@1.0/azukisan/028.png'>"
+      },
+      {
+        "text": "azukisan-029",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/Saidosi/azuki-emoji-for-waline@1.0/azukisan/029.png'>"
+      },
+      {
+        "text": "azukisan-030",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/Saidosi/azuki-emoji-for-waline@1.0/azukisan/030.png'>"
+      },
+      {
+        "text": "azukisan-031",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/Saidosi/azuki-emoji-for-waline@1.0/azukisan/031.png'>"
+      },
+      {
+        "text": "azukisan-032",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/Saidosi/azuki-emoji-for-waline@1.0/azukisan/032.png'>"
+      },
+      {
+        "text": "azukisan-033",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/Saidosi/azuki-emoji-for-waline@1.0/azukisan/033.png'>"
+      },
+      {
+        "text": "azukisan-034",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/Saidosi/azuki-emoji-for-waline@1.0/azukisan/034.png'>"
+      },
+      {
+        "text": "azukisan-035",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/Saidosi/azuki-emoji-for-waline@1.0/azukisan/035.png'>"
+      },
+      {
+        "text": "azukisan-036",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/Saidosi/azuki-emoji-for-waline@1.0/azukisan/036.png'>"
+      },
+      {
+        "text": "azukisan-037",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/Saidosi/azuki-emoji-for-waline@1.0/azukisan/037.png'>"
+      },
+      {
+        "text": "azukisan-038",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/Saidosi/azuki-emoji-for-waline@1.0/azukisan/038.png'>"
+      },
+      {
+        "text": "azukisan-039",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/Saidosi/azuki-emoji-for-waline@1.0/azukisan/039.png'>"
+      },
+      {
+        "text": "azukisan-040",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/Saidosi/azuki-emoji-for-waline@1.0/azukisan/040.png'>"
+      }
+    ]
+  },
+  "blobcatplus": {
+    "type": "image",
+    "container": [
+      {
+        "text": "aheart",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/infinitesum/Twikoo-emoji@master/Blob/ablobcatheart.png'>"
+      },
+      {
+        "text": "heartbroken",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/infinitesum/Twikoo-emoji@master/Blob/ablobcatheartbroken.png'>"
+      },
+      {
+        "text": "heart",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/infinitesum/Twikoo-emoji@master/Blob/blobcatheart.png'>"
+      },
+      {
+        "text": "affect",
+        "icon": "<img src='https://cdn.discordapp.com/emojis/696458935896375359.gif'>"
+      },
+      {
+        "text ": "pat",
+        "icon": "<img src='https://emojis.slackmojis.com/emojis/images/1643514598/6020/meow_headache.png?1643514598'>"
+      },
+      {
+        "text": "heartpride",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/infinitesum/Twikoo-emoji@master/Blob/blobcatheartpride.png'>"
+      },
+      {
+        "text": "love",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/infinitesum/Twikoo-emoji@master/Blob/blobcatlove.png'>"
+      },
+      {
+        "text": "kissheart",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/infinitesum/Twikoo-emoji@master/Blob/blobcatkissheart.png'>"
+      },
+      {
+        "text": "acry",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/infinitesum/Twikoo-emoji@master/Blob/ablobcatcry.png'>"
+      },
+      {
+        "text": "adead",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/infinitesum/Twikoo-emoji@master/Blob/ablobcatdead.png'>"
+      },
+      {
+        "text": "snuggle",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/infinitesum/Twikoo-emoji@master/Blob/blobcatsnuggle.png'>"
+      },
+      {
+        "text": "comfyuee",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/infinitesum/Twikoo-emoji@master/Blob/comfyuee.png'>"
+      },
+      {
+        "text": "comfyslep",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/infinitesum/Twikoo-emoji@master/Blob/comfyslep.png'>"
+      },
+      {
+        "text": "comfynight",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/infinitesum/Twikoo-emoji@master/Blob/comfynight.png'>"
+      },
+      {
+        "text": "comfysweat",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/infinitesum/Twikoo-emoji@master/Blob/blobcatcomfysweat.png'>"
+      },
+      {
+        "text": "comfy",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/infinitesum/Twikoo-emoji@master/Blob/blobcatcomfy.png'>"
+      },
+      {
+        "text": "comftears",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/infinitesum/Twikoo-emoji@master/Blob/blobcatcomftears.png'>"
+      },
+      {
+        "text": "facepalm",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/infinitesum/Twikoo-emoji@master/Blob/blobcatfacepalm.png'>"
+      },
+      {
+        "text": "dizzy",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/infinitesum/Twikoo-emoji@master/Blob/blobcatdizzy.png'>"
+      },
+      {
+        "text": "0_0",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/infinitesum/Twikoo-emoji@master/Blob/blobcat0_0.png'>"
+      },
+      {
+        "text": "angry",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/infinitesum/Twikoo-emoji@master/Blob/blobcatangry.png'>"
+      },
+      {
+        "text": "blush",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/infinitesum/Twikoo-emoji@master/Blob/blobcatblush.png'>"
+      },
+      {
+        "text": "coffee",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/infinitesum/Twikoo-emoji@master/Blob/blobcatcoffee.png'>"
+      },
+      {
+        "text": "cry",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/infinitesum/Twikoo-emoji@master/Blob/blobcatcry.png'>"
+      },
+      {
+        "text": "dead",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/infinitesum/Twikoo-emoji@master/Blob/blobcatdead.png'>"
+      },
+      {
+        "text": "died",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/infinitesum/Twikoo-emoji@master/Blob/blobcatdied.png'>"
+      },
+      {
+        "text": "disturbed",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/infinitesum/Twikoo-emoji@master/Blob/blobcatdisturbed.png'>"
+      },
+      {
+        "text": "fearful",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/infinitesum/Twikoo-emoji@master/Blob/blobcatfearful.png'>"
+      },
+      {
+        "text": "fingerguns",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/infinitesum/Twikoo-emoji@master/Blob/blobcatfingerguns.png'>"
+      },
+      {
+        "text": "flip",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/infinitesum/Twikoo-emoji@master/Blob/blobcatflip.png'>"
+      },
+      {
+        "text": "flower",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/infinitesum/Twikoo-emoji@master/Blob/blobcatflower.png'>"
+      },
+      {
+        "text": "gay",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/infinitesum/Twikoo-emoji@master/Blob/blobcatgay.png'>"
+      },
+      {
+        "text": "googlycry",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/infinitesum/Twikoo-emoji@master/Blob/blobcatgooglycry.png'>"
+      },
+      {
+        "text": "neutral",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/infinitesum/Twikoo-emoji@master/Blob/blobcatneutral.png'>"
+      },
+      {
+        "text": "openmouth",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/infinitesum/Twikoo-emoji@master/Blob/blobcatopenmouth.png'>"
+      },
+      {
+        "text": "sadreach",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/infinitesum/Twikoo-emoji@master/Blob/blobcatsadreach.png'>"
+      },
+      {
+        "text": "scared",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/infinitesum/Twikoo-emoji@master/Blob/blobcatscared.png'>"
+      },
+      {
+        "text": "nomblobcat",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/infinitesum/Twikoo-emoji@master/Blob/blobcatnomblobcat.png'>"
+      },
+      {
+        "text": "presentred",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/infinitesum/Twikoo-emoji@master/Blob/blobcatpresentred.png'>"
+      },
+      {
+        "text": "read",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/infinitesum/Twikoo-emoji@master/Blob/blobcatread.png'>"
+      },
+      {
+        "text": "sipsweat",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/infinitesum/Twikoo-emoji@master/Blob/blobcatsipsweat.png'>"
+      },
+      {
+        "text": "snapped",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/infinitesum/Twikoo-emoji@master/Blob/blobcatsnapped.png'>"
+      },
+      {
+        "text": "think",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/infinitesum/Twikoo-emoji@master/Blob/blobcatthink.png'>"
+      },
+      {
+        "text": "triumph",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/infinitesum/Twikoo-emoji@master/Blob/blobcattriumph.png'>"
+      },
+      {
+        "text": "umm",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/infinitesum/Twikoo-emoji@master/Blob/blobcatumm.png'>"
+      },
+      {
+        "text": "verified",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/infinitesum/Twikoo-emoji@master/Blob/blobcatverified.png'>"
+      },
+      {
+        "text": "box",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/infinitesum/Twikoo-emoji@master/Blob/blobcatbox.png'>"
+      },
+      {
+        "text": "caged",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/infinitesum/Twikoo-emoji@master/Blob/blobcatcaged.png'>"
+      },
+      {
+        "text": "googlytrash",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/infinitesum/Twikoo-emoji@master/Blob/blobcatgooglytrash.png'>"
+      },
+      {
+        "text": "headphones",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/infinitesum/Twikoo-emoji@master/Blob/blobcatheadphones.png'>"
+      },
+      {
+        "text": "highfive",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/infinitesum/Twikoo-emoji@master/Blob/blobcathighfive.png'>"
+      },
+      {
+        "text": "melt",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/infinitesum/Twikoo-emoji@master/Blob/blobcatmelt.png'>"
+      },
+      {
+        "text": "meltthumb",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/infinitesum/Twikoo-emoji@master/Blob/blobcatmeltthumb.png'>"
+      },
+      {
+        "text": "notlikethis",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/infinitesum/Twikoo-emoji@master/Blob/blobcatnotlikethis.png'>"
+      },
+      {
+        "text": "saitama",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/infinitesum/Twikoo-emoji@master/Blob/blobcatsaitama.png'>"
+      },
+      {
+        "text": "yandere",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/infinitesum/Twikoo-emoji@master/Blob/blobcatyandere.png'>"
+      },
+      {
+        "text": "peek2",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/infinitesum/Twikoo-emoji@master/Blob/blobcatpeek2.png'>"
+      },
+      {
+        "text": "peekaboo",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/infinitesum/Twikoo-emoji@master/Blob/blobcatpeekaboo.png'>"
+      },
+      {
+        "text": "photo",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/infinitesum/Twikoo-emoji@master/Blob/blobcatphoto.png'>"
+      },
+      {
+        "text": "attentionreverse",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/infinitesum/Twikoo-emoji@master/Blob/ablobcatattentionreverse.png'>"
+      },
+      {
+        "text": "reachrev",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/infinitesum/Twikoo-emoji@master/Blob/ablobcatreachrev.png'>"
+      },
+      {
+        "text": "wave",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/infinitesum/Twikoo-emoji@master/Blob/ablobcatwave.png'>"
+      },
+      {
+        "text": "alt",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/infinitesum/Twikoo-emoji@master/Blob/blobcatalt.png'>"
+      },
+      {
+        "text": "police",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/infinitesum/Twikoo-emoji@master/Blob/blobcatpolice.png'>"
+      },
+      {
+        "text": "shocked",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/infinitesum/Twikoo-emoji@master/Blob/blobcatshocked.png'>"
+      },
+      {
+        "text": "rainbow",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/infinitesum/Twikoo-emoji@master/Blob/ablobcatrainbow.png'>"
+      },
+      {
+        "text": "reeee",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/infinitesum/Twikoo-emoji@master/Blob/A_BlobCat_REEEE.png'>"
+      },
+      {
+        "text": "code",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/infinitesum/Twikoo-emoji@master/Blob/A_BlobCat_Code.png'>"
+      },
+      {
+        "text": "sweat",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/herwhiskers/blogPicBed@main/ablobcatknitsweats.png'>"
+      },
+      {
+        "text": "nervous",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/infinitesum/Twikoo-emoji@master/Blob/A_BlobCat_Nervous.png'>"
+      },
+      {
+        "text": "aww",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/herwhiskers/blogPicBed@main/blobcat-aww.png'>"
+      },
+      {
+        "text": "bounce",
+        "icon": "<img src='https://cdn.jsdelivr.net/gh/infinitesum/Twikoo-emoji@master/Blob/bouncefast.png'>"
+      }
+    ]
+  },
+  "Yurui-Neko": {
+    "type": "image",
+    "container": [
+      {
+        "text": "Yurui-Neko-001",
+        "icon": "<img src='https://bu.dusays.com/2021/01/15/9dffeadb5180f.png'>"
+      },
+      {
+        "text": "Yurui-Neko-002",
+        "icon": "<img src='https://bu.dusays.com/2021/01/15/3352de022c475.png'>"
+      },
+      {
+        "text": "Yurui-Neko-003",
+        "icon": "<img src='https://bu.dusays.com/2021/01/15/18c1b5508ed66.png'>"
+      },
+      {
+        "text": "Yurui-Neko-004",
+        "icon": "<img src='https://bu.dusays.com/2021/01/15/b8ce7a323133f.png'>"
+      },
+      {
+        "text": "Yurui-Neko-005",
+        "icon": "<img src='https://bu.dusays.com/2021/01/15/512b452364f99.png'>"
+      },
+      {
+        "text": "Yurui-Neko-006",
+        "icon": "<img src='https://bu.dusays.com/2021/01/15/72d08cfde1938.png'>"
+      },
+      {
+        "text": "Yurui-Neko-007",
+        "icon": "<img src='https://bu.dusays.com/2021/01/15/84f1933d41103.png'>"
+      },
+      {
+        "text": "Yurui-Neko-008",
+        "icon": "<img src='https://bu.dusays.com/2021/01/15/fd881908237ee.png'>"
+      },
+      {
+        "text": "Yurui-Neko-009",
+        "icon": "<img src='https://bu.dusays.com/2021/01/15/41fd0306bb02c.png'>"
+      },
+      {
+        "text": "Yurui-Neko-010",
+        "icon": "<img src='https://bu.dusays.com/2021/01/15/81b54091d129d.png'>"
+      },
+      {
+        "text": "Yurui-Neko-011",
+        "icon": "<img src='https://bu.dusays.com/2021/01/15/d1c6f949758f3.png'>"
+      },
+      {
+        "text": "Yurui-Neko-012",
+        "icon": "<img src='https://bu.dusays.com/2021/01/15/9ea7dfea95cf4.png'>"
+      },
+      {
+        "text": "Yurui-Neko-013",
+        "icon": "<img src='https://bu.dusays.com/2021/01/15/26779506a1357.png'>"
+      },
+      {
+        "text": "Yurui-Neko-014",
+        "icon": "<img src='https://bu.dusays.com/2021/01/15/419f76ab77d0c.png'>"
+      },
+      {
+        "text": "Yurui-Neko-015",
+        "icon": "<img src='https://bu.dusays.com/2021/01/15/993875a0ec542.png'>"
+      },
+      {
+        "text": "Yurui-Neko-016",
+        "icon": "<img src='https://bu.dusays.com/2021/01/15/2cfc308e786fa.png'>"
+      },
+      {
+        "text": "Yurui-Neko-017",
+        "icon": "<img src='https://bu.dusays.com/2021/01/15/9a5e7f8ec2669.png'>"
+      },
+      {
+        "text": "Yurui-Neko-018",
+        "icon": "<img src='https://bu.dusays.com/2021/01/15/32f3ba22ad4a5.png'>"
+      },
+      {
+        "text": "Yurui-Neko-019",
+        "icon": "<img src='https://bu.dusays.com/2021/01/15/61a186d4c8d0b.png'>"
+      },
+      {
+        "text": "Yurui-Neko-020",
+        "icon": "<img src='https://bu.dusays.com/2021/01/15/5a9ab1c98d229.png'>"
+      },
+      {
+        "text": "Yurui-Neko-021",
+        "icon": "<img src='https://bu.dusays.com/2021/01/15/824dedbc79b8f.png'>"
+      },
+      {
+        "text": "Yurui-Neko-022",
+        "icon": "<img src='https://bu.dusays.com/2021/01/15/27cfc1d9dd6ee.png'>"
+      },
+      {
+        "text": "Yurui-Neko-023",
+        "icon": "<img src='https://bu.dusays.com/2021/01/15/75834b2954b6c.png'>"
+      },
+      {
+        "text": "Yurui-Neko-024",
+        "icon": "<img src='https://bu.dusays.com/2021/01/15/adf1b4663a9bf.png'>"
+      },
+      {
+        "text": "Yurui-Neko-025",
+        "icon": "<img src='https://bu.dusays.com/2021/01/15/04105fc2e996c.png'>"
+      },
+      {
+        "text": "Yurui-Neko-026",
+        "icon": "<img src='https://bu.dusays.com/2021/01/15/ae7fc688557c3.png'>"
+      },
+      {
+        "text": "Yurui-Neko-027",
+        "icon": "<img src='https://bu.dusays.com/2021/01/15/ec692020cdd20.png'>"
+      },
+      {
+        "text": "Yurui-Neko-028",
+        "icon": "<img src='https://bu.dusays.com/2021/01/15/90b6b9eace1f2.png'>"
+      },
+      {
+        "text": "Yurui-Neko-029",
+        "icon": "<img src='https://bu.dusays.com/2021/01/15/72754ca21b688.png'>"
+      },
+      {
+        "text": "Yurui-Neko-030",
+        "icon": "<img src='https://bu.dusays.com/2021/01/15/f238f70391f61.png'>"
+      },
+      {
+        "text": "Yurui-Neko-031",
+        "icon": "<img src='https://bu.dusays.com/2021/01/15/ea59f64b2c5b8.png'>"
+      },
+      {
+        "text": "Yurui-Neko-032",
+        "icon": "<img src='https://bu.dusays.com/2021/01/15/093965c0ae791.png'>"
+      },
+      {
+        "text": "Yurui-Neko-033",
+        "icon": "<img src='https://bu.dusays.com/2021/01/15/941ddeef6b0fc.png'>"
+      },
+      {
+        "text": "Yurui-Neko-034",
+        "icon": "<img src='https://bu.dusays.com/2021/01/15/acbdf6eac6754.png'>"
+      },
+      {
+        "text": "Yurui-Neko-035",
+        "icon": "<img src='https://bu.dusays.com/2021/01/15/c53109f60568b.png'>"
+      },
+      {
+        "text": "Yurui-Neko-036",
+        "icon": "<img src='https://bu.dusays.com/2021/01/15/43f7ea26ce944.png'>"
+      },
+      {
+        "text": "Yurui-Neko-037",
+        "icon": "<img src='https://bu.dusays.com/2021/01/15/d3ec413743955.png'>"
+      },
+      {
+        "text": "Yurui-Neko-038",
+        "icon": "<img src='https://bu.dusays.com/2021/01/15/d3368ea95f551.png'>"
+      },
+      {
+        "text": "Yurui-Neko-039",
+        "icon": "<img src='https://bu.dusays.com/2021/01/15/ae04445a89f79.png'>"
+      },
+      {
+        "text": "Yurui-Neko-040",
+        "icon": "<img src='https://bu.dusays.com/2021/01/15/f067ce69a5e09.png'>"
+      }
+    ]
+  }
+}

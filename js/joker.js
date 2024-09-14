@@ -81,3 +81,34 @@ document.addEventListener("DOMContentLoaded", function () {
 }), document.addEventListener("pjax:complete", function () {
     onPJAXComplete(config)
 });
+
+function clearAllCachesAndReload() {
+    if (caches) {
+        caches.keys().then(function (cacheNames) {
+            return Promise.all(
+                cacheNames.map(function (cacheName) {
+                    return caches.delete(cacheName);
+                })
+            );
+        }).catch(function (error) {
+            console.error('Failed to clear cache:', error);
+        });
+    }
+
+    if (window.indexedDB) {
+        const req = indexedDB.databases();
+        req.then(dbs => {
+            dbs.forEach(db => {
+                const deleteReq = indexedDB.deleteDatabase(db.name);
+                deleteReq.onsuccess = () => console.log(`IndexedDB ${db.name} deleted`);
+                deleteReq.onerror = () => console.error(`Failed to delete IndexedDB ${db.name}`);
+            });
+        }).catch(error => {
+            console.error('Failed to list IndexedDB databases:', error);
+        });
+    }
+
+    localStorage.clear();
+    sessionStorage.clear();
+    window.location.reload(true);
+}

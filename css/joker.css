@@ -112,6 +112,10 @@ blockquote {
     max-height: calc(100vh - 160px) !important;
 }
 
+#aside-content #card-toc .toc-content:not(.is-expand) .toc-child {
+    border-left: 1px solid var(--dark-grey);
+}
+
 /* 修复顶部按钮样式 */
 .topGroup .banner-button {
     width: 118px !important;
@@ -162,6 +166,21 @@ a {
 
 #postChat_button {
     bottom: 100px !important
+}
+
+/* 友链中的 回顶 */
+#flink .tab-to-top {
+    display: none;
+}
+
+/* 评论区管理员字体颜色 */
+#body-wrap.page .tk-admin-config .el-input__inner {
+    color: var(--anzhiyu-fontcolor) !important;
+}
+
+/* 友链中部分大图片溢出修复 */
+#flink-banners #skills-tags-group-all .tags-group-icon img {
+    height: 100% !important;
 }
 
 /*! 加载动画 */

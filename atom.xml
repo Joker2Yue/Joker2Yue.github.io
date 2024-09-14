@@ -6,7 +6,7 @@
   <link href="https://blog.joker2yue.cn/atom.xml" rel="self"/>
   
   <link href="https://blog.joker2yue.cn/"/>
-  <updated>2024-05-30T12:46:25.000Z</updated>
+  <updated>2024-08-20T12:46:25.000Z</updated>
   <id>https://blog.joker2yue.cn/</id>
   
   <author>
@@ -15,6 +15,41 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>使用Optional类优化代码中多层if嵌套</title>
+    <link href="https://blog.joker2yue.cn/2024/08/20/%E4%BD%BF%E7%94%A8Optional%E7%B1%BB%E4%BC%98%E5%8C%96%E4%BB%A3%E7%A0%81%E4%B8%AD%E5%A4%9A%E5%B1%82if%E5%B5%8C%E5%A5%97/"/>
+    <id>https://blog.joker2yue.cn/2024/08/20/%E4%BD%BF%E7%94%A8Optional%E7%B1%BB%E4%BC%98%E5%8C%96%E4%BB%A3%E7%A0%81%E4%B8%AD%E5%A4%9A%E5%B1%82if%E5%B5%8C%E5%A5%97/</id>
+    <published>2024-08-20T12:46:25.000Z</published>
+    <updated>2024-08-20T12:46:25.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;code&gt;Optional&lt;/code&gt; 类可以帮助我们简化多层 &lt;code&gt;if&lt;/code&gt; 嵌套，特别是在处理可能为 &lt;code&gt;null&lt;/code&gt; 的值时。以下是一个通过 &lt;code&gt;Optional&lt;/code&gt; 来简化多层 &lt;code&gt;if&lt;/code&gt;</summary>
+        
+      
+    
+    
+    
+    <category term="经验分享" scheme="https://blog.joker2yue.cn/categories/%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/"/>
+    
+    <category term="实习日记" scheme="https://blog.joker2yue.cn/categories/%E5%AE%9E%E4%B9%A0%E6%97%A5%E8%AE%B0/"/>
+    
+    <category term="必看" scheme="https://blog.joker2yue.cn/categories/%E5%BF%85%E7%9C%8B/"/>
+    
+    <category term="技术" scheme="https://blog.joker2yue.cn/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="必看" scheme="https://blog.joker2yue.cn/tags/%E5%BF%85%E7%9C%8B/"/>
+    
+    <category term="技术" scheme="https://blog.joker2yue.cn/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+    <category term="Java" scheme="https://blog.joker2yue.cn/tags/Java/"/>
+    
+  </entry>
   
   <entry>
     <title>软件项目管理复习题</title>
@@ -164,6 +199,8 @@
     
     
     <category term="经验分享" scheme="https://blog.joker2yue.cn/categories/%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/"/>
+    
+    <category term="实习日记" scheme="https://blog.joker2yue.cn/categories/%E5%AE%9E%E4%B9%A0%E6%97%A5%E8%AE%B0/"/>
     
     
     <category term="必看" scheme="https://blog.joker2yue.cn/tags/%E5%BF%85%E7%9C%8B/"/>
@@ -641,41 +678,6 @@
     <summary type="html">&lt;p&gt;&lt;strong&gt;网络概述、网络互联硬件、网络的协议、网络的应用、网络安全、多媒体&lt;/strong&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;OSI/RM, Open Systems Interconnection/Reference Model,</summary>
-        
-      
-    
-    
-    
-    <category term="软考" scheme="https://blog.joker2yue.cn/categories/%E8%BD%AF%E8%80%83/"/>
-    
-    
-    <category term="软考" scheme="https://blog.joker2yue.cn/tags/%E8%BD%AF%E8%80%83/"/>
-    
-    <category term="连载" scheme="https://blog.joker2yue.cn/tags/%E8%BF%9E%E8%BD%BD/"/>
-    
-    <category term="大学课程" scheme="https://blog.joker2yue.cn/tags/%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B/"/>
-    
-    <category term="软件设计师" scheme="https://blog.joker2yue.cn/tags/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%B8%88/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>软件设计师-06，数据库技术基础</title>
-    <link href="https://blog.joker2yue.cn/2023/09/21/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%B8%88-06/"/>
-    <id>https://blog.joker2yue.cn/2023/09/21/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%B8%88-06/</id>
-    <published>2023-09-21T12:20:22.000Z</published>
-    <updated>2023-09-21T12:20:22.000Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;&lt;strong&gt;数据库基础知识、规范化基础知识、新技术基础&lt;/strong&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;DBS：Database System，数据库系统&lt;/p&gt;
-&lt;p&gt;1NF：First Normal Form，第一范式&lt;/p&gt;
-&lt;p&gt;2NF：Second</summary>
         
       
     

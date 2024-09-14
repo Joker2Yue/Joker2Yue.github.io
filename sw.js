@@ -127,11 +127,6 @@ clean: true,
 match: url =>
             ["cdn", "unpkg", "npm"].some(keyword => url.host.includes(keyword)) && url.pathname.match(/\.(js|css|woff2|woff|ttf|cur)$/)}
 ,
-analytics: {
-clean: false,
-match: url =>
-            ["sdk.51.la", "busuanzi"].some(keyword => url.host.includes(keyword))}
-,
 theme: {
 clean: false,
 match: url =>
@@ -144,12 +139,16 @@ let modifyRequest = request => {
         const newUrl = url.replace('sdk.51.la', 'resource.joker2yue.cn/blog/js');
         return new Request(newUrl, request);
     }
-    if(url.includes('busuanzi.sukap.cn/busuanzi.pure.mini.js')){
-        return new Request("https://resource.joker2yue.cn/blog/js/busuanzi.pure.mini.js", request);
-    }
     if (url.includes('lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/qrcodejs/1.0.0/qrcode.min.js')) {
         return new Request('https://cdn.bootcdn.net/ajax/libs/qrcodejs/1.0.0/qrcode.min.js', request);
     }
+}
+let blockRequest = url => {
+    const blockPatterns = [
+        "googleusercontent",
+    ];
+
+    return blockPatterns.some(pattern => url.hostname.includes(pattern));
 }
 let getSpareUrls = srcUrl => {
     if (srcUrl.startsWith("https://cdn.cbd.int")) {
@@ -272,7 +271,10 @@ const fetchFile = (request, banCache, urls = null) => {
     self.addEventListener('fetch', event => {
         let request = event.request
         let url = new URL(request.url)
-        // [blockRequest call]
+        
+                if (blockRequest(url))
+                    return event.respondWith(new Response(null, {status: 204}))
+            
         if (request.method !== 'GET' || !request.url.startsWith('http')) return
         
                 const modify = modifyRequest(request)
