@@ -126,12 +126,93 @@ blockquote {
     .author-content-item .card-content .banner-button-group .banner-button i, .author-content-item .card-content .banner-button-group .banner-button svg {
         margin-right: 0.5rem !important;
         margin-left: 0.5rem !important;
+        color: #4c4948 !important;
     }
+}
+
+/* 代码展开动画修复与优化 */
+#article-container .code-expand-btn.expand-done {
+    -webkit-transform: rotate(0deg) scale(1);
+    -moz-transform: rotate(0deg) scale(1);
+    -o-transform: rotate(0deg) scale(1);
+    -ms-transform: rotate(0deg) scale(1);
+    transform: rotate(0deg) scale(1);
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    -ms-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+}
+
+#article-container .code-expand-btn.expand-done i {
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    transform: rotate(180deg);
+    -webkit-transition: all 0s, background 0.3s;
+    -moz-transition: all 0s, background 0.3s;
+    -o-transition: all 0s, background 0.3s;
+    -ms-transition: all 0s, background 0.3s;
+    transition: all 0s, background 0.3s;
+}
+
+#article-container .code-expand-btn:not(.expand-done) ~ table, #article-container .code-expand-btn:not(.expand-done) ~ pre {
+    height: max-content;
+    max-height: 330px ;
+}
+
+#article-container figure.highlight table {
+    display: block;
+    overflow: auto;
+    overflow-y: hidden;
+    border: none;
+    transition: max-height 0.6s;
+}
+
+/* 修复移动模式下的遮罩 */
+#quit-mask {
+    position: fixed;
+    background: hsla(0, 0%, 9%, .5);
+    display: none;
+    top: 0;
+    left: 0;
+    z-index: 98;
+    width: 100%;
+    height: 100%;
+    pointer-events: auto; /* 避免遮罩层阻止滑动 */
+    transition: opacity 0.5s ease;
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera, and Edge */
+}
+
+#card-toc {
+    z-index: 101 !important;
+}
+
+#rightside {
+    z-index: 97 !important;
+}
+
+/* 修复阅读模式下的文字问题 */
+.read-mode #article-container h1, .read-mode #article-container h2, .read-mode #article-container h3, .read-mode #article-container h4, .read-mode #article-container h5, .read-mode #article-container h6 {
+    padding: 0 0 0 1rem !important;
+}
+
+.read-mode #article-container code {
+    color: #fff !important;
 }
 
 /* 修复<a>文字错误 */
 a {
     font-family: AlimamaShuHeiTi, "PingFang SC", "Microsoft JhengHei", "Microsoft YaHei", sans-serif !important;
+}
+
+/*  修复文章页面后面的铅笔图标 */
+.post-edit-link .anzhiyu-icon-pencil:before {
+    color: var(--anzhiyu-white);
 }
 
 /* 关于本人 - Hello There！*/
@@ -143,6 +224,22 @@ a {
 /*左下角版权*/
 .copyright .footer-bar-link {
     margin-right: 0.2rem !important;
+}
+
+/* 禁止复制 */
+.no-select {
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera, and Edge */
+}
+
+/* 阻止span 的复制 */
+span {
+    user-select: none; /* 对现代浏览器有效 */
+    -webkit-user-select: none; /* 对 Chrome 和 Safari 有效 */
+    -moz-user-select: none; /* 对 Firefox 有效 */
+    -ms-user-select: none; /* 对 IE10+ 有效 */
 }
 
 /*! */

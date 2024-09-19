@@ -1,0 +1,1054 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><!-- hexo injector head_begin start --><script>
+                    (() => {
+                        const sw = navigator.serviceWorker
+                        const error = () => console.error("ServiceWorker 注册失败，可能是您的浏览器不支持该功能。")
+                        if (!sw?.register('/sw.js')
+                            
+                            ?.catch(error)
+                            ) error()
+                    })()
+                </script><!-- hexo injector head_begin end --><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><title>跟随狂神学Java-30，Mysql | 九歌</title><meta name="keywords" content="MySQL,数据库,数据类型,表,数据操作语言（DML）,外键,字段属性,数据库引擎,数据库管理系统（DBMS）,行注释"><meta name="author" content="Joker2Yue"><meta name="copyright" content="Joker2Yue"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#f7f9fe"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-touch-fullscreen" content="yes"><meta name="apple-mobile-web-app-title" content="跟随狂神学Java-30，Mysql"><meta name="application-name" content="跟随狂神学Java-30，Mysql"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="#f7f9fe"><meta property="og:type" content="article"><meta property="og:title" content="跟随狂神学Java-30，Mysql"><meta property="og:url" content="https://blog.joker2yue.cn/post/gen-sui-kuang-shen-xue-java-30/index.html"><meta property="og:site_name" content="九歌"><meta property="og:description" content="第三十天：Mysql  “真正的危险不是计算机开始像人一样思考，而是人开始像计算机一样思考。” 【狂神说Java】MySQL最新教程通俗易懂  初识Mysql  JavaEE：企业级Java开发，Web 前端：页面展示；后台：数据库，链接前端，控制视图跳转，前端传数据 数据库：存数据  为什么要学数"><meta property="og:locale" content="zh-CN"><meta property="og:image" content="https://resource.joker2yue.cn/blog/images/coverImg/JavaSE/17.jpg"><meta property="article:author" content="Joker2Yue"><meta property="article:tag" content="Hexo,Java,JavaScript,html5,css3,Jquery,NodeJs,github,css,js,html,AnZhiYu,博客,学习"><meta name="twitter:card" content="summary"><meta name="twitter:image" content="https://resource.joker2yue.cn/blog/images/coverImg/JavaSE/17.jpg"><meta name="description" content="第三十天：Mysql  “真正的危险不是计算机开始像人一样思考，而是人开始像计算机一样思考。” 【狂神说Java】MySQL最新教程通俗易懂  初识Mysql  JavaEE：企业级Java开发，Web 前端：页面展示；后台：数据库，链接前端，控制视图跳转，前端传数据 数据库：存数据  为什么要学数"><link rel="shortcut icon" href="/favicon.ico"><link rel="canonical" href="https://blog.joker2yue.cn/post/gen-sui-kuang-shen-xue-java-30/"><link rel="preconnect" href="//cdn.cbd.int"/><meta name="google-site-verification" content="pbOVJD5xCJ_hy8qsEllb_o72A1ToJVHND5VcaZthS4U"/><meta name="baidu-site-verification" content="codeva-Y6WRbw4qhm"/><meta name="msvalidate.01" content="805A6EE29D8356ED4ECD4A62D9A0151D"/><link rel="manifest" href="/manifest.json"/><meta name="msapplication-TileColor" content="var(--anzhiyu-main)"/><link rel="mask-icon" href="/images/siteicon/apple-icon-180.png" color="#5bbad5"/><link rel="apple-touch-icon" sizes="180x180" href="/images/siteicon/apple-icon-180.png"/><link rel="apple-touch-icon-precomposed" sizes="180x180" href="/images/siteicon/apple-icon-180.png"/><link rel="icon" type="image/png" sizes="32x32" href="/images/siteicon/32.png"/><link rel="icon" type="image/png" sizes="16x16" href="/images/siteicon/16.png"/><link rel="bookmark" href="/images/siteicon/apple-icon-180.png"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2048-2732.jpg" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2732-2048.jpg" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1668-2388.jpg" media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2388-1668.jpg" media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1536-2048.jpg" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2048-1536.jpg" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1668-2224.jpg" media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2224-1668.jpg" media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1620-2160.jpg" media="(device-width: 810px) and (device-height: 1080px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2160-1620.jpg" media="(device-width: 810px) and (device-height: 1080px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1290-2796.jpg" media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2796-1290.jpg" media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1179-2556.jpg" media="(device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2556-1179.jpg" media="(device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1284-2778.jpg" media="(device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2778-1284.jpg" media="(device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1170-2532.jpg" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2532-1170.jpg" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1125-2436.jpg" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2436-1125.jpg" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1242-2688.jpg" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2688-1242.jpg" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-828-1792.jpg" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1792-828.jpg" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1242-2208.jpg" media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2208-1242.jpg" media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-750-1334.jpg" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1334-750.jpg" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-640-1136.jpg" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1136-640.jpg" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.6.0/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/@fancyapps/ui@5.0.36/dist/fancybox/fancybox.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/swiper@5.4.5/css/swiper.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  linkPageTop: {"enable":true,"title":"与数百名博主无限进步","addFriendPlaceholder":"昵称（请勿包含博客等字样）：\n网站地址（要求博客地址，请勿提交个人主页）：\n头像图片url（请提供尽可能清晰的图片，我会上传到我自己的图床）：\n描述：\n站点截图（可选）：\n"},
+  peoplecanvas: undefined,
+  postHeadAiDescription: {"enable":true,"gptName":"Joker","mode":"local","switchBtn":true,"btnLink":"https://afdian.net/item/886a79d4db6711eda42a52540025c377","randomNum":1,"basicWordCount":1000,"key":"7d68f96f3824c2340712","Referer":"https://Blog.Joker2Yue.cn/"},
+  diytitle: {"enable":true,"leaveTitle":"w(ﾟДﾟ)w 大佬，别丢下我呀555","backTitle":"♪(^∇^*)欢迎肥来！"},
+  LA51: {"enable":true,"ck":"3FljRaaHsuwhQACC","LingQueMonitorID":"3FljRaaHsuwhQACC"},
+  greetingBox: {"enable":true,"default":"欢迎大佬！🫡","list":[{"greeting":"时间不早啦，早点休息吧😴","startTime":0,"endTime":1},{"greeting":"小夜猫子，快去睡觉吧，明天要有精力哦🌙","startTime":1,"endTime":2},{"greeting":"再不睡觉会变成光头哦！梦中见吧💤","startTime":2,"endTime":3},{"greeting":"别熬啦，再熬就熬穿啦~🦉","startTime":3,"endTime":4},{"greeting":"你见过凌晨四点的洛杉矶吗🕓","startTime":4,"endTime":5},{"greeting":"早期的鸟儿有虫吃，今天也要加油哦 💪","startTime":5,"endTime":6},{"greeting":"新的一天开始了，早安！希望今天一切顺利☀️","startTime":6,"endTime":7},{"greeting":"早上好，准备好迎接新一天的挑战吧😊","startTime":7,"endTime":8},{"greeting":"今天是美好的一天，祝你有个愉快的早晨🕊️","startTime":8,"endTime":9},{"greeting":"上午好，工作顺利吗？记得适当休息哦📈","startTime":9,"endTime":10},{"greeting":"生活不易，加油，再坚持一下！💪","startTime":10,"endTime":11},{"greeting":"午餐时间快到了，别忘了吃点好吃的🍲","startTime":11,"endTime":12},{"greeting":"午安！享受这段轻松的时光吧😊","startTime":12,"endTime":13},{"greeting":"下午好，继续努力，今天还没有结束哦☕","startTime":13,"endTime":14},{"greeting":"工作辛苦啦~记得喝水保持清醒哦💧","startTime":14,"endTime":15},{"greeting":"工作中的小休息，放松一下吧🎵","startTime":15,"endTime":16},{"greeting":"离下班还有一点时间，再坚持一下！💼","startTime":16,"endTime":17},{"greeting":"傍晚好，辛苦了一整天，快回家放松吧🌇","startTime":17,"endTime":18},{"greeting":"晚餐时间到了，和家人们一起享受美好时光吧🍽️","startTime":18,"endTime":19},{"greeting":"晚上好，来放松一下自己吧🎬","startTime":19,"endTime":20},{"greeting":"夜晚的时光，属于你自己，享受吧🌙","startTime":20,"endTime":21},{"greeting":"准备好迎接美好的梦境吧💤","startTime":21,"endTime":22},{"greeting":"深夜时分，放松一下，做好睡觉准备吧🌌","startTime":22,"endTime":23},{"greeting":"夜深啦~ 赶紧入睡吧，明天会更好🛏️","startTime":23,"endTime":24}]},
+  twikooEnvId: 'https://twikoo.joker2yue.cn/',
+  commentBarrageConfig:undefined,
+  root: '/',
+  preloader: {"source":3},
+  friends_vue_info: {"apiurl":"https://hexo-circle-of-firends.joker2yue.cn/"},
+  navMusic: true,
+  mainTone: {"mode":"both","api":"https://img2color-go.joker2yue.cn/api?img=","cover_change":true},
+  authorStatus: {"skills":["🤖️ 数码科技爱好者","🔍 分享与热心帮助","🏠 智能家居小能手","🔨 设计开发一条龙","🤝 专修交互与设计","🏃 脚踏实地行动派","🧱 团队小组发动机","💢 壮汉人狠话不多"]},
+  algolia: {"appId":"02BLPWUQGR","apiKey":"c5b7016a2933af8c5cb09dfb4a490988","indexName":"blog_joker2yue_index","hits":{"per_page":6},"languages":{"input_placeholder":"输入关键词后按下回车查找","hits_empty":"找不到您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0.5,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简","rightMenuMsgToTraditionalChinese":"转为繁体","rightMenuMsgToSimplifiedChinese":"转为简体"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":330},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    simplehomepage: true,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"copy":true,"copyrightEbable":false,"limitCount":50,"languages":{"author":"作者: Joker2Yue","link":"链接: ","source":"来源: 九歌","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。","copySuccess":"复制成功，复制和转载请标注本文地址"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#425AEF","bgDark":"#1f1f1f","position":"bottom-right"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.min.js',
+      css: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: true,
+  shortcutKey: undefined,
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  configTitle: '九歌',
+  title: '跟随狂神学Java-30，Mysql',
+  postAI: '这篇文章介绍了MySQL数据库的基本概念、连接方法和数据操作语言。,文章详细介绍了MySQL数据库，包括数据库类型、数据类型、字段属性、表的创建和修改，以及数据操作语言的使用。,在这篇文章中，你可以了解到MySQL数据库的基本概念，包括不同类型的数据库、数据类型和字段属性。还介绍了如何连接数据库以及如何使用数据操作语言（DML）进行数据的插入、更新和删除操作。此外，还讨论了外键的使用和最佳实践，以及常见的操作符和条件运算符的用法。这些内容对于学习和理解MySQL数据库非常有帮助。',
+  pageFillDescription: '第三十天：Mysql, 初识Mysql, 为什么要学数据库, 什么是数据库, 数据库分类, MySQL简介, 连接数据库, D*L, 操作数据库, 数据库的数据类型, 数据库的字段属性, 数据库表, 关于数据库引擎：, 物理空间所在的位置, 修改表, MySql数据管理, 外链（了解即可）, DLM语言（全部记住）第三十天真正的危险不是计算机开始像人一样思考而是人开始像计算机一样思考狂神说最新教程通俗易懂初识企业级开发前端页面展示后台数据库链接前端控制视图跳转前端传数据数据库存数据为什么要学数据库趋势岗位需求得数据库者得天下被迫需求数据库时所有软件体系中最核心的存在什么是数据库数据库概念数据仓库软件安装在操作系统之上作用储存数据管理数据数据库分类关系型数据库行列通过表和表之间行和列之间的关系进行数据的存储非关系型数据库对象不是以行和列进行存储而是以对象进行存储根据对象的自身属性来决定数据库管理系统数据库的管理软件科学有效的管理我们的数据维护和获取数据数据库管理系统简介是一个关系型数据库管理系统前世属于公司今生属于公司开源的数据库软件体积小数据快总体拥有成本低招人成本低连接数据库命令行连接修改密码把改成自己的新密码注释这是一条行注释这是一段块注释有的也支持使用作为注释退出注意所有语句都需要分号结尾查询所有数据库切换数据库查看库展示当前数据库中所有的表查看中所有的表查看指定表中的数据查看中的数据创建数据库创建一个的表数据库定义语言数据库操作语言数据库查询语言数据库控制语言增删改查操作数据库操作数据库操作数据库中的表操作数据库中表的数据创建除非不存在移除如果不存在建议带上反单引号在中查询数据库的数据类型类型说明十分小的数据字节中等大小的数据字节较小的数据字节字节字节单精度浮点字节双精度浮点字节字符串形式的浮点数金融计算的时候使用字符串固定大小可变字符串微型文本文本串保存大文本日期年时间格式时间戳到现在的毫秒数没有值未知注意不要使用进行运算数据库的字段属性字段说明无符号的整数不能声明为负数填充的比如会被填充为自增自动在上一条的基础上加一常用来设置必须为整数类型可以自己设置自增的起始值和步长非空如果该列被定义为该属性必须填入信息默认如果该列被定义为该属性新增加字段时将会自动填充默认信息主键乐观锁伪删除创建时间修改时间数据库表创建表学号位不空自增匿名姓名注意英文逗号密码男性别出生日期家庭住址邮箱字符串使用英文单引号字段使用反单引号查看创建数据库的语句查看数据表的定义语句查看的结构关于数据库引擎默认使用早些年使用事务支持不支持支持数据行锁定不支持表锁支持外键约束不支持支持全文索引支持不支持表空间大小较小较大为前者两倍常规使用操作节约空间速度较快安全性高支持事务处理多表用户操作物理空间所在的位置所有的数据库文件都在下本质还是文件存储引擎在物理文件上的区别在数据库表中只有一个文件以及上级目录下的文件对应表结构定义文件数据文件索引文件修改表修改表将修改为添加字段修改表的字段重命名修改约束把的属性改成把修改为删除字段删除字段数据管理外链了解即可场景如果小明是大二年级的学生那么在小明的个人信息表中有年级一栏年级表中也应该有小明的信息方式创建表的时候关联外键年级年级名称学生表的需要去引用年级表的定义外键给这个外键添加约束执行引用引用创建表学号位不空自增匿名姓名注意英文逗号密码男性别出生日期学生年级家庭住址邮箱查看创建数据库的语句查看数据表的定义语句查看的结构如果表引用了表要删除表的时候应当先删除表这里表叫做从表表叫做主表方式不在创建表的时候添加外键关系不在创建表的时候添加外键关系以上的操作都是物理外键数据库级别的外键不建议使用最佳实践数据库就是单纯的表只用来存数据只有行和列我们想使用多张表的数据想使用外键程序去实现语言全部记住数据操作语言插入语句添加表名字段字段字段值值值大二由于主键自增我们可以省略主键如果不写表的字段它将会一一匹配大三修改学员名字带条件如果不带条件将会改动所有表语法表名条件多个条件逗号隔开操作符意义范围结果等于或者不等于大于小于小于等于大于等于在区间我和你我或你注意可以为具体值也可以变量',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-07-05 04:02:22',
+  postMainColor: '',
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#18171d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f7f9fe')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 18 || hour >= 6
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(e => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/joker.css" media="defer" onload="this.media='all'"><meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"><meta http-equiv="Access-Control-Allow-Origin" content="*" /><meta http-equiv="Access-Control-Allow-Methods" content="HEAD,GET,POST,PUT,DELETE,OPTIONS" /><meta http-equiv="Access-Control-Allow-Headers" content="Content-Type,Authorization,Origin,X-Requested-With,Accept" /><meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"><script src="https://cdn.cbd.int/jquery@3.7.1/dist/jquery.min.js"></script><script src="/js/notice.js"></script><!-- hexo injector head_end start --><script defer src="/sw-dom.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="九歌" type="application/atom+xml">
+</head><body data-type="anzhiyu"><div id="web_bg"></div><div id="an_music_bg"></div><div id="loading-box" onclick="document.getElementById(&quot;loading-box&quot;).classList.add(&quot;loaded&quot;)"><div class="loading-bg"><img class="loading-img nolazyload" alt="加载头像" src="https://resource.joker2yue.cn/blog/images/avatar_load.jpg"/><div class="loading-image-dot"></div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.getElementById('loading-box').classList.add("loaded");
+  },
+  initLoading: () => {
+    document.getElementById('loading-box').classList.remove("loaded")
+  }
+}
+window.addEventListener('load',()=> { preloader.endLoading() })
+setTimeout(function(){preloader.endLoading();},10000)
+
+if (true) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.10/progress_bar/progress_bar.css"/><script async="async" src="https://cdn.cbd.int/pace-js@1.2.4/pace.min.js" data-pace-options="{ &quot;restartOnRequestAfter&quot;:false,&quot;eventLag&quot;:false}"></script><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><div id="nav-group"><span id="blog_name"><div class="back-home-button"><i class="anzhiyufont anzhiyu-icon-grip-vertical"></i><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" href="https://Blog.Joker2Yue.cn/" title="博客"><img class="back-menu-item-icon" src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/joker_icon.ico" alt="博客"/><span class="back-menu-item-text">博客</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">项目</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://gpt.joker2yue.cn/" title="JokerGPT"><img class="back-menu-item-icon" src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://gpt.joker2yue.cn/favicon.ico" alt="JokerGPT"/><span class="back-menu-item-text">JokerGPT</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="https://www.joker2yue.cn/" title="主页"><img class="back-menu-item-icon" src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/avatar_joker.jpg" alt="主页"/><span class="back-menu-item-text">主页</span></a></div></div></div></div><a id="site-name" href="/" accesskey="h"><div class="title">九歌</div><i class="anzhiyufont anzhiyu-icon-house-chimney"></i></a></span><div class="mask-name-container"><div id="name-container"><a id="page-name" href="javascript:anzhiyu.scrollToDest(0, 500)">PAGE_NAME</a></div></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> 隧道</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 标签</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 社交</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/fcircle/"><i class="anzhiyufont anzhiyu-icon-artstation faa-tada" style="font-size: 0.9em;"></i><span> 朋友圈</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/link/"><i class="anzhiyufont anzhiyu-icon-link faa-tada" style="font-size: 0.9em;"></i><span> 友人账</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/comments/"><i class="anzhiyufont anzhiyu-icon-envelope faa-tada" style="font-size: 0.9em;"></i><span> 留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 我的</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/music/?id=648886106&amp;server=netease"><i class="anzhiyufont anzhiyu-icon-music faa-tada" style="font-size: 0.9em;"></i><span> 音乐馆</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/air-conditioner/"><i class="anzhiyufont anzhiyu-icon-fan faa-tada" style="font-size: 0.9em;"></i><span> 小空调</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 关于</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/about/"><i class="anzhiyufont anzhiyu-icon-paper-plane faa-tada" style="font-size: 0.9em;"></i><span> 关于本人</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/website/"><i class="anzhiyufont anzhiyu-icon-cube faa-tada" style="font-size: 0.9em;"></i><span> 本站建设</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/essay/"><i class="anzhiyufont anzhiyu-icon-lightbulb faa-tada" style="font-size: 0.9em;"></i><span> 闲言碎语</span></a></li><li><a class="site-page child faa-parent animated-hover" href="javascript:toRandomPost()"><i class="anzhiyufont anzhiyu-icon-shoe-prints1 faa-tada" style="font-size: 0.9em;"></i><span> 随便逛逛</span></a></li></ul></div></div></div><div id="nav-right"><div class="nav-button only-home" id="travellings_button" title="随机前往一个开往项目网站"><a class="site-page" onclick="anzhiyu.totraveling()" title="随机前往一个开往项目网站" href="javascript:void(0);" rel="external nofollow" data-pjax-state="external"><i class="anzhiyufont anzhiyu-icon-train"></i></a></div><div class="nav-button" id="randomPost_button"><a class="site-page" onclick="toRandomPost()" title="随机前往一个文章" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-dice"></i></a></div><div class="nav-button" id="search-button"><a class="site-page social-icon search" href="javascript:void(0);" title="搜索🔍" accesskey="s"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span> 搜索</span></a></div><input id="center-console" type="checkbox"/><label class="widget" for="center-console" title="中控台" onclick="anzhiyu.switchConsole();"><i class="left"></i><i class="widget center"></i><i class="widget right"></i></label><div id="console"><div class="console-card-group-reward"><ul class="reward-all console-card"><li class="reward-item"><a href="https://resource.joker2yue.cn/blog/images/reward/wechat.png" target="_blank"><img class="post-qr-code-img" alt="微信" src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/reward/wechat.png"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://resource.joker2yue.cn/blog/images/reward/alipay.png" target="_blank"><img class="post-qr-code-img" alt="支付宝" src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/reward/alipay.png"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div><div class="console-card-group"><div class="console-card-group-left"><div class="console-card" id="card-newest-comments"><div class="card-content"><div class="author-content-item-tips">互动</div><span class="author-content-item-title"> 最新评论</span></div><div class="aside-list"><span>正在加载中...</span></div></div></div><div class="console-card-group-right"><div class="console-card tags"><div class="card-content"><div class="author-content-item-tips">兴趣点</div><span class="author-content-item-title">寻找你感兴趣的领域</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/AI/" style="font-size: 1.05rem;">AI<sup>1</sup></a><a href="/tags/AMD/" style="font-size: 1.05rem;">AMD<sup>1</sup></a><a href="/tags/CSS/" style="font-size: 1.05rem;">CSS<sup>14</sup></a><a href="/tags/Git/" style="font-size: 1.05rem;">Git<sup>2</sup></a><a href="/tags/Github/" style="font-size: 1.05rem;">Github<sup>2</sup></a><a href="/tags/HTML/" style="font-size: 1.05rem;">HTML<sup>3</sup></a><a href="/tags/Hexo/" style="font-size: 1.05rem;">Hexo<sup>2</sup></a><a href="/tags/JDBC/" style="font-size: 1.05rem;">JDBC<sup>1</sup></a><a href="/tags/Java/" style="font-size: 1.05rem;">Java<sup>44</sup></a><a href="/tags/JavaEE/" style="font-size: 1.05rem;">JavaEE<sup>1</sup></a><a href="/tags/JavaSE/" style="font-size: 1.05rem;">JavaSE<sup>29</sup></a><a href="/tags/JavaWeb/" style="font-size: 1.05rem;">JavaWeb<sup>1</sup></a><a href="/tags/Kotlin/" style="font-size: 1.05rem;">Kotlin<sup>1</sup></a><a href="/tags/Linux/" style="font-size: 1.05rem;">Linux<sup>4</sup></a><a href="/tags/Markdown/" style="font-size: 1.05rem;">Markdown<sup>1</sup></a><a href="/tags/Maven/" style="font-size: 1.05rem;">Maven<sup>1</sup></a><a href="/tags/MyabtisPlus/" style="font-size: 1.05rem;">MyabtisPlus<sup>1</sup></a><a href="/tags/Mybatis/" style="font-size: 1.05rem;">Mybatis<sup>2</sup></a><a href="/tags/Mysql/" style="font-size: 1.05rem;">Mysql<sup>2</sup></a><a href="/tags/NodeJS/" style="font-size: 1.05rem;">NodeJS<sup>1</sup></a><a href="/tags/Ollama/" style="font-size: 1.05rem;">Ollama<sup>1</sup></a><a href="/tags/SSM/" style="font-size: 1.05rem;">SSM<sup>3</sup></a><a href="/tags/Spring/" style="font-size: 1.05rem;">Spring<sup>6</sup></a><a href="/tags/SpringBoot/" style="font-size: 1.05rem;">SpringBoot<sup>2</sup></a><a href="/tags/SpringCloud/" style="font-size: 1.05rem;">SpringCloud<sup>2</sup></a><a href="/tags/SpringFramework/" style="font-size: 1.05rem;">SpringFramework<sup>1</sup></a><a href="/tags/SpringMVC/" style="font-size: 1.05rem;">SpringMVC<sup>1</sup></a><a href="/tags/Spring%E6%A1%86%E6%9E%B6/" style="font-size: 1.05rem;">Spring框架<sup>2</sup></a><a href="/tags/Vue/" style="font-size: 1.05rem;">Vue<sup>1</sup></a><a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" style="font-size: 1.05rem;">分布式<sup>4</sup></a><a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 1.05rem;">前端<sup>22</sup></a><a href="/tags/%E5%A4%8D%E4%B9%A0%E9%A2%98/" style="font-size: 1.05rem;">复习题<sup>3</sup></a><a href="/tags/%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B/" style="font-size: 1.05rem;">大学课程<sup>23</sup></a><a href="/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/" style="font-size: 1.05rem;">大模型<sup>1</sup></a><a href="/tags/%E5%BF%85%E7%9C%8B/" style="font-size: 1.05rem;">必看<sup>26</sup></a><a href="/tags/%E6%8A%80%E6%9C%AF/" style="font-size: 1.05rem;">技术<sup>7</sup></a><a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 1.05rem;">数据库<sup>1</sup></a><a href="/tags/%E7%8B%82%E7%A5%9E/" style="font-size: 1.05rem;">狂神<sup>44</sup></a><a href="/tags/%E8%BD%AC%E8%BD%BD/" style="font-size: 1.05rem;">转载<sup>1</sup></a><a href="/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/" style="font-size: 1.05rem;">软件测试<sup>1</sup></a><a href="/tags/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%B8%88/" style="font-size: 1.05rem;">软件设计师<sup>20</sup></a><a href="/tags/%E8%BD%AF%E4%BB%B6%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/" style="font-size: 1.05rem;">软件项目管理<sup>2</sup></a><a href="/tags/%E8%BD%AF%E8%80%83/" style="font-size: 1.05rem;">软考<sup>20</sup></a><a href="/tags/%E8%BF%90%E7%BB%B4/" style="font-size: 1.05rem;">运维<sup>3</sup></a><a href="/tags/%E8%BF%9E%E8%BD%BD/" style="font-size: 1.05rem;">连载<sup>82</sup></a><a href="/tags/%E9%BB%91%E9%A9%AC/" style="font-size: 1.05rem;">黑马<sup>18</sup></a></div></div><hr/></div></div><div class="console-card history"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-box-archiv"></i><span>文章</span></div><div class="card-archives"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-archive"></i><span>归档</span><a class="card-more-btn" href="/archives/" title="查看更多">
+    <i class="anzhiyufont anzhiyu-icon-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/08/"><span class="card-archive-list-date">八月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/05/"><span class="card-archive-list-date">五月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">4</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/01/"><span class="card-archive-list-date">一月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/10/"><span class="card-archive-list-date">十月 2023</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">11</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/09/"><span class="card-archive-list-date">九月 2023</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">12</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/08/"><span class="card-archive-list-date">八月 2023</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">11</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/07/"><span class="card-archive-list-date">七月 2023</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">9</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/05/"><span class="card-archive-list-date">五月 2023</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li></ul></div><hr/></div></div></div><div class="button-group"><div class="console-btn-item"><a class="darkmode_switchbutton" title="显示模式切换" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-moon"></i></a></div><div class="console-btn-item" id="consoleHideAside" onclick="anzhiyu.hideAsideBtn()" title="边栏显示控制"><a class="asideSwitch"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></a></div><div class="console-btn-item" id="consoleMusic" onclick="anzhiyu.musicToggle()" title="音乐开关"><a class="music-switch"><i class="anzhiyufont anzhiyu-icon-music"></i></a></div></div><div class="console-mask" onclick="anzhiyu.hideConsole()" href="javascript:void(0);"></div></div><div class="nav-button" id="nav-totop"><a class="totopbtn" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i><span id="percent" onclick="anzhiyu.scrollToDest(0,500)">0</span></a></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);" title="切换"><i class="anzhiyufont anzhiyu-icon-bars"></i></a></div></div></div></nav><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original">原创</a><span class="post-meta-categories"><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-inbox post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%B7%9F%E9%9A%8F%E7%8B%82%E7%A5%9E%E5%AD%A6Java/" itemprop="url">跟随狂神学Java</a><i class="anzhiyufont anzhiyu-icon-angle-right post-meta-separator"></i><i class="anzhiyufont anzhiyu-icon-inbox post-meta-icon"></i><a class="post-meta-categories" href="/categories/Java/" itemprop="url">Java</a></span><span class="article-meta tags"><a class="article-meta__tags" href="/tags/%E7%8B%82%E7%A5%9E/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>狂神</span></a><a class="article-meta__tags" href="/tags/%E8%BF%9E%E8%BD%BD/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>连载</span></a><a class="article-meta__tags" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>数据库</span></a><a class="article-meta__tags" href="/tags/Java/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>Java</span></a><a class="article-meta__tags" href="/tags/Mysql/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>Mysql</span></a><a class="article-meta__tags" href="/tags/JavaSE/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>JavaSE</span></a></span></div></div><h1 class="post-title" itemprop="name headline">跟随狂神学Java-30，Mysql<a class="post-edit-link" href="https://github.com/Joker2Yue/Joker2Yue-Blog/edit/main/source/_posts/跟随狂神学Java-30.md" title="在 GitHub 上编辑 - 跟随狂神学Java-30，Mysql" target="_blank"><i class="anzhiyufont anzhiyu-icon-pencil"></i></a></h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="anzhiyufont anzhiyu-icon-calendar-days post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" itemprop="dateCreated datePublished" datetime="2023-07-04T20:02:22.000Z" title="发表于 2023-07-05 04:02:22">2023-07-05</time><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-history post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" itemprop="dateCreated datePublished" datetime="2023-07-04T20:02:22.000Z" title="更新于 2023-07-05 04:02:22">2023-07-05</time></span></div><div class="meta-secondline"><span class="post-meta-separator"></span><span class="post-meta-wordcount"><i class="anzhiyufont anzhiyu-icon-file-word post-meta-icon" title="文章字数"></i><span class="post-meta-label" title="文章字数">字数总计:</span><span class="word-count" title="文章字数">2.2k</span><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-clock post-meta-icon" title="阅读时长"></i><span class="post-meta-label" title="阅读时长">阅读时长:</span><span>8分钟</span></span><span class="post-meta-separator"></span><span class="post-meta-pv-cv" id="" data-flag-title="跟随狂神学Java-30，Mysql"><i class="anzhiyufont anzhiyu-icon-fw-eye post-meta-icon"></i><span class="post-meta-label" title="阅读量">阅读量:</span><span id="busuanzi_value_page_pv"><i class="anzhiyufont anzhiyu-icon-spinner anzhiyu-spin"></i></span></span><span class="post-meta-separator">       </span><span class="post-meta-position" title="作者IP属地为衡阳"><i class="anzhiyufont anzhiyu-icon-location-dot"></i>衡阳</span></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section><div id="post-top-cover"><img class="nolazyload" id="post-top-bg" src="https://resource.joker2yue.cn/blog/images/coverImg/JavaSE/17.jpg"></div></header><main id="blog-container"><div class="layout" id="content-inner"><div id="post"><div class="post-ai-description"><div class="ai-title"><i class="anzhiyufont anzhiyu-icon-bilibili"></i><div class="ai-title-text">AI-摘要</div><div id="ai-Toggle">切换</div><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right"></i><i class="anzhiyufont anzhiyu-icon-circle-dot" title="朗读摘要"></i><div id="ai-tag">Joker GPT</div></div><div class="ai-explanation">AI初始化中...</div><div class="ai-btn-box"><div class="ai-btn-item">介绍自己 🙈</div><div class="ai-btn-item">生成本文简介 👋</div><div class="ai-btn-item">推荐相关文章 📖</div><div class="ai-btn-item">前往主页 🏠</div><div class="ai-btn-item" id="go-tianli-blog">前往爱发电购买</div></div><script data-pjax src="/js/anzhiyu/ai_abstract.js"></script></div><article class="post-content" id="article-container" itemscope itemtype="https://blog.joker2yue.cn/post/gen-sui-kuang-shen-xue-java-30/"><header><a class="post-meta-categories" href="/categories/%E8%B7%9F%E9%9A%8F%E7%8B%82%E7%A5%9E%E5%AD%A6Java/" itemprop="url">跟随狂神学Java</a><a class="post-meta-categories" href="/categories/Java/" itemprop="url">Java</a><a href="/tags/%E7%8B%82%E7%A5%9E/" tabindex="-1" itemprop="url">狂神</a><a href="/tags/%E8%BF%9E%E8%BD%BD/" tabindex="-1" itemprop="url">连载</a><a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" tabindex="-1" itemprop="url">数据库</a><a href="/tags/Java/" tabindex="-1" itemprop="url">Java</a><a href="/tags/Mysql/" tabindex="-1" itemprop="url">Mysql</a><a href="/tags/JavaSE/" tabindex="-1" itemprop="url">JavaSE</a><h1 id="CrawlerTitle" itemprop="name headline">跟随狂神学Java-30，Mysql</h1><span itemprop="author" itemscope itemtype="http://schema.org/Person">Joker2Yue</span><time itemprop="dateCreated datePublished" datetime="2023-07-04T20:02:22.000Z" title="发表于 2023-07-05 04:02:22">2023-07-05</time><time itemprop="dateCreated datePublished" datetime="2023-07-04T20:02:22.000Z" title="更新于 2023-07-05 04:02:22">2023-07-05</time></header><h5 id="第三十天：Mysql">第三十天：Mysql<a class="headerlink" href="#第三十天：Mysql"></a></h5>
+<blockquote>
+<p>“真正的危险不是计算机开始像人一样思考，而是人开始像计算机一样思考。”</p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1NJ411J79W/?vd_source=814489e71df641c4b2c0ff7d4659b2d0">【狂神说Java】MySQL最新教程通俗易懂</a></p>
+</blockquote>
+<h4 id="初识Mysql">初识Mysql<a class="headerlink" href="#初识Mysql"></a></h4>
+<hr>
+<p>JavaEE：企业级Java开发，Web</p>
+<p>前端：页面展示；后台：数据库，链接前端，控制视图跳转，前端传数据</p>
+<p>数据库：存数据</p>
+<hr>
+<h5 id="为什么要学数据库">为什么要学数据库<a class="headerlink" href="#为什么要学数据库"></a></h5>
+<ol>
+<li class="lvl-3">
+<p>趋势，岗位需求</p>
+</li>
+<li class="lvl-3">
+<p>得数据库者得天下</p>
+</li>
+<li class="lvl-3">
+<p>被迫需求</p>
+</li>
+<li class="lvl-3">
+<p>数据库时所有软件体系中最核心的存在 DBA</p>
+</li>
+</ol>
+<hr>
+<h5 id="什么是数据库">什么是数据库<a class="headerlink" href="#什么是数据库"></a></h5>
+<p>数据库（DB，DataBase）</p>
+<p>概念：数据仓库，<strong>软件</strong>，安装在操作系统之上</p>
+<p>作用：储存数据，管理数据</p>
+<hr>
+<h5 id="数据库分类">数据库分类<a class="headerlink" href="#数据库分类"></a></h5>
+<p>关系型数据库：（行、列）（SQL）</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>MySQL，Oracle，DB2，SQLite</p>
+</li>
+<li class="lvl-2">
+<p>通过表和表之间，行和列之间的关系进行数据的存储</p>
+</li>
+</ul>
+<p>非关系型数据库：（对象）（NoSQL）</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>redis、MongoDB</p>
+</li>
+<li class="lvl-2">
+<p>不是以行和列进行存储，而是以对象进行存储，根据对象的自身属性来决定。</p>
+</li>
+</ul>
+<p>DBMS：数据库管理系统</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>数据库的管理软件，科学有效的管理我们的数据。维护和获取数据</p>
+</li>
+<li class="lvl-2">
+<p>MySQL：数据库管理系统</p>
+</li>
+</ul>
+<hr>
+<h5 id="MySQL简介">MySQL简介<a class="headerlink" href="#MySQL简介"></a></h5>
+<p>MySQL是一个关系型数据库管理系统</p>
+<p>前世：属于MySQL AB公司</p>
+<p>今生：属于Oracle公司</p>
+<p>开源的数据库软件</p>
+<p>体积小，数据快，总体拥有成本低，招人成本低</p>
+<h4 id="连接数据库">连接数据库<a class="headerlink" href="#连接数据库"></a></h4>
+<hr>
+<p>命令行连接：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql <span class="operator">-</span>u root <span class="operator">-</span>p</span><br></pre></td></tr></table></figure>
+<p>Mysql修改密码：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">USER</span> <span class="string">&#x27;root&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span> IDENTIFIED <span class="keyword">BY</span> <span class="string">&#x27;new_password&#x27;</span>; <span class="comment">--把new_password改成自己的新密码</span></span><br></pre></td></tr></table></figure>
+<p>Mysql注释：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--这是一条行注释</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">这是一段块注释</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line">#有的也支持使用#作为注释</span><br></pre></td></tr></table></figure>
+<p>退出Mysql</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exit</span><br></pre></td></tr></table></figure>
+<p>Mysql注意：</p>
+<p>所有语句都需要分号结尾</p>
+<p>Mysql查询所有数据库</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> databases;</span><br></pre></td></tr></table></figure>
+<p>切换数据库：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">use school;	<span class="comment">--查看school库</span></span><br></pre></td></tr></table></figure>
+<p>展示当前数据库中所有的表</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> tables;	<span class="comment">--查看shcool中所有的表</span></span><br></pre></td></tr></table></figure>
+<p>查看指定表中的数据</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">describe</span> student;	<span class="comment">--查看student中的数据</span></span><br></pre></td></tr></table></figure>
+<p>创建数据库</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">creat database wastes;  <span class="comment">--创建一个wastes的表</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h5 id="D-L">D*L<a class="headerlink" href="#D-L"></a></h5>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>DDL：数据库定义语言	Database Definition Language</p>
+</li>
+<li class="lvl-2">
+<p>DML：数据库操作语言   Database Management Language</p>
+</li>
+<li class="lvl-2">
+<p>DQL：数据库查询语言   Database Query Language</p>
+</li>
+<li class="lvl-2">
+<p>DCL：数据库控制语言   Database Control Language</p>
+</li>
+</ul>
+<p>CRUD增删改查</p>
+<hr>
+<h5 id="操作数据库">操作数据库<a class="headerlink" href="#操作数据库"></a></h5>
+<p>操作数据库，操作数据库中的表，操作数据库中表的数据</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> DATABASES;</span><br><span class="line"><span class="keyword">CREATE</span> DATABASE IF <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> wastes;	<span class="comment">-- 创建，除非不存在</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">DROP</span> DATABASE IF <span class="keyword">EXISTS</span> hello;	<span class="comment">-- 移除，如果不存在</span></span><br><span class="line"></span><br><span class="line">USE `shcool`;		<span class="comment">-- 建议带上反单引号</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> `<span class="keyword">user</span>` <span class="keyword">FROM</span> student;		<span class="comment">-- 在student中查询user</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">SHOW</span> DATABASE;</span><br></pre></td></tr></table></figure>
+<hr>
+<h5 id="数据库的数据类型">数据库的数据类型<a class="headerlink" href="#数据库的数据类型"></a></h5>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>tinyint</td>
+<td>十分小的数据，1字节</td>
+</tr>
+<tr>
+<td>mediumint</td>
+<td>中等大小的数据，3字节</td>
+</tr>
+<tr>
+<td>smallint</td>
+<td>较小的数据，2字节</td>
+</tr>
+<tr>
+<td><strong>int</strong></td>
+<td><strong>4字节</strong></td>
+</tr>
+<tr>
+<td>bigint</td>
+<td>8字节</td>
+</tr>
+<tr>
+<td>float</td>
+<td>单精度浮点，4字节</td>
+</tr>
+<tr>
+<td>double</td>
+<td>双精度浮点，8字节</td>
+</tr>
+<tr>
+<td>decimal</td>
+<td>字符串形式的浮点数，金融计算的时候使用</td>
+</tr>
+<tr>
+<td>char</td>
+<td>字符串，固定大小，0-255</td>
+</tr>
+<tr>
+<td><strong>varchar</strong></td>
+<td><strong>可变字符串，0-65535</strong></td>
+</tr>
+<tr>
+<td>tinytext</td>
+<td>微型文本，2<sup>8</sup> -1</td>
+</tr>
+<tr>
+<td><strong>text</strong></td>
+<td><strong>文本串，2<sup>16</sup> -1，保存大文本</strong></td>
+</tr>
+<tr>
+<td>date</td>
+<td>日期   YYYY-MM-DD</td>
+</tr>
+<tr>
+<td>year</td>
+<td>年</td>
+</tr>
+<tr>
+<td>time</td>
+<td>时间格式    HH:mm:ss</td>
+</tr>
+<tr>
+<td><strong>datetime</strong></td>
+<td><strong>YYYY-MM-DD HH:mm:ss</strong></td>
+</tr>
+<tr>
+<td><strong>timestamp</strong></td>
+<td><strong>时间戳。1970.1.1到现在的毫秒数</strong></td>
+</tr>
+<tr>
+<td>null</td>
+<td>没有值，未知，注意，不要使用NULL进行运算</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h5 id="数据库的字段属性">数据库的字段属性<a class="headerlink" href="#数据库的字段属性"></a></h5>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Unsigned</td>
+<td>无符号的整数，不能声明为负数</td>
+</tr>
+<tr>
+<td>zerofill</td>
+<td>0填充的。比如1会被填充为0001</td>
+</tr>
+<tr>
+<td>autoincrement</td>
+<td>自增，自动在上一条的基础上加一，常用来设置index，必须为整数类型，可以自己设置自增的起始值和步长</td>
+</tr>
+<tr>
+<td>not NULL</td>
+<td>非空，如果该列被定义为该属性，必须填入信息</td>
+</tr>
+<tr>
+<td>default</td>
+<td>默认，如果该列被定义为该属性，新增加字段时，将会自动填充默认信息</td>
+</tr>
+<tr>
+<td>id</td>
+<td>主键</td>
+</tr>
+<tr>
+<td>version</td>
+<td>乐观锁</td>
+</tr>
+<tr>
+<td>is_delete</td>
+<td>伪删除</td>
+</tr>
+<tr>
+<td>qmt_create</td>
+<td>创建时间</td>
+</tr>
+<tr>
+<td>qmt_update</td>
+<td>修改时间</td>
+</tr>
+</tbody>
+</table>
+<p><img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-kuang-shen-xue-java-30/image-20230705160222026.png" alt="image-20230705160222026"></p>
+<p><img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-kuang-shen-xue-java-30/image-20230705160145682.png" alt="image-20230705160145682"></p>
+<hr>
+<h5 id="数据库表">数据库表<a class="headerlink" href="#数据库表"></a></h5>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> IF <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> `student`(</span><br><span class="line">	<span class="comment">-- 创建表</span></span><br><span class="line">	`id` <span class="type">INT</span>(<span class="number">4</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> AUTO_INCREMENT	COMMENT <span class="string">&#x27;学号&#x27;</span>,	<span class="comment">-- id4位，不空，自增</span></span><br><span class="line">	`name` <span class="type">VARCHAR</span>(<span class="number">30</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">&#x27;匿名&#x27;</span> COMMENT <span class="string">&#x27;姓名&#x27;</span>,		<span class="comment">-- 注意英文逗号</span></span><br><span class="line">	`pwd` <span class="type">VARCHAR</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">&#x27;12345&#x27;</span> COMMENT <span class="string">&#x27;密码&#x27;</span>,</span><br><span class="line">	`sex` <span class="type">VARCHAR</span>(<span class="number">2</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">&#x27;男&#x27;</span> COMMENT <span class="string">&#x27;性别&#x27;</span>,</span><br><span class="line">	`birthday` DATETIME <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;出生日期&#x27;</span>,</span><br><span class="line">	`address` <span class="type">VARCHAR</span>(<span class="number">100</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;家庭住址&#x27;</span>,</span><br><span class="line">	`email` <span class="type">VARCHAR</span>(<span class="number">50</span>)  <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT	<span class="string">&#x27;邮箱&#x27;</span>,</span><br><span class="line">	<span class="keyword">PRIMARY</span> KEY (`id`)</span><br><span class="line">)ENGINE<span class="operator">=</span>INNODB </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>字符串使用英文单引号，字段使用反单引号</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> <span class="keyword">CREATE</span> DATABASE school; <span class="comment">-- 查看创建数据库的语句</span></span><br><span class="line"><span class="keyword">SHOW</span> <span class="keyword">CREATE</span> <span class="keyword">TABLE</span> student; <span class="comment">-- 查看student数据表的定义语句</span></span><br><span class="line"><span class="keyword">DESC</span> student;		<span class="comment">-- 查看student的结构</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h5 id="关于数据库引擎：">关于数据库引擎：<a class="headerlink" href="#关于数据库引擎："></a></h5>
+<p>INNODB:：默认使用</p>
+<p>MYISAM：早些年使用</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>MYISAM</th>
+<th>INNODB</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>事务支持</td>
+<td>不支持</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>数据行锁定</td>
+<td>不支持，表锁</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>外键约束</td>
+<td>不支持</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>全文索引</td>
+<td>支持</td>
+<td>不支持</td>
+</tr>
+<tr>
+<td>表空间大小</td>
+<td>较小</td>
+<td>较大，为前者两倍</td>
+</tr>
+</tbody>
+</table>
+<p>常规使用操作：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>MYISAM：节约空间，速度较快</p>
+</li>
+<li class="lvl-2">
+<p>INNODB：安全性高，支持事务处理 ，多表用户操作</p>
+</li>
+</ul>
+<hr>
+<h5 id="物理空间所在的位置">物理空间所在的位置<a class="headerlink" href="#物理空间所在的位置"></a></h5>
+<p>所有的数据库文件都在data下</p>
+<p>本质还是文件存储。</p>
+<p>MYSQL引擎在物理文件上的区别</p>
+<p>INNODB在数据库表中只有一个.frm文件， 以及上级目录下的.ibdata1文件</p>
+<p>MYISAM对应.frm表结构定义文件，.MYD数据文件，.MYI索引文件</p>
+<hr>
+<h5 id="修改表">修改表<a class="headerlink" href="#修改表"></a></h5>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 修改表</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> student <span class="keyword">AS</span> stu;  <span class="comment">-- 将student修改为stu</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 添加字段</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> stu <span class="keyword">ADD</span> age <span class="type">INT</span>(<span class="number">11</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--  修改表的字段（重命名，修改约束）</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> student MODIFY age <span class="type">VARCHAR</span>(<span class="number">11</span>);		<span class="comment">-- 把age的属性改成VARCHAR</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> student CHANGE age age1(<span class="number">11</span>)				<span class="comment">-- 把age修改为age1</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 删除字段</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> student <span class="keyword">DROP</span> age1; <span class="comment">-- 删除字段age1</span></span><br></pre></td></tr></table></figure>
+<h4 id="MySql数据管理">MySql数据管理<a class="headerlink" href="#MySql数据管理"></a></h4>
+<hr>
+<h5 id="外链（了解即可）">外链（了解即可）<a class="headerlink" href="#外链（了解即可）"></a></h5>
+<p>场景：如果小明是大二年级的学生，那么在小明的个人信息表中有&quot;年级&quot;一栏，年级表中也应该有小明的信息</p>
+<p>方式1，创建表的时候关联外键</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> `grade` (</span><br><span class="line">	`gradeid` <span class="type">INT</span>(<span class="number">10</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> AUTO_INCREMENT  COMMENT <span class="string">&#x27;年级id&#x27;</span>,</span><br><span class="line">	`gradename` <span class="type">VARCHAR</span>(<span class="number">50</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;年级名称&#x27;</span>,</span><br><span class="line">	<span class="keyword">PRIMARY</span> KEY(`gradeid`)</span><br><span class="line">)ENGINE<span class="operator">=</span>INNODB</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 学生表的gradeid需要去引用年级表的gradeid</span></span><br><span class="line"><span class="comment">-- 定义外键key</span></span><br><span class="line"><span class="comment">-- 给这个外键添加约束（执行引用） REFERENCES 引用</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> IF <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> `student`(</span><br><span class="line">	<span class="comment">-- 创建表</span></span><br><span class="line">	`id` <span class="type">INT</span>(<span class="number">4</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> AUTO_INCREMENT	COMMENT <span class="string">&#x27;学号&#x27;</span>,	<span class="comment">-- id4位，不空，自增</span></span><br><span class="line">	`name` <span class="type">VARCHAR</span>(<span class="number">30</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">&#x27;匿名&#x27;</span> COMMENT <span class="string">&#x27;姓名&#x27;</span>,		<span class="comment">-- 注意英文逗号</span></span><br><span class="line">	`pwd` <span class="type">VARCHAR</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">&#x27;12345&#x27;</span> COMMENT <span class="string">&#x27;密码&#x27;</span>,</span><br><span class="line">	`sex` <span class="type">VARCHAR</span>(<span class="number">2</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">&#x27;男&#x27;</span> COMMENT <span class="string">&#x27;性别&#x27;</span>,</span><br><span class="line">	`birthday` DATETIME <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;出生日期&#x27;</span>,</span><br><span class="line">	`gradeid` <span class="type">INT</span>(<span class="number">10</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;学生年级&#x27;</span>,</span><br><span class="line">	`address` <span class="type">VARCHAR</span>(<span class="number">100</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;家庭住址&#x27;</span>,</span><br><span class="line">	`email` <span class="type">VARCHAR</span>(<span class="number">50</span>)  <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT	<span class="string">&#x27;邮箱&#x27;</span>,</span><br><span class="line">	<span class="keyword">PRIMARY</span> KEY (`id`),</span><br><span class="line">	KEY `FK_gradeid` (`gradeid`),</span><br><span class="line">	<span class="keyword">CONSTRAINT</span> `FK_gradeid`	<span class="keyword">FOREIGN</span> KEY (`gradeid`) <span class="keyword">REFERENCES</span>	`grade` (`gradeid`)</span><br><span class="line">)ENGINE<span class="operator">=</span>INNODB </span><br><span class="line"><span class="keyword">SHOW</span> <span class="keyword">CREATE</span> DATABASE school; <span class="comment">-- 查看创建数据库的语句</span></span><br><span class="line"><span class="keyword">SHOW</span> <span class="keyword">CREATE</span> <span class="keyword">TABLE</span> student; <span class="comment">-- 查看student数据表的定义语句</span></span><br><span class="line"><span class="keyword">DESC</span> student;		<span class="comment">-- 查看student的结构</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>如果A表引用了B表，要删除B表的时候，应当先删除A表。这里A表叫做<strong>从表</strong>，B表叫做<strong>主表</strong></p>
+<p>方式2，不在创建表的时候添加外键关系</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 不在创建表的时候添加外键关系</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> `student`;</span><br><span class="line"><span class="keyword">ADD</span> <span class="keyword">CONSTRAINT</span> `FK_graideid` <span class="keyword">FOREIGN</span> key (`gradeid`) <span class="keyword">REFERENCES</span> `grade` (`gradeid`);</span><br></pre></td></tr></table></figure>
+<p>以上的操作都是物理外键，数据库级别的外键，不建议使用</p>
+<p><strong>最佳实践：</strong></p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>数据库就是单纯的表，只用来存数据，只有行和列</p>
+</li>
+<li class="lvl-2">
+<p>我们想使用多张表的数据，想使用外键，程序去实现</p>
+</li>
+</ul>
+<hr>
+<h5 id="DLM语言（全部记住）">DLM语言（全部记住）<a class="headerlink" href="#DLM语言（全部记住）"></a></h5>
+<p>DLM：数据操作语言</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>Insert</p>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 插入语句（添加）</span></span><br><span class="line"><span class="comment">-- INSERT into 表名([字段1，字段2，字段3])values(&#x27;值1&#x27;,&#x27;值2&#x27;,&#x27;值3&#x27;)</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">into</span>  `grade` (`gradename`) <span class="keyword">VALUES</span>  (<span class="string">&#x27;大二&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 由于主键自增，我们可以省略主键</span></span><br><span class="line"><span class="comment">-- 如果不写表的字段，它将会一一匹配</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> `grade` <span class="keyword">VALUES</span> (<span class="string">&#x27;大三&#x27;</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li class="lvl-2">
+<p>Update</p>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 修改学员名字，带条件！如果不带条件，将会改动所有表</span></span><br><span class="line"><span class="keyword">UPDATE</span> `student` <span class="keyword">SET</span> `name`<span class="operator">=</span><span class="string">&#x27;joker&#x27;</span> <span class="keyword">WHERE</span> `id` <span class="operator">=</span> <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 语法</span></span><br><span class="line"><span class="comment">-- UPDATE 表名 set colnum_name = value where 条件</span></span><br></pre></td></tr></table></figure>
+<ul class="lvl-2">
+<li class="lvl-4">
+<p>多个条件，逗号隔开</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> `student` <span class="keyword">SET</span> `name`<span class="operator">=</span><span class="string">&#x27;joker&#x27;</span>,email<span class="operator">=</span><span class="string">&#x27;joker_yue@qq.com&#x27;</span> <span class="keyword">WHERE</span> `id` <span class="operator">&lt;=</span> <span class="number">3</span></span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>操作符</th>
+<th>意义</th>
+<th>范围</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>=</td>
+<td>等于</td>
+<td>5=6</td>
+<td>false</td>
+</tr>
+<tr>
+<td>&lt;&gt;或者!=</td>
+<td>不等于</td>
+<td>5&lt;&gt;6</td>
+<td>true</td>
+</tr>
+<tr>
+<td>&gt;</td>
+<td>大于</td>
+<td>5&gt;6</td>
+<td>false</td>
+</tr>
+<tr>
+<td>&lt;</td>
+<td>小于</td>
+<td>5&lt;6</td>
+<td>true</td>
+</tr>
+<tr>
+<td>&lt;=</td>
+<td>小于等于</td>
+<td>5&gt;6</td>
+<td>false</td>
+</tr>
+<tr>
+<td>&gt;=</td>
+<td>大于等于</td>
+<td>5&gt;=6</td>
+<td>false</td>
+</tr>
+<tr>
+<td>BETWEEN…and</td>
+<td>在区间</td>
+<td>BETWEEN 2 AND 5</td>
+<td>[2,5]</td>
+</tr>
+<tr>
+<td>AND</td>
+<td>我和你</td>
+<td>5&gt;1 AND1&gt;2</td>
+<td>false</td>
+</tr>
+<tr>
+<td>OR</td>
+<td>我或你</td>
+<td>5&gt;1 OR 1&gt;0</td>
+<td>true</td>
+</tr>
+</tbody>
+</table>
+<p>注意：value可以为具体值也可以变量</p>
+</li>
+</ul>
+</li>
+<li class="lvl-2">
+<p>Delete</p>
+</li>
+</ul>
+</article><div class="post-copyright"><div class="copyright-cc-box"><i class="anzhiyufont anzhiyu-icon-copyright"></i></div><div class="post-copyright__author_box"><a class="post-copyright__author_img" href="/" title="头像"><img class="post-copyright__author_img_back" src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/avatar_joker.jpg" title="头像" alt="头像"><img class="post-copyright__author_img_front" src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/avatar_joker.jpg" title="头像" alt="头像"></a><div class="post-copyright__author_name">Joker2Yue</div><div class="post-copyright__author_desc">Joker2Yue的个人博客</div></div><div class="post-copyright__post__info"><a class="post-copyright__original" title="该文章为原创文章，注意版权协议" href="https://blog.joker2yue.cn/post/gen-sui-kuang-shen-xue-java-30/">原创</a><a class="post-copyright-title"><span onclick="rm.copyPageUrl('https://blog.joker2yue.cn/post/gen-sui-kuang-shen-xue-java-30/')">跟随狂神学Java-30，Mysql</span></a></div><div class="post-tools" id="post-tools"><div class="post-tools-left"><div class="rewardLeftButton"><div class="post-reward" onclick="anzhiyu.addRewardMask()"><div class="reward-button button--animated" title="赞赏作者"><i class="anzhiyufont anzhiyu-icon-hand-heart-fill"></i>打赏作者</div><div class="reward-main"><div class="reward-all"><span class="reward-title">感谢你赐予我前进的力量</span><ul class="reward-group"><li class="reward-item"><a href="https://resource.joker2yue.cn/blog/images/reward/wechat.png" target="_blank"><img class="post-qr-code-img" src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/reward/wechat.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://resource.joker2yue.cn/blog/images/reward/alipay.png" target="_blank"><img class="post-qr-code-img" src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/reward/alipay.png" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul><a class="reward-main-btn" href="/about/#about-reward" target="_blank"><div class="reward-text">赞赏者名单</div><div class="reward-dec">因为你们的支持让我意识到写文章的价值🙏</div></a></div></div></div><div id="quit-box" onclick="anzhiyu.removeRewardMask()" style="display: none"></div></div><div class="shareRight"><div class="share-link mobile"><div class="share-qrcode"><div class="share-button" title="使用手机访问这篇文章"><i class="anzhiyufont anzhiyu-icon-qrcode"></i></div><div class="share-main"><div class="share-main-all"><div id="qrcode" title="https://blog.joker2yue.cn/post/gen-sui-kuang-shen-xue-java-30/"></div><div class="reward-dec">使用手机访问这篇文章</div></div></div></div></div><div class="share-link weibo"><a class="share-button" target="_blank" href="https://service.weibo.com/share/share.php?title=跟随狂神学Java-30，Mysql&amp;url=https://blog.joker2yue.cn/post/gen-sui-kuang-shen-xue-java-30/&amp;pic=https://resource.joker2yue.cn/blog/images/coverImg/JavaSE/17.jpg" rel="external nofollow noreferrer noopener"><i class="anzhiyufont anzhiyu-icon-weibo"></i></a></div><script>function copyCurrentPageUrl() {
+  var currentPageUrl = window.location.href;
+  var input = document.createElement("input");
+  input.setAttribute("value", currentPageUrl);
+  document.body.appendChild(input);
+  input.select();
+  input.setSelectionRange(0, 99999);
+  document.execCommand("copy");
+  document.body.removeChild(input);
+}</script><div class="share-link copyurl"><div class="share-button" id="post-share-url" title="复制链接" onclick="copyCurrentPageUrl()"><i class="anzhiyufont anzhiyu-icon-link"></i></div></div></div></div></div><div class="post-copyright__notice"><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://Blog.Joker2Yue.cn" target="_blank">九歌</a>！</span></div></div><div class="post-tools-right"><div class="tag_share"><div class="post-meta__box"><div class="post-meta__box__tag-list"><a class="post-meta__box__tags" href="/tags/%E7%8B%82%E7%A5%9E/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>狂神<span class="tagsPageCount">44</span></a><a class="post-meta__box__tags" href="/tags/%E8%BF%9E%E8%BD%BD/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>连载<span class="tagsPageCount">82</span></a><a class="post-meta__box__tags" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>数据库<span class="tagsPageCount">1</span></a><a class="post-meta__box__tags" href="/tags/Java/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>Java<span class="tagsPageCount">44</span></a><a class="post-meta__box__tags" href="/tags/Mysql/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>Mysql<span class="tagsPageCount">2</span></a><a class="post-meta__box__tags" href="/tags/JavaSE/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>JavaSE<span class="tagsPageCount">29</span></a></div></div></div><div class="post_share"><div class="social-share" data-image="https://resource.joker2yue.cn/blog/images/coverImg/实习/使用Optional类优化代码中多层if嵌套.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"/><script src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer="defer"></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/post/gen-sui-kuang-shen-xue-java-29/"><img class="prev-cover" src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/coverImg/JavaSE/17.jpg" onerror="onerror=null;src='/images/404.svg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">跟随狂神学Java-29，JUC并发编程</div></div></a></div><div class="next-post pull-right"><a href="/post/cong-java-dao-kotlin/"><img class="next-cover" src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/coverImg/Java-vs-Kotlin.jpg" onerror="onerror=null;src='/images/404.svg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">从Java到Kotlin</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="anzhiyufont anzhiyu-icon-thumbs-up fa-fw" style="font-size: 1.5rem; margin-right: 4px"></i><span>喜欢这篇文章的人也看了</span></div><div class="relatedPosts-list"><div><a href="/post/gen-sui-kuang-shen-xue-java-6/" title="跟随狂神学Java-06，方法"><img class="cover" src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/coverImg/JavaSE/06.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2022-06-29</div><div class="title">跟随狂神学Java-06，方法</div></div></a></div><div><a href="/post/gen-sui-kuang-shen-xue-java-7/" title="跟随狂神学Java-07，数组"><img class="cover" src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/coverImg/JavaSE/07.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2022-07-01</div><div class="title">跟随狂神学Java-07，数组</div></div></a></div><div><a href="/post/gen-sui-kuang-shen-xue-java-12/" title="跟随狂神学Java-12，异常"><img class="cover" src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/coverImg/JavaSE/09.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2022-08-20</div><div class="title">跟随狂神学Java-12，异常</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="anzhiyufont anzhiyu-icon-comments"></i><span> 评论</span></div><div class="comment-randomInfo"><a onclick="anzhiyu.addRandomCommentInfo()" href="javascript:void(0)">匿名评论</a><a href="/privacy" style="margin-left: 4px">隐私政策</a></div><div class="comment-tips" id="comment-tips"><span>✅ 你无需删除空行，直接评论以获取最佳展示效果</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div><div class="comment-barrage"></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-content"><div class="author-info__sayhi" id="author-info__sayhi" onclick="anzhiyu.changeSayHelloText()"></div><div class="author-info-avatar"><img class="avatar-img" src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/avatar_joker.jpg" onerror="this.onerror=null;this.src='/images/joker_404.png'" alt="avatar"/><div class="author-status"><img class="g-status" src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/statusImg/小丑.svg" alt="status"/></div></div><div class="author-info__description"><div style="line-height:1.38;margin:0.6rem 0;text-align:justify;color:rgba(255, 255, 255, 0.8);">我热衷于在<b style="color:#fff">数字世界</b>中寻找灵感，用<b style="color:#fff">文字</b>来记录下每一个<b style="color:#fff">思考和发现</b>。</div><div style="line-height:1.38;margin:0.6rem 0;text-align:justify;color:rgba(255, 255, 255, 0.8);">感谢你的光临，希望我的博客能为你带来有<b style="color:#fff">价值</b>的信息，<b style="color:#fff">享受</b>阅读的乐趣！</div></div><div class="author-info__bottom-group"><a class="author-info__bottom-group-left" target="_blank" rel="noopener" href="https://github.com/Joker2Yue"><h1 class="author-info__name">Joker2Yue</h1><div class="author-info__desc">Joker2Yue的个人博客</div></a><div class="card-info-social-icons is-center"><a class="social-icon faa-parent animated-hover" href="https://github.com/Joker2Yue" target="_blank" title="Github"><i class="anzhiyufont anzhiyu-icon-github"></i></a><a class="social-icon faa-parent animated-hover" href="https://space.bilibili.com/1288739606" target="_blank" title="BiliBili"><i class="anzhiyufont anzhiyu-icon-bilibili"></i></a></div></div></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-bullhorn anzhiyu-shake"></i><span>公告</span></div><div class="announcement_content"><div id="welcome-info">欢迎来看我的博客鸭~</div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-bars"></i><span>文章目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E5%8D%81%E5%A4%A9%EF%BC%9AMysql"><span class="toc-number">1.</span> <span class="toc-text">第三十天：Mysql</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9D%E8%AF%86Mysql"><span class="toc-number"></span> <span class="toc-text">初识Mysql</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%AD%A6%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">1.</span> <span class="toc-text">为什么要学数据库</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">2.</span> <span class="toc-text">什么是数据库</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E5%88%86%E7%B1%BB"><span class="toc-number">3.</span> <span class="toc-text">数据库分类</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#MySQL%E7%AE%80%E4%BB%8B"><span class="toc-number">4.</span> <span class="toc-text">MySQL简介</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number"></span> <span class="toc-text">连接数据库</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#D-L"><span class="toc-number">1.</span> <span class="toc-text">D*L</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">2.</span> <span class="toc-text">操作数据库</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">3.</span> <span class="toc-text">数据库的数据类型</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%AD%97%E6%AE%B5%E5%B1%9E%E6%80%A7"><span class="toc-number">4.</span> <span class="toc-text">数据库的字段属性</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8"><span class="toc-number">5.</span> <span class="toc-text">数据库表</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E5%BC%95%E6%93%8E%EF%BC%9A"><span class="toc-number">6.</span> <span class="toc-text">关于数据库引擎：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%89%A9%E7%90%86%E7%A9%BA%E9%97%B4%E6%89%80%E5%9C%A8%E7%9A%84%E4%BD%8D%E7%BD%AE"><span class="toc-number">7.</span> <span class="toc-text">物理空间所在的位置</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E8%A1%A8"><span class="toc-number">8.</span> <span class="toc-text">修改表</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#MySql%E6%95%B0%E6%8D%AE%E7%AE%A1%E7%90%86"><span class="toc-number"></span> <span class="toc-text">MySql数据管理</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%A4%96%E9%93%BE%EF%BC%88%E4%BA%86%E8%A7%A3%E5%8D%B3%E5%8F%AF%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">外链（了解即可）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#DLM%E8%AF%AD%E8%A8%80%EF%BC%88%E5%85%A8%E9%83%A8%E8%AE%B0%E4%BD%8F%EF%BC%89"><span class="toc-number">2.</span> <span class="toc-text">DLM语言（全部记住）</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-history"></i><span>最近发布</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/post/shi-yong-optional-lei-you-hua-dai-ma-zhong-duo-ceng-if-qian-tao/" title="使用Optional类优化代码中多层if嵌套"><img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/coverImg/实习/使用Optional类优化代码中多层if嵌套.png" onerror="this.onerror=null;this.src='/images/404.svg'" alt="使用Optional类优化代码中多层if嵌套"/></a><div class="content"><a class="title" href="/post/shi-yong-optional-lei-you-hua-dai-ma-zhong-duo-ceng-if-qian-tao/" title="使用Optional类优化代码中多层if嵌套">使用Optional类优化代码中多层if嵌套</a><time datetime="2024-08-20T12:46:25.000Z" title="发表于 2024-08-20 20:46:25">2024-08-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/ruan-jian-xiang-mu-guan-li-fu-xi-ti/" title="软件项目管理复习题"><img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/coverImg/UniversityCourse/软件项目管理.png" onerror="this.onerror=null;this.src='/images/404.svg'" alt="软件项目管理复习题"/></a><div class="content"><a class="title" href="/post/ruan-jian-xiang-mu-guan-li-fu-xi-ti/" title="软件项目管理复习题">软件项目管理复习题</a><time datetime="2024-05-29T13:27:12.000Z" title="发表于 2024-05-29 21:27:12">2024-05-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/ruan-jian-xiang-mu-guan-li-tian-kong-jian-da-hui-zong/" title="软件项目管理 填空、简答汇总"><img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/coverImg/UniversityCourse/软件项目管理.png" onerror="this.onerror=null;this.src='/images/404.svg'" alt="软件项目管理 填空、简答汇总"/></a><div class="content"><a class="title" href="/post/ruan-jian-xiang-mu-guan-li-tian-kong-jian-da-hui-zong/" title="软件项目管理 填空、简答汇总">软件项目管理 填空、简答汇总</a><time datetime="2024-05-28T23:49:22.000Z" title="发表于 2024-05-29 07:49:22">2024-05-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/ruan-jian-ce-shi-fu-xi-ti/" title="软件测试复习题"><img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/coverImg/UniversityCourse/软件测试.png" onerror="this.onerror=null;this.src='/images/404.svg'" alt="软件测试复习题"/></a><div class="content"><a class="title" href="/post/ruan-jian-ce-shi-fu-xi-ti/" title="软件测试复习题">软件测试复习题</a><time datetime="2024-05-27T02:12:22.000Z" title="发表于 2024-05-27 10:12:22">2024-05-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/zai-ollama-shang-qi-yong-amd780m-gfx1103-gpu-jia-su/" title="在Ollama上启用amd780m(gfx1103)GPU加速"><img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/coverImg/Ollama/OllamaAMD.png" onerror="this.onerror=null;this.src='/images/404.svg'" alt="在Ollama上启用amd780m(gfx1103)GPU加速"/></a><div class="content"><a class="title" href="/post/zai-ollama-shang-qi-yong-amd780m-gfx1103-gpu-jia-su/" title="在Ollama上启用amd780m(gfx1103)GPU加速">在Ollama上启用amd780m(gfx1103)GPU加速</a><time datetime="2024-05-14T13:27:12.000Z" title="发表于 2024-05-14 21:27:12">2024-05-14</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div id="footer_deal"><a class="deal_link" href="mailto:Joker_Yue@qq.com" title="Email"><i class="anzhiyufont anzhiyu-icon-envelope"></i></a><a class="deal_link" target="_blank" rel="noopener" href="https://m.weibo.cn/u/7799849297" title="微博"><i class="anzhiyufont anzhiyu-icon-weibo"></i></a><a class="deal_link" target="_blank" rel="noopener" href="https://twitter.com/joker0222yue?s=09" title="X"><i class="fa-brands fa-x-twitter"></i></a><a class="deal_link" href="/atom.xml" title="RSS"><i class="anzhiyufont anzhiyu-icon-rss"></i></a><img class="footer_mini_logo" title="返回顶部" alt="返回顶部" onclick="anzhiyu.scrollToDest(0, 500)" src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/avatar_joker.jpg" size="50px"/><a class="deal_link" target="_blank" rel="noopener" href="https://github.com/Joker2Yue" title="Github"><i class="anzhiyufont anzhiyu-icon-github"></i></a><a class="deal_link" target="_blank" rel="noopener" href="https://space.bilibili.com/1288739606" title="Bilibili"><i class="anzhiyufont anzhiyu-icon-bilibili"></i></a><a class="deal_link" target="_blank" rel="noopener" href="https://m.douyin.com/share/user/MS4wLjABAAAAO0Ao94XycJ3Jq_IVPLElwAjdQOonWW53heh1785VFYo" title="抖音"><i class="anzhiyufont anzhiyu-icon-tiktok"></i></a><a class="deal_link" href="/copyright/" title="CC"><i class="anzhiyufont anzhiyu-icon-copyright"></i></a></div><div id="workboard"><div id="runtimeTextTip"></div></div><div id="anzhiyu-footer"><div class="footer-group"><div class="footer-title">服务</div><div class="footer-links"><a class="footer-item" title="51la统计" target="_blank" rel="noopener" href="https://v6.51.la/">51la统计</a><a class="footer-item" title="十年之约" target="_blank" rel="noopener" href="https://foreverblog.cn/go.html">十年之约</a><a class="footer-item" title="开往" target="_blank" rel="noopener" href="https://github.com/travellings-link/travellings">开往</a></div></div><div class="footer-group"><div class="footer-title">主题</div><div class="footer-links"><a class="footer-item" title="文档" target="_blank" rel="noopener" href="https://docs.anheyu.com/">文档</a><a class="footer-item" title="源码" target="_blank" rel="noopener" href="https://github.com/anzhiyu-c/hexo-theme-anzhiyu">源码</a><a class="footer-item" title="本站建设" href="/website/">本站建设</a></div></div><div class="footer-group"><div class="footer-title">导航</div><div class="footer-links"><a class="footer-item" title="即刻短文" href="/essay/">即刻短文</a><a class="footer-item" title="友链文章" href="/fcircle/">友链文章</a><a class="footer-item" title="留言板" href="/comments/">留言板</a></div></div><div class="footer-group"><div class="footer-title">协议</div><div class="footer-links"><a class="footer-item" title="隐私协议" href="/privacy/">隐私协议</a><a class="footer-item" title="Cookies" href="/cookies/">Cookies</a><a class="footer-item" title="版权协议" href="/copyright/">版权协议</a></div></div><div class="footer-group"><div class="footer-title-group"><div class="footer-title">友链</div><a class="random-friends-btn" id="footer-random-friends-btn" href="javascript:addFriendLinksInFooter();" title="换一批友情链接"><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right"></i></a></div><div class="footer-links" id="friend-links-in-footer"></div></div></div><p id="ghbdages"><a class="github-badge" target="_blank" href="https://hexo.io/" style="margin-inline:5px" data-title="博客框架为Hexo_v7.3.0" title="博客框架为Hexo_v7.3.0"><img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/badge/Frame-Hexo.svg" alt="博客框架为Hexo_v7.3.0"/></a><a class="github-badge" target="_blank" href="https://blog.anheyu.com/" style="margin-inline:5px" data-title="本站使用AnZhiYu主题" title="本站使用AnZhiYu主题"><img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/badge/Theme-AnZhiYu.svg" alt="本站使用AnZhiYu主题"/></a><a class="github-badge" target="_blank" href="https://www.dogecloud.com/" style="margin-inline:5px" data-title="本站使用多吉云为静态资源提供CDN加速" title="本站使用多吉云为静态资源提供CDN加速"><img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/badge/CDN-Doge.svg" alt="本站使用多吉云为静态资源提供CDN加速"/></a><a class="github-badge" target="_blank" href="https://vercel.com/" style="margin-inline:5px" data-title="本站项目由Vercel部署" title="本站项目由Vercel部署"><img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/badge/Hosted-Vercel-brightgreen.svg" alt="本站项目由Vercel部署"/></a><a class="github-badge" target="_blank" href="https://github.com/Joker2Yue/Joker2Yue-Blog" style="margin-inline:5px" data-title="本站项目由Github托管" title="本站项目由Github托管"><img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/badge/Source-Github.svg" alt="本站项目由Github托管"/></a><a class="github-badge" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" style="margin-inline:5px" data-title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"><img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/badge/Copyright-BY-NC-SA.svg" alt="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"/></a></p></div><div id="footer-bar"><div class="footer-bar-links"><div class="footer-bar-left"><div id="footer-bar-tips"><div class="copyright">&copy;2023 - 2024 By <a class="footer-bar-link" href="https://github.com/Joker2Yue" title="Joker2Yue" target="_blank">Joker2Yue</a></div></div><div id="footer-type-tips"></div><div class="js-pjax"><script>function subtitleType () {
+  if (false) { 
+    window.typed = new Typed("#footer-type-tips", {
+      strings: ["<a href=\"https://www.joker2yue.cn\" target=\"_blank\">九歌</a>"],
+      startDelay: 300,
+      typeSpeed: 150,
+      loop: true,
+      backSpeed: 50
+    })
+  } else {
+    document.getElementById("footer-type-tips").innerHTML = '<a href="https://www.joker2yue.cn" target="_blank">九歌</a>'
+  }
+}
+
+if (false) {
+  if (typeof Typed === 'function') {
+    subtitleType()
+  } else {
+    getScript('https://cdn.cbd.int/typed.js@2.1.0/dist/typed.umd.js').then(subtitleType)
+  }
+} else {
+  subtitleType()
+}</script></div></div><div class="footer-bar-right"><a class="footer-bar-link" target="_blank" rel="noopener" href="https://github.com/anzhiyu-c/hexo-theme-anzhiyu" title="主题">主题</a><a class="footer-bar-link" href="/privacy/" title="隐私政策">隐私政策</a><a class="footer-bar-link" target="_blank" rel="noopener" href="https://beian.miit.gov.cn/" title="湘ICP备-2023023581号">湘ICP备-2023023581号</a><a class="footer-bar-link cc" href="/copyright/" title="cc协议"><i class="anzhiyufont anzhiyu-icon-copyright-line"></i><i class="anzhiyufont anzhiyu-icon-creative-commons-by-line"></i><i class="anzhiyufont anzhiyu-icon-creative-commons-nc-line"></i><i class="anzhiyufont anzhiyu-icon-creative-commons-nd-line"></i></a></div></div></div></footer></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="sidebar-site-data site-data is-center"><a href="/archives/" title="archive"><div class="headline">文章</div><div class="length-num">94</div></a><a href="/tags/" title="tag"><div class="headline">标签</div><div class="length-num">46</div></a><a href="/categories/" title="category"><div class="headline">分类</div><div class="length-num">13</div></a></div><span class="sidebar-menu-item-title">功能</span><div class="sidebar-menu-item"><a class="darkmode_switchbutton menu-child" href="javascript:void(0);" title="显示模式"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span>显示模式</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> 隧道</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 标签</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 社交</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/fcircle/"><i class="anzhiyufont anzhiyu-icon-artstation faa-tada" style="font-size: 0.9em;"></i><span> 朋友圈</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/link/"><i class="anzhiyufont anzhiyu-icon-link faa-tada" style="font-size: 0.9em;"></i><span> 友人账</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/comments/"><i class="anzhiyufont anzhiyu-icon-envelope faa-tada" style="font-size: 0.9em;"></i><span> 留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 我的</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/music/?id=648886106&amp;server=netease"><i class="anzhiyufont anzhiyu-icon-music faa-tada" style="font-size: 0.9em;"></i><span> 音乐馆</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/air-conditioner/"><i class="anzhiyufont anzhiyu-icon-fan faa-tada" style="font-size: 0.9em;"></i><span> 小空调</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 关于</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/about/"><i class="anzhiyufont anzhiyu-icon-paper-plane faa-tada" style="font-size: 0.9em;"></i><span> 关于本人</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/website/"><i class="anzhiyufont anzhiyu-icon-cube faa-tada" style="font-size: 0.9em;"></i><span> 本站建设</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/essay/"><i class="anzhiyufont anzhiyu-icon-lightbulb faa-tada" style="font-size: 0.9em;"></i><span> 闲言碎语</span></a></li><li><a class="site-page child faa-parent animated-hover" href="javascript:toRandomPost()"><i class="anzhiyufont anzhiyu-icon-shoe-prints1 faa-tada" style="font-size: 0.9em;"></i><span> 随便逛逛</span></a></li></ul></div></div><span class="sidebar-menu-item-title">标签</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/AI/" style="font-size: 0.88rem;">AI<sup>1</sup></a><a href="/tags/AMD/" style="font-size: 0.88rem;">AMD<sup>1</sup></a><a href="/tags/CSS/" style="font-size: 0.88rem;">CSS<sup>14</sup></a><a href="/tags/Git/" style="font-size: 0.88rem;">Git<sup>2</sup></a><a href="/tags/Github/" style="font-size: 0.88rem;">Github<sup>2</sup></a><a href="/tags/HTML/" style="font-size: 0.88rem;">HTML<sup>3</sup></a><a href="/tags/Hexo/" style="font-size: 0.88rem;">Hexo<sup>2</sup></a><a href="/tags/JDBC/" style="font-size: 0.88rem;">JDBC<sup>1</sup></a><a href="/tags/Java/" style="font-size: 0.88rem; font-weight: 500; color: var(--anzhiyu-lighttext)">Java<sup>44</sup></a><a href="/tags/Linux/" style="font-size: 0.88rem;">Linux<sup>4</sup></a><a href="/tags/Maven/" style="font-size: 0.88rem;">Maven<sup>1</sup></a><a href="/tags/Mysql/" style="font-size: 0.88rem;">Mysql<sup>2</sup></a><a href="/tags/SSM/" style="font-size: 0.88rem;">SSM<sup>3</sup></a><a href="/tags/Vue/" style="font-size: 0.88rem;">Vue<sup>1</sup></a><a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" style="font-size: 0.88rem;">分布式<sup>4</sup></a><a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 0.88rem;">前端<sup>22</sup></a><a href="/tags/%E5%A4%8D%E4%B9%A0%E9%A2%98/" style="font-size: 0.88rem;">复习题<sup>3</sup></a><a href="/tags/%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B/" style="font-size: 0.88rem;">大学课程<sup>23</sup></a><a href="/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/" style="font-size: 0.88rem;">大模型<sup>1</sup></a><a href="/tags/%E5%BF%85%E7%9C%8B/" style="font-size: 0.88rem; font-weight: 500; color: var(--anzhiyu-lighttext)">必看<sup>26</sup></a><a href="/tags/%E6%8A%80%E6%9C%AF/" style="font-size: 0.88rem; font-weight: 500; color: var(--anzhiyu-lighttext)">技术<sup>7</sup></a><a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 0.88rem;">数据库<sup>1</sup></a><a href="/tags/%E7%8B%82%E7%A5%9E/" style="font-size: 0.88rem; font-weight: 500; color: var(--anzhiyu-lighttext)">狂神<sup>44</sup></a><a href="/tags/%E8%BD%AC%E8%BD%BD/" style="font-size: 0.88rem;">转载<sup>1</sup></a><a href="/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/" style="font-size: 0.88rem;">软件测试<sup>1</sup></a><a href="/tags/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%B8%88/" style="font-size: 0.88rem;">软件设计师<sup>20</sup></a><a href="/tags/%E8%BD%AF%E8%80%83/" style="font-size: 0.88rem;">软考<sup>20</sup></a><a href="/tags/%E8%BF%90%E7%BB%B4/" style="font-size: 0.88rem;">运维<sup>3</sup></a><a href="/tags/%E8%BF%9E%E8%BD%BD/" style="font-size: 0.88rem;">连载<sup>82</sup></a><a href="/tags/%E9%BB%91%E9%A9%AC/" style="font-size: 0.88rem;">黑马<sup>18</sup></a></div></div><hr/></div></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="anzhiyufont anzhiyu-icon-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="anzhiyufont anzhiyu-icon-gear"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="anzhiyufont anzhiyu-icon-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="anzhiyufont anzhiyu-icon-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></button></div></div><div id="nav-music"><a id="nav-music-hoverTips" onclick="anzhiyu.musicToggle()" accesskey="m">播放音乐</a><div id="console-music-bg"></div><meting-js id="648886106" server="netease" type="playlist" mutex="true" preload="none" theme="var(--anzhiyu-main)" data-lrctype="0" order="random" volume="0.7"></meting-js></div><div id="algolia-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><button class="search-close-button"><i class="anzhiyufont anzhiyu-icon-xmark"></i></button></nav><div class="search-wrap"><div id="algolia-search-input"></div><hr/><div id="algolia-search-results"><div id="algolia-hits"><a class="tag-list" href="/tags/%E5%BF%85%E7%9C%8B" title="必看">必看</a><a class="tag-list" href="/tags/Java" title="Java">Java</a><a class="tag-list" href="/tags/Spring" title="Spring">Spring</a><a class="tag-list" href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F" title="分布式">分布式</a><a class="tag-list" href="/tags/%E5%89%8D%E7%AB%AF" title="前端">前端</a><a class="tag-list" href="/tags/Hexo" title="Hexo">Hexo</a></div><div id="algolia-pagination"></div><div id="algolia-info"><div class="algolia-stats"></div><div class="algolia-poweredBy"></div></div></div></div></div><div id="search-mask"></div></div><div id="rightMenu"><div class="rightMenu-group rightMenu-small"><div class="rightMenu-item" id="menu-backward"><i class="anzhiyufont anzhiyu-icon-arrow-left"></i></div><div class="rightMenu-item" id="menu-forward"><i class="anzhiyufont anzhiyu-icon-arrow-right"></i></div><div class="rightMenu-item" id="menu-refresh"><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right" style="font-size: 1rem;"></i></div><div class="rightMenu-item" id="menu-top"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></div></div><div class="rightMenu-group rightMenu-line rightMenuPlugin"><div class="rightMenu-item" id="menu-copytext"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制选中文本</span></div><div class="rightMenu-item" id="menu-pastetext"><i class="anzhiyufont anzhiyu-icon-paste"></i><span>粘贴文本</span></div><a class="rightMenu-item" id="menu-commenttext"><i class="anzhiyufont anzhiyu-icon-comment-medical"></i><span>引用到评论</span></a><div class="rightMenu-item" id="menu-newwindow"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开</span></div><div class="rightMenu-item" id="menu-copylink"><i class="anzhiyufont anzhiyu-icon-link"></i><span>复制链接地址</span></div><div class="rightMenu-item" id="menu-copyimg"><i class="anzhiyufont anzhiyu-icon-images"></i><span>复制此图片</span></div><div class="rightMenu-item" id="menu-downloadimg"><i class="anzhiyufont anzhiyu-icon-download"></i><span>下载此图片</span></div><div class="rightMenu-item" id="menu-newwindowimg"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开图片</span></div><div class="rightMenu-item" id="menu-search"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>站内搜索</span></div><div class="rightMenu-item" id="menu-searchBaidu"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>百度搜索</span></div><div class="rightMenu-item" id="menu-music-toggle"><i class="anzhiyufont anzhiyu-icon-play"></i><span>播放音乐</span></div><div class="rightMenu-item" id="menu-music-back"><i class="anzhiyufont anzhiyu-icon-backward"></i><span>切换到上一首</span></div><div class="rightMenu-item" id="menu-music-forward"><i class="anzhiyufont anzhiyu-icon-forward"></i><span>切换到下一首</span></div><div class="rightMenu-item" id="menu-music-playlist" onclick="window.open(&quot;https://music.163.com/#/my/m/music/playlist?id=648886106&quot;, &quot;_blank&quot;);" style="display: none;"><i class="anzhiyufont anzhiyu-icon-radio"></i><span>查看所有歌曲</span></div><div class="rightMenu-item" id="menu-music-copyMusicName"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制歌名</span></div></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item menu-link" id="menu-randomPost"><i class="anzhiyufont anzhiyu-icon-shuffle"></i><span>随便逛逛</span></a><a class="rightMenu-item menu-link" href="/categories/"><i class="anzhiyufont anzhiyu-icon-cube"></i><span>博客分类</span></a><a class="rightMenu-item menu-link" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags"></i><span>文章标签</span></a></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item" id="menu-copy" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制地址</span></a><a class="rightMenu-item" id="menu-commentBarrage" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-message"></i><span class="menu-commentBarrage-text">关闭热评</span></a><a class="rightMenu-item" id="menu-darkmode" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span class="menu-darkmode-text">深色模式</span></a><a class="rightMenu-item" id="menu-translate" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-language"></i><span>轉為繁體</span></a></div></div><div id="rightmenu-mask"></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.cbd.int/@fancyapps/ui@5.0.36/dist/fancybox/fancybox.umd.js"></script><script src="https://cdn.cbd.int/instant.page@5.2.0/instantpage.js" type="module"></script><script src="https://cdn.cbd.int/vanilla-lazyload@19.1.3/dist/lazyload.iife.min.js"></script><script src="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.cbd.int/pangu@4.0.7/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script>var meting_api = "https://meting-api.joker2yue.cn/api?server=:server&type=:type&id=:id&auth=:auth&r=:r";
+</script><canvas id="universe"></canvas><script async src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/dark/dark.js"></script><script>// 消除控制台打印
+var HoldLog = console.log;
+console.log = function () {};
+let now1 = new Date();
+queueMicrotask(() => {
+  const Log = function () {
+    HoldLog.apply(console, arguments);
+  }; //在恢复前输出日志
+  const grt = new Date("08/25/2023 00:00:00"); //此处修改你的建站时间或者网站上线时间
+  now1.setTime(now1.getTime() + 250);
+  const days = (now1 - grt) / 1000 / 60 / 60 / 24;
+  const dnum = Math.floor(days);
+  const ascll = [
+    `欢迎使用安知鱼!`,
+    `生活明朗, 万物可爱`,
+    `
+        
+       █████╗ ███╗   ██╗███████╗██╗  ██╗██╗██╗   ██╗██╗   ██╗
+      ██╔══██╗████╗  ██║╚══███╔╝██║  ██║██║╚██╗ ██╔╝██║   ██║
+      ███████║██╔██╗ ██║  ███╔╝ ███████║██║ ╚████╔╝ ██║   ██║
+      ██╔══██║██║╚██╗██║ ███╔╝  ██╔══██║██║  ╚██╔╝  ██║   ██║
+      ██║  ██║██║ ╚████║███████╗██║  ██║██║   ██║   ╚██████╔╝
+      ╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝╚═╝   ╚═╝    ╚═════╝
+        
+        `,
+    "已上线",
+    dnum,
+    "天",
+    "©2023 By 安知鱼 V1.6.12",
+  ];
+  const ascll2 = [`NCC2-036`, `调用前置摄像头拍照成功，识别为【小笨蛋】.`, `Photo captured: `, `🤪`];
+
+  setTimeout(
+    Log.bind(
+      console,
+      `\n%c${ascll[0]} %c ${ascll[1]} %c ${ascll[2]} %c${ascll[3]}%c ${ascll[4]}%c ${ascll[5]}\n\n%c ${ascll[6]}\n`,
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      ""
+    )
+  );
+  setTimeout(
+    Log.bind(
+      console,
+      `%c ${ascll2[0]} %c ${ascll2[1]} %c \n${ascll2[2]} %c\n${ascll2[3]}\n`,
+      "color:white; background-color:#4fd953",
+      "",
+      "",
+      'background:url("https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/tinggge.gif") no-repeat;font-size:450%'
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c WELCOME %c 你好，小笨蛋.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(
+      console,
+      "%c ⚡ Powered by 安知鱼 %c 你正在访问 Joker2Yue 的博客.",
+      "color:white; background-color:#f0ad4e",
+      ""
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c W23-12 %c 你已打开控制台.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(console, "%c S013-782 %c 你现在正处于监控中.", "color:white; background-color:#d9534f", "")
+  );
+});</script><script async src="/anzhiyu/random.js"></script><script async="async">(function () {
+  var grt = new Date("08/25/2023 00:00:00"); //设置网站上线时间
+  var now = new Date();
+  var dnum;
+  var hnum;
+  var mnum;
+  var snum;
+  var nowHour;
+
+  // 计算并更新天数、小时数、分钟数和秒数
+  function updateTime() {
+    now = new Date(); // 更新 now 的值
+    nowHour = now.getHours(); // 更新 nowHour 的值
+    var days = (now - grt) / 1000 / 60 / 60 / 24;
+    dnum = Math.floor(days);
+    var hours = (now - grt) / 1000 / 60 / 60 - 24 * dnum;
+    hnum = Math.floor(hours);
+    if (String(hnum).length == 1) {
+      hnum = "0" + hnum;
+    }
+    var minutes = (now - grt) / 1000 / 60 - 24 * 60 * dnum - 60 * hnum;
+    mnum = Math.floor(minutes);
+    if (String(mnum).length == 1) {
+      mnum = "0" + mnum;
+    }
+    var seconds = (now - grt) / 1000 - 24 * 60 * 60 * dnum - 60 * 60 * hnum - 60 * mnum;
+    snum = Math.round(seconds);
+    if (String(snum).length == 1) {
+      snum = "0" + snum;
+    }
+  }
+
+  // 更新网页中显示的网站运行时间
+  function updateHtml() {
+    const footer = document.getElementById("footer");
+    if (!footer) return
+    let currentTimeHtml = "";
+    if (nowHour < 18 && nowHour >= 9) {
+      // 如果是上班时间，默认就是"安知鱼-上班摸鱼中.svg"图片，不需要更改
+      currentTimeHtml = `本站居然运行了 ${dnum} 天<span id='runtime'> ${hnum} 小时 ${mnum} 分 ${snum} 秒 </span><i class='anzhiyufont anzhiyu-icon-heartbeat' style='color:red'></i>`;
+    } else {
+      // 如果是下班时间，插入"安知鱼-下班啦.svg"图片
+      let img = document.querySelector("#workboard .workSituationImg");
+      if (img != null) {
+        img.src = "";
+        img.title = "";
+        img.alt = "";
+      }
+
+      currentTimeHtml = `本站居然运行了 ${dnum} 天<span id='runtime'> ${hnum} 小时 ${mnum} 分 ${snum} 秒 </span><i class='anzhiyufont anzhiyu-icon-heartbeat' style='color:red'></i>`;
+    }
+
+    if (document.getElementById("runtimeTextTip")) {
+      document.getElementById("runtimeTextTip").innerHTML = currentTimeHtml;
+    }
+  }
+
+  setInterval(() => {
+    updateTime();
+    updateHtml();
+  }, 1000);
+})();</script><script src="https://cdn.bootcdn.net/ajax/libs/algoliasearch/4.9.3/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.cbd.int/instantsearch.js@4.60.0/dist/instantsearch.production.min.js"></script><script src="/js/search/algolia.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.cbd.int/mermaid@10.2.4/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  anzhiyu.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>(() => {
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo.joker2yue.cn/',
+      region: '',
+      onCommentLoaded: () => {
+        anzhiyu.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(runFn,0)
+    else getScript('https://cdn.bootcdn.net/ajax/libs/twikoo/1.6.39/twikoo.all.min.js').then(runFn)
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo.joker2yue.cn/',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const runFn = () => {
+    init();
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) anzhiyu.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else {
+      loadTwikoo()
+    }
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script><input type="hidden" name="page-type" id="page-type" value="post"></div><script>window.addEventListener('load', () => {
+  const changeContent = (content) => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[图片]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[链接]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[代码]') // replace code
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const getComment = () => {
+    const runTwikoo = () => {
+      twikoo.getRecentComments({
+        envId: 'https://twikoo.joker2yue.cn/',
+        region: '',
+        pageSize: 6,
+        includeReply: true
+      }).then(function (res) {
+        const twikooArray = res.map(e => {
+          return {
+            'content': changeContent(e.comment),
+            'avatar': e.avatar,
+            'nick': e.nick,
+            'url': e.url + '#' + e.id,
+            'date': new Date(e.created).toISOString()
+          }
+        })
+
+        saveToLocal.set('twikoo-newest-comments', JSON.stringify(twikooArray), 10/(60*24))
+        generateHtml(twikooArray)
+      }).catch(function (err) {
+        const $dom = document.querySelector('#card-newest-comments .aside-list')
+        $dom.textContent= "无法获取评论，请确认相关配置是否正确"
+      })
+    }
+
+    if (typeof twikoo === 'object') {
+      runTwikoo()
+    } else {
+      getScript('https://cdn.bootcdn.net/ajax/libs/twikoo/1.6.39/twikoo.all.min.js').then(runTwikoo)
+    }
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (true) {
+          const name = 'data-lazy-src'
+          result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'><div class='name'><span>${array[i].nick} </span></div></a>`
+        }
+        
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}' title='${array[i].content}'>${array[i].content}</a>
+        <time datetime="${array[i].date}">${anzhiyu.diffDate(array[i].date, true)}</time></div>
+        </div>`
+      }
+    } else {
+      result += '没有评论'
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom && ($dom.innerHTML= result)
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('twikoo-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><script async data-pjax src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.1/bubble/bubble.js"></script><script>var visitorMail = "visitor@joker2yue.cn";
+</script><script async data-pjax src="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/waterfall/waterfall.js"></script><script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/qrcodejs/1.0.0/qrcode.min.js"></script><script src="/js/anzhiyu/right_click_menu.js"></script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.9/icon/ali_iconfont_css.css"><script async src="https://at.alicdn.com/t/c/font_3320075_10tn9j0ga3lb.js"></script><script id="click-show-text" src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/dist/click-show-text.min.js" data-mobile="true" data-text="富强,民主,文明,和谐,自由,平等,公正,法治,爱国,敬业,诚信,友善" data-fontsize="15px" data-random="false" async="true"></script><script src="/js/fancybox-popstate.js"></script><script src="/js/mobile-toc-mask.js"></script><script src="/js/code-expanded.js"></script><script src="/js/progressive-load.js"></script><script src="/js/joker.js"></script><script src="/js/welcome.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/dist/canvas-nest.min.js"></script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/aplayer/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.cbd.int/anzhiyu-blog-static@1.0.1/js/APlayer.min.js"></script><script src="https://cdn.cbd.int/meting@2.0.1/dist/Meting.min.js"></script><script src="https://cdn.cbd.int/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["meta[property=\"og:image\"]","meta[property=\"og:title\"]","meta[property=\"og:url\"]","meta[property=\"og:type\"]","meta[property=\"og:site_name\"]","meta[property=\"og:description\"]","head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"]):not([href="/music/"]):not([href="/images/"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+  // removeEventListener scroll 
+  anzhiyu.removeGlobalFnEvent('pjax')
+  anzhiyu.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404')
+  }
+})</script><script async data-pjax src="https://busuanzi.sukap.cn/busuanzi.pure.mini.js"></script><script charset="UTF-8" src="https://cdn.cbd.int/anzhiyu-theme-static@1.1.5/accesskey/accesskey.js"></script></div><div id="popup-window"><div class="popup-window-title">通知</div><div class="popup-window-divider"></div><div class="popup-window-content"><div class="popup-tip">你好呀</div><div class="popup-link"><i class="anzhiyufont anzhiyu-icon-arrow-circle-right"></i></div></div></div></body></html>

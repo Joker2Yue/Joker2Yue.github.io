@@ -1,0 +1,1250 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><!-- hexo injector head_begin start --><script>
+                    (() => {
+                        const sw = navigator.serviceWorker
+                        const error = () => console.error("ServiceWorker 注册失败，可能是您的浏览器不支持该功能。")
+                        if (!sw?.register('/sw.js')
+                            
+                            ?.catch(error)
+                            ) error()
+                    })()
+                </script><!-- hexo injector head_begin end --><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><title>软件测试复习题 | 九歌</title><meta name="keywords" content="软件,软件项目管理,期末,复习题"><meta name="author" content="Joker2Yue"><meta name="copyright" content="Joker2Yue"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#f7f9fe"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-touch-fullscreen" content="yes"><meta name="apple-mobile-web-app-title" content="软件测试复习题"><meta name="application-name" content="软件测试复习题"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="#f7f9fe"><meta property="og:type" content="article"><meta property="og:title" content="软件测试复习题"><meta property="og:url" content="https://blog.joker2yue.cn/post/ruan-jian-ce-shi-fu-xi-ti/index.html"><meta property="og:site_name" content="九歌"><meta property="og:description" content="判断题     语句 答案     软件测试的目的是尽可能多的找出软件的缺陷。 ✔️   Beta测试是验收测试的一种。 ✔️   验收测试是由最终用户来实施的。 ❌   项目立项前测试人员不需要提交任何工件。 ✔️   单元测试能发现约80%的软件缺陷。 ✔️   代码评审是检查源代码是否达到模块"><meta property="og:locale" content="zh-CN"><meta property="og:image" content="https://resource.joker2yue.cn/blog/images/coverImg/UniversityCourse/软件测试.png"><meta property="article:author" content="Joker2Yue"><meta property="article:tag" content="Hexo,Java,JavaScript,html5,css3,Jquery,NodeJs,github,css,js,html,AnZhiYu,博客,学习"><meta name="twitter:card" content="summary"><meta name="twitter:image" content="https://resource.joker2yue.cn/blog/images/coverImg/UniversityCourse/软件测试.png"><meta name="description" content="判断题     语句 答案     软件测试的目的是尽可能多的找出软件的缺陷。 ✔️   Beta测试是验收测试的一种。 ✔️   验收测试是由最终用户来实施的。 ❌   项目立项前测试人员不需要提交任何工件。 ✔️   单元测试能发现约80%的软件缺陷。 ✔️   代码评审是检查源代码是否达到模块"><link rel="shortcut icon" href="/favicon.ico"><link rel="canonical" href="https://blog.joker2yue.cn/post/ruan-jian-ce-shi-fu-xi-ti/"><link rel="preconnect" href="//cdn.cbd.int"/><meta name="google-site-verification" content="pbOVJD5xCJ_hy8qsEllb_o72A1ToJVHND5VcaZthS4U"/><meta name="baidu-site-verification" content="codeva-Y6WRbw4qhm"/><meta name="msvalidate.01" content="805A6EE29D8356ED4ECD4A62D9A0151D"/><link rel="manifest" href="/manifest.json"/><meta name="msapplication-TileColor" content="var(--anzhiyu-main)"/><link rel="mask-icon" href="/images/siteicon/apple-icon-180.png" color="#5bbad5"/><link rel="apple-touch-icon" sizes="180x180" href="/images/siteicon/apple-icon-180.png"/><link rel="apple-touch-icon-precomposed" sizes="180x180" href="/images/siteicon/apple-icon-180.png"/><link rel="icon" type="image/png" sizes="32x32" href="/images/siteicon/32.png"/><link rel="icon" type="image/png" sizes="16x16" href="/images/siteicon/16.png"/><link rel="bookmark" href="/images/siteicon/apple-icon-180.png"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2048-2732.jpg" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2732-2048.jpg" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1668-2388.jpg" media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2388-1668.jpg" media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1536-2048.jpg" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2048-1536.jpg" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1668-2224.jpg" media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2224-1668.jpg" media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1620-2160.jpg" media="(device-width: 810px) and (device-height: 1080px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2160-1620.jpg" media="(device-width: 810px) and (device-height: 1080px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1290-2796.jpg" media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2796-1290.jpg" media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1179-2556.jpg" media="(device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2556-1179.jpg" media="(device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1284-2778.jpg" media="(device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2778-1284.jpg" media="(device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1170-2532.jpg" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2532-1170.jpg" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1125-2436.jpg" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2436-1125.jpg" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1242-2688.jpg" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2688-1242.jpg" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-828-1792.jpg" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1792-828.jpg" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1242-2208.jpg" media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2208-1242.jpg" media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-750-1334.jpg" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1334-750.jpg" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-640-1136.jpg" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1136-640.jpg" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.6.0/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/@fancyapps/ui@5.0.36/dist/fancybox/fancybox.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/swiper@5.4.5/css/swiper.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  linkPageTop: {"enable":true,"title":"与数百名博主无限进步","addFriendPlaceholder":"昵称（请勿包含博客等字样）：\n网站地址（要求博客地址，请勿提交个人主页）：\n头像图片url（请提供尽可能清晰的图片，我会上传到我自己的图床）：\n描述：\n站点截图（可选）：\n"},
+  peoplecanvas: undefined,
+  postHeadAiDescription: {"enable":true,"gptName":"Joker","mode":"local","switchBtn":true,"btnLink":"https://afdian.net/item/886a79d4db6711eda42a52540025c377","randomNum":1,"basicWordCount":1000,"key":"7d68f96f3824c2340712","Referer":"https://Blog.Joker2Yue.cn/"},
+  diytitle: {"enable":true,"leaveTitle":"w(ﾟДﾟ)w 大佬，别丢下我呀555","backTitle":"♪(^∇^*)欢迎肥来！"},
+  LA51: {"enable":true,"ck":"3FljRaaHsuwhQACC","LingQueMonitorID":"3FljRaaHsuwhQACC"},
+  greetingBox: {"enable":true,"default":"欢迎大佬！🫡","list":[{"greeting":"时间不早啦，早点休息吧😴","startTime":0,"endTime":1},{"greeting":"小夜猫子，快去睡觉吧，明天要有精力哦🌙","startTime":1,"endTime":2},{"greeting":"再不睡觉会变成光头哦！梦中见吧💤","startTime":2,"endTime":3},{"greeting":"别熬啦，再熬就熬穿啦~🦉","startTime":3,"endTime":4},{"greeting":"你见过凌晨四点的洛杉矶吗🕓","startTime":4,"endTime":5},{"greeting":"早期的鸟儿有虫吃，今天也要加油哦 💪","startTime":5,"endTime":6},{"greeting":"新的一天开始了，早安！希望今天一切顺利☀️","startTime":6,"endTime":7},{"greeting":"早上好，准备好迎接新一天的挑战吧😊","startTime":7,"endTime":8},{"greeting":"今天是美好的一天，祝你有个愉快的早晨🕊️","startTime":8,"endTime":9},{"greeting":"上午好，工作顺利吗？记得适当休息哦📈","startTime":9,"endTime":10},{"greeting":"生活不易，加油，再坚持一下！💪","startTime":10,"endTime":11},{"greeting":"午餐时间快到了，别忘了吃点好吃的🍲","startTime":11,"endTime":12},{"greeting":"午安！享受这段轻松的时光吧😊","startTime":12,"endTime":13},{"greeting":"下午好，继续努力，今天还没有结束哦☕","startTime":13,"endTime":14},{"greeting":"工作辛苦啦~记得喝水保持清醒哦💧","startTime":14,"endTime":15},{"greeting":"工作中的小休息，放松一下吧🎵","startTime":15,"endTime":16},{"greeting":"离下班还有一点时间，再坚持一下！💼","startTime":16,"endTime":17},{"greeting":"傍晚好，辛苦了一整天，快回家放松吧🌇","startTime":17,"endTime":18},{"greeting":"晚餐时间到了，和家人们一起享受美好时光吧🍽️","startTime":18,"endTime":19},{"greeting":"晚上好，来放松一下自己吧🎬","startTime":19,"endTime":20},{"greeting":"夜晚的时光，属于你自己，享受吧🌙","startTime":20,"endTime":21},{"greeting":"准备好迎接美好的梦境吧💤","startTime":21,"endTime":22},{"greeting":"深夜时分，放松一下，做好睡觉准备吧🌌","startTime":22,"endTime":23},{"greeting":"夜深啦~ 赶紧入睡吧，明天会更好🛏️","startTime":23,"endTime":24}]},
+  twikooEnvId: 'https://twikoo.joker2yue.cn/',
+  commentBarrageConfig:undefined,
+  root: '/',
+  preloader: {"source":3},
+  friends_vue_info: {"apiurl":"https://hexo-circle-of-firends.joker2yue.cn/"},
+  navMusic: true,
+  mainTone: {"mode":"both","api":"https://img2color-go.joker2yue.cn/api?img=","cover_change":true},
+  authorStatus: {"skills":["🤖️ 数码科技爱好者","🔍 分享与热心帮助","🏠 智能家居小能手","🔨 设计开发一条龙","🤝 专修交互与设计","🏃 脚踏实地行动派","🧱 团队小组发动机","💢 壮汉人狠话不多"]},
+  algolia: {"appId":"02BLPWUQGR","apiKey":"c5b7016a2933af8c5cb09dfb4a490988","indexName":"blog_joker2yue_index","hits":{"per_page":6},"languages":{"input_placeholder":"输入关键词后按下回车查找","hits_empty":"找不到您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0.5,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简","rightMenuMsgToTraditionalChinese":"转为繁体","rightMenuMsgToSimplifiedChinese":"转为简体"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":330},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    simplehomepage: true,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"copy":true,"copyrightEbable":false,"limitCount":50,"languages":{"author":"作者: Joker2Yue","link":"链接: ","source":"来源: 九歌","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。","copySuccess":"复制成功，复制和转载请标注本文地址"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#425AEF","bgDark":"#1f1f1f","position":"bottom-right"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.min.js',
+      css: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: true,
+  shortcutKey: undefined,
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  configTitle: '九歌',
+  title: '软件测试复习题',
+  postAI: '此文是作者在面临软件测试技术的期末测试中留下的复习笔记。软件测试技术关注于检测和验证软件系统功能与质量。,此文是作者在面临软件测试技术的期末测试中留下的复习笔记。软件测试技术是确保软件质量的关键步骤，包括功能测试、性能测试、安全测试等多种方法。通过自动化测试和手动测试相结合，评估软件在不同条件下的表现，发现和修复缺陷，以确保软件产品满足用户需求和预期质量标准。,此文是作者在面临软件测试技术的期末测试中留下的复习笔记。软件测试技术是为了验证软件系统的功能、性能、安全性等方面而设计的一系列方法和工具。这些技术包括自动化测试、手动测试、性能测试、负载测试、安全测试等多种形式，旨在发现并修复软件中的缺陷和问题，确保软件产品符合用户需求和预期质量标准。通过持续集成和持续交付等现代开发实践，软件测试技术与开发过程紧密结合，以确保软件的稳定性、可靠性和用户体验，为软件开发提供可靠的技术保障。',
+  pageFillDescription: '判断题, 选择题, 填空题, 问答题, 区别阶段评审的与同行评审, 简述系统集成测试过程, 软件测试的八个基本原则, 怎么做好文档测试, 白盒测试有几种方法, Alpha测试与Beta的区别, 比较负载测试、容量测试和强度测试的区别, 描述软件测试活动的生命周期, 软件的缺陷等级应如何划分, 您认为做好测试用例设计工作的关键是什么, 黑盒测试和白盒测试是软件测试的两种基本方法请分别说明各自的优点和缺点, 针对以下问题采用等价类划分的方法设计测试用例。, 请试着比较一下黑盒测试、白盒测试、单元测试、集成测试、系统测试、验收测试的区别与联系, 概括测试用例的基本要素, 测试计划工作的目的是什么？测试计划工作的内容都包括什么？其中哪些是最重要的？, 如何通过评审和更新机制来确保测试计划满足实际需求？, 您所熟悉的测试用例设计方法都有哪些？请分别以具体的例子来说明这些方法在测试用例设计工作中的应用。判断题语句答案软件测试的目的是尽可能多的找出软件的缺陷测试是验收测试的一种验收测试是由最终用户来实施的项目立项前测试人员不需要提交任何工件单元测试能发现约的软件缺陷代码评审是检查源代码是否达到模块设计的要求自底向上集成需要测试员编写驱动程序负载测试是验证要检验的系统的能力最高能达到什么程度选择题软件验收测试的合格通过准则是软件需求分析说明书中定义的所有功能已全部实现性能指标全部达到要求所有测试项没有残余一级二级和三级错误立项审批表需求分析文档设计文档和编码实现一致验收测试工件齐全软件测试计划评审会需要哪些人员参加项目经理负责人配置负责人测试组下列关于测试的描述中正确的是测试需要用户代表参加测试是验收测试的一种测试设计员的职责包括设计测试用例过程脚本填空题软件验收测试包括正式验收测试测试测试系统测试的策略有功能测试性能测试可靠性测试负载测试易用性测试强度测试安全测试配置测试安装测试卸载测试文档测试故障恢复测试界面测试容量测试兼容性测试分布测试可用性测试设计系统测试计划需要参考的项目文档有软件测试计划软件需求文档和迭代计划面向过程的系统采用的集成策略有自顶向下和自底向上两种问答题区别阶段评审的与同行评审同行评审阶段评审目的发现小规模工作产品的错误主要是找错误评审模块阶段作品的正确性可行性及完整性人数人人员必须经过同行评审会议的培训由指导人左右评审人必须是专家具有系统评审资格内容内容小一般文档页代码行内容多主要看重点时间一小部分工作产品完成通常设置在关键路径的时间点上简述系统集成测试过程构建的确认过程补丁的确认过程系统集成测试组提交过程测试用例设计过程测试代码编写过程的报告过程每周每两周的构建过程点对点的测试过程组内培训过程软件测试的八个基本原则所有的软件测试都应追溯到用户需求尽早和不断地进行软件测试在设计测试用例时应该包括合理的输入与不合理的输入以及相应的预期输出结果充分注意测试中的群集现象程序员应避免检查自己的程序尽量避免测试的随意性应当对每个测试结果做全面的检查保留测试文档包括测试计划用例出错统计和最终分析报告怎么做好文档测试检查文档的编写是否满足文档编写的目的内容是否齐全正确内容是否完善标记是否正确白盒测试有几种方法方法描述静态方法关键功能是检查软件的表示和描述是否一致没有冲突或者没有歧义动态方法语句覆盖判定覆盖条件覆盖判定条件覆盖条件组合覆盖路径覆盖测试与的区别测试类型描述测试在系统开发接近完成时对应用系统的测试测试后仍然会有少量的设计变更一般由最终用户或其他人员完成不能由程序或测试员完成测试当开发和测试根本完成时所做的测试最终的错误和问题需要在最终发行前找到一般由最终用户或其他人员完成不能由程序员或测试员完成比较负载测试容量测试和强度测试的区别测试类型描述负载测试测试在一定的工作负荷下系统的负载和响应时间强度测试在一定的负荷条件下系统在较长时间跨度内连续运行检测系统性能的影响容量测试容量测试旨在确定系统在给定条件下的极限性能并识别系统在特定数据容量下的极限值容量测试不仅关注系统的承受能力还考虑系统在处理大量数据时的表现和稳定性以确保系统在特定负载条件下能够正常运行而不发生故障描述软件测试活动的生命周期计划对整个测试周期中所有活动进行规划包括估计工作量风险评估安排人力物力资源安排进度等设计完成测试方案从技术层面上对测试进行规划包括测试用例和测试规程的设计实现编写测试用例和测试规程执行根据前期完成的计划方案用例规程等文档执行测试用例总结记录测试结果进行测试分析并完成测试报告软件的缺陷等级应如何划分缺陷等级描述类严重错误包括由于程序引起的死机非法退出死循环数据库发生死锁因错误操作导致的程序中断功能错误与数据库连接错误数据通讯错误类较严重错误包括程序错误程序接口错误数据库的表业务规则缺省值未加完整性等约束条件类一般性错误包括操作界面错误包括数据窗口内列名定义含义是否一致打印内容格式错误简单的输入限制未放在前台进行控制删除操作未给出提示数据库表中有过多的空字段类较小错误包括界面不规范辅助说明描述不清楚输入输出不规范长操作未给用户提示提示窗口文字未采用行业术语可输入区域和只读区域没有明显的区分标志类测试建议您认为做好测试用例设计工作的关键是什么白盒测试用例设计以较少的测试用例覆盖尽可能多的内部程序逻辑结果黑盒测试用例设计以较少的测试用例覆盖模块的输出和输入接口不能完全测试但要在合理的时间内发现尽可能多的问题黑盒测试和白盒测试是软件测试的两种基本方法请分别说明各自的优点和缺点方法优点缺点黑盒测试比较简单不需要了解程序内部的代码及实现不可能覆盖所有的代码覆盖率较低大概只能达到总代码量的与软件的内部实现无关自动化测试的复用性较低从用户角度出发能很容易的知道用户会用到哪些功能会遇到哪些问题基于软件开发文档所以也能知道软件实现了文档中的哪些功能在做软件自动化测试时较为方便白盒测试帮助软件测试人员增大代码的覆盖率提高代码的质量发现代码中隐藏的问题程序运行会有很多不同的路径不可能测试所有的运行路径测试基于代码只能测试开发人员做的对不对而不能知道设计的正确与否可能会漏掉一些功能需求系统庞大时测试开销会非常大针对以下问题采用等价类划分的方法设计测试用例问题某一种位计算机其十六进制常数的定义是以或开头的十六进制整数其取值范围为不区分大小写字母如等价类表有效等价类由或开头以字母开头以非数字开头数值字符为数字或字符为以外的字母字母或数值字符个数大于等于个字母或数值字符个数为个数值大于等于且小于等于数值小于数值大于用例值覆盖的等价类用例用例用例用例用例用例用例用例用例请试着比较一下黑盒测试白盒测试单元测试集成测试系统测试验收测试的区别与联系测试类型关注点执行者目的黑盒测试软件外部功能和接口发现功能缺陷接口问题等白盒测试软件内部逻辑结构和代码实现发现代码缺陷算法错误等单元测试最小可测试单元如函数或模块开发人员确保单元功能正确集成测试模块集成开发或测试人员发现集成缺陷系统测试整个系统独立测试人员评估系统质量验收测试最终用户最终用户确认系统可交付使用联系这些测试方法相互关联循序渐进测试范围和层次逐步扩大单元测试集成测试系统测试验收测试反映了软件测试由小到大由内到外的层次关系它们的目的不同但相辅相成共同确保软件整体质量测试方法有所区别单元测试多采用白盒其他结合白盒和黑盒构成完整的软件测试过程相互衔接确保软件符合需求设计和质量要求概括测试用例的基本要素软件测试用例的基本要素包括测试用例编号测试标题测试模块重要级别测试环境测试输入操作步骤预期结果概要描述用例编号测试用例的编号有一定的规则测试标题对测试用例的描述清晰表达测试用例的用途测试模块指明并简单描述本测试用例是用来测试哪些项目子项目或软件特性的重要级别定义测试用例的优先级别可分为高和低测试环境描述执行测试用例所需的具体测试环境包括硬件和软件环境测试输入提供测试执行中的各种输入条件操作步骤提供测试执行过程的步骤预期结果提供测试执行的预期结果根据软件需求中的输出得出测试计划工作的目的是什么测试计划工作的内容都包括什么其中哪些是最重要的目的是指导测试过程确保测试任务的顺利实施内容包括产品概述测试策略测试方法测试区域测试配置测试周期测试资源测试交流和风险分析等重要其中最重要的是测试策略和测试方法测试计划在宏观上规划测试活动的范围方法和资源配置而测试详细规格和测试用例则是具体的战术执行如何通过评审和更新机制来确保测试计划满足实际需求通过评审和更新机制可以确保测试计划满足实际需求如果测试计划未经过评审直接发送给测试团队可能导致测试内容的不准确或遗漏或者在软件需求变更后未及时更新测试计划内容误导测试执行人员因此应该分别创建测试计划测试详细规格和测试用例测试计划主要是宏观规划测试活动的范围方法和资源配置而测试详细规格和测试用例则是具体执行测试任务的战术详细的测试技术指标应包含在独立创建的测试详细规格文档中而用于指导测试执行的测试用例则应放在独立创建的测试用例文档或测试用例管理数据库中您所熟悉的测试用例设计方法都有哪些请分别以具体的例子来说明这些方法在测试用例设计工作中的应用测试用例设计方法说明等价类划分将输入数据划分为有效等价类和无效等价类选取每个等价类的代表值作为测试数据例如对于一个要求输入年龄的系统可以将年龄划分为青少年成年人和老年人等等然后选择每个等价类的典型年龄作为测试数据边界值分析法着重考虑输入或输出范围的边界情况选取正好等于刚刚大于或刚刚小于边界的值作为测试数据例如对于一个要求输入到的数字的系统边界值分析法会选取等作为测试数据错误推测法基于经验和直觉推测可能存在的各种错误设计有针对性的测试用例例如列举程序中可能存在的常见错误和特殊情况选择这些情况下的例子作为测试数据因果图方法考虑输入条件之间的相互组合利用因果图生成判定表来描述多种条件的组合情况例如对于一个需要考虑多个条件组合的系统利用因果图方法可以生成判定表以检查各种组合情况',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-05-27 10:12:22',
+  postMainColor: '',
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#18171d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f7f9fe')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 18 || hour >= 6
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(e => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/joker.css" media="defer" onload="this.media='all'"><meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"><meta http-equiv="Access-Control-Allow-Origin" content="*" /><meta http-equiv="Access-Control-Allow-Methods" content="HEAD,GET,POST,PUT,DELETE,OPTIONS" /><meta http-equiv="Access-Control-Allow-Headers" content="Content-Type,Authorization,Origin,X-Requested-With,Accept" /><meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"><script src="https://cdn.cbd.int/jquery@3.7.1/dist/jquery.min.js"></script><script src="/js/notice.js"></script><!-- hexo injector head_end start --><script defer src="/sw-dom.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="九歌" type="application/atom+xml">
+</head><body data-type="anzhiyu"><div id="web_bg"></div><div id="an_music_bg"></div><div id="loading-box" onclick="document.getElementById(&quot;loading-box&quot;).classList.add(&quot;loaded&quot;)"><div class="loading-bg"><img class="loading-img nolazyload" alt="加载头像" src="https://resource.joker2yue.cn/blog/images/avatar_load.jpg"/><div class="loading-image-dot"></div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.getElementById('loading-box').classList.add("loaded");
+  },
+  initLoading: () => {
+    document.getElementById('loading-box').classList.remove("loaded")
+  }
+}
+window.addEventListener('load',()=> { preloader.endLoading() })
+setTimeout(function(){preloader.endLoading();},10000)
+
+if (true) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.10/progress_bar/progress_bar.css"/><script async="async" src="https://cdn.cbd.int/pace-js@1.2.4/pace.min.js" data-pace-options="{ &quot;restartOnRequestAfter&quot;:false,&quot;eventLag&quot;:false}"></script><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><div id="nav-group"><span id="blog_name"><div class="back-home-button"><i class="anzhiyufont anzhiyu-icon-grip-vertical"></i><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" href="https://Blog.Joker2Yue.cn/" title="博客"><img class="back-menu-item-icon" src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/joker_icon.ico" alt="博客"/><span class="back-menu-item-text">博客</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">项目</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://gpt.joker2yue.cn/" title="JokerGPT"><img class="back-menu-item-icon" src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://gpt.joker2yue.cn/favicon.ico" alt="JokerGPT"/><span class="back-menu-item-text">JokerGPT</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="https://www.joker2yue.cn/" title="主页"><img class="back-menu-item-icon" src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/avatar_joker.jpg" alt="主页"/><span class="back-menu-item-text">主页</span></a></div></div></div></div><a id="site-name" href="/" accesskey="h"><div class="title">九歌</div><i class="anzhiyufont anzhiyu-icon-house-chimney"></i></a></span><div class="mask-name-container"><div id="name-container"><a id="page-name" href="javascript:anzhiyu.scrollToDest(0, 500)">PAGE_NAME</a></div></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> 隧道</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 标签</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 社交</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/fcircle/"><i class="anzhiyufont anzhiyu-icon-artstation faa-tada" style="font-size: 0.9em;"></i><span> 朋友圈</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/link/"><i class="anzhiyufont anzhiyu-icon-link faa-tada" style="font-size: 0.9em;"></i><span> 友人账</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/comments/"><i class="anzhiyufont anzhiyu-icon-envelope faa-tada" style="font-size: 0.9em;"></i><span> 留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 我的</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/music/?id=648886106&amp;server=netease"><i class="anzhiyufont anzhiyu-icon-music faa-tada" style="font-size: 0.9em;"></i><span> 音乐馆</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/air-conditioner/"><i class="anzhiyufont anzhiyu-icon-fan faa-tada" style="font-size: 0.9em;"></i><span> 小空调</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 关于</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/about/"><i class="anzhiyufont anzhiyu-icon-paper-plane faa-tada" style="font-size: 0.9em;"></i><span> 关于本人</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/website/"><i class="anzhiyufont anzhiyu-icon-cube faa-tada" style="font-size: 0.9em;"></i><span> 本站建设</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/essay/"><i class="anzhiyufont anzhiyu-icon-lightbulb faa-tada" style="font-size: 0.9em;"></i><span> 闲言碎语</span></a></li><li><a class="site-page child faa-parent animated-hover" href="javascript:toRandomPost()"><i class="anzhiyufont anzhiyu-icon-shoe-prints1 faa-tada" style="font-size: 0.9em;"></i><span> 随便逛逛</span></a></li></ul></div></div></div><div id="nav-right"><div class="nav-button only-home" id="travellings_button" title="随机前往一个开往项目网站"><a class="site-page" onclick="anzhiyu.totraveling()" title="随机前往一个开往项目网站" href="javascript:void(0);" rel="external nofollow" data-pjax-state="external"><i class="anzhiyufont anzhiyu-icon-train"></i></a></div><div class="nav-button" id="randomPost_button"><a class="site-page" onclick="toRandomPost()" title="随机前往一个文章" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-dice"></i></a></div><div class="nav-button" id="search-button"><a class="site-page social-icon search" href="javascript:void(0);" title="搜索🔍" accesskey="s"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span> 搜索</span></a></div><input id="center-console" type="checkbox"/><label class="widget" for="center-console" title="中控台" onclick="anzhiyu.switchConsole();"><i class="left"></i><i class="widget center"></i><i class="widget right"></i></label><div id="console"><div class="console-card-group-reward"><ul class="reward-all console-card"><li class="reward-item"><a href="https://resource.joker2yue.cn/blog/images/reward/wechat.png" target="_blank"><img class="post-qr-code-img" alt="微信" src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/reward/wechat.png"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://resource.joker2yue.cn/blog/images/reward/alipay.png" target="_blank"><img class="post-qr-code-img" alt="支付宝" src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/reward/alipay.png"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div><div class="console-card-group"><div class="console-card-group-left"><div class="console-card" id="card-newest-comments"><div class="card-content"><div class="author-content-item-tips">互动</div><span class="author-content-item-title"> 最新评论</span></div><div class="aside-list"><span>正在加载中...</span></div></div></div><div class="console-card-group-right"><div class="console-card tags"><div class="card-content"><div class="author-content-item-tips">兴趣点</div><span class="author-content-item-title">寻找你感兴趣的领域</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/AI/" style="font-size: 1.05rem;">AI<sup>1</sup></a><a href="/tags/AMD/" style="font-size: 1.05rem;">AMD<sup>1</sup></a><a href="/tags/CSS/" style="font-size: 1.05rem;">CSS<sup>14</sup></a><a href="/tags/Git/" style="font-size: 1.05rem;">Git<sup>2</sup></a><a href="/tags/Github/" style="font-size: 1.05rem;">Github<sup>2</sup></a><a href="/tags/HTML/" style="font-size: 1.05rem;">HTML<sup>3</sup></a><a href="/tags/Hexo/" style="font-size: 1.05rem;">Hexo<sup>2</sup></a><a href="/tags/JDBC/" style="font-size: 1.05rem;">JDBC<sup>1</sup></a><a href="/tags/Java/" style="font-size: 1.05rem;">Java<sup>44</sup></a><a href="/tags/JavaEE/" style="font-size: 1.05rem;">JavaEE<sup>1</sup></a><a href="/tags/JavaSE/" style="font-size: 1.05rem;">JavaSE<sup>29</sup></a><a href="/tags/JavaWeb/" style="font-size: 1.05rem;">JavaWeb<sup>1</sup></a><a href="/tags/Kotlin/" style="font-size: 1.05rem;">Kotlin<sup>1</sup></a><a href="/tags/Linux/" style="font-size: 1.05rem;">Linux<sup>4</sup></a><a href="/tags/Markdown/" style="font-size: 1.05rem;">Markdown<sup>1</sup></a><a href="/tags/Maven/" style="font-size: 1.05rem;">Maven<sup>1</sup></a><a href="/tags/MyabtisPlus/" style="font-size: 1.05rem;">MyabtisPlus<sup>1</sup></a><a href="/tags/Mybatis/" style="font-size: 1.05rem;">Mybatis<sup>2</sup></a><a href="/tags/Mysql/" style="font-size: 1.05rem;">Mysql<sup>2</sup></a><a href="/tags/NodeJS/" style="font-size: 1.05rem;">NodeJS<sup>1</sup></a><a href="/tags/Ollama/" style="font-size: 1.05rem;">Ollama<sup>1</sup></a><a href="/tags/SSM/" style="font-size: 1.05rem;">SSM<sup>3</sup></a><a href="/tags/Spring/" style="font-size: 1.05rem;">Spring<sup>6</sup></a><a href="/tags/SpringBoot/" style="font-size: 1.05rem;">SpringBoot<sup>2</sup></a><a href="/tags/SpringCloud/" style="font-size: 1.05rem;">SpringCloud<sup>2</sup></a><a href="/tags/SpringFramework/" style="font-size: 1.05rem;">SpringFramework<sup>1</sup></a><a href="/tags/SpringMVC/" style="font-size: 1.05rem;">SpringMVC<sup>1</sup></a><a href="/tags/Spring%E6%A1%86%E6%9E%B6/" style="font-size: 1.05rem;">Spring框架<sup>2</sup></a><a href="/tags/Vue/" style="font-size: 1.05rem;">Vue<sup>1</sup></a><a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" style="font-size: 1.05rem;">分布式<sup>4</sup></a><a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 1.05rem;">前端<sup>22</sup></a><a href="/tags/%E5%A4%8D%E4%B9%A0%E9%A2%98/" style="font-size: 1.05rem;">复习题<sup>3</sup></a><a href="/tags/%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B/" style="font-size: 1.05rem;">大学课程<sup>23</sup></a><a href="/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/" style="font-size: 1.05rem;">大模型<sup>1</sup></a><a href="/tags/%E5%BF%85%E7%9C%8B/" style="font-size: 1.05rem;">必看<sup>26</sup></a><a href="/tags/%E6%8A%80%E6%9C%AF/" style="font-size: 1.05rem;">技术<sup>7</sup></a><a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 1.05rem;">数据库<sup>1</sup></a><a href="/tags/%E7%8B%82%E7%A5%9E/" style="font-size: 1.05rem;">狂神<sup>44</sup></a><a href="/tags/%E8%BD%AC%E8%BD%BD/" style="font-size: 1.05rem;">转载<sup>1</sup></a><a href="/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/" style="font-size: 1.05rem;">软件测试<sup>1</sup></a><a href="/tags/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%B8%88/" style="font-size: 1.05rem;">软件设计师<sup>20</sup></a><a href="/tags/%E8%BD%AF%E4%BB%B6%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/" style="font-size: 1.05rem;">软件项目管理<sup>2</sup></a><a href="/tags/%E8%BD%AF%E8%80%83/" style="font-size: 1.05rem;">软考<sup>20</sup></a><a href="/tags/%E8%BF%90%E7%BB%B4/" style="font-size: 1.05rem;">运维<sup>3</sup></a><a href="/tags/%E8%BF%9E%E8%BD%BD/" style="font-size: 1.05rem;">连载<sup>82</sup></a><a href="/tags/%E9%BB%91%E9%A9%AC/" style="font-size: 1.05rem;">黑马<sup>18</sup></a></div></div><hr/></div></div><div class="console-card history"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-box-archiv"></i><span>文章</span></div><div class="card-archives"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-archive"></i><span>归档</span><a class="card-more-btn" href="/archives/" title="查看更多">
+    <i class="anzhiyufont anzhiyu-icon-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/08/"><span class="card-archive-list-date">八月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/05/"><span class="card-archive-list-date">五月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">4</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/01/"><span class="card-archive-list-date">一月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/10/"><span class="card-archive-list-date">十月 2023</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">11</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/09/"><span class="card-archive-list-date">九月 2023</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">12</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/08/"><span class="card-archive-list-date">八月 2023</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">11</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/07/"><span class="card-archive-list-date">七月 2023</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">9</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/05/"><span class="card-archive-list-date">五月 2023</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li></ul></div><hr/></div></div></div><div class="button-group"><div class="console-btn-item"><a class="darkmode_switchbutton" title="显示模式切换" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-moon"></i></a></div><div class="console-btn-item" id="consoleHideAside" onclick="anzhiyu.hideAsideBtn()" title="边栏显示控制"><a class="asideSwitch"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></a></div><div class="console-btn-item" id="consoleMusic" onclick="anzhiyu.musicToggle()" title="音乐开关"><a class="music-switch"><i class="anzhiyufont anzhiyu-icon-music"></i></a></div></div><div class="console-mask" onclick="anzhiyu.hideConsole()" href="javascript:void(0);"></div></div><div class="nav-button" id="nav-totop"><a class="totopbtn" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i><span id="percent" onclick="anzhiyu.scrollToDest(0,500)">0</span></a></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);" title="切换"><i class="anzhiyufont anzhiyu-icon-bars"></i></a></div></div></div></nav><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original">原创</a><span class="post-meta-categories"><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-inbox post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B/" itemprop="url">大学课程</a></span><span class="article-meta tags"><a class="article-meta__tags" href="/tags/%E5%A4%8D%E4%B9%A0%E9%A2%98/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>复习题</span></a><a class="article-meta__tags" href="/tags/%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>大学课程</span></a><a class="article-meta__tags" href="/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>软件测试</span></a></span></div></div><h1 class="post-title" itemprop="name headline">软件测试复习题<a class="post-edit-link" href="https://github.com/Joker2Yue/Joker2Yue-Blog/edit/main/source/_posts/软件测试复习题.md" title="在 GitHub 上编辑 - 软件测试复习题" target="_blank"><i class="anzhiyufont anzhiyu-icon-pencil"></i></a></h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="anzhiyufont anzhiyu-icon-calendar-days post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" itemprop="dateCreated datePublished" datetime="2024-05-27T02:12:22.000Z" title="发表于 2024-05-27 10:12:22">2024-05-27</time><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-history post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" itemprop="dateCreated datePublished" datetime="2024-05-27T02:12:22.000Z" title="更新于 2024-05-27 10:12:22">2024-05-27</time></span></div><div class="meta-secondline"><span class="post-meta-separator"></span><span class="post-meta-wordcount"><i class="anzhiyufont anzhiyu-icon-file-word post-meta-icon" title="文章字数"></i><span class="post-meta-label" title="文章字数">字数总计:</span><span class="word-count" title="文章字数">3.8k</span><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-clock post-meta-icon" title="阅读时长"></i><span class="post-meta-label" title="阅读时长">阅读时长:</span><span>11分钟</span></span><span class="post-meta-separator"></span><span class="post-meta-pv-cv" id="" data-flag-title="软件测试复习题"><i class="anzhiyufont anzhiyu-icon-fw-eye post-meta-icon"></i><span class="post-meta-label" title="阅读量">阅读量:</span><span id="busuanzi_value_page_pv"><i class="anzhiyufont anzhiyu-icon-spinner anzhiyu-spin"></i></span></span><span class="post-meta-separator">       </span><span class="post-meta-position" title="作者IP属地为衡阳"><i class="anzhiyufont anzhiyu-icon-location-dot"></i>衡阳</span></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section><div id="post-top-cover"><img class="nolazyload" id="post-top-bg" src="https://resource.joker2yue.cn/blog/images/coverImg/UniversityCourse/软件测试.png"></div></header><main id="blog-container"><div class="layout" id="content-inner"><div id="post"><div class="post-ai-description"><div class="ai-title"><i class="anzhiyufont anzhiyu-icon-bilibili"></i><div class="ai-title-text">AI-摘要</div><div id="ai-Toggle">切换</div><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right"></i><i class="anzhiyufont anzhiyu-icon-circle-dot" title="朗读摘要"></i><div id="ai-tag">Joker GPT</div></div><div class="ai-explanation">AI初始化中...</div><div class="ai-btn-box"><div class="ai-btn-item">介绍自己 🙈</div><div class="ai-btn-item">生成本文简介 👋</div><div class="ai-btn-item">推荐相关文章 📖</div><div class="ai-btn-item">前往主页 🏠</div><div class="ai-btn-item" id="go-tianli-blog">前往爱发电购买</div></div><script data-pjax src="/js/anzhiyu/ai_abstract.js"></script></div><article class="post-content" id="article-container" itemscope itemtype="https://blog.joker2yue.cn/post/ruan-jian-ce-shi-fu-xi-ti/"><header><a class="post-meta-categories" href="/categories/%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B/" itemprop="url">大学课程</a><a href="/tags/%E5%A4%8D%E4%B9%A0%E9%A2%98/" tabindex="-1" itemprop="url">复习题</a><a href="/tags/%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B/" tabindex="-1" itemprop="url">大学课程</a><a href="/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/" tabindex="-1" itemprop="url">软件测试</a><h1 id="CrawlerTitle" itemprop="name headline">软件测试复习题</h1><span itemprop="author" itemscope itemtype="http://schema.org/Person">Joker2Yue</span><time itemprop="dateCreated datePublished" datetime="2024-05-27T02:12:22.000Z" title="发表于 2024-05-27 10:12:22">2024-05-27</time><time itemprop="dateCreated datePublished" datetime="2024-05-27T02:12:22.000Z" title="更新于 2024-05-27 10:12:22">2024-05-27</time></header><h4 id="判断题">判断题<a class="headerlink" href="#判断题"></a></h4>
+<hr>
+<table>
+<thead>
+<tr>
+<th>语句</th>
+<th>答案</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>软件测试的目的是尽可能多的找出软件的缺陷。</td>
+<td>✔️</td>
+</tr>
+<tr>
+<td>Beta测试是验收测试的一种。</td>
+<td>✔️</td>
+</tr>
+<tr>
+<td>验收测试是由最终用户来实施的。</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>项目立项前测试人员不需要提交任何工件。</td>
+<td>✔️</td>
+</tr>
+<tr>
+<td>单元测试能发现约80%的软件缺陷。</td>
+<td>✔️</td>
+</tr>
+<tr>
+<td>代码评审是检查源代码是否达到模块设计的要求。</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>自底向上集成需要测试员编写驱动程序。</td>
+<td>✔️</td>
+</tr>
+<tr>
+<td>负载测试是验证要检验的系统的能力最高能达到什么程度。</td>
+<td>❌</td>
+</tr>
+</tbody>
+</table>
+<h4 id="选择题">选择题<a class="headerlink" href="#选择题"></a></h4>
+<hr>
+<ol>
+<li class="lvl-3">
+<p>软件验收测试的合格通过准则是：</p>
+<ul class="lvl-2">
+<li class="lvl-5">软件需求分析说明书中定义的所有功能已全部实现，性能指标全部达到要求。</li>
+<li class="lvl-5">所有测试项没有残余一级、二级和三级错误。立项审批表、需求分析文档、设计文档和编码实现一致。</li>
+<li class="lvl-5">验收测试工件齐全。</li>
+</ul>
+</li>
+<li class="lvl-3">
+<p>软件测试计划评审会需要哪些人员参加？</p>
+<ul class="lvl-2">
+<li class="lvl-5">项目经理、SQA负责人、配置负责人、测试组。</li>
+</ul>
+</li>
+<li class="lvl-3">
+<p>下列关于alpha测试的描述中正确的是：</p>
+<ul class="lvl-2">
+<li class="lvl-5">alpha测试需要用户代表参加，alpha测试是验收测试的一种。</li>
+</ul>
+</li>
+<li class="lvl-3">
+<p>测试设计员的职责包括：</p>
+<ul class="lvl-2">
+<li class="lvl-5">设计测试用例、过程、脚本。</li>
+</ul>
+</li>
+</ol>
+<h4 id="填空题">填空题<a class="headerlink" href="#填空题"></a></h4>
+<hr>
+<ol>
+<li class="lvl-3">
+<p>软件验收测试包括<strong>正式验收测试、alpha测试、beta测试</strong>。</p>
+</li>
+<li class="lvl-3">
+<p>系统测试的策略有<strong>功能测试、性能测试、可靠性测试、负载测试、易用性测试、强度测试、安全测试、配置测试、安装测试、卸载测试、文档测试、故障恢复测试、界面测试、容量测试、兼容性测试、分布测试、可用性测试</strong>。</p>
+</li>
+<li class="lvl-3">
+<p>设计系统测试计划需要参考的项目文档有<strong>软件测试计划、软件需求文档</strong>和<strong>迭代计划</strong>。</p>
+</li>
+<li class="lvl-3">
+<p>面向过程的系统采用的集成策略有<strong>自顶向下</strong>和<strong>自底向上</strong>两种。</p>
+</li>
+</ol>
+<h4 id="问答题">问答题<a class="headerlink" href="#问答题"></a></h4>
+<hr>
+<h5 id="区别阶段评审的与同行评审">区别阶段评审的与同行评审<a class="headerlink" href="#区别阶段评审的与同行评审"></a></h5>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>同行评审</th>
+<th>阶段评审</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>目的</td>
+<td>发现小规模工作产品的错误，主要是找错误</td>
+<td>评审模块阶段作品的正确性、可行性及完整性</td>
+</tr>
+<tr>
+<td>人数</td>
+<td>3-7人，人员必须经过同行评审会议的培训，由SQA指导</td>
+<td>5人左右，评审人必须是专家具有系统评审资格</td>
+</tr>
+<tr>
+<td>内容</td>
+<td>内容小，一般文档&lt;40页，代码&lt;500行</td>
+<td>内容多，主要看重点</td>
+</tr>
+<tr>
+<td>时间</td>
+<td>一小部分工作产品完成</td>
+<td>通常设置在关键路径的时间点上</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h5 id="简述系统集成测试过程">简述系统集成测试过程<a class="headerlink" href="#简述系统集成测试过程"></a></h5>
+<ol>
+<li class="lvl-3">
+<p>构建的确认过程。</p>
+</li>
+<li class="lvl-3">
+<p>补丁的确认过程。</p>
+</li>
+<li class="lvl-3">
+<p>系统集成测试组提交过程。</p>
+</li>
+<li class="lvl-3">
+<p>测试用例设计过程。</p>
+</li>
+<li class="lvl-3">
+<p>测试代码编写过程。</p>
+</li>
+<li class="lvl-3">
+<p>Bug的报告过程。</p>
+</li>
+<li class="lvl-3">
+<p>每周/每两周的构建过程。</p>
+</li>
+<li class="lvl-3">
+<p>点对点的测试过程。</p>
+</li>
+<li class="lvl-3">
+<p>组内培训过程。</p>
+</li>
+</ol>
+<hr>
+<h5 id="软件测试的八个基本原则">软件测试的八个基本原则<a class="headerlink" href="#软件测试的八个基本原则"></a></h5>
+<ol>
+<li class="lvl-3">
+<p>所有的软件测试都应追溯到用户需求。</p>
+</li>
+<li class="lvl-3">
+<p>尽早和不断地进行软件测试。</p>
+</li>
+<li class="lvl-3">
+<p>在设计测试用例时，应该包括合理的输入与不合理的输入以及相应的预期输出结果。</p>
+</li>
+<li class="lvl-3">
+<p>充分注意测试中的群集现象。</p>
+</li>
+<li class="lvl-3">
+<p>程序员应避免检查自己的程序。</p>
+</li>
+<li class="lvl-3">
+<p>尽量避免测试的随意性。</p>
+</li>
+<li class="lvl-3">
+<p>应当对每个测试结果做全面的检查。</p>
+</li>
+<li class="lvl-3">
+<p>保留测试文档，包括测试计划、用例、出错统计和最终分析报告。</p>
+</li>
+</ol>
+<hr>
+<h5 id="怎么做好文档测试">怎么做好文档测试<a class="headerlink" href="#怎么做好文档测试"></a></h5>
+<ol>
+<li class="lvl-3">
+<p>检查文档的编写是否满足文档编写的目的。</p>
+</li>
+<li class="lvl-3">
+<p>内容是否齐全、正确。</p>
+</li>
+<li class="lvl-3">
+<p>内容是否完善。</p>
+</li>
+<li class="lvl-3">
+<p>标记是否正确。</p>
+</li>
+</ol>
+<hr>
+<h5 id="白盒测试有几种方法">白盒测试有几种方法<a class="headerlink" href="#白盒测试有几种方法"></a></h5>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>静态方法</td>
+<td>关键功能是检查软件的表示和描述是否一致，没有冲突或者没有歧义。</td>
+</tr>
+<tr>
+<td>动态方法</td>
+<td>语句覆盖、判定覆盖、条件覆盖、判定条件覆盖、条件组合覆盖、路径覆盖。</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h5 id="Alpha测试与Beta的区别">Alpha测试与Beta的区别<a class="headerlink" href="#Alpha测试与Beta的区别"></a></h5>
+<table>
+<thead>
+<tr>
+<th>测试类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Alpha测试</td>
+<td>在系统开发接近完成时对应用系统的测试，测试后仍然会有少量的设计变更。一般由最终用户或其他人员完成，不能由程序或测试员完成。</td>
+</tr>
+<tr>
+<td>Beta测试</td>
+<td>当开发和测试根本完成时所做的测试，最终的错误和问题需要在最终发行前找到。一般由最终用户或其他人员完成，不能由程序员或测试员完成。</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h5 id="比较负载测试、容量测试和强度测试的区别">比较负载测试、容量测试和强度测试的区别<a class="headerlink" href="#比较负载测试、容量测试和强度测试的区别"></a></h5>
+<table>
+<thead>
+<tr>
+<th>测试类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>负载测试</td>
+<td>测试在一定的工作负荷下，系统的负载和响应时间。</td>
+</tr>
+<tr>
+<td>强度测试</td>
+<td>在一定的负荷条件下，系统在较长时间跨度内连续运行，检测系统性能的影响。</td>
+</tr>
+<tr>
+<td>容量测试</td>
+<td>容量测试旨在确定系统在给定条件下的极限性能，并识别系统在特定数据容量下的极限值。容量测试不仅关注系统的承受能力，还考虑系统在处理大量数据时的表现和稳定性，以确保系统在特定负载条件下能够正常运行而不发生故障。</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h5 id="描述软件测试活动的生命周期">描述软件测试活动的生命周期<a class="headerlink" href="#描述软件测试活动的生命周期"></a></h5>
+<ol>
+<li class="lvl-3">
+<p><strong>计划</strong>：对整个测试周期中所有活动进行规划，包括估计工作量、风险评估、安排人力物力资源、安排进度等。</p>
+</li>
+<li class="lvl-3">
+<p><strong>设计</strong>：完成测试方案，从技术层面上对测试进行规划，包括测试用例和测试规程的设计。</p>
+</li>
+<li class="lvl-3">
+<p><strong>实现</strong>：编写测试用例和测试规程。</p>
+</li>
+<li class="lvl-3">
+<p><strong>执行</strong>：根据前期完成的计划、方案、用例、规程等文档执行测试用例。</p>
+</li>
+<li class="lvl-3">
+<p><strong>总结</strong>：记录测试结果，进行测试分析，并完成测试报告。</p>
+</li>
+</ol>
+<hr>
+<h5 id="软件的缺陷等级应如何划分">软件的缺陷等级应如何划分<a class="headerlink" href="#软件的缺陷等级应如何划分"></a></h5>
+<table>
+<thead>
+<tr>
+<th>缺陷等级</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A类</td>
+<td>严重错误，包括：由于程序引起的死机、非法退出；死循环；数据库发生死锁；因错误操作导致的程序中断；功能错误；与数据库连接错误；数据通讯错误。</td>
+</tr>
+<tr>
+<td>B类</td>
+<td>较严重错误，包括：程序错误；程序接口错误；数据库的表、业务规则、缺省值未加完整性等约束条件。</td>
+</tr>
+<tr>
+<td>C类</td>
+<td>一般性错误，包括：操作界面错误（包括数据窗口内列名定义、含义是否一致）；打印内容、格式错误；简单的输入限制未放在前台进行控制；删除操作未给出提示；数据库表中有过多的空字段。</td>
+</tr>
+<tr>
+<td>D类</td>
+<td>较小错误，包括：界面不规范；辅助说明描述不清楚；输入输出不规范；长操作未给用户提示；提示窗口文字未采用行业术语；可输入区域和只读区域没有明显的区分标志。</td>
+</tr>
+<tr>
+<td>E类</td>
+<td>测试建议</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h5 id="您认为做好测试用例设计工作的关键是什么">您认为做好测试用例设计工作的关键是什么<a class="headerlink" href="#您认为做好测试用例设计工作的关键是什么"></a></h5>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>白盒测试用例设计：以较少的测试用例覆盖尽可能多的内部程序逻辑结果。</p>
+</li>
+<li class="lvl-2">
+<p>黑盒测试用例设计：以较少的测试用例覆盖模块的输出和输入接口。不能完全测试，但要在合理的时间内发现尽可能多的问题。</p>
+</li>
+</ul>
+<hr>
+<h5 id="黑盒测试和白盒测试是软件测试的两种基本方法，请分别说明各自的优点和缺点">黑盒测试和白盒测试是软件测试的两种基本方法，请分别说明各自的优点和缺点<a class="headerlink" href="#黑盒测试和白盒测试是软件测试的两种基本方法，请分别说明各自的优点和缺点"></a></h5>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>优点</th>
+<th>缺点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>黑盒测试</td>
+<td>1. 比较简单，不需要了解程序内部的代码及实现；</td>
+<td>1. 不可能覆盖所有的代码，覆盖率较低，大概只能达到总代码量的30%；</td>
+</tr>
+<tr>
+<td></td>
+<td>2. 与软件的内部实现无关；</td>
+<td>2. 自动化测试的复用性较低。</td>
+</tr>
+<tr>
+<td></td>
+<td>3. 从用户角度出发，能很容易的知道用户会用到哪些功能，会遇到哪些问题；</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>4. 基于软件开发文档，所以也能知道软件实现了文档中的哪些功能；</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>5. 在做软件自动化测试时较为方便。</td>
+<td></td>
+</tr>
+<tr>
+<td>白盒测试</td>
+<td>帮助软件测试人员增大代码的覆盖率，提高代码的质量，发现代码中隐藏的问题。</td>
+<td>1. 程序运行会有很多不同的路径，不可能测试所有的运行路径；</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>2. 测试基于代码，只能测试开发人员做的对不对，而不能知道设计的正确与否，可能会漏掉一些功能需求；</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>3. 系统庞大时，测试开销会非常大。</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h5 id="针对以下问题采用等价类划分的方法设计测试用例。">针对以下问题采用等价类划分的方法设计测试用例。<a class="headerlink" href="#针对以下问题采用等价类划分的方法设计测试用例。"></a></h5>
+<p>问题： 某一种8位计算机，其十六进制常数的定义是以0x或0X开头的十六进制整数，其取值范围为-7f~7f(不区分大小写字母)，如0x13、0x6A、0x3c。</p>
+<p>等价类表：</p>
+<ol>
+<li class="lvl-3">
+<p>有效等价类由 0x 或 0X 开头；</p>
+</li>
+<li class="lvl-3">
+<p>以字母开头；</p>
+</li>
+<li class="lvl-3">
+<p>以非 0 数字开头；</p>
+</li>
+<li class="lvl-3">
+<p>数值字符为数字或 A-F；</p>
+</li>
+<li class="lvl-3">
+<p>字符为 A-F 以外的字母；</p>
+</li>
+<li class="lvl-3">
+<p>字母或数值字符个数大于等于 1 个；</p>
+</li>
+<li class="lvl-3">
+<p>字母或数值字符个数为 0 个；</p>
+</li>
+<li class="lvl-3">
+<p>数值大于等于 -7F 且小于等于 7F；</p>
+</li>
+<li class="lvl-3">
+<p>数值小于 7F；</p>
+</li>
+<li class="lvl-4">
+<p>数值大于 7F。</p>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>用例</th>
+<th>值</th>
+<th>覆盖的等价类</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>用例1</td>
+<td>0x7F</td>
+<td>1, 4, 6, 8</td>
+</tr>
+<tr>
+<td>用例2</td>
+<td>-0Xb</td>
+<td>1, 4, 6, 8</td>
+</tr>
+<tr>
+<td>用例3</td>
+<td>0X0</td>
+<td>1, 4, 6, 8</td>
+</tr>
+<tr>
+<td>用例4</td>
+<td>0x</td>
+<td>1, 7</td>
+</tr>
+<tr>
+<td>用例5</td>
+<td>A7</td>
+<td>2</td>
+</tr>
+<tr>
+<td>用例6</td>
+<td>-1A</td>
+<td>3</td>
+</tr>
+<tr>
+<td>用例7</td>
+<td>0X8h</td>
+<td>1, 5</td>
+</tr>
+<tr>
+<td>用例8</td>
+<td>0x80</td>
+<td>1, 4, 10</td>
+</tr>
+<tr>
+<td>用例9</td>
+<td>-0XaB</td>
+<td>1, 4, 9</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h5 id="请试着比较一下黑盒测试、白盒测试、单元测试、集成测试、系统测试、验收测试的区别与联系">请试着比较一下黑盒测试、白盒测试、单元测试、集成测试、系统测试、验收测试的区别与联系<a class="headerlink" href="#请试着比较一下黑盒测试、白盒测试、单元测试、集成测试、系统测试、验收测试的区别与联系"></a></h5>
+<table>
+<thead>
+<tr>
+<th>测试类型</th>
+<th>关注点</th>
+<th>执行者</th>
+<th>目的</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>黑盒测试</td>
+<td>软件外部功能和接口</td>
+<td></td>
+<td>发现功能缺陷、接口问题等</td>
+</tr>
+<tr>
+<td>白盒测试</td>
+<td>软件内部逻辑结构和代码实现</td>
+<td></td>
+<td>发现代码缺陷、算法错误等</td>
+</tr>
+<tr>
+<td>单元测试</td>
+<td>最小可测试单元（如函数或模块）</td>
+<td>开发人员</td>
+<td>确保单元功能正确</td>
+</tr>
+<tr>
+<td>集成测试</td>
+<td>模块集成</td>
+<td>开发或测试人员</td>
+<td>发现集成缺陷</td>
+</tr>
+<tr>
+<td>系统测试</td>
+<td>整个系统</td>
+<td>独立测试人员</td>
+<td>评估系统质量</td>
+</tr>
+<tr>
+<td>验收测试</td>
+<td>最终用户</td>
+<td>最终用户</td>
+<td>确认系统可交付使用</td>
+</tr>
+</tbody>
+</table>
+<p><strong>联系：</strong></p>
+<ol>
+<li class="lvl-3">
+<p>这些测试方法相互关联、循序渐进，测试范围和层次逐步扩大。</p>
+</li>
+<li class="lvl-3">
+<p>单元测试、集成测试、系统测试、验收测试反映了软件测试由小到大、由内到外的层次关系。</p>
+</li>
+<li class="lvl-3">
+<p>它们的目的不同但相辅相成，共同确保软件整体质量。</p>
+</li>
+<li class="lvl-3">
+<p>测试方法有所区别，单元测试多采用白盒，其他结合白盒和黑盒。</p>
+</li>
+<li class="lvl-3">
+<p>构成完整的软件测试过程，相互衔接，确保软件符合需求、设计和质量要求。</p>
+</li>
+</ol>
+<hr>
+<h5 id="概括测试用例的基本要素">概括测试用例的基本要素<a class="headerlink" href="#概括测试用例的基本要素"></a></h5>
+<p>软件测试用例的基本要素包括<strong>测试用例编号、测试标题、测试模块、重要级别、测试环境、测试输入、操作步骤、预期结果</strong>。</p>
+<table>
+<thead>
+<tr>
+<th>概要</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>用例编号</td>
+<td>测试用例的编号有一定的规则。</td>
+</tr>
+<tr>
+<td>测试标题</td>
+<td>对测试用例的描述，清晰表达测试用例的用途。</td>
+</tr>
+<tr>
+<td>测试模块</td>
+<td>指明并简单描述本测试用例是用来测试哪些项目、子项目或软件特性的。</td>
+</tr>
+<tr>
+<td>重要级别</td>
+<td>定义测试用例的优先级别，可分为“高”和“低”。</td>
+</tr>
+<tr>
+<td>测试环境</td>
+<td>描述执行测试用例所需的具体测试环境，包括硬件和软件环境。</td>
+</tr>
+<tr>
+<td>测试输入</td>
+<td>提供测试执行中的各种输入条件。</td>
+</tr>
+<tr>
+<td>操作步骤</td>
+<td>提供测试执行过程的步骤。</td>
+</tr>
+<tr>
+<td>预期结果</td>
+<td>提供测试执行的预期结果，根据软件需求中的输出得出。</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h5 id="测试计划工作的目的是什么？测试计划工作的内容都包括什么？其中哪些是最重要的？">测试计划工作的目的是什么？测试计划工作的内容都包括什么？其中哪些是最重要的？<a class="headerlink" href="#测试计划工作的目的是什么？测试计划工作的内容都包括什么？其中哪些是最重要的？"></a></h5>
+<p><strong>目的</strong>：是指导测试过程，确保测试任务的顺利实施。</p>
+<p><strong>内容</strong>：包括产品概述、测试策略、测试方法、测试区域、测试配置、测试周期、测试资源、测试交流和风险分析等。</p>
+<p><strong>重要</strong>：其中，最重要的是测试策略和测试方法。测试计划在宏观上规划测试活动的范围、方法和资源配置；而测试详细规格和测试用例则是具体的战术执行。</p>
+<hr>
+<h5 id="如何通过评审和更新机制来确保测试计划满足实际需求？">如何通过评审和更新机制来确保测试计划满足实际需求？<a class="headerlink" href="#如何通过评审和更新机制来确保测试计划满足实际需求？"></a></h5>
+<p>通过评审和更新机制，可以确保测试计划满足实际需求。如果测试计划未经过评审直接发送给测试团队，可能导致测试内容的不准确或遗漏，或者在软件需求变更后未及时更新测试计划内容，误导测试执行人员。</p>
+<p>因此，应该分别创建测试计划、测试详细规格和测试用例。测试计划主要是宏观规划测试活动的范围、方法和资源配置，而测试详细规格和测试用例则是具体执行测试任务的战术。详细的测试技术指标应包含在独立创建的测试详细规格文档中，而用于指导测试执行的测试用例则应放在独立创建的测试用例文档或测试用例管理数据库中。</p>
+<hr>
+<h5 id="您所熟悉的测试用例设计方法都有哪些？请分别以具体的例子来说明这些方法在测试用例设计工作中的应用。">您所熟悉的测试用例设计方法都有哪些？请分别以具体的例子来说明这些方法在测试用例设计工作中的应用。<a class="headerlink" href="#您所熟悉的测试用例设计方法都有哪些？请分别以具体的例子来说明这些方法在测试用例设计工作中的应用。"></a></h5>
+<table>
+<thead>
+<tr>
+<th>测试用例设计方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>等价类划分</td>
+<td>将输入数据划分为有效等价类和无效等价类，选取每个等价类的代表值作为测试数据。例如，对于一个要求输入年龄的系统，可以将年龄划分为青少年、成年人和老年人等等，然后选择每个等价类的典型年龄作为测试数据。</td>
+</tr>
+<tr>
+<td>边界值分析法</td>
+<td>着重考虑输入或输出范围的边界情况，选取正好等于、刚刚大于或刚刚小于边界的值作为测试数据。例如，对于一个要求输入1到100的数字的系统，边界值分析法会选取1、100、2、99等作为测试数据。</td>
+</tr>
+<tr>
+<td>错误推测法</td>
+<td>基于经验和直觉推测可能存在的各种错误，设计有针对性的测试用例。例如，列举程序中可能存在的常见错误和特殊情况，选择这些情况下的例子作为测试数据。</td>
+</tr>
+<tr>
+<td>因果图方法</td>
+<td>考虑输入条件之间的相互组合，利用因果图生成判定表来描述多种条件的组合情况。例如，对于一个需要考虑多个条件组合的系统，利用因果图方法可以生成判定表，以检查各种组合情况。</td>
+</tr>
+</tbody>
+</table>
+</article><div class="post-copyright"><div class="copyright-cc-box"><i class="anzhiyufont anzhiyu-icon-copyright"></i></div><div class="post-copyright__author_box"><a class="post-copyright__author_img" href="/" title="头像"><img class="post-copyright__author_img_back" src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/avatar_joker.jpg" title="头像" alt="头像"><img class="post-copyright__author_img_front" src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/avatar_joker.jpg" title="头像" alt="头像"></a><div class="post-copyright__author_name">Joker2Yue</div><div class="post-copyright__author_desc">Joker2Yue的个人博客</div></div><div class="post-copyright__post__info"><a class="post-copyright__original" title="该文章为原创文章，注意版权协议" href="https://blog.joker2yue.cn/post/ruan-jian-ce-shi-fu-xi-ti/">原创</a><a class="post-copyright-title"><span onclick="rm.copyPageUrl('https://blog.joker2yue.cn/post/ruan-jian-ce-shi-fu-xi-ti/')">软件测试复习题</span></a></div><div class="post-tools" id="post-tools"><div class="post-tools-left"><div class="rewardLeftButton"><div class="post-reward" onclick="anzhiyu.addRewardMask()"><div class="reward-button button--animated" title="赞赏作者"><i class="anzhiyufont anzhiyu-icon-hand-heart-fill"></i>打赏作者</div><div class="reward-main"><div class="reward-all"><span class="reward-title">感谢你赐予我前进的力量</span><ul class="reward-group"><li class="reward-item"><a href="https://resource.joker2yue.cn/blog/images/reward/wechat.png" target="_blank"><img class="post-qr-code-img" src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/reward/wechat.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://resource.joker2yue.cn/blog/images/reward/alipay.png" target="_blank"><img class="post-qr-code-img" src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/reward/alipay.png" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul><a class="reward-main-btn" href="/about/#about-reward" target="_blank"><div class="reward-text">赞赏者名单</div><div class="reward-dec">因为你们的支持让我意识到写文章的价值🙏</div></a></div></div></div><div id="quit-box" onclick="anzhiyu.removeRewardMask()" style="display: none"></div></div><div class="shareRight"><div class="share-link mobile"><div class="share-qrcode"><div class="share-button" title="使用手机访问这篇文章"><i class="anzhiyufont anzhiyu-icon-qrcode"></i></div><div class="share-main"><div class="share-main-all"><div id="qrcode" title="https://blog.joker2yue.cn/post/ruan-jian-ce-shi-fu-xi-ti/"></div><div class="reward-dec">使用手机访问这篇文章</div></div></div></div></div><div class="share-link weibo"><a class="share-button" target="_blank" href="https://service.weibo.com/share/share.php?title=软件测试复习题&amp;url=https://blog.joker2yue.cn/post/ruan-jian-ce-shi-fu-xi-ti/&amp;pic=https://resource.joker2yue.cn/blog/images/coverImg/UniversityCourse/软件测试.png" rel="external nofollow noreferrer noopener"><i class="anzhiyufont anzhiyu-icon-weibo"></i></a></div><script>function copyCurrentPageUrl() {
+  var currentPageUrl = window.location.href;
+  var input = document.createElement("input");
+  input.setAttribute("value", currentPageUrl);
+  document.body.appendChild(input);
+  input.select();
+  input.setSelectionRange(0, 99999);
+  document.execCommand("copy");
+  document.body.removeChild(input);
+}</script><div class="share-link copyurl"><div class="share-button" id="post-share-url" title="复制链接" onclick="copyCurrentPageUrl()"><i class="anzhiyufont anzhiyu-icon-link"></i></div></div></div></div></div><div class="post-copyright__notice"><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://Blog.Joker2Yue.cn" target="_blank">九歌</a>！</span></div></div><div class="post-tools-right"><div class="tag_share"><div class="post-meta__box"><div class="post-meta__box__tag-list"><a class="post-meta__box__tags" href="/tags/%E5%A4%8D%E4%B9%A0%E9%A2%98/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>复习题<span class="tagsPageCount">3</span></a><a class="post-meta__box__tags" href="/tags/%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>大学课程<span class="tagsPageCount">23</span></a><a class="post-meta__box__tags" href="/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>软件测试<span class="tagsPageCount">1</span></a></div></div></div><div class="post_share"><div class="social-share" data-image="https://resource.joker2yue.cn/blog/images/coverImg/实习/使用Optional类优化代码中多层if嵌套.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"/><script src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer="defer"></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/post/zai-ollama-shang-qi-yong-amd780m-gfx1103-gpu-jia-su/"><img class="prev-cover" src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/coverImg/Ollama/OllamaAMD.png" onerror="onerror=null;src='/images/404.svg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">在Ollama上启用amd780m(gfx1103)GPU加速</div></div></a></div><div class="next-post pull-right"><a href="/post/ruan-jian-xiang-mu-guan-li-tian-kong-jian-da-hui-zong/"><img class="next-cover" src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/coverImg/UniversityCourse/软件项目管理.png" onerror="onerror=null;src='/images/404.svg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">软件项目管理 填空、简答汇总</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="anzhiyufont anzhiyu-icon-thumbs-up fa-fw" style="font-size: 1.5rem; margin-right: 4px"></i><span>喜欢这篇文章的人也看了</span></div><div class="relatedPosts-list"><div><a href="/post/ruan-jian-xiang-mu-guan-li-fu-xi-ti/" title="软件项目管理复习题"><img class="cover" src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/coverImg/UniversityCourse/软件项目管理.png" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2024-05-29</div><div class="title">软件项目管理复习题</div></div></a></div><div><a href="/post/ruan-jian-xiang-mu-guan-li-tian-kong-jian-da-hui-zong/" title="软件项目管理 填空、简答汇总"><img class="cover" src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/coverImg/UniversityCourse/软件项目管理.png" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2024-05-29</div><div class="title">软件项目管理 填空、简答汇总</div></div></a></div><div><a href="/post/ruan-jian-she-ji-shi-01/" title="软件设计师-01，考试总纲"><img class="cover" src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/coverImg/SoftwareExam/软件设计师.png" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2023-09-16</div><div class="title">软件设计师-01，考试总纲</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="anzhiyufont anzhiyu-icon-comments"></i><span> 评论</span></div><div class="comment-randomInfo"><a onclick="anzhiyu.addRandomCommentInfo()" href="javascript:void(0)">匿名评论</a><a href="/privacy" style="margin-left: 4px">隐私政策</a></div><div class="comment-tips" id="comment-tips"><span>✅ 你无需删除空行，直接评论以获取最佳展示效果</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div><div class="comment-barrage"></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-content"><div class="author-info__sayhi" id="author-info__sayhi" onclick="anzhiyu.changeSayHelloText()"></div><div class="author-info-avatar"><img class="avatar-img" src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/avatar_joker.jpg" onerror="this.onerror=null;this.src='/images/joker_404.png'" alt="avatar"/><div class="author-status"><img class="g-status" src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/statusImg/小丑.svg" alt="status"/></div></div><div class="author-info__description"><div style="line-height:1.38;margin:0.6rem 0;text-align:justify;color:rgba(255, 255, 255, 0.8);">我热衷于在<b style="color:#fff">数字世界</b>中寻找灵感，用<b style="color:#fff">文字</b>来记录下每一个<b style="color:#fff">思考和发现</b>。</div><div style="line-height:1.38;margin:0.6rem 0;text-align:justify;color:rgba(255, 255, 255, 0.8);">感谢你的光临，希望我的博客能为你带来有<b style="color:#fff">价值</b>的信息，<b style="color:#fff">享受</b>阅读的乐趣！</div></div><div class="author-info__bottom-group"><a class="author-info__bottom-group-left" target="_blank" rel="noopener" href="https://github.com/Joker2Yue"><h1 class="author-info__name">Joker2Yue</h1><div class="author-info__desc">Joker2Yue的个人博客</div></a><div class="card-info-social-icons is-center"><a class="social-icon faa-parent animated-hover" href="https://github.com/Joker2Yue" target="_blank" title="Github"><i class="anzhiyufont anzhiyu-icon-github"></i></a><a class="social-icon faa-parent animated-hover" href="https://space.bilibili.com/1288739606" target="_blank" title="BiliBili"><i class="anzhiyufont anzhiyu-icon-bilibili"></i></a></div></div></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-bullhorn anzhiyu-shake"></i><span>公告</span></div><div class="announcement_content"><div id="welcome-info">欢迎来看我的博客鸭~</div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-bars"></i><span>文章目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A4%E6%96%AD%E9%A2%98"><span class="toc-number">1.</span> <span class="toc-text">判断题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%89%E6%8B%A9%E9%A2%98"><span class="toc-number">2.</span> <span class="toc-text">选择题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A1%AB%E7%A9%BA%E9%A2%98"><span class="toc-number">3.</span> <span class="toc-text">填空题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%97%AE%E7%AD%94%E9%A2%98"><span class="toc-number">4.</span> <span class="toc-text">问答题</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8C%BA%E5%88%AB%E9%98%B6%E6%AE%B5%E8%AF%84%E5%AE%A1%E7%9A%84%E4%B8%8E%E5%90%8C%E8%A1%8C%E8%AF%84%E5%AE%A1"><span class="toc-number">4.1.</span> <span class="toc-text">区别阶段评审的与同行评审</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%AE%80%E8%BF%B0%E7%B3%BB%E7%BB%9F%E9%9B%86%E6%88%90%E6%B5%8B%E8%AF%95%E8%BF%87%E7%A8%8B"><span class="toc-number">4.2.</span> <span class="toc-text">简述系统集成测试过程</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95%E7%9A%84%E5%85%AB%E4%B8%AA%E5%9F%BA%E6%9C%AC%E5%8E%9F%E5%88%99"><span class="toc-number">4.3.</span> <span class="toc-text">软件测试的八个基本原则</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%80%8E%E4%B9%88%E5%81%9A%E5%A5%BD%E6%96%87%E6%A1%A3%E6%B5%8B%E8%AF%95"><span class="toc-number">4.4.</span> <span class="toc-text">怎么做好文档测试</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95%E6%9C%89%E5%87%A0%E7%A7%8D%E6%96%B9%E6%B3%95"><span class="toc-number">4.5.</span> <span class="toc-text">白盒测试有几种方法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Alpha%E6%B5%8B%E8%AF%95%E4%B8%8EBeta%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">4.6.</span> <span class="toc-text">Alpha测试与Beta的区别</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%AF%94%E8%BE%83%E8%B4%9F%E8%BD%BD%E6%B5%8B%E8%AF%95%E3%80%81%E5%AE%B9%E9%87%8F%E6%B5%8B%E8%AF%95%E5%92%8C%E5%BC%BA%E5%BA%A6%E6%B5%8B%E8%AF%95%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">4.7.</span> <span class="toc-text">比较负载测试、容量测试和强度测试的区别</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%8F%8F%E8%BF%B0%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95%E6%B4%BB%E5%8A%A8%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="toc-number">4.8.</span> <span class="toc-text">描述软件测试活动的生命周期</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E7%9A%84%E7%BC%BA%E9%99%B7%E7%AD%89%E7%BA%A7%E5%BA%94%E5%A6%82%E4%BD%95%E5%88%92%E5%88%86"><span class="toc-number">4.9.</span> <span class="toc-text">软件的缺陷等级应如何划分</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%82%A8%E8%AE%A4%E4%B8%BA%E5%81%9A%E5%A5%BD%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E8%AE%BE%E8%AE%A1%E5%B7%A5%E4%BD%9C%E7%9A%84%E5%85%B3%E9%94%AE%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-number">4.10.</span> <span class="toc-text">您认为做好测试用例设计工作的关键是什么</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%BB%91%E7%9B%92%E6%B5%8B%E8%AF%95%E5%92%8C%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95%E6%98%AF%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95%E7%9A%84%E4%B8%A4%E7%A7%8D%E5%9F%BA%E6%9C%AC%E6%96%B9%E6%B3%95%EF%BC%8C%E8%AF%B7%E5%88%86%E5%88%AB%E8%AF%B4%E6%98%8E%E5%90%84%E8%87%AA%E7%9A%84%E4%BC%98%E7%82%B9%E5%92%8C%E7%BC%BA%E7%82%B9"><span class="toc-number">4.11.</span> <span class="toc-text">黑盒测试和白盒测试是软件测试的两种基本方法，请分别说明各自的优点和缺点</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%92%88%E5%AF%B9%E4%BB%A5%E4%B8%8B%E9%97%AE%E9%A2%98%E9%87%87%E7%94%A8%E7%AD%89%E4%BB%B7%E7%B1%BB%E5%88%92%E5%88%86%E7%9A%84%E6%96%B9%E6%B3%95%E8%AE%BE%E8%AE%A1%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E3%80%82"><span class="toc-number">4.12.</span> <span class="toc-text">针对以下问题采用等价类划分的方法设计测试用例。</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%AF%B7%E8%AF%95%E7%9D%80%E6%AF%94%E8%BE%83%E4%B8%80%E4%B8%8B%E9%BB%91%E7%9B%92%E6%B5%8B%E8%AF%95%E3%80%81%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95%E3%80%81%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E3%80%81%E9%9B%86%E6%88%90%E6%B5%8B%E8%AF%95%E3%80%81%E7%B3%BB%E7%BB%9F%E6%B5%8B%E8%AF%95%E3%80%81%E9%AA%8C%E6%94%B6%E6%B5%8B%E8%AF%95%E7%9A%84%E5%8C%BA%E5%88%AB%E4%B8%8E%E8%81%94%E7%B3%BB"><span class="toc-number">4.13.</span> <span class="toc-text">请试着比较一下黑盒测试、白盒测试、单元测试、集成测试、系统测试、验收测试的区别与联系</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%A6%82%E6%8B%AC%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%A6%81%E7%B4%A0"><span class="toc-number">4.14.</span> <span class="toc-text">概括测试用例的基本要素</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95%E8%AE%A1%E5%88%92%E5%B7%A5%E4%BD%9C%E7%9A%84%E7%9B%AE%E7%9A%84%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F%E6%B5%8B%E8%AF%95%E8%AE%A1%E5%88%92%E5%B7%A5%E4%BD%9C%E7%9A%84%E5%86%85%E5%AE%B9%E9%83%BD%E5%8C%85%E6%8B%AC%E4%BB%80%E4%B9%88%EF%BC%9F%E5%85%B6%E4%B8%AD%E5%93%AA%E4%BA%9B%E6%98%AF%E6%9C%80%E9%87%8D%E8%A6%81%E7%9A%84%EF%BC%9F"><span class="toc-number">4.15.</span> <span class="toc-text">测试计划工作的目的是什么？测试计划工作的内容都包括什么？其中哪些是最重要的？</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E9%80%9A%E8%BF%87%E8%AF%84%E5%AE%A1%E5%92%8C%E6%9B%B4%E6%96%B0%E6%9C%BA%E5%88%B6%E6%9D%A5%E7%A1%AE%E4%BF%9D%E6%B5%8B%E8%AF%95%E8%AE%A1%E5%88%92%E6%BB%A1%E8%B6%B3%E5%AE%9E%E9%99%85%E9%9C%80%E6%B1%82%EF%BC%9F"><span class="toc-number">4.16.</span> <span class="toc-text">如何通过评审和更新机制来确保测试计划满足实际需求？</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%82%A8%E6%89%80%E7%86%9F%E6%82%89%E7%9A%84%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%B3%95%E9%83%BD%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F%E8%AF%B7%E5%88%86%E5%88%AB%E4%BB%A5%E5%85%B7%E4%BD%93%E7%9A%84%E4%BE%8B%E5%AD%90%E6%9D%A5%E8%AF%B4%E6%98%8E%E8%BF%99%E4%BA%9B%E6%96%B9%E6%B3%95%E5%9C%A8%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E8%AE%BE%E8%AE%A1%E5%B7%A5%E4%BD%9C%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8%E3%80%82"><span class="toc-number">4.17.</span> <span class="toc-text">您所熟悉的测试用例设计方法都有哪些？请分别以具体的例子来说明这些方法在测试用例设计工作中的应用。</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-history"></i><span>最近发布</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/post/shi-yong-optional-lei-you-hua-dai-ma-zhong-duo-ceng-if-qian-tao/" title="使用Optional类优化代码中多层if嵌套"><img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/coverImg/实习/使用Optional类优化代码中多层if嵌套.png" onerror="this.onerror=null;this.src='/images/404.svg'" alt="使用Optional类优化代码中多层if嵌套"/></a><div class="content"><a class="title" href="/post/shi-yong-optional-lei-you-hua-dai-ma-zhong-duo-ceng-if-qian-tao/" title="使用Optional类优化代码中多层if嵌套">使用Optional类优化代码中多层if嵌套</a><time datetime="2024-08-20T12:46:25.000Z" title="发表于 2024-08-20 20:46:25">2024-08-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/ruan-jian-xiang-mu-guan-li-fu-xi-ti/" title="软件项目管理复习题"><img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/coverImg/UniversityCourse/软件项目管理.png" onerror="this.onerror=null;this.src='/images/404.svg'" alt="软件项目管理复习题"/></a><div class="content"><a class="title" href="/post/ruan-jian-xiang-mu-guan-li-fu-xi-ti/" title="软件项目管理复习题">软件项目管理复习题</a><time datetime="2024-05-29T13:27:12.000Z" title="发表于 2024-05-29 21:27:12">2024-05-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/ruan-jian-xiang-mu-guan-li-tian-kong-jian-da-hui-zong/" title="软件项目管理 填空、简答汇总"><img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/coverImg/UniversityCourse/软件项目管理.png" onerror="this.onerror=null;this.src='/images/404.svg'" alt="软件项目管理 填空、简答汇总"/></a><div class="content"><a class="title" href="/post/ruan-jian-xiang-mu-guan-li-tian-kong-jian-da-hui-zong/" title="软件项目管理 填空、简答汇总">软件项目管理 填空、简答汇总</a><time datetime="2024-05-28T23:49:22.000Z" title="发表于 2024-05-29 07:49:22">2024-05-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/ruan-jian-ce-shi-fu-xi-ti/" title="软件测试复习题"><img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/coverImg/UniversityCourse/软件测试.png" onerror="this.onerror=null;this.src='/images/404.svg'" alt="软件测试复习题"/></a><div class="content"><a class="title" href="/post/ruan-jian-ce-shi-fu-xi-ti/" title="软件测试复习题">软件测试复习题</a><time datetime="2024-05-27T02:12:22.000Z" title="发表于 2024-05-27 10:12:22">2024-05-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/zai-ollama-shang-qi-yong-amd780m-gfx1103-gpu-jia-su/" title="在Ollama上启用amd780m(gfx1103)GPU加速"><img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/coverImg/Ollama/OllamaAMD.png" onerror="this.onerror=null;this.src='/images/404.svg'" alt="在Ollama上启用amd780m(gfx1103)GPU加速"/></a><div class="content"><a class="title" href="/post/zai-ollama-shang-qi-yong-amd780m-gfx1103-gpu-jia-su/" title="在Ollama上启用amd780m(gfx1103)GPU加速">在Ollama上启用amd780m(gfx1103)GPU加速</a><time datetime="2024-05-14T13:27:12.000Z" title="发表于 2024-05-14 21:27:12">2024-05-14</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div id="footer_deal"><a class="deal_link" href="mailto:Joker_Yue@qq.com" title="Email"><i class="anzhiyufont anzhiyu-icon-envelope"></i></a><a class="deal_link" target="_blank" rel="noopener" href="https://m.weibo.cn/u/7799849297" title="微博"><i class="anzhiyufont anzhiyu-icon-weibo"></i></a><a class="deal_link" target="_blank" rel="noopener" href="https://twitter.com/joker0222yue?s=09" title="X"><i class="fa-brands fa-x-twitter"></i></a><a class="deal_link" href="/atom.xml" title="RSS"><i class="anzhiyufont anzhiyu-icon-rss"></i></a><img class="footer_mini_logo" title="返回顶部" alt="返回顶部" onclick="anzhiyu.scrollToDest(0, 500)" src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/avatar_joker.jpg" size="50px"/><a class="deal_link" target="_blank" rel="noopener" href="https://github.com/Joker2Yue" title="Github"><i class="anzhiyufont anzhiyu-icon-github"></i></a><a class="deal_link" target="_blank" rel="noopener" href="https://space.bilibili.com/1288739606" title="Bilibili"><i class="anzhiyufont anzhiyu-icon-bilibili"></i></a><a class="deal_link" target="_blank" rel="noopener" href="https://m.douyin.com/share/user/MS4wLjABAAAAO0Ao94XycJ3Jq_IVPLElwAjdQOonWW53heh1785VFYo" title="抖音"><i class="anzhiyufont anzhiyu-icon-tiktok"></i></a><a class="deal_link" href="/copyright/" title="CC"><i class="anzhiyufont anzhiyu-icon-copyright"></i></a></div><div id="workboard"><div id="runtimeTextTip"></div></div><div id="anzhiyu-footer"><div class="footer-group"><div class="footer-title">服务</div><div class="footer-links"><a class="footer-item" title="51la统计" target="_blank" rel="noopener" href="https://v6.51.la/">51la统计</a><a class="footer-item" title="十年之约" target="_blank" rel="noopener" href="https://foreverblog.cn/go.html">十年之约</a><a class="footer-item" title="开往" target="_blank" rel="noopener" href="https://github.com/travellings-link/travellings">开往</a></div></div><div class="footer-group"><div class="footer-title">主题</div><div class="footer-links"><a class="footer-item" title="文档" target="_blank" rel="noopener" href="https://docs.anheyu.com/">文档</a><a class="footer-item" title="源码" target="_blank" rel="noopener" href="https://github.com/anzhiyu-c/hexo-theme-anzhiyu">源码</a><a class="footer-item" title="本站建设" href="/website/">本站建设</a></div></div><div class="footer-group"><div class="footer-title">导航</div><div class="footer-links"><a class="footer-item" title="即刻短文" href="/essay/">即刻短文</a><a class="footer-item" title="友链文章" href="/fcircle/">友链文章</a><a class="footer-item" title="留言板" href="/comments/">留言板</a></div></div><div class="footer-group"><div class="footer-title">协议</div><div class="footer-links"><a class="footer-item" title="隐私协议" href="/privacy/">隐私协议</a><a class="footer-item" title="Cookies" href="/cookies/">Cookies</a><a class="footer-item" title="版权协议" href="/copyright/">版权协议</a></div></div><div class="footer-group"><div class="footer-title-group"><div class="footer-title">友链</div><a class="random-friends-btn" id="footer-random-friends-btn" href="javascript:addFriendLinksInFooter();" title="换一批友情链接"><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right"></i></a></div><div class="footer-links" id="friend-links-in-footer"></div></div></div><p id="ghbdages"><a class="github-badge" target="_blank" href="https://hexo.io/" style="margin-inline:5px" data-title="博客框架为Hexo_v7.3.0" title="博客框架为Hexo_v7.3.0"><img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/badge/Frame-Hexo.svg" alt="博客框架为Hexo_v7.3.0"/></a><a class="github-badge" target="_blank" href="https://blog.anheyu.com/" style="margin-inline:5px" data-title="本站使用AnZhiYu主题" title="本站使用AnZhiYu主题"><img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/badge/Theme-AnZhiYu.svg" alt="本站使用AnZhiYu主题"/></a><a class="github-badge" target="_blank" href="https://www.dogecloud.com/" style="margin-inline:5px" data-title="本站使用多吉云为静态资源提供CDN加速" title="本站使用多吉云为静态资源提供CDN加速"><img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/badge/CDN-Doge.svg" alt="本站使用多吉云为静态资源提供CDN加速"/></a><a class="github-badge" target="_blank" href="https://vercel.com/" style="margin-inline:5px" data-title="本站项目由Vercel部署" title="本站项目由Vercel部署"><img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/badge/Hosted-Vercel-brightgreen.svg" alt="本站项目由Vercel部署"/></a><a class="github-badge" target="_blank" href="https://github.com/Joker2Yue/Joker2Yue-Blog" style="margin-inline:5px" data-title="本站项目由Github托管" title="本站项目由Github托管"><img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/badge/Source-Github.svg" alt="本站项目由Github托管"/></a><a class="github-badge" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" style="margin-inline:5px" data-title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"><img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/badge/Copyright-BY-NC-SA.svg" alt="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"/></a></p></div><div id="footer-bar"><div class="footer-bar-links"><div class="footer-bar-left"><div id="footer-bar-tips"><div class="copyright">&copy;2023 - 2024 By <a class="footer-bar-link" href="https://github.com/Joker2Yue" title="Joker2Yue" target="_blank">Joker2Yue</a></div></div><div id="footer-type-tips"></div><div class="js-pjax"><script>function subtitleType () {
+  if (false) { 
+    window.typed = new Typed("#footer-type-tips", {
+      strings: ["<a href=\"https://www.joker2yue.cn\" target=\"_blank\">九歌</a>"],
+      startDelay: 300,
+      typeSpeed: 150,
+      loop: true,
+      backSpeed: 50
+    })
+  } else {
+    document.getElementById("footer-type-tips").innerHTML = '<a href="https://www.joker2yue.cn" target="_blank">九歌</a>'
+  }
+}
+
+if (false) {
+  if (typeof Typed === 'function') {
+    subtitleType()
+  } else {
+    getScript('https://cdn.cbd.int/typed.js@2.1.0/dist/typed.umd.js').then(subtitleType)
+  }
+} else {
+  subtitleType()
+}</script></div></div><div class="footer-bar-right"><a class="footer-bar-link" target="_blank" rel="noopener" href="https://github.com/anzhiyu-c/hexo-theme-anzhiyu" title="主题">主题</a><a class="footer-bar-link" href="/privacy/" title="隐私政策">隐私政策</a><a class="footer-bar-link" target="_blank" rel="noopener" href="https://beian.miit.gov.cn/" title="湘ICP备-2023023581号">湘ICP备-2023023581号</a><a class="footer-bar-link cc" href="/copyright/" title="cc协议"><i class="anzhiyufont anzhiyu-icon-copyright-line"></i><i class="anzhiyufont anzhiyu-icon-creative-commons-by-line"></i><i class="anzhiyufont anzhiyu-icon-creative-commons-nc-line"></i><i class="anzhiyufont anzhiyu-icon-creative-commons-nd-line"></i></a></div></div></div></footer></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="sidebar-site-data site-data is-center"><a href="/archives/" title="archive"><div class="headline">文章</div><div class="length-num">94</div></a><a href="/tags/" title="tag"><div class="headline">标签</div><div class="length-num">46</div></a><a href="/categories/" title="category"><div class="headline">分类</div><div class="length-num">13</div></a></div><span class="sidebar-menu-item-title">功能</span><div class="sidebar-menu-item"><a class="darkmode_switchbutton menu-child" href="javascript:void(0);" title="显示模式"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span>显示模式</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> 隧道</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 标签</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 社交</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/fcircle/"><i class="anzhiyufont anzhiyu-icon-artstation faa-tada" style="font-size: 0.9em;"></i><span> 朋友圈</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/link/"><i class="anzhiyufont anzhiyu-icon-link faa-tada" style="font-size: 0.9em;"></i><span> 友人账</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/comments/"><i class="anzhiyufont anzhiyu-icon-envelope faa-tada" style="font-size: 0.9em;"></i><span> 留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 我的</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/music/?id=648886106&amp;server=netease"><i class="anzhiyufont anzhiyu-icon-music faa-tada" style="font-size: 0.9em;"></i><span> 音乐馆</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/air-conditioner/"><i class="anzhiyufont anzhiyu-icon-fan faa-tada" style="font-size: 0.9em;"></i><span> 小空调</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 关于</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/about/"><i class="anzhiyufont anzhiyu-icon-paper-plane faa-tada" style="font-size: 0.9em;"></i><span> 关于本人</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/website/"><i class="anzhiyufont anzhiyu-icon-cube faa-tada" style="font-size: 0.9em;"></i><span> 本站建设</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/essay/"><i class="anzhiyufont anzhiyu-icon-lightbulb faa-tada" style="font-size: 0.9em;"></i><span> 闲言碎语</span></a></li><li><a class="site-page child faa-parent animated-hover" href="javascript:toRandomPost()"><i class="anzhiyufont anzhiyu-icon-shoe-prints1 faa-tada" style="font-size: 0.9em;"></i><span> 随便逛逛</span></a></li></ul></div></div><span class="sidebar-menu-item-title">标签</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/AI/" style="font-size: 0.88rem;">AI<sup>1</sup></a><a href="/tags/AMD/" style="font-size: 0.88rem;">AMD<sup>1</sup></a><a href="/tags/CSS/" style="font-size: 0.88rem;">CSS<sup>14</sup></a><a href="/tags/Git/" style="font-size: 0.88rem;">Git<sup>2</sup></a><a href="/tags/Github/" style="font-size: 0.88rem;">Github<sup>2</sup></a><a href="/tags/HTML/" style="font-size: 0.88rem;">HTML<sup>3</sup></a><a href="/tags/Hexo/" style="font-size: 0.88rem;">Hexo<sup>2</sup></a><a href="/tags/JDBC/" style="font-size: 0.88rem;">JDBC<sup>1</sup></a><a href="/tags/Java/" style="font-size: 0.88rem; font-weight: 500; color: var(--anzhiyu-lighttext)">Java<sup>44</sup></a><a href="/tags/Linux/" style="font-size: 0.88rem;">Linux<sup>4</sup></a><a href="/tags/Maven/" style="font-size: 0.88rem;">Maven<sup>1</sup></a><a href="/tags/Mysql/" style="font-size: 0.88rem;">Mysql<sup>2</sup></a><a href="/tags/SSM/" style="font-size: 0.88rem;">SSM<sup>3</sup></a><a href="/tags/Vue/" style="font-size: 0.88rem;">Vue<sup>1</sup></a><a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" style="font-size: 0.88rem;">分布式<sup>4</sup></a><a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 0.88rem;">前端<sup>22</sup></a><a href="/tags/%E5%A4%8D%E4%B9%A0%E9%A2%98/" style="font-size: 0.88rem;">复习题<sup>3</sup></a><a href="/tags/%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B/" style="font-size: 0.88rem;">大学课程<sup>23</sup></a><a href="/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/" style="font-size: 0.88rem;">大模型<sup>1</sup></a><a href="/tags/%E5%BF%85%E7%9C%8B/" style="font-size: 0.88rem; font-weight: 500; color: var(--anzhiyu-lighttext)">必看<sup>26</sup></a><a href="/tags/%E6%8A%80%E6%9C%AF/" style="font-size: 0.88rem; font-weight: 500; color: var(--anzhiyu-lighttext)">技术<sup>7</sup></a><a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 0.88rem;">数据库<sup>1</sup></a><a href="/tags/%E7%8B%82%E7%A5%9E/" style="font-size: 0.88rem; font-weight: 500; color: var(--anzhiyu-lighttext)">狂神<sup>44</sup></a><a href="/tags/%E8%BD%AC%E8%BD%BD/" style="font-size: 0.88rem;">转载<sup>1</sup></a><a href="/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/" style="font-size: 0.88rem;">软件测试<sup>1</sup></a><a href="/tags/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%B8%88/" style="font-size: 0.88rem;">软件设计师<sup>20</sup></a><a href="/tags/%E8%BD%AF%E8%80%83/" style="font-size: 0.88rem;">软考<sup>20</sup></a><a href="/tags/%E8%BF%90%E7%BB%B4/" style="font-size: 0.88rem;">运维<sup>3</sup></a><a href="/tags/%E8%BF%9E%E8%BD%BD/" style="font-size: 0.88rem;">连载<sup>82</sup></a><a href="/tags/%E9%BB%91%E9%A9%AC/" style="font-size: 0.88rem;">黑马<sup>18</sup></a></div></div><hr/></div></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="anzhiyufont anzhiyu-icon-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="anzhiyufont anzhiyu-icon-gear"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="anzhiyufont anzhiyu-icon-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="anzhiyufont anzhiyu-icon-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></button></div></div><div id="nav-music"><a id="nav-music-hoverTips" onclick="anzhiyu.musicToggle()" accesskey="m">播放音乐</a><div id="console-music-bg"></div><meting-js id="648886106" server="netease" type="playlist" mutex="true" preload="none" theme="var(--anzhiyu-main)" data-lrctype="0" order="random" volume="0.7"></meting-js></div><div id="algolia-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><button class="search-close-button"><i class="anzhiyufont anzhiyu-icon-xmark"></i></button></nav><div class="search-wrap"><div id="algolia-search-input"></div><hr/><div id="algolia-search-results"><div id="algolia-hits"><a class="tag-list" href="/tags/%E5%BF%85%E7%9C%8B" title="必看">必看</a><a class="tag-list" href="/tags/Java" title="Java">Java</a><a class="tag-list" href="/tags/Spring" title="Spring">Spring</a><a class="tag-list" href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F" title="分布式">分布式</a><a class="tag-list" href="/tags/%E5%89%8D%E7%AB%AF" title="前端">前端</a><a class="tag-list" href="/tags/Hexo" title="Hexo">Hexo</a></div><div id="algolia-pagination"></div><div id="algolia-info"><div class="algolia-stats"></div><div class="algolia-poweredBy"></div></div></div></div></div><div id="search-mask"></div></div><div id="rightMenu"><div class="rightMenu-group rightMenu-small"><div class="rightMenu-item" id="menu-backward"><i class="anzhiyufont anzhiyu-icon-arrow-left"></i></div><div class="rightMenu-item" id="menu-forward"><i class="anzhiyufont anzhiyu-icon-arrow-right"></i></div><div class="rightMenu-item" id="menu-refresh"><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right" style="font-size: 1rem;"></i></div><div class="rightMenu-item" id="menu-top"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></div></div><div class="rightMenu-group rightMenu-line rightMenuPlugin"><div class="rightMenu-item" id="menu-copytext"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制选中文本</span></div><div class="rightMenu-item" id="menu-pastetext"><i class="anzhiyufont anzhiyu-icon-paste"></i><span>粘贴文本</span></div><a class="rightMenu-item" id="menu-commenttext"><i class="anzhiyufont anzhiyu-icon-comment-medical"></i><span>引用到评论</span></a><div class="rightMenu-item" id="menu-newwindow"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开</span></div><div class="rightMenu-item" id="menu-copylink"><i class="anzhiyufont anzhiyu-icon-link"></i><span>复制链接地址</span></div><div class="rightMenu-item" id="menu-copyimg"><i class="anzhiyufont anzhiyu-icon-images"></i><span>复制此图片</span></div><div class="rightMenu-item" id="menu-downloadimg"><i class="anzhiyufont anzhiyu-icon-download"></i><span>下载此图片</span></div><div class="rightMenu-item" id="menu-newwindowimg"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开图片</span></div><div class="rightMenu-item" id="menu-search"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>站内搜索</span></div><div class="rightMenu-item" id="menu-searchBaidu"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>百度搜索</span></div><div class="rightMenu-item" id="menu-music-toggle"><i class="anzhiyufont anzhiyu-icon-play"></i><span>播放音乐</span></div><div class="rightMenu-item" id="menu-music-back"><i class="anzhiyufont anzhiyu-icon-backward"></i><span>切换到上一首</span></div><div class="rightMenu-item" id="menu-music-forward"><i class="anzhiyufont anzhiyu-icon-forward"></i><span>切换到下一首</span></div><div class="rightMenu-item" id="menu-music-playlist" onclick="window.open(&quot;https://music.163.com/#/my/m/music/playlist?id=648886106&quot;, &quot;_blank&quot;);" style="display: none;"><i class="anzhiyufont anzhiyu-icon-radio"></i><span>查看所有歌曲</span></div><div class="rightMenu-item" id="menu-music-copyMusicName"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制歌名</span></div></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item menu-link" id="menu-randomPost"><i class="anzhiyufont anzhiyu-icon-shuffle"></i><span>随便逛逛</span></a><a class="rightMenu-item menu-link" href="/categories/"><i class="anzhiyufont anzhiyu-icon-cube"></i><span>博客分类</span></a><a class="rightMenu-item menu-link" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags"></i><span>文章标签</span></a></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item" id="menu-copy" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制地址</span></a><a class="rightMenu-item" id="menu-commentBarrage" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-message"></i><span class="menu-commentBarrage-text">关闭热评</span></a><a class="rightMenu-item" id="menu-darkmode" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span class="menu-darkmode-text">深色模式</span></a><a class="rightMenu-item" id="menu-translate" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-language"></i><span>轉為繁體</span></a></div></div><div id="rightmenu-mask"></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.cbd.int/@fancyapps/ui@5.0.36/dist/fancybox/fancybox.umd.js"></script><script src="https://cdn.cbd.int/instant.page@5.2.0/instantpage.js" type="module"></script><script src="https://cdn.cbd.int/vanilla-lazyload@19.1.3/dist/lazyload.iife.min.js"></script><script src="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.cbd.int/pangu@4.0.7/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script>var meting_api = "https://meting-api.joker2yue.cn/api?server=:server&type=:type&id=:id&auth=:auth&r=:r";
+</script><canvas id="universe"></canvas><script async src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/dark/dark.js"></script><script>// 消除控制台打印
+var HoldLog = console.log;
+console.log = function () {};
+let now1 = new Date();
+queueMicrotask(() => {
+  const Log = function () {
+    HoldLog.apply(console, arguments);
+  }; //在恢复前输出日志
+  const grt = new Date("08/25/2023 00:00:00"); //此处修改你的建站时间或者网站上线时间
+  now1.setTime(now1.getTime() + 250);
+  const days = (now1 - grt) / 1000 / 60 / 60 / 24;
+  const dnum = Math.floor(days);
+  const ascll = [
+    `欢迎使用安知鱼!`,
+    `生活明朗, 万物可爱`,
+    `
+        
+       █████╗ ███╗   ██╗███████╗██╗  ██╗██╗██╗   ██╗██╗   ██╗
+      ██╔══██╗████╗  ██║╚══███╔╝██║  ██║██║╚██╗ ██╔╝██║   ██║
+      ███████║██╔██╗ ██║  ███╔╝ ███████║██║ ╚████╔╝ ██║   ██║
+      ██╔══██║██║╚██╗██║ ███╔╝  ██╔══██║██║  ╚██╔╝  ██║   ██║
+      ██║  ██║██║ ╚████║███████╗██║  ██║██║   ██║   ╚██████╔╝
+      ╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝╚═╝   ╚═╝    ╚═════╝
+        
+        `,
+    "已上线",
+    dnum,
+    "天",
+    "©2023 By 安知鱼 V1.6.12",
+  ];
+  const ascll2 = [`NCC2-036`, `调用前置摄像头拍照成功，识别为【小笨蛋】.`, `Photo captured: `, `🤪`];
+
+  setTimeout(
+    Log.bind(
+      console,
+      `\n%c${ascll[0]} %c ${ascll[1]} %c ${ascll[2]} %c${ascll[3]}%c ${ascll[4]}%c ${ascll[5]}\n\n%c ${ascll[6]}\n`,
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      ""
+    )
+  );
+  setTimeout(
+    Log.bind(
+      console,
+      `%c ${ascll2[0]} %c ${ascll2[1]} %c \n${ascll2[2]} %c\n${ascll2[3]}\n`,
+      "color:white; background-color:#4fd953",
+      "",
+      "",
+      'background:url("https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/tinggge.gif") no-repeat;font-size:450%'
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c WELCOME %c 你好，小笨蛋.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(
+      console,
+      "%c ⚡ Powered by 安知鱼 %c 你正在访问 Joker2Yue 的博客.",
+      "color:white; background-color:#f0ad4e",
+      ""
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c W23-12 %c 你已打开控制台.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(console, "%c S013-782 %c 你现在正处于监控中.", "color:white; background-color:#d9534f", "")
+  );
+});</script><script async src="/anzhiyu/random.js"></script><script async="async">(function () {
+  var grt = new Date("08/25/2023 00:00:00"); //设置网站上线时间
+  var now = new Date();
+  var dnum;
+  var hnum;
+  var mnum;
+  var snum;
+  var nowHour;
+
+  // 计算并更新天数、小时数、分钟数和秒数
+  function updateTime() {
+    now = new Date(); // 更新 now 的值
+    nowHour = now.getHours(); // 更新 nowHour 的值
+    var days = (now - grt) / 1000 / 60 / 60 / 24;
+    dnum = Math.floor(days);
+    var hours = (now - grt) / 1000 / 60 / 60 - 24 * dnum;
+    hnum = Math.floor(hours);
+    if (String(hnum).length == 1) {
+      hnum = "0" + hnum;
+    }
+    var minutes = (now - grt) / 1000 / 60 - 24 * 60 * dnum - 60 * hnum;
+    mnum = Math.floor(minutes);
+    if (String(mnum).length == 1) {
+      mnum = "0" + mnum;
+    }
+    var seconds = (now - grt) / 1000 - 24 * 60 * 60 * dnum - 60 * 60 * hnum - 60 * mnum;
+    snum = Math.round(seconds);
+    if (String(snum).length == 1) {
+      snum = "0" + snum;
+    }
+  }
+
+  // 更新网页中显示的网站运行时间
+  function updateHtml() {
+    const footer = document.getElementById("footer");
+    if (!footer) return
+    let currentTimeHtml = "";
+    if (nowHour < 18 && nowHour >= 9) {
+      // 如果是上班时间，默认就是"安知鱼-上班摸鱼中.svg"图片，不需要更改
+      currentTimeHtml = `本站居然运行了 ${dnum} 天<span id='runtime'> ${hnum} 小时 ${mnum} 分 ${snum} 秒 </span><i class='anzhiyufont anzhiyu-icon-heartbeat' style='color:red'></i>`;
+    } else {
+      // 如果是下班时间，插入"安知鱼-下班啦.svg"图片
+      let img = document.querySelector("#workboard .workSituationImg");
+      if (img != null) {
+        img.src = "";
+        img.title = "";
+        img.alt = "";
+      }
+
+      currentTimeHtml = `本站居然运行了 ${dnum} 天<span id='runtime'> ${hnum} 小时 ${mnum} 分 ${snum} 秒 </span><i class='anzhiyufont anzhiyu-icon-heartbeat' style='color:red'></i>`;
+    }
+
+    if (document.getElementById("runtimeTextTip")) {
+      document.getElementById("runtimeTextTip").innerHTML = currentTimeHtml;
+    }
+  }
+
+  setInterval(() => {
+    updateTime();
+    updateHtml();
+  }, 1000);
+})();</script><script src="https://cdn.bootcdn.net/ajax/libs/algoliasearch/4.9.3/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.cbd.int/instantsearch.js@4.60.0/dist/instantsearch.production.min.js"></script><script src="/js/search/algolia.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.cbd.int/mermaid@10.2.4/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  anzhiyu.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>(() => {
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo.joker2yue.cn/',
+      region: '',
+      onCommentLoaded: () => {
+        anzhiyu.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(runFn,0)
+    else getScript('https://cdn.bootcdn.net/ajax/libs/twikoo/1.6.39/twikoo.all.min.js').then(runFn)
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo.joker2yue.cn/',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const runFn = () => {
+    init();
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) anzhiyu.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else {
+      loadTwikoo()
+    }
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script><input type="hidden" name="page-type" id="page-type" value="post"></div><script>window.addEventListener('load', () => {
+  const changeContent = (content) => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[图片]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[链接]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[代码]') // replace code
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const getComment = () => {
+    const runTwikoo = () => {
+      twikoo.getRecentComments({
+        envId: 'https://twikoo.joker2yue.cn/',
+        region: '',
+        pageSize: 6,
+        includeReply: true
+      }).then(function (res) {
+        const twikooArray = res.map(e => {
+          return {
+            'content': changeContent(e.comment),
+            'avatar': e.avatar,
+            'nick': e.nick,
+            'url': e.url + '#' + e.id,
+            'date': new Date(e.created).toISOString()
+          }
+        })
+
+        saveToLocal.set('twikoo-newest-comments', JSON.stringify(twikooArray), 10/(60*24))
+        generateHtml(twikooArray)
+      }).catch(function (err) {
+        const $dom = document.querySelector('#card-newest-comments .aside-list')
+        $dom.textContent= "无法获取评论，请确认相关配置是否正确"
+      })
+    }
+
+    if (typeof twikoo === 'object') {
+      runTwikoo()
+    } else {
+      getScript('https://cdn.bootcdn.net/ajax/libs/twikoo/1.6.39/twikoo.all.min.js').then(runTwikoo)
+    }
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (true) {
+          const name = 'data-lazy-src'
+          result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'><div class='name'><span>${array[i].nick} </span></div></a>`
+        }
+        
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}' title='${array[i].content}'>${array[i].content}</a>
+        <time datetime="${array[i].date}">${anzhiyu.diffDate(array[i].date, true)}</time></div>
+        </div>`
+      }
+    } else {
+      result += '没有评论'
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom && ($dom.innerHTML= result)
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('twikoo-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><script async data-pjax src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.1/bubble/bubble.js"></script><script>var visitorMail = "visitor@joker2yue.cn";
+</script><script async data-pjax src="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/waterfall/waterfall.js"></script><script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/qrcodejs/1.0.0/qrcode.min.js"></script><script src="/js/anzhiyu/right_click_menu.js"></script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.9/icon/ali_iconfont_css.css"><script async src="https://at.alicdn.com/t/c/font_3320075_10tn9j0ga3lb.js"></script><script id="click-show-text" src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/dist/click-show-text.min.js" data-mobile="true" data-text="富强,民主,文明,和谐,自由,平等,公正,法治,爱国,敬业,诚信,友善" data-fontsize="15px" data-random="false" async="true"></script><script src="/js/fancybox-popstate.js"></script><script src="/js/mobile-toc-mask.js"></script><script src="/js/code-expanded.js"></script><script src="/js/progressive-load.js"></script><script src="/js/joker.js"></script><script src="/js/welcome.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/dist/canvas-nest.min.js"></script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/aplayer/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.cbd.int/anzhiyu-blog-static@1.0.1/js/APlayer.min.js"></script><script src="https://cdn.cbd.int/meting@2.0.1/dist/Meting.min.js"></script><script src="https://cdn.cbd.int/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["meta[property=\"og:image\"]","meta[property=\"og:title\"]","meta[property=\"og:url\"]","meta[property=\"og:type\"]","meta[property=\"og:site_name\"]","meta[property=\"og:description\"]","head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"]):not([href="/music/"]):not([href="/images/"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+  // removeEventListener scroll 
+  anzhiyu.removeGlobalFnEvent('pjax')
+  anzhiyu.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404')
+  }
+})</script><script async data-pjax src="https://busuanzi.sukap.cn/busuanzi.pure.mini.js"></script><script charset="UTF-8" src="https://cdn.cbd.int/anzhiyu-theme-static@1.1.5/accesskey/accesskey.js"></script></div><div id="popup-window"><div class="popup-window-title">通知</div><div class="popup-window-divider"></div><div class="popup-window-content"><div class="popup-tip">你好呀</div><div class="popup-link"><i class="anzhiyufont anzhiyu-icon-arrow-circle-right"></i></div></div></div></body></html>

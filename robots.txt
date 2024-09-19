@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /js/
+Disallow: /css/
+Disallow: /font/
+Disallow: /admin/
+
+Sitemap: http://blog.joker2yue.cn/sitemap.xml
+Sitemap: http://blog.joker2yue.cn/baidusitemap.xml

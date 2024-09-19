@@ -118,12 +118,14 @@ clean: true,
 search: false,
 match: url => {
             const allowedHost = ejectDomain;
-            const allowedPaths = ["/js/joker.js", "/css/joker.css",];
-            return url.host === allowedHost && allowedPaths.includes(url.pathname);
+            const allowedPaths = ["/js/", "/css/"];
+            const pathname = url.pathname;
+            const matchesJsOrCss = allowedPaths.some(path => pathname.startsWith(path));
+            return url.host === allowedHost && (matchesJsOrCss || allowedPaths.includes(pathname));
         }}
 ,
 cdn: {
-clean: true,
+clean: false,
 match: url =>
             ["cdn", "unpkg", "npm"].some(keyword => url.host.includes(keyword)) && url.pathname.match(/\.(js|css|woff2|woff|ttf|cur)$/)}
 ,
@@ -178,10 +180,9 @@ let getSpareUrls = srcUrl => {
         };
     }
     if (['png', 'jpg', 'jpeg', 'gif', 'bmp', 'svg', 'webp'].includes(srcUrl.split('.').pop())) {
-        const regex = /^(https?:\/\/)?([^/]+)\/(\d{4})\/(\d{2})\/(\d{2})\/([^/]+\/[^/]+\.(png|jpg|jpeg|gif|bmp|svg|webp))$/;
+        const regex = /^(https?:\/\/)?([^/]+)\/post\/([^/]+\/[^/]+\.(png|jpg|jpeg|gif|bmp|svg|webp))$/;
         if (regex.test(srcUrl)) {
-            const match = srcUrl.match(regex);
-            const newPathname = `/blog/post/${match[3]}/${match[4]}/${match[5]}/${match[6]}`;
+            const newPathname = `/blog${new URL(srcUrl).pathname}`;
             return {
                 timeout: 2000,
                 list: [srcUrl, "https://resource.joker2yue.cn" + newPathname],
