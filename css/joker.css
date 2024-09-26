@@ -159,7 +159,7 @@ blockquote {
 
 #article-container .code-expand-btn:not(.expand-done) ~ table, #article-container .code-expand-btn:not(.expand-done) ~ pre {
     height: max-content;
-    max-height: 330px ;
+    max-height: 330px;
 }
 
 #article-container figure.highlight table {
@@ -171,16 +171,16 @@ blockquote {
 }
 
 /* 修复移动模式下的遮罩 */
-#quit-mask {
+#aside-quit-mask {
     position: fixed;
     background: hsla(0, 0%, 9%, .5);
     display: none;
     top: 0;
     left: 0;
-    z-index: 98;
+    z-index: 100;
     width: 100%;
     height: 100%;
-    pointer-events: auto; /* 避免遮罩层阻止滑动 */
+    pointer-events: none; /* 避免遮罩层阻止滑动 */
     transition: opacity 0.5s ease;
     -webkit-user-select: none; /* Safari */
     -moz-user-select: none; /* Firefox */
@@ -190,10 +190,6 @@ blockquote {
 
 #card-toc {
     z-index: 101 !important;
-}
-
-#rightside {
-    z-index: 97 !important;
 }
 
 /* 修复阅读模式下的文字问题 */
@@ -240,6 +236,13 @@ span {
     -webkit-user-select: none; /* 对 Chrome 和 Safari 有效 */
     -moz-user-select: none; /* 对 Firefox 有效 */
     -ms-user-select: none; /* 对 IE10+ 有效 */
+}
+/* 开启代码的复制 */
+table .code span{
+    user-select: auto; /* 对现代浏览器有效 */
+    -webkit-user-select: auto; /* 对 Chrome 和 Safari 有效 */
+    -moz-user-select: auto; /* 对 Firefox 有效 */
+    -ms-user-select: auto; /* 对 IE10+ 有效 */
 }
 
 /*! */

@@ -1,4 +1,4 @@
-function code_expander() {
+function initCodeExpander() {
     // 获取所有的 code-expand-btn 元素
     const expandButtons = document.querySelectorAll('.code-expand-btn');
 
@@ -26,7 +26,7 @@ function code_expander() {
                     const pre = table.querySelector('pre');
                     if (pre) {
                         const lineCount = pre.querySelectorAll('.line').length;
-                        const calculatedHeight = (lineCount * 20) + 30;
+                        const calculatedHeight = (lineCount * 21) + 20;
                         table.style.removeProperty('height');
                         table.style.maxHeight = `${calculatedHeight}px`;
                     }

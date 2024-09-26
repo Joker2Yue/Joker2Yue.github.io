@@ -1,12 +1,18 @@
 document.addEventListener("DOMContentLoaded", function () {
     initProgressiveLoad(config)
-    toc_masker()
-    code_expander()
-}), document.addEventListener("pjax:complete", function () {
-    onPJAXComplete(config)
-    toc_masker()
-    code_expander()
+    initTocMask()
+    initCodeExpander()
+    initWelcomeShower()
 });
+document.addEventListener("pjax:complete", function () {
+    onPJAXComplete(config)
+    initTocMask()
+    initCodeExpander()
+    initWelcomeShower()
+});
+window.onload = ()=>{
+    showWelcome()
+};
 
 /**
  * 清除Cookie

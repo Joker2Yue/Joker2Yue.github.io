@@ -124,6 +124,14 @@ match: url => {
             return url.host === allowedHost && (matchesJsOrCss || allowedPaths.includes(pathname));
         }}
 ,
+pages: {
+clean: true,
+match: url => {
+            const allowedHost = ejectDomain;
+            const allowedPaths = ["/","/website/","/link/","/essay/"];
+            return url.host === allowedHost && allowedPaths.includes(url.pathname);
+        }}
+,
 cdn: {
 clean: false,
 match: url =>
