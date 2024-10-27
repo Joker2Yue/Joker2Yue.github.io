@@ -1,0 +1,1611 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><!-- hexo injector head_begin start --><script>
+                    (() => {
+                        const sw = navigator.serviceWorker
+                        const error = () => console.error("ServiceWorker 注册失败，可能是您的浏览器不支持该功能。")
+                        if (!sw?.register('/sw.js')
+                            
+                            ?.catch(error)
+                            ) error()
+                    })()
+                </script><!-- hexo injector head_begin end --><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><title>跟随黑马面Java-9，JVM篇 | 九歌</title><meta name="keywords" content="面试,黑马程序员,简历,Java面试,面试准备,程序员,技术栈,JVM底层原理,JVM,Java,虚拟机"><meta name="author" content="Joker2Yue"><meta name="copyright" content="Joker2Yue"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#f7f9fe"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-touch-fullscreen" content="yes"><meta name="apple-mobile-web-app-title" content="跟随黑马面Java-9，JVM篇"><meta name="application-name" content="跟随黑马面Java-9，JVM篇"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="#f7f9fe"><meta property="og:type" content="article"><meta property="og:title" content="跟随黑马面Java-9，JVM篇"><meta property="og:url" content="https://blog.joker2yue.cn/post/gen-sui-hei-ma-mian-java-9/index.html"><meta property="og:site_name" content="九歌"><meta property="og:description" content="第九篇：JVM篇  “求其上，得其中；求其中，得其下，求其下，必败” 新版Java面试专题视频教程，java八股文面试全套真题+深度详解（含大厂高频面试真题）_哔哩哔哩_bilibili  开篇  Java Virtual Machine，Java程序的运行环境（java二进制字节码的运行环境）"><meta property="og:locale" content="zh-CN"><meta property="og:image" content="https://resource.joker2yue.cn/blog/images/coverImg/跟随黑马面Java/09.jpg"><meta property="article:author" content="Joker2Yue"><meta property="article:tag" content="Hexo,Java,JavaScript,html5,css3,Jquery,NodeJs,github,css,js,html,AnZhiYu,博客,学习"><meta name="twitter:card" content="summary"><meta name="twitter:image" content="https://resource.joker2yue.cn/blog/images/coverImg/跟随黑马面Java/09.jpg"><meta name="description" content="第九篇：JVM篇  “求其上，得其中；求其中，得其下，求其下，必败” 新版Java面试专题视频教程，java八股文面试全套真题+深度详解（含大厂高频面试真题）_哔哩哔哩_bilibili  开篇  Java Virtual Machine，Java程序的运行环境（java二进制字节码的运行环境）"><link rel="shortcut icon" href="/favicon.ico"><link rel="canonical" href="https://blog.joker2yue.cn/post/gen-sui-hei-ma-mian-java-9/"><link rel="preconnect" href="//cdn.cbd.int"/><meta name="google-site-verification" content="pbOVJD5xCJ_hy8qsEllb_o72A1ToJVHND5VcaZthS4U"/><meta name="baidu-site-verification" content="codeva-Y6WRbw4qhm"/><meta name="msvalidate.01" content="805A6EE29D8356ED4ECD4A62D9A0151D"/><link rel="manifest" href="/manifest.json"/><meta name="msapplication-TileColor" content="var(--anzhiyu-main)"/><link rel="mask-icon" href="/images/siteicon/apple-icon-180.png" color="#5bbad5"/><link rel="apple-touch-icon" sizes="180x180" href="/images/siteicon/apple-icon-180.png"/><link rel="apple-touch-icon-precomposed" sizes="180x180" href="/images/siteicon/apple-icon-180.png"/><link rel="icon" type="image/png" sizes="32x32" href="/images/siteicon/32.png"/><link rel="icon" type="image/png" sizes="16x16" href="/images/siteicon/16.png"/><link rel="bookmark" href="/images/siteicon/apple-icon-180.png"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2048-2732.jpg" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2732-2048.jpg" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1668-2388.jpg" media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2388-1668.jpg" media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1536-2048.jpg" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2048-1536.jpg" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1668-2224.jpg" media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2224-1668.jpg" media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1620-2160.jpg" media="(device-width: 810px) and (device-height: 1080px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2160-1620.jpg" media="(device-width: 810px) and (device-height: 1080px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1290-2796.jpg" media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2796-1290.jpg" media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1179-2556.jpg" media="(device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2556-1179.jpg" media="(device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1284-2778.jpg" media="(device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2778-1284.jpg" media="(device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1170-2532.jpg" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2532-1170.jpg" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1125-2436.jpg" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2436-1125.jpg" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1242-2688.jpg" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2688-1242.jpg" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-828-1792.jpg" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1792-828.jpg" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1242-2208.jpg" media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2208-1242.jpg" media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-750-1334.jpg" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1334-750.jpg" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-640-1136.jpg" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1136-640.jpg" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.6.0/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/@fancyapps/ui@5.0.36/dist/fancybox/fancybox.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/swiper@5.4.5/css/swiper.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  linkPageTop: {"enable":true,"title":"与数百名博主无限进步","addFriendPlaceholder":""},
+  peoplecanvas: undefined,
+  postHeadAiDescription: {"enable":true,"gptName":"Joker","mode":"local","switchBtn":true,"btnLink":"https://afdian.net/item/886a79d4db6711eda42a52540025c377","randomNum":1,"basicWordCount":1000,"key":"7d68f96f3824c2340712","Referer":"https://Blog.Joker2Yue.cn/"},
+  diytitle: {"enable":true,"leaveTitle":"w(ﾟДﾟ)w 大佬，别丢下我呀555","backTitle":"♪(^∇^*)欢迎肥来！"},
+  LA51: {"enable":true,"ck":"3FljRaaHsuwhQACC","LingQueMonitorID":"3FljRaaHsuwhQACC"},
+  greetingBox: {"enable":true,"default":"欢迎大佬！🫡","list":[{"greeting":"时间不早啦，早点休息吧😴","startTime":0,"endTime":1},{"greeting":"小夜猫子，快去睡觉吧，明天要有精力哦🌙","startTime":1,"endTime":2},{"greeting":"再不睡觉会变成光头哦！梦中见吧💤","startTime":2,"endTime":3},{"greeting":"别熬啦，再熬就熬穿啦~🦉","startTime":3,"endTime":4},{"greeting":"你见过凌晨四点的洛杉矶吗🕓","startTime":4,"endTime":5},{"greeting":"早期的鸟儿有虫吃，今天也要加油哦 💪","startTime":5,"endTime":6},{"greeting":"新的一天开始了，早安！希望今天一切顺利☀️","startTime":6,"endTime":7},{"greeting":"早上好，准备好迎接新一天的挑战吧😊","startTime":7,"endTime":8},{"greeting":"今天是美好的一天，祝你有个愉快的早晨🕊️","startTime":8,"endTime":9},{"greeting":"上午好，工作顺利吗？记得适当休息哦📈","startTime":9,"endTime":10},{"greeting":"生活不易，加油，再坚持一下！💪","startTime":10,"endTime":11},{"greeting":"午餐时间快到了，别忘了吃点好吃的🍲","startTime":11,"endTime":12},{"greeting":"午安！享受这段轻松的时光吧😊","startTime":12,"endTime":13},{"greeting":"下午好，继续努力，今天还没有结束哦☕","startTime":13,"endTime":14},{"greeting":"工作辛苦啦~记得喝水保持清醒哦💧","startTime":14,"endTime":15},{"greeting":"工作中的小休息，放松一下吧🎵","startTime":15,"endTime":16},{"greeting":"离下班还有一点时间，再坚持一下！💼","startTime":16,"endTime":17},{"greeting":"傍晚好，辛苦了一整天，快回家放松吧🌇","startTime":17,"endTime":18},{"greeting":"晚餐时间到了，和家人们一起享受美好时光吧🍽️","startTime":18,"endTime":19},{"greeting":"晚上好，来放松一下自己吧🎬","startTime":19,"endTime":20},{"greeting":"夜晚的时光，属于你自己，享受吧🌙","startTime":20,"endTime":21},{"greeting":"准备好迎接美好的梦境吧💤","startTime":21,"endTime":22},{"greeting":"深夜时分，放松一下，做好睡觉准备吧🌌","startTime":22,"endTime":23},{"greeting":"夜深啦~ 赶紧入睡吧，明天会更好🛏️","startTime":23,"endTime":24}]},
+  twikooEnvId: 'https://twikoo.joker2yue.cn/',
+  commentBarrageConfig:undefined,
+  root: '/',
+  preloader: {"source":3},
+  friends_vue_info: {"apiurl":"https://hexo-circle-of-firends.joker2yue.cn/"},
+  navMusic: true,
+  mainTone: {"mode":"both","api":"https://img2color-go.joker2yue.cn/api?img=","cover_change":true},
+  authorStatus: {"skills":["🤖️ 数码科技爱好者","🔍 分享与热心帮助","🏠 智能家居小能手","🔨 设计开发一条龙","🤝 专修交互与设计","🏃 脚踏实地行动派","🧱 团队小组发动机","💢 壮汉人狠话不多"]},
+  algolia: {"appId":"02BLPWUQGR","apiKey":"c5b7016a2933af8c5cb09dfb4a490988","indexName":"blog_joker2yue_index","hits":{"per_page":6},"languages":{"input_placeholder":"输入关键词后按下回车查找","hits_empty":"找不到您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0.5,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简","rightMenuMsgToTraditionalChinese":"转为繁体","rightMenuMsgToSimplifiedChinese":"转为简体"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":330},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    simplehomepage: true,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"copy":true,"copyrightEbable":false,"limitCount":50,"languages":{"author":"作者: Joker2Yue","link":"链接: ","source":"来源: 九歌","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。","copySuccess":"复制成功，复制和转载请标注本文地址"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#425AEF","bgDark":"#1f1f1f","position":"bottom-right"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.min.js',
+      css: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: true,
+  shortcutKey: undefined,
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  configTitle: '九歌',
+  title: '跟随黑马面Java-9，JVM篇',
+  postAI: '此文介绍了JVM的核心组成部分及工作机制，包括程序计数器、Java堆、虚拟机栈、方法区、直接内存和类加载器。此外，文章还详细讲解了JVM垃圾回收机制，涵盖了对象回收的判定方法、垃圾回收算法以及几种常见的垃圾回收器。,这篇文章深入浅出地讲解了JVM的核心知识点，包括JVM的组成部分、类加载机制、垃圾回收机制以及JVM调优和调试工具等方面。文章首先介绍了JVM的各个组成部分，包括程序计数器、Java堆、虚拟机栈、方法区、运行时常量池以及直接内存等，并阐述了它们各自的作用。接着，文章详细讲解了类加载机制，包括类加载器的种类、双亲委派模型以及类加载的执行过程等。,本文深入探讨了JVM的核心知识，涵盖JVM的组成部分、类加载机制、垃圾回收机制以及JVM实践等方面。文章首先介绍了JVM的各个组成部分，包括程序计数器、Java堆、虚拟机栈、方法区、运行时常量池以及直接内存等，并阐述了它们各自的作用。接着，文章详细讲解了类加载机制，包括类加载器的种类、双亲委派模型以及类加载的执行过程等，帮助读者理解Java类的加载过程。此外，文章还详细讲解了JVM垃圾回收机制，涵盖了对象回收的判定方法、垃圾回收算法以及几种常见的垃圾回收器，例如串行垃圾回收器、并行垃圾回收器、CMS垃圾回收器以及G1垃圾回收器等，并分析了它们各自的特点和适用场景。,这篇文章全面而系统地介绍了 JVM 的核心知识，涵盖了 JVM 的组成部分、类加载机制、垃圾回收机制以及 JVM 实践等方面。文章从 JVM 的基本概念入手，逐步深入到各个组成部分的功能和工作原理，并结合实际案例和代码演示，清晰地阐述了类加载机制、垃圾回收机制以及 JVM 调优和调试工具等核心内容。文章还详细讲解了 JVM 内存泄漏的排查思路和 CPU 飙高的排查方案，为读者提供了实用的 JVM 问题排查技巧，帮助读者更好地理解和应用 JVM 知识。',
+  pageFillDescription: '开篇, JVM组成, 什么是程序计数器, Java堆, 虚拟机栈, 什么是虚拟机栈, 垃圾回收是否涉及栈内存？, 方法内的局部变量是否线程安全？, 什么情况下会导致栈内存溢出？, 能不能解释一下方法区, 你听过直接内存吗, 类加载器, 什么是类加载器、双亲委派机制, 类加载器, 双亲委派机制, 类装载的执行过程, 加载(Loading), 链接(Linking), 初始化(Initialization), 使用(Usage), 卸载(Uninstall), 垃圾回收, 对象什么时候可以被垃圾器回收, JVM垃圾回收算法有哪些, JVM中分代回收, JVM有哪些垃圾回收器, 串行垃圾收集器, 并行垃圾回收器, CMS（并发）垃圾回收器, G1垃圾回收器, 强引用、软引用、弱引用、虚引用的区别, JVM实践, JVM调优的参数可以在哪里设置参数值, JVM调优的参数都有哪些？, JVM调试的工具, Java内存泄漏的排查思路, CPU飙高的排查方案与思路第九篇篇求其上得其中求其中得其下求其下必败新版面试专题视频教程八股文面试全套真题深度详解含大厂高频面试真题哔哩哔哩开篇程序的运行环境二进制字节码的运行环境好处一次编写到处运行自动内存管理垃圾回收机制组成部分组成什么是程序计数器程序计数器是一块很小的内存区域用于存储当前线程所执行的字节码指令地址即将要执行的指令代码它是线程私有的内存区域每个线程都有自己独立的程序计数器生命周期与线程保持一致你可以使用打印堆栈大小局部变量的数量和方法的参数程序计数器主要是保存线程执行的字节码的行号记录正在执行的字节码指令的地址堆线程共享的区域主要用来保存对象实例数组等当堆中没有内存空间可分配给实例也无法再扩展时则抛出异常堆堆是虚拟机所管理的内存中最大的一块用于存储对象实例及数组根据对象的生命周期不同堆可分为新生代和老年代新生代新生代又分为区和两个区和当新对象被创建时会被分配到区当区没有足够空间进行分配时虚拟机将发起一次对区和两个区进行垃圾回收经过垃圾回收后仍存活的对象将被复制到其中一个区老年代老年代存放经过多次后仍然存活的对象以及一些大对象当老年代内存不足时虚拟机将发起一次对整个堆内存进行垃圾回收元空间元空间是从开始引入的一个新的内存区域用于替代永久代它存储在本地内存中而不是虚拟机内存元空间的作用元空间主要用于存储类的元数据信息包括类信息类的元数据信息如类名访问修饰符父类实现的接口字段方法等常量运行时常量池存储编译期生成的字面量和符号引用编译后的代码方法字节码即已被虚拟机加载的类的代码内容编译后的代码缓存为什么要使用元空间代替永久代主要为了避免内存溢出元空间使用本地内存大小只受本地内存限制并且垃圾收集更高效永久代的内存空间有限制容易导致内存溢出永久代使用的是的内存空间大小是有限制的默认为当加载的类信息较多时很容易导致永久代内存溢出永久代的垃圾回收效率低下永久代的垃圾收集效果比较难令人满意尤其是类型的卸载条件相当苛刻主要回收两部分内容废弃的常量和不再使用的类型类卸载困难会导致内存泄漏永久代位于堆内存之内增加了内存占用永久代虽然是方法区的实现但它却被设计在堆内存之中这种设计增加了内存的占用量元空间使用本地内存受本地内存限制元空间使用的是本地内存理论上可以使用的内存空间更大只受本地内存限制默认为无限避免了永久代内存溢出的风险元空间可动态调整内存大小元空间不在虚拟机内存中可以动态调整内存大小无需重启虚拟机元空间和永久代有不同的垃圾回收行为元空间的垃圾收集更加高效只使用两级分代收集器不需要配置永久代虚拟机栈什么是虚拟机栈虚拟机栈是每个线程运行时所需要的内存它先进后出如果有多个线程想要运行就会创建多个虚拟机栈所以栈内存也是线程安全的线程之间不能相互访问每个栈由多个栈顺组成对应看每次方法调用时所占用的内存每个线程只能有一个活动栈顿对应着当前正在执行的那个方法虚拟机栈的作用虚拟机栈描述的是方法执行的内存模型每个方法在执行的同时都会创建一个栈帧用于存储局部变量表操作数栈动态链接方法出口等信息一个方法从调用到执行完成的过程就对应着一个栈帧在虚拟机栈中从入栈到出栈的过程栈帧的结构局部变量表操作数栈动态链接方法返回地址其中局部变量表用于存放方法参数和局部变量操作数栈用于保存计算过程的中间结果动态链接和方法返回地址是为了支持方法调用和返回垃圾回收是否涉及栈内存垃圾回收主要指就是堆内存当栈帧弹栈以后内存就会释放栈内存分配越大越好吗未必默认的栈内存通常为栈顿过大会导致线程数变少例如机器总内存为自前能活动的线程数则为个如果把栈内存改为那么能活动的栈帧就会减半方法内的局部变量是否线程安全如果方法内局部变量没有逃离方法的作用范围它是线程安全的如果是局部变量引用了对象并逃离方法的作用范围需要考虑线程安全如果想要确保线程安全就应避免让其他方法调用的影响而是使用局部变量在以下示例中是线程安全的因为它没有参数也没有返回值和则不是线程安全的由于有参数传递而这个参数可能被其他线程修改导致不确定性而虽然没有参数传递但有返回值这个返回值可能因为多线程环境下的竞态条件而受到影响什么情况下会导致栈内存溢出栈溢出有两种主要情况一是栈内存溢出通常由于过多的递归调用造成另一种是栈太大导致的溢出能不能解释一下方法区方法区是规范中定义的一个逻辑概念而永久代和元空间分别是不同实现中方法区的不同实现方式在及以前方法区是永久代在堆内存中及以后方法区是元空间使用的是本地内存方法区方法区是各个线程共享的内存区域方法区的作用存储类信息方法区存储每个类的结构信息如运行时常量池字段信息方法信息构造函数信息类初始化信息等元数据存储静态变量方法区为类中的静态变量分配内存空间并在类加载时进行静态变量赋值操作存储编译后的代码编译器在运行时将字节码编译为本地机器码并存储在方法区中以提高运行效率虚拟机启动的时候创建关闭虚拟机时释放如果方法区域中的内存无法满足分配请求则会抛出这段代码演示了如何通过不断生成类的二进制字节码来导致元空间内存溢出在中类的元数据存储在元空间中而不是传统的永久代当我们不断生成新的类并加载它们时元空间的内存占用会不断增加在这段代码中通过循环生成大量的类每个类都有自己的二进制字节码并通过的方法加载这些类导致元空间内存不断增长最终触发异常这段代码不会导致堆内存溢出的原因是它并没有创建大量的对象实例而是不断创建类的定义和对应的字节码这些类定义存储在元空间中而不是堆内存中演示元空间内存溢出可以用来加载类的二进制字节码作用是生成类的二进制字节码版本号类名包名父类接口返回执行了类的加载对象常量池常量池是文件中的一部分用于存储编译期生成的字面量和符号引用可以看作是一张表虚拟机指令根据这张常量表找到要执行的类名方法名参数类型字面量等信息下图所示的方法中的机器指令需要去常量池中查找对应的信息运行时常量池运行时常量池是方法区的一部分用于存储常量池中的符号引用在类加载的解析阶段虚拟机将常量池中的符号引用替换为直接引用指向运行时内存中的目标实体常量池包含在文件中当类被加载时其常量池信息会被放入运行时常量池并将其中的符号地址转换为真实地址运行时常量池还会在运行期间动态地向其中添加一些新的常量例如方法会把字符串对象的引用添加到运行时常量池中你听过直接内存吗直接内存并不属于中的内存结构不由进行管理是虚拟机的系统内存常见于操作时用于数据缓冲区它分配回收成本较高但读写性能高缓冲区在堆内存中分配的举例代码完成文件拷贝在使用代码完成文件拷贝时我们可以选择常规或者两种方式进行操作但实际上使用的效率更高常规操作本身不具备磁盘读写能力必须调用操作系统的方法首先会将的运行状态由用户态切换到内核态切换到内核态后由系统的函数去读取磁盘中的文件读取出来后在系统内存中划出一块缓冲区先将文件存入系统缓冲区分批次但是对于此缓冲区代码不能直接访问会在堆中分配一块内存这对应我们代码中了一个代码要访问刚才读到的数据必须从系统缓冲区中间接读入到缓冲区读入后再调用输出流的写入操作进行反复读写才能将文件复制到一个指定位置操作常规过程中有两个缓冲区效率不高对于直接内存代码能访问它系统也能访问它使用直接内存对比常规少了一次缓冲区复制操作效率自然更高类加载器什么是类加载器双亲委派机制类加载器类加载器是虚拟机的一个重要组件主要负责将文件加载到中并为已加载类创建一个对象实例类加载器的作用将文件加载到内存中并创建一个对象实例确保中有且只有一个实例即使多个加载同一个文件内存中只存在一个实例实现类的动态加载如代码热替换模块化程序设计等类加载器的种类启动类加载器负责加载核心类库如等位于下的无法被程序直接引用扩展类加载器负责加载扩展类库如目录下的包应用程序类加载器负责加载用户类路径上的类库除了上述三种用户还可以自定义类加载器以实现特殊需求双亲委派机制双亲委派模型双亲委派模型是虚拟机的一种类加载机制它的工作原理是当一个实例需要加载某个类时它会先把这个请求委派给父类加载器去完成每一个层次的实例都是如此因此所有的类加载请求最终都应该被传递到最顶层的启动类加载器中为什么采用双亲委派模型通过双亲委派机制可以避免某一个类被重复加载当父类已经加载后则无需重复加载保证唯一性防止核心被篡改如果我们自定义一个类它的包名也是它其中定义了一个方法我们尝试运行将会报错如下打破双亲委派模型虽然双亲委派模型是很好的设计但也存在一些场景需要打破它使用线程上下文类加载器这是最常见的一种比如实现服务等会用到线程上下文类加载器它打破了双亲委派模型的委派规则可以对指定的类使用当前线程的类加载器进行加载重写方法我们可以自定义一个类加载器重写其方法在该方法中先委派父加载器加载若父加载器无法加载则使用自身的加载逻辑这种方式打破了双亲委派模型的父优先原则使用热部署代码热替换这种场景下需要自定义类加载器加载新的类文件而不能使用双亲委派模型扩展或修改某些核心类比如修改等核心类需要自定义类加载器直接加载这些类容器打破双亲委派模型容器会为每个应用创建一个独立的类加载器实例以实现不同应用的类加载隔离要打破双亲委派模型直接重写方法即可但是不能破坏启动类加载器的工作否则会导致程序崩溃类装载的执行过程类从加载到虚拟机中开始直到卸载为止它的整个生命周期包括了加载验证准备解析初始化使用和卸载这个阶段其中验证准备和解析这三个部分统称为连接加载通过类的全名获取类的二进制数据流解析类的二进制数据流为方法区内的数据结构类模型创建类的实例代表该类作为方法区这个类的各种数据的访问入口当一个类比如类被类加载器加载后它会被存入运行时数据区这个数据区分为方法区元空间和堆在方法区存储着该类的结构信息包括构造函数方法字段等而在堆中存放的是该类的对象当我们创建类的实例时比如张三李四这些对象的对象头都会指向堆中的对象但是具体的类数据比如构造函数方法字段等需要通过方法区才能获取因此的对象可以在方法区中找到类的信息并根据这个信息结构来创建这些实例对象链接验证确保加载的类信息符合规范没有安全方面的问题准备为类的静态变量分配内存并设置默认初始值变量在准备阶段分配空间基本类型会被设置为默认值类型为真正赋值在初始化阶段完成对于变量是的基本类型或字符串常量其值在准备阶段已确定直接赋值而非对于变量是的引用类型同样在准备阶段初始化实际赋值也在初始化阶段完成准备阶段初始化阶段准备阶段和初始化阶段准备阶段和初始化阶段准备阶段初始化阶段解析将类的二进制数据中的符号引用转换为直接引用比如方法中调用了其他方法方法名可以理解为符号引用而直接引用就是使用指针直接指向方法下图中这种是符号引用才是真正的方法初始化对于类的静态变量和静态代码块的初始化操作遵循以下规则当初始化一个类时如果其父类尚未初始化则会优先初始化其父类如果一个类中同时包含多个静态变量和静态代码块则按照自上而下的顺序依次执行静态变量赋值会为类的静态变量分配内存并设置默认初始值如等然后按照源码中定义的顺序执行显式的静态变量赋值操作静态代码块执行会执行类中的静态代码块这些代码块是使用关键字修饰的位于类中的任何静态方法之外并按照出现的顺序执行静态方法执行如果存在显式的静态方法调用相应的静态方法也会在初始化阶段被执行执行顺序为静态变量和静态代码块按照源码顺序执行静态方法执行静态变量只会在程序第一次主动使用该类时才会被初始化当子类访问父类的静态变量时只会触发父类的初始化使用开始从入口方法开始执行用户的程序代码下述操作将被视为使用此类调用静态类成员信息比如静态字段静态方法使用关键字为其创建对象实例卸载当一个类的所有实例对象都已经被回收并且在运行时常量池中没有其他地方引用这个类的常量时就可以卸载这个类了垃圾回收对象什么时候可以被垃圾器回收垃圾回收主要指的是堆中的数据简单一句就是如果一个或多个对象没有任何的引用指向它了那么这个对象现在就是垃圾如果定位了垃圾则有可能会被垃圾回收器回收要定位什么是垃圾有两种方式来确定第一个是引用计数法第二个是可达性分析算法引用计数法一个对象被引用了一次在当前的对象头上递增一次引用次数如果这个对象的引用次数为代表这个对象可回收示例下述案例中是个类型一开始它是引用到了堆中的一个后面又被赋为那么栈对堆中对象的引用将会断开现在的引用次数也就是当对象间出现了循环引用的话则引用计数法就会失效现在的类的成员变量中包含了一个对象现在我们创建两个对象然后让的指向的指向它们现在在内存中的状况如左图所示它们的都是栈中引用和的引用栈中引用和的引用然后再将分别指向那么栈中两个变量就不再引用堆中那两个内存了就会断开断开后就分别减一但是它们都不为即使它们没有被使用也不会被回收如右图所示出现了这种情况就是循环引用了容易引发内存泄漏可达性分析算法现在的虚拟机采用的都是通过可达性分析算法来确定哪些内容是垃圾虚拟机中的垃圾回收器采用可达性分析来探索所有存活的对象它的工作原理是扫描堆中的对象看是否能够沿着对象为起点的引用链找到该对象如果找不到这样的引用链表示该对象不再被任何活动对象所引用可以被回收下图中节点是可回收的哪些对象可以作为虚拟机栈栈帧中的本地变量表中引用的对象例如一个方法中定义了一个局部变量引用了一个对象实例这个对象实例就可以作为例如是局部变量引用了一个对象实例可以作为方法区中类的静态属性引用的对象例如一个类的静态变量引用了一个对象实例这个对象实例就可以作为例如类静态变量引用了一个对象实例可以作为方法区中常量引用的对象例如一个常量池中的常量引用了一个对象实例这个对象实例就可以作为例如常量引用了一个对象实例可以作为本地方法栈中方法引用的对象例如一个方法中引用了一个对象实例这个对象实例也可以作为垃圾回收算法有哪些垃圾回收算法描述标记清除算法标记阶段标记出所有需要回收的对象清除阶段统一回收被标记的对象它的缺点是会产生内存碎片复制算法将内存分为两块每次只使用其中一块当一块用完时将存活对象复制到另一块然后清理已使用的那一块标记整理算法先标记存活对象然后将所有存活对象压缩到内存的一端之后清理边界外所有空间避免了内存碎片但需要移动对象分代收集算法根据对象存活周期将内存划分为新生代和老年代使用不同的垃圾回收算法新生代使用复制算法老年代使用标记整理或标记清除算法标记清除算法将垃圾回收分为两个阶段标记和清除标记阶段根据可达性分析算法标记出需要回收的垃圾对象清除阶段对标记为可回收的对象进行垃圾回收优点标记和清除速度较快缺点碎片化严重内存不连续标记整理算法标记整理算法与标记清除算法相似都包含标记和清除阶段但标记整理算法额外增加了整理阶段这一阶段将碎片化的内存整理到连续的内存空间上提高了内存的可用性虽然解决了标记清除算法的碎片化问题但由于需要对象移动内存位置其效率受到一定影响复制算法复制算法将内存分为两块在进行垃圾回收时将存活的对象复制并整理到另一块内存区域等复制完成全部清空原来的内存即可优点在存在大量垃圾对象的情况下具有较高的效率清理后内存无碎片缺点分配的两块内存空间在同一时刻只能使用其中一半导致内存使用率较低中分代回收分代收集算法在默认的垃圾回收算法中堆被分为了两个部分新生代和老年代比例为在新生代中又被划分为三个部分伊甸园区新创建的对象都分配在这里幸存者区分成了和区只是为了做区分起的逻辑名称而已其中伊甸园区区和区的比例为分代收集算法工作机制新创建的对象首先被分配到伊甸园区当伊甸园区内存不足时会标记伊甸园区和区如果存在中的存活对象存活对象使用复制算法被复制到区完成复制后伊甸园区和区内存都被释放一段时间后伊甸园区的内存再次不足会标记伊甸园区和区中的存活对象将存活对象复制到区当幸存区对象经过多次回收最多次后会晋升到老年代若幸存区内存不足或存在大对象则可能提前晋升的区别是什么类型描述特点发生在新生代的垃圾回收暂停时间短对新生代进行部分回收新生代老年代部分区域的垃圾回收收集器特有针对新生代和老年代的部分区域进行回收新生代老年代完整垃圾回收暂停时间长对整个堆内存进行完整的回收暂停所有应用程序线程等待垃圾回收的完成有哪些垃圾回收器在中默认的垃圾回收器是新生代与老年代的组合通常是与并发标记扫描垃圾收集器搭配使用的年轻代收集器在中实现了多种垃圾收集器包括串行垃圾收集器并行垃圾收集器并发垃圾收集器垃圾收集器串行垃圾收集器在中和串行垃圾收集器使用单线程进行垃圾回收它们适用于堆内存较小的场景比如个人电脑收集器作用于新生代采用复制算法而收集器作用于老年代采用标记整理算法在垃圾回收时只有一个线程在工作并且应用中的所有线程都要暂停等待垃圾回收的完成当程序运行到某个安全点时就会触发垃圾回收这时将会阻塞所有线程而有一个单独的线程区进行垃圾回收当此垃圾回收器运行结束将恢复原来阻塞的线程并行垃圾回收器和是并行垃圾回收器是默认使用的垃圾回收器作用于新生代采用复制算法作用于老年代采用标记整理算法在垃圾回收时多个线程同时工作并且应用中的所有线程都要暂停等待垃圾回收的完成并发垃圾回收器全称是一款并发的使用标记清除算法的垃圾回收器该回收器是针对老年代垃圾回收的是一款以获取最短回收停顿时间为目标的收集器停顿时间短用户体验就好其最大特点是在进行垃圾回收时应用仍然能正常运行在垃圾回收过程中首先进行初始标记仅标记与相关联的对象然后在并发标记阶段追踪的引用链并标记沿途的对象为存活对象接着是重新标记阶段因为在并发标记完成后原先未标记为存活对象的对象被重新引用与树关联或者原先被标记为存活对象的对象的引用为需要将其作为垃圾对象回收完成重新标记后进行并发清理阶段清理时其他线程也可以继续正常运行垃圾回收器在及以后的版本中默认使用垃圾回收器它适用于新生代和老年代将堆内存划分为多个区域每个区域都可以充当以及专为大对象准备的该回收器采用复制算法并兼顾了响应时间和吞吐量的垃圾回收过程分为三个阶段新生代回收并发标记和混合收集如果并发失败即回收速度赶不上创建新对象速度会触发年轻代垃圾回收初始时所有区域都处于空闲状态随着对象的创建一些空闲区域被选为伊甸园区存储这些对象当伊甸园区需要垃圾回收时会选择一个空闲区域作为幸存区并使用复制算法复制存活对象这个过程需要暂停用户线程下图中表示整个堆空间被划分为大小相等的区域每个区域都可用作伊甸园幸存者老年代随着对象增加伊甸园区被填满触发新生代的垃圾回收中伊甸园的垃圾回收采用复制算法标记存活对象后复制到幸存者区域其余区域释放尽管复制算法需要暂停但由于幸存者对象较少暂停时间较短随着时间流逝伊甸园内存再次不足将伊甸园及之前幸存区中的存活对象采用复制算法复制到新的幸存区中较老的对象晋升到老年代然后这些伊甸园区和上一次的幸存者区就可以释放了年轻代垃圾回收并发标记当老年代内存使用超过默认阈值通常为时会触发并发标记此时不会暂停用户线程然而它还会执行一次查漏操作处理未正确标记的对象进行重新标记这个过程需要完成重新标记后系统了解了老年代中的存活对象并进入混合收集区都进行收集阶段在这个阶段不会对所有老年代区域进行回收而是根据暂停时间目标优先回收价值高存活对象较少的区域这也是名称的由来混合垃圾回收在混合收集阶段参与复制的区域包括伊甸园幸存者和老年代在这个阶段伊甸园区和幸存者区中的存活对象会被复制到一个新的幸存者区左图中蓝箭头所示同时老年代区域中的存活对象数量较少的区域以及达到一定阈值的对象也会被复制到一个新的老年区左图中红箭头所示完成这些复制后原来的伊甸园幸存者和老年代区域就可以被释放右图在后续可能进行多次混合收集将剩下的老年代再重新标记清理之后内存也逐渐释放了当进行到了多次的混合收集又会进行下一轮的新生代回收并发标记混合收集当然如果垃圾回收速度跟不上分配新对象的速度那这时候就可能并发失败这将会触发一次导致所有线程阻塞如果一个对象太大了一个区域装不下会分配一个连续的区域来存储巨型对象强引用软引用弱引用虚引用的区别强引用这是我们最常见的普通对象引用只要有强引用指向一个对象该对象就不会被垃圾回收器回收强引用是造成内存泄漏的主要原因之一软引用如果一个对象只具有软引用在垃圾回收后内存仍不足时将会再次触发回收内存弱引用弱引用的生命周期比软引用短只要垃圾回收器线程扫描到它不管当前内存空间足够与否都会回收这个弱引用指向的对象弱引用同样适用于内存敏感的缓存比软引用更加激进虚引用虚引用是所有引用中最弱的一种无法通过它访问对象的任何属性或函数它仅仅是提供了一种确保对象被以后做某些事情的机制虚引用必须和引用队列联合使用当垃圾回收器准备回收一个对象时如果发现它还有虚引用就会在回收对象内存之前将这个虚引用加入引用队列虚引用主要用于跟踪对象被垃圾回收的活动实践调优的参数可以在哪里设置参数值包部署在中设置修改文件包部署在启动参数设置通常在系统下直接加参数启动项目用于在系统后台不挂断地运行命令退出终端不会影响程序的运行参数让命令在后台执行终端退出后命令仍旧执行包在中运行在中编辑使用指令在时传递参数这里的参数用于设置容器的环境变量在容器内部你需要从代码或者中读取该环境变量的值作为启动参数调优的参数都有哪些对于调优主要就是调整年轻代老年代元空间的内存空间大小及使用的垃圾回收器类型你可以通过访问来查看参数设置项指令举例说明堆空间大小不指定单位默认为字节指定单位按照指定的单位设置可用单位虚拟机栈设置默认一般就够年轻代中区和两个区的大小比例表示区的大小占比默认为年轻代晋升老年代阈值表示经过多少次挪动会晋升成为老年代默认垃圾回收收集器设置表示使用什么样的垃圾回收器设置项指令说明设置目录目录表示设置的生成目录设置在时生成表示配置当程序发生内存溢出时自动生成文件设置堆空间大小设置堆的初始大小和最大大小为了防止垃圾收集器在初始大小最大大小之间收缩堆而产生额外的时间通常把最大初始大小设置为相同的值设置多少合适最大大小的默认值是物理内存的初始大小是物理内存的堆太小可能会频繁的导致年轻代和老年代的垃圾回收会产生暂停用户线程堆内存大肯定是好的但也存在风险假如发生了它会扫描整个堆空间暂停用户线程的时间长虚拟机栈的设置虚拟机栈的设置每个线程默认会开启的内存用于存放栈顿调用参数局部变量等但一般就够用通常减少每个线程的堆栈可以产生更多的线程但这实际上还受限于操作系统年轻代中区和两个区的大小比例设置年轻代中区和两个区的大小比例该值如果不设置则默认比例为通过增大区的大小来减少发生的次数但有时我们发现虽然次数减少了但区满的时候由于占用的空间较大导致释放缓慢此时的时间较长因此需要按照程序情况去调优年轻代晋升老年代阈值默认为取值范围设置垃圾回收收集器通过增大吞吐量提高系统性能可以通过设置并行垃圾回收收集器调试的工具工具描述类型使用说明示例查看进程状态信息命令行工具在目录下运行命令查看进程内线程的堆栈信息命令行工具查看堆转储信息命令行工具显示堆的信息与表示以二进制格式转储堆的内存用于指定快照文件的文件名堆转储快照分析工具命令行工具统计监测工具命令行工具总结垃圾回收统计垃圾回收统计是统计监测工具可以用来显示垃圾回收信息类加载信息新生代统计信息等用于对的内存线程类的监控可视化工具安装目录目录下直接启动用于对的内存线程类的监控是一个基于的性能监控工具能够监控线程内存情况可视化工具安装目录目录下直接启动就行能够监控线程内存情况查看方法的时间和内存中的对象已被的对象反向查看分配的堆栈内存泄漏的排查思路在程序运行时有三块内存可能会导致内存泄漏或溢出的问题分别是虚拟机栈方法区堆空间其报错分别是其可能的原因分别是递归造成的问题动态加载的类过多垃圾处理器来不及回收但是我们一般是将服务部署在服务器上而且使用微服务进行部署每个微服务都有可能导致内存溢出很有可能这个项目直接闪退了或者根本没有运行起来还有运行了一段时间内存不够了然后就宕机了我们可以先去获取堆内存快照文件然后用去分析文件通过查看堆信息的情况定位内存溢出的问题在运行参数上指定要记录的错误然后指定输出路径然后再在上查看即可飙高的排查方案与思路使用命令查看情况可以发现为的进程占用很高使用命令查看线程具体参数解释如下表示显示层级关系即进程的线程指定了要显示的字段包括进程线程和利用率将命令的输出传递给命令表示从命令的输出中筛选出包含的行即查找进程为的相关信息发现为的线程占用较高使用来查看其线程的详细情况然后找到了线程为的线程十六进制为的信息可以直接使用命令查看代码',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-06-20 04:02:22',
+  postMainColor: '',
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#18171d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f7f9fe')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 18 || hour >= 6
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(e => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"><meta http-equiv="Access-Control-Allow-Origin" content="*" /><meta http-equiv="Access-Control-Allow-Methods" content="HEAD,GET,POST,PUT,DELETE,OPTIONS" /><meta http-equiv="Access-Control-Allow-Headers" content="Content-Type,Authorization,Origin,X-Requested-With,Accept" /><meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"><link rel="stylesheet" href="/css/joker.css" media="defer" onload="this.media='all'"><script src="https://cdn.cbd.int/jquery@3.7.1/dist/jquery.min.js"></script><script src="/js/notice.js"></script><!-- hexo injector head_end start --><script defer src="/sw-dom.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="九歌" type="application/atom+xml">
+</head><body data-type="anzhiyu"><div id="web_bg"></div><div id="an_music_bg"></div><div id="loading-box" onclick="document.getElementById(&quot;loading-box&quot;).classList.add(&quot;loaded&quot;)"><div class="loading-bg"><img class="loading-img nolazyload" alt="加载头像" src="https://resource.joker2yue.cn/blog/images/avatar_load.jpg"/><div class="loading-image-dot"></div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.getElementById('loading-box').classList.add("loaded");
+  },
+  initLoading: () => {
+    document.getElementById('loading-box').classList.remove("loaded")
+  }
+}
+window.addEventListener('load',()=> { preloader.endLoading() })
+setTimeout(function(){preloader.endLoading();},10000)
+
+if (true) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.10/progress_bar/progress_bar.css"/><script async="async" src="https://cdn.cbd.int/pace-js@1.2.4/pace.min.js" data-pace-options="{ &quot;restartOnRequestAfter&quot;:false,&quot;eventLag&quot;:false}"></script><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><div id="nav-group"><span id="blog_name"><div class="back-home-button"><i class="anzhiyufont anzhiyu-icon-grip-vertical"></i><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" href="https://Blog.Joker2Yue.cn/" title="博客"><img class="back-menu-item-icon" src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/joker_icon.ico" alt="博客"/><span class="back-menu-item-text">博客</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">项目</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://gpt.joker2yue.cn/" title="JokerGPT"><img class="back-menu-item-icon" src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://gpt.joker2yue.cn/favicon.ico" alt="JokerGPT"/><span class="back-menu-item-text">JokerGPT</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="https://www.joker2yue.cn/" title="主页"><img class="back-menu-item-icon" src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/avatar_joker.jpg" alt="主页"/><span class="back-menu-item-text">主页</span></a></div></div></div></div><a id="site-name" href="/" accesskey="h"><div class="title">九歌</div><i class="anzhiyufont anzhiyu-icon-house-chimney"></i></a></span><div class="mask-name-container"><div id="name-container"><a id="page-name" href="javascript:anzhiyu.scrollToDest(0, 500)">PAGE_NAME</a></div></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> 隧道</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 标签</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 社交</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/fcircle/"><i class="anzhiyufont anzhiyu-icon-artstation faa-tada" style="font-size: 0.9em;"></i><span> 朋友圈</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/link/"><i class="anzhiyufont anzhiyu-icon-link faa-tada" style="font-size: 0.9em;"></i><span> 友人账</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/comments/"><i class="anzhiyufont anzhiyu-icon-envelope faa-tada" style="font-size: 0.9em;"></i><span> 留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 我的</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/music/?id=648886106&amp;server=netease"><i class="anzhiyufont anzhiyu-icon-music faa-tada" style="font-size: 0.9em;"></i><span> 音乐馆</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/air-conditioner/"><i class="anzhiyufont anzhiyu-icon-fan faa-tada" style="font-size: 0.9em;"></i><span> 小空调</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 关于</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/about/"><i class="anzhiyufont anzhiyu-icon-paper-plane faa-tada" style="font-size: 0.9em;"></i><span> 关于本人</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/website/"><i class="anzhiyufont anzhiyu-icon-cube faa-tada" style="font-size: 0.9em;"></i><span> 本站建设</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/essay/"><i class="anzhiyufont anzhiyu-icon-lightbulb faa-tada" style="font-size: 0.9em;"></i><span> 闲言碎语</span></a></li><li><a class="site-page child faa-parent animated-hover" href="javascript:toRandomPost()"><i class="anzhiyufont anzhiyu-icon-shoe-prints1 faa-tada" style="font-size: 0.9em;"></i><span> 随便逛逛</span></a></li></ul></div></div></div><div id="nav-right"><div class="nav-button only-home" id="travellings_button" title="随机前往一个开往项目网站"><a class="site-page" onclick="anzhiyu.totraveling()" title="随机前往一个开往项目网站" href="javascript:void(0);" rel="external nofollow" data-pjax-state="external"><i class="anzhiyufont anzhiyu-icon-train"></i></a></div><div class="nav-button" id="randomPost_button"><a class="site-page" onclick="toRandomPost()" title="随机前往一个文章" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-dice"></i></a></div><div class="nav-button" id="search-button"><a class="site-page social-icon search" href="javascript:void(0);" title="搜索🔍" accesskey="s"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span> 搜索</span></a></div><input id="center-console" type="checkbox"/><label class="widget" for="center-console" title="中控台" onclick="anzhiyu.switchConsole();"><i class="left"></i><i class="widget center"></i><i class="widget right"></i></label><div id="console"><div class="console-card-group-reward"><ul class="reward-all console-card"><li class="reward-item"><a href="https://resource.joker2yue.cn/blog/images/reward/wechat.png" target="_blank"><img class="post-qr-code-img" alt="微信" src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/reward/wechat.png"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://resource.joker2yue.cn/blog/images/reward/alipay.png" target="_blank"><img class="post-qr-code-img" alt="支付宝" src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/reward/alipay.png"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div><div class="console-card-group"><div class="console-card-group-left"><div class="console-card" id="card-newest-comments"><div class="card-content"><div class="author-content-item-tips">互动</div><span class="author-content-item-title"> 最新评论</span></div><div class="aside-list"><span>正在加载中...</span></div></div></div><div class="console-card-group-right"><div class="console-card tags"><div class="card-content"><div class="author-content-item-tips">兴趣点</div><span class="author-content-item-title">寻找你感兴趣的领域</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/AI/" style="font-size: 1.05rem;">AI<sup>1</sup></a><a href="/tags/AMD/" style="font-size: 1.05rem;">AMD<sup>1</sup></a><a href="/tags/CSS/" style="font-size: 1.05rem;">CSS<sup>14</sup></a><a href="/tags/Git/" style="font-size: 1.05rem;">Git<sup>2</sup></a><a href="/tags/Github/" style="font-size: 1.05rem;">Github<sup>2</sup></a><a href="/tags/HTML/" style="font-size: 1.05rem;">HTML<sup>3</sup></a><a href="/tags/Hexo/" style="font-size: 1.05rem;">Hexo<sup>2</sup></a><a href="/tags/JDBC/" style="font-size: 1.05rem;">JDBC<sup>1</sup></a><a href="/tags/Java/" style="font-size: 1.05rem;">Java<sup>55</sup></a><a href="/tags/JavaEE/" style="font-size: 1.05rem;">JavaEE<sup>1</sup></a><a href="/tags/JavaSE/" style="font-size: 1.05rem;">JavaSE<sup>29</sup></a><a href="/tags/JavaWeb/" style="font-size: 1.05rem;">JavaWeb<sup>1</sup></a><a href="/tags/Kotlin/" style="font-size: 1.05rem;">Kotlin<sup>1</sup></a><a href="/tags/Linux/" style="font-size: 1.05rem;">Linux<sup>4</sup></a><a href="/tags/Markdown/" style="font-size: 1.05rem;">Markdown<sup>1</sup></a><a href="/tags/Maven/" style="font-size: 1.05rem;">Maven<sup>1</sup></a><a href="/tags/MyabtisPlus/" style="font-size: 1.05rem;">MyabtisPlus<sup>1</sup></a><a href="/tags/Mybatis/" style="font-size: 1.05rem;">Mybatis<sup>3</sup></a><a href="/tags/Mysql/" style="font-size: 1.05rem;">Mysql<sup>3</sup></a><a href="/tags/NodeJS/" style="font-size: 1.05rem;">NodeJS<sup>1</sup></a><a href="/tags/Ollama/" style="font-size: 1.05rem;">Ollama<sup>1</sup></a><a href="/tags/Redis/" style="font-size: 1.05rem;">Redis<sup>1</sup></a><a href="/tags/SSM/" style="font-size: 1.05rem;">SSM<sup>3</sup></a><a href="/tags/Spring/" style="font-size: 1.05rem;">Spring<sup>6</sup></a><a href="/tags/SpringBoot/" style="font-size: 1.05rem;">SpringBoot<sup>3</sup></a><a href="/tags/SpringCloud/" style="font-size: 1.05rem;">SpringCloud<sup>3</sup></a><a href="/tags/SpringFramework/" style="font-size: 1.05rem;">SpringFramework<sup>1</sup></a><a href="/tags/SpringMVC/" style="font-size: 1.05rem;">SpringMVC<sup>1</sup></a><a href="/tags/Spring%E6%A1%86%E6%9E%B6/" style="font-size: 1.05rem;">Spring框架<sup>4</sup></a><a href="/tags/Vue/" style="font-size: 1.05rem;">Vue<sup>1</sup></a><a href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 1.05rem;">中间件<sup>1</sup></a><a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" style="font-size: 1.05rem;">分布式<sup>4</sup></a><a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 1.05rem;">前端<sup>22</sup></a><a href="/tags/%E5%A4%8D%E4%B9%A0%E9%A2%98/" style="font-size: 1.05rem;">复习题<sup>3</sup></a><a href="/tags/%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B/" style="font-size: 1.05rem;">大学课程<sup>23</sup></a><a href="/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/" style="font-size: 1.05rem;">大模型<sup>1</sup></a><a href="/tags/%E5%BF%85%E7%9C%8B/" style="font-size: 1.05rem;">必看<sup>26</sup></a><a href="/tags/%E6%8A%80%E6%9C%AF/" style="font-size: 1.05rem;">技术<sup>7</sup></a><a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 1.05rem;">数据库<sup>4</sup></a><a href="/tags/%E7%8B%82%E7%A5%9E/" style="font-size: 1.05rem;">狂神<sup>44</sup></a><a href="/tags/%E8%BD%AC%E8%BD%BD/" style="font-size: 1.05rem;">转载<sup>1</sup></a><a href="/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/" style="font-size: 1.05rem;">软件测试<sup>1</sup></a><a href="/tags/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%B8%88/" style="font-size: 1.05rem;">软件设计师<sup>20</sup></a><a href="/tags/%E8%BD%AF%E4%BB%B6%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/" style="font-size: 1.05rem;">软件项目管理<sup>2</sup></a><a href="/tags/%E8%BD%AF%E8%80%83/" style="font-size: 1.05rem;">软考<sup>20</sup></a><a href="/tags/%E8%BF%90%E7%BB%B4/" style="font-size: 1.05rem;">运维<sup>3</sup></a><a href="/tags/%E8%BF%9E%E8%BD%BD/" style="font-size: 1.05rem;">连载<sup>92</sup></a><a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 1.05rem;">面试<sup>10</sup></a><a href="/tags/%E9%BB%91%E9%A9%AC/" style="font-size: 1.05rem;">黑马<sup>28</sup></a></div></div><hr/></div></div><div class="console-card history"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-box-archiv"></i><span>文章</span></div><div class="card-archives"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-archive"></i><span>归档</span><a class="card-more-btn" href="/archives/" title="查看更多">
+    <i class="anzhiyufont anzhiyu-icon-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/09/"><span class="card-archive-list-date">九月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/08/"><span class="card-archive-list-date">八月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/06/"><span class="card-archive-list-date">六月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">10</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/05/"><span class="card-archive-list-date">五月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">4</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/01/"><span class="card-archive-list-date">一月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/10/"><span class="card-archive-list-date">十月 2023</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">11</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/09/"><span class="card-archive-list-date">九月 2023</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">12</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/08/"><span class="card-archive-list-date">八月 2023</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">11</span><span>篇</span></div></a></li></ul></div><hr/></div></div></div><div class="button-group"><div class="console-btn-item"><a class="darkmode_switchbutton" title="显示模式切换" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-moon"></i></a></div><div class="console-btn-item" id="consoleHideAside" onclick="anzhiyu.hideAsideBtn()" title="边栏显示控制"><a class="asideSwitch"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></a></div><div class="console-btn-item" id="consoleMusic" onclick="anzhiyu.musicToggle()" title="音乐开关"><a class="music-switch"><i class="anzhiyufont anzhiyu-icon-music"></i></a></div></div><div class="console-mask" onclick="anzhiyu.hideConsole()" href="javascript:void(0);"></div></div><div class="nav-button" id="nav-totop"><a class="totopbtn" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i><span id="percent" onclick="anzhiyu.scrollToDest(0,500)">0</span></a></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);" title="切换"><i class="anzhiyufont anzhiyu-icon-bars"></i></a></div></div></div></nav><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original">原创</a><span class="post-meta-categories"><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-inbox post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%B7%9F%E9%9A%8F%E9%BB%91%E9%A9%AC%E9%9D%A2Java/" itemprop="url">跟随黑马面Java</a><i class="anzhiyufont anzhiyu-icon-angle-right post-meta-separator"></i><i class="anzhiyufont anzhiyu-icon-inbox post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%B7%9F%E9%9A%8F%E9%BB%91%E9%A9%AC%E9%9D%A2Java/Java/" itemprop="url">Java</a><i class="anzhiyufont anzhiyu-icon-angle-right post-meta-separator"></i><i class="anzhiyufont anzhiyu-icon-inbox post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%B7%9F%E9%9A%8F%E9%BB%91%E9%A9%AC%E9%9D%A2Java/Java/%E9%9D%A2%E8%AF%95/" itemprop="url">面试</a><i class="anzhiyufont anzhiyu-icon-angle-right post-meta-separator"></i><i class="anzhiyufont anzhiyu-icon-inbox post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%B7%9F%E9%9A%8F%E9%BB%91%E9%A9%AC%E9%9D%A2Java/Java/%E9%9D%A2%E8%AF%95/%E6%8A%80%E6%9C%AF/" itemprop="url">技术</a></span><span class="article-meta tags"><a class="article-meta__tags" href="/tags/%E8%BF%9E%E8%BD%BD/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>连载</span></a><a class="article-meta__tags" href="/tags/%E9%9D%A2%E8%AF%95/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>面试</span></a><a class="article-meta__tags" href="/tags/%E9%BB%91%E9%A9%AC/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>黑马</span></a><a class="article-meta__tags" href="/tags/Java/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>Java</span></a></span></div></div><h1 class="post-title" itemprop="name headline">跟随黑马面Java-9，JVM篇<a class="post-edit-link" href="https://github.com/Joker2Yue/Joker2Yue-Blog/edit/main/source/_posts/跟随黑马面Java-9.md" title="在 GitHub 上编辑 - 跟随黑马面Java-9，JVM篇" target="_blank"><i class="anzhiyufont anzhiyu-icon-pencil"></i></a></h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="anzhiyufont anzhiyu-icon-calendar-days post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" itemprop="dateCreated datePublished" datetime="2024-06-19T20:02:22.000Z" title="发表于 2024-06-20 04:02:22">2024-06-20</time><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-history post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" itemprop="dateCreated datePublished" datetime="2024-06-19T20:02:22.000Z" title="更新于 2024-06-20 04:02:22">2024-06-20</time></span></div><div class="meta-secondline"><span class="post-meta-separator"></span><span class="post-meta-wordcount"><i class="anzhiyufont anzhiyu-icon-file-word post-meta-icon" title="文章字数"></i><span class="post-meta-label" title="文章字数">字数总计:</span><span class="word-count" title="文章字数">10.8k</span><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-clock post-meta-icon" title="阅读时长"></i><span class="post-meta-label" title="阅读时长">阅读时长:</span><span>33分钟</span></span><span class="post-meta-separator"></span><span class="post-meta-pv-cv" id="" data-flag-title="跟随黑马面Java-9，JVM篇"><i class="anzhiyufont anzhiyu-icon-fw-eye post-meta-icon"></i><span class="post-meta-label" title="阅读量">阅读量:</span><span id="busuanzi_value_page_pv"><i class="anzhiyufont anzhiyu-icon-spinner anzhiyu-spin"></i></span></span><span class="post-meta-separator">       </span><span class="post-meta-position" title="作者IP属地为衡阳"><i class="anzhiyufont anzhiyu-icon-location-dot"></i>衡阳</span></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section><div id="post-top-cover"><img class="nolazyload" id="post-top-bg" src="https://resource.joker2yue.cn/blog/images/coverImg/跟随黑马面Java/09.jpg"></div></header><main id="blog-container"><div class="layout" id="content-inner"><div id="post"><div class="post-ai-description"><div class="ai-title"><i class="anzhiyufont anzhiyu-icon-bilibili"></i><div class="ai-title-text">AI-摘要</div><div id="ai-Toggle">切换</div><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right"></i><i class="anzhiyufont anzhiyu-icon-circle-dot" title="朗读摘要"></i><div id="ai-tag">Joker GPT</div></div><div class="ai-explanation">AI初始化中...</div><div class="ai-btn-box"><div class="ai-btn-item">介绍自己 🙈</div><div class="ai-btn-item">生成本文简介 👋</div><div class="ai-btn-item">推荐相关文章 📖</div><div class="ai-btn-item">前往主页 🏠</div><div class="ai-btn-item" id="go-tianli-blog">前往爱发电购买</div></div><script data-pjax src="/js/ai_abstract.min.js"></script></div><article class="post-content" id="article-container" itemscope itemtype="https://blog.joker2yue.cn/post/gen-sui-hei-ma-mian-java-9/"><header><a class="post-meta-categories" href="/categories/%E8%B7%9F%E9%9A%8F%E9%BB%91%E9%A9%AC%E9%9D%A2Java/" itemprop="url">跟随黑马面Java</a><a class="post-meta-categories" href="/categories/%E8%B7%9F%E9%9A%8F%E9%BB%91%E9%A9%AC%E9%9D%A2Java/Java/" itemprop="url">Java</a><a class="post-meta-categories" href="/categories/%E8%B7%9F%E9%9A%8F%E9%BB%91%E9%A9%AC%E9%9D%A2Java/Java/%E9%9D%A2%E8%AF%95/" itemprop="url">面试</a><a class="post-meta-categories" href="/categories/%E8%B7%9F%E9%9A%8F%E9%BB%91%E9%A9%AC%E9%9D%A2Java/Java/%E9%9D%A2%E8%AF%95/%E6%8A%80%E6%9C%AF/" itemprop="url">技术</a><a href="/tags/%E8%BF%9E%E8%BD%BD/" tabindex="-1" itemprop="url">连载</a><a href="/tags/%E9%9D%A2%E8%AF%95/" tabindex="-1" itemprop="url">面试</a><a href="/tags/%E9%BB%91%E9%A9%AC/" tabindex="-1" itemprop="url">黑马</a><a href="/tags/Java/" tabindex="-1" itemprop="url">Java</a><h1 id="CrawlerTitle" itemprop="name headline">跟随黑马面Java-9，JVM篇</h1><span itemprop="author" itemscope itemtype="http://schema.org/Person">Joker2Yue</span><time itemprop="dateCreated datePublished" datetime="2024-06-19T20:02:22.000Z" title="发表于 2024-06-20 04:02:22">2024-06-20</time><time itemprop="dateCreated datePublished" datetime="2024-06-19T20:02:22.000Z" title="更新于 2024-06-20 04:02:22">2024-06-20</time></header><p><strong>第九篇：JVM篇</strong></p>
+<blockquote>
+<p>“求其上，得其中；求其中，得其下，求其下，必败”</p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1yT411H7YK?p=6&amp;spm_id_from=pageDriver&amp;vd_source=814489e71df641c4b2c0ff7d4659b2d0">新版Java面试专题视频教程，java八股文面试全套真题+深度详解（含大厂高频面试真题）_哔哩哔哩_bilibili</a></p>
+</blockquote>
+<h4 id="开篇">开篇<a class="headerlink" href="#开篇"></a></h4>
+<hr>
+<p>Java Virtual Machine，Java程序的运行环境（java二进制字节码的运行环境）</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>好处：</p>
+<ul class="lvl-2">
+<li class="lvl-4">一次编写，到处运行</li>
+<li class="lvl-4">自动内存管理，垃圾回收机制</li>
+</ul>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519095430428.png" alt="image-20240519095430428" style="zoom:25%;">
+</li>
+<li class="lvl-2">
+<p>JVM组成部分</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519095602165.png" alt="image-20240519095602165" style="zoom:33%;">
+</li>
+</ul>
+<h4 id="JVM组成">JVM组成<a class="headerlink" href="#JVM组成"></a></h4>
+<hr>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519101224623.png" alt="image-20240519101224623" style="zoom:33%;">
+<hr>
+<h5 id="什么是程序计数器">什么是程序计数器<a class="headerlink" href="#什么是程序计数器"></a></h5>
+<p>JVM程序计数器(Program Counter Register)是一块很小的内存区域,用于存储当前线程所执行的字节码指令地址,即 将要执行的指令代码。它是线程私有的内存区域,每个线程都有自己独立的程序计数器,生命周期与线程保持一致。</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>你可以使用<code>javap -v xx.class</code>打印堆栈大小，局部变量的数量和方法的参数。</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519100424773.png" alt="image-20240519100424773" style="zoom: 25%;">
+</li>
+<li class="lvl-2">
+<p>程序计数器主要是保存线程执行的字节码的行号，记录正在执行的字节码指令的地址</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519100633759.png" alt="image-20240519100633759" style="zoom:33%;">
+</li>
+</ul>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519100718881.png" alt="image-20240519100718881" style="zoom:33%;">
+<hr>
+<h5 id="Java堆">Java堆<a class="headerlink" href="#Java堆"></a></h5>
+<p>线程共享的区域：主要用来保存对象实例，数组等，当堆中没有内存空间可分配给实例，也无法再扩展时，则抛出OutofMemoryError异常。</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>Java堆</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519101224623.png" alt="image-20240519101224623" style="zoom:33%;">
+<p>JVM堆是Java虚拟机所管理的内存中最大的一块,用于存储对象实例及数组。根据对象的生命周期不同,JVM堆可分为新生代和老年代。</p>
+<ul class="lvl-2">
+<li class="lvl-4">
+<p><strong>新生代</strong></p>
+<p>新生代又分为Eden区和两个Survivor区(From Survivor和To Survivor)。当新对象被创建时,会被分配到Eden区。当Eden区没有足够空间进行分配时,虚拟机将发起一次Minor GC,对Eden区和两个Survivor区进行垃圾回收。经过垃圾回收后仍存活的对象,将被复制到其中一个Survivor区。</p>
+</li>
+<li class="lvl-4">
+<p><strong>老年代</strong></p>
+<p>老年代存放经过多次Minor GC后仍然存活的对象,以及一些大对象。当老年代内存不足时,虚拟机将发起一次Full GC,对整个堆内存进行垃圾回收。</p>
+</li>
+</ul>
+</li>
+<li class="lvl-2">
+<p>元空间</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519102154511.png" alt="image-20240519102154511" style="zoom:33%;">
+<p>JVM元空间(Metaspace)是从Java 8开始引入的一个新的内存区域,用于替代永久代(PermGen)。它存储在本地内存中,而不是虚拟机内存。</p>
+<ul class="lvl-2">
+<li class="lvl-4">
+<p>元空间的作用</p>
+<p>元空间主要用于存储类的元数据信息,包括:</p>
+<ol>
+<li class="lvl-7">
+<p><strong>类信息</strong>：类的元数据信息,如类名、访问修饰符、父类、实现的接口、字段、方法等。</p>
+</li>
+<li class="lvl-7">
+<p><strong>常量</strong>：运行时常量池,存储编译期生成的字面量和符号引用。</p>
+</li>
+<li class="lvl-7">
+<p><strong>编译后的代码</strong>：方法字节码,即已被虚拟机加载的类的代码内容。</p>
+</li>
+<li class="lvl-7">
+<p><strong>JIT编译后的代码缓存。</strong></p>
+</li>
+</ol>
+</li>
+<li class="lvl-4">
+<p>为什么要使用元空间代替永久代</p>
+<p>**主要为了避免OOM内存溢出。**元空间使用本地内存,大小只受本地内存限制,并且垃圾收集更高效。</p>
+<ol>
+<li class="lvl-7">
+<p>永久代的内存空间有限制,容易导致内存溢出。永久代使用的是JVM的内存空间,大小是有限制的,默认为64M。当加载的类信息较多时,很容易导致永久代内存溢出(OutOfMemoryError: PermGen space)。</p>
+</li>
+<li class="lvl-7">
+<p>永久代的垃圾回收效率低下。永久代的垃圾收集效果比较难令人满意,尤其是类型的卸载条件相当苛刻。主要回收两部分内容:废弃的常量和不再使用的类型。类卸载困难会导致内存泄漏。</p>
+</li>
+<li class="lvl-7">
+<p>永久代位于堆内存之内,增加了内存占用。永久代虽然是方法区的实现,但它却被设计在堆内存之中,这种设计增加了内存的占用量。</p>
+</li>
+<li class="lvl-7">
+<p>元空间使用本地内存,受本地内存限制。元空间使用的是本地内存,理论上可以使用的内存空间更大,只受本地内存限制。默认为无限,避免了永久代内存溢出的风险。</p>
+</li>
+<li class="lvl-7">
+<p>元空间可动态调整内存大小。元空间不在虚拟机内存中,可以动态调整内存大小,无需重启虚拟机。</p>
+</li>
+<li class="lvl-7">
+<p>元空间和永久代有不同的垃圾回收行为。元空间的垃圾收集更加高效,只使用两级分代收集器,不需要配置永久代。</p>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519102656017.png" alt="image-20240519102656017" style="zoom:50%;">
+<hr>
+<h5 id="虚拟机栈">虚拟机栈<a class="headerlink" href="#虚拟机栈"></a></h5>
+<h6 id="什么是虚拟机栈">什么是虚拟机栈<a class="headerlink" href="#什么是虚拟机栈"></a></h6>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>Virtual Machine Stack</p>
+<ul class="lvl-2">
+<li class="lvl-4">
+<p>虚拟机栈是每个线程运行时所需要的内存，它先进后出。</p>
+<p>如果有多个线程想要运行，就会创建多个虚拟机栈。所以，栈内存也是线程安全的（线程之间不能相互访问）。</p>
+</li>
+<li class="lvl-4">
+<p>每个栈由多个栈顺（frame）组成，对应看每次方法调用时所占用的内存。</p>
+</li>
+<li class="lvl-4">
+<p>每个线程只能有一个活动栈顿，对应着当前正在执行的那个方法</p>
+</li>
+</ul>
+</li>
+<li class="lvl-2">
+<p>虚拟机栈的作用</p>
+<p>虚拟机栈描述的是Java方法执行的内存模型。每个方法在执行的同时都会创建一个栈帧(Stack Frame)用于存储局部变量表、操作数栈、动态链接、方法出口等信息。一个方法从调用到执行完成的过程,就对应着一个栈帧在虚拟机栈中从入栈到出栈的过程。</p>
+</li>
+<li class="lvl-2">
+<p>栈帧的结构</p>
+<ol>
+<li class="lvl-5">局部变量表(Local Variables)</li>
+<li class="lvl-5">操作数栈(Operand Stack)</li>
+<li class="lvl-5">动态链接(Dynamic Linking)</li>
+<li class="lvl-5">方法返回地址(Return Address)</li>
+</ol>
+<p>其中局部变量表用于存放方法参数和局部变量,操作数栈用于保存计算过程的中间结果。动态链接和方法返回地址是为了支持方法调用和返回。</p>
+</li>
+</ul>
+<h6 id="垃圾回收是否涉及栈内存？">垃圾回收是否涉及栈内存？<a class="headerlink" href="#垃圾回收是否涉及栈内存？"></a></h6>
+<p>垃圾回收主要指就是堆内存，当栈帧弹栈以后，内存就会释放。</p>
+<p>栈内存分配越大越好吗？未必，默认的栈内存通常为1024k。</p>
+<p>栈顿过大会导致线程数变少，例如，机器总内存为512m，自前能活动的线程数则为512个，如果把栈内存改为2048k，那么能活动的栈帧就会减半。</p>
+<h6 id="方法内的局部变量是否线程安全？">方法内的局部变量是否线程安全？<a class="headerlink" href="#方法内的局部变量是否线程安全？"></a></h6>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>如果方法内局部变量没有逃离方法的作用范围，它是线程安全的</p>
+</li>
+<li class="lvl-2">
+<p>如果是局部变量引用了对象，并逃离方法的作用范围，需要考虑线程安全</p>
+</li>
+</ul>
+<p>如果想要确保线程安全，就应避免让其他方法调用的影响，而是使用局部变量。在以下示例中，<code>m1()</code>是线程安全的，因为它没有参数也没有返回值；<code>m2()</code>和<code>m3()</code>则不是线程安全的。<code>m2()</code>由于有参数传递，而这个参数可能被其他线程修改，导致不确定性。而<code>m3()</code>虽然没有参数传递，但有返回值，这个返回值可能因为多线程环境下的竞态条件而受到影响。</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519103951139.png" alt="image-20240519103951139" style="zoom:25%;">
+<h6 id="什么情况下会导致栈内存溢出？">什么情况下会导致栈内存溢出？<a class="headerlink" href="#什么情况下会导致栈内存溢出？"></a></h6>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>栈溢出有两种主要情况：一是栈内存溢出，通常由于过多的递归调用造成；另一种是栈太大导致的溢出。</p>
+</li>
+</ul>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519104546965.png" alt="image-20240519104546965" style="zoom:50%;">
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519104619189.png" alt="image-20240519104619189" style="zoom:50%;">
+<hr>
+<h5 id="能不能解释一下方法区">能不能解释一下方法区<a class="headerlink" href="#能不能解释一下方法区"></a></h5>
+<p>方法区是JVM规范中定义的一个逻辑概念,而永久代和元空间分别是不同JVM实现中方法区的不同实现方式。在JDK7及以前，方法区是永久代，在JVM堆内存中；JDK8及以后，方法区是元空间，使用的是本地内存。</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>方法区</p>
+<ul class="lvl-2">
+<li class="lvl-4">方法区(Method Area)是各个线程<strong>共享的内存区域</strong>。</li>
+<li class="lvl-4">方法区的作用
+<ul class="lvl-4">
+<li class="lvl-6"><strong>存储类信息</strong>：方法区存储每个类的结构信息,如运行时常量池、字段信息、方法信息、构造函数信息、类初始化信息等元数据。</li>
+<li class="lvl-6"><strong>存储静态变量</strong>：方法区为类中的静态变量分配内存空间,并在类加载时进行静态变量赋值操作。</li>
+<li class="lvl-6"><strong>存储JIT编译后的代码</strong>：JIT(Just-In-Time)编译器在运行时将字节码编译为本地机器码,并存储在方法区中以提高运行效率。</li>
+</ul>
+</li>
+<li class="lvl-4">虚拟机启动的时候创建，关闭虚拟机时释放</li>
+<li class="lvl-4">如果方法区域中的内存无法满足分配请求，则会抛出OutOfMemoryError：Metaspace</li>
+</ul>
+<p>这段代码演示了如何通过不断生成类的二进制字节码来导致元空间内存溢出。在Java8中，类的元数据存储在元空间（Metaspace）中，而不是传统的永久代。当我们不断生成新的类，并加载它们时，元空间的内存占用会不断增加。在这段代码中，通过循环生成大量的类，每个类都有自己的二进制字节码，并通过ClassLoader的defineClass方法加载这些类，导致元空间内存不断增长，最终触发OutOfMemoryError: Metaspace异常。这段代码不会导致堆内存溢出的原因是它并没有创建大量的对象实例，而是不断创建类的定义和对应的字节码。这些类定义存储在元空间（Metaspace）中，而不是堆内存中。</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519110410733.png" alt="image-20240519110410733" style="zoom:25%;">
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 演示元空间内存溢出java.lang.OutOfMemoryError: Metaspace</span></span><br><span class="line"><span class="comment"> * -XX:MaxMetaspaceSize=8m</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MetaspaceDemo</span> <span class="keyword">extends</span> <span class="title class_">ClassLoader</span> &#123; <span class="comment">// 可以用来加载类的二进制字节码</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">MetaspaceDemo</span> <span class="variable">test</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">MetaspaceDemo</span>();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">10000</span>; i++) &#123;</span><br><span class="line">            <span class="comment">// classWriter作用是生成类的二进制字节码</span></span><br><span class="line">            <span class="type">ClassWriter</span> <span class="variable">cw</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ClassWriter</span>(i: <span class="number">0</span>); </span><br><span class="line">            <span class="comment">// 版本号，public，类名，包名，父类，接口</span></span><br><span class="line">            cw.visit(Opcodes.V1_8, Opcodes.ACC_PUBLIC, <span class="string">&quot;class&quot;</span> + i, <span class="literal">null</span>, <span class="string">&quot;java/lang/Object&quot;</span>, <span class="literal">null</span>);</span><br><span class="line">            <span class="comment">// 返回byte[]</span></span><br><span class="line">            <span class="type">byte</span>[] code = cw.toByteArray();</span><br><span class="line">            <span class="comment">// 执行了类的加载</span></span><br><span class="line">            test.defineClass(<span class="string">&quot;class&quot;</span> + i, code, <span class="number">0</span>, code.length); <span class="comment">// class 对象</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li class="lvl-2">
+<p>常量池</p>
+<p>常量池是Class文件中的一部分,用于存储编译期生成的字面量和符号引用。可以看作是一张表，虚拟机指令根据这张常量表找到要执行的类名、方法名、参数类型、字面量等信息。</p>
+<p>下图所示的方法中的机器指令需要去常量池中查找对应的信息。</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519112352214.png" alt="image-20240519112352214" style="zoom:33%;">
+</li>
+<li class="lvl-2">
+<p>运行时常量池</p>
+<p>运行时常量池是方法区的一部分，用于存储常量池中的符号引用。在类加载的解析阶段，虚拟机将常量池中的符号引用替换为直接引用，指向运行时内存中的目标实体。常量池包含在<code>*.class</code>文件中，当类被加载时，其常量池信息会被放入<strong>运行时常量池</strong>，并将其中的符号地址转换为真实地址。</p>
+<p>运行时常量池还会在运行期间动态地向其中添加一些新的常量,例如String.intern()方法会把字符串对象的引用添加到运行时常量池中。</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519112639042.png" alt="image-20240519112639042" style="zoom:33%;">
+</li>
+</ul>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519112753532.png" alt="image-20240519112753532" style="zoom:50%;">
+<hr>
+<h5 id="你听过直接内存吗">你听过直接内存吗<a class="headerlink" href="#你听过直接内存吗"></a></h5>
+<p>直接内存：并不属于VM中的内存结构，不由VM进行管理。是虚拟机的系统内存，常见于NIO 操作时，用于数据缓冲区，它分配回收成本较高，但读写性能高。IO缓冲区在堆内存中分配的。</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>举例：Java代码完成文件拷贝</p>
+<p>在使用Java代码完成文件拷贝时，我们可以选择常规IO或者NIO两种方式进行操作。但实际上，使用NIO的效率更高。</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519113430230.png" alt="image-20240519113430230" style="zoom:25%;">
+<ul class="lvl-2">
+<li class="lvl-4">
+<p>常规IO操作：</p>
+<p>Java本身不具备磁盘读写能力，必须调用操作系统的方法（native）。首先会将Java的运行状态由用户态切换到内核态，切换到内核态后，由系统的函数去读取磁盘中的文件。读取出来后在系统内存中划出一块缓冲区，先将文件存入系统缓冲区（分批次）。但是对于此缓冲区，Java代码不能直接访问，会在堆中分配一块内存，这对应我们代码中<code>new</code>了一个<code>byte[]</code>。Java代码要访问刚才读到的数据，必须从系统缓冲区中间接读入到Java缓冲区；读入后再调用输出流的写入操作，进行反复读写，才能将文件复制到一个指定位置。</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519114627539.png" alt="image-20240519114627539" style="zoom:33%;">
+</li>
+<li class="lvl-4">
+<p>NIO操作：</p>
+<p>常规IO过程中有两个缓冲区，效率不高。对于直接内存，Java代码能访问它，系统也能访问它。使用直接内存，对比常规IO少了一次缓冲区复制操作，效率自然更高。</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519114756598.png" alt="image-20240519114756598" style="zoom:33%;">
+</li>
+</ul>
+</li>
+</ul>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519114815094.png" alt="image-20240519114815094" style="zoom:50%;">
+<h4 id="类加载器">类加载器<a class="headerlink" href="#类加载器"></a></h4>
+<hr>
+<h5 id="什么是类加载器、双亲委派机制">什么是类加载器、双亲委派机制<a class="headerlink" href="#什么是类加载器、双亲委派机制"></a></h5>
+<h6 id="类加载器-v2">类加载器<a class="headerlink" href="#类加载器-v2"></a></h6>
+<p>类加载器(ClassLoader)是Java虚拟机的一个重要组件,<strong>主要负责将class文件加载到JVM中</strong>,并为已加载类创建一个java.lang.Class对象实例。</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>类加载器的作用：</p>
+<ol>
+<li class="lvl-5">将class文件加载到内存中，并创建一个java.lang.Class对象实例。</li>
+<li class="lvl-5">确保JVM中有且只有一个Class实例。即使多个ClassLoader加载同一个Class文件，内存中只存在一个Class实例。</li>
+<li class="lvl-5">实现类的动态加载，如代码热替换、模块化程序设计等。</li>
+</ol>
+</li>
+<li class="lvl-2">
+<p>类加载器的种类：</p>
+<ol>
+<li class="lvl-5">启动类加载器（Bootstrap ClassLoader）：负责加载Java核心类库，如rt.jar、resources.jar等位于<code>JAVA_HOME/jre/lib</code>下的，无法被Java程序直接引用。</li>
+<li class="lvl-5">扩展类加载器（Extension ClassLoader）：负责加载Java扩展类库，如<code>%JAVA_HOME%/jre/lib/ext</code>目录下的jar包。</li>
+<li class="lvl-5">应用程序类加载器（Application ClassLoader）：负责加载用户类路径（<code>ClassPath</code>）上的类库。</li>
+</ol>
+</li>
+</ul>
+<p>除了上述三种，用户还可以自定义类加载器（Customize ClassLoader），以实现特殊需求。</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519125023561.png" alt="image-20240519125023561" style="zoom:33%;">
+<h6 id="双亲委派机制">双亲委派机制<a class="headerlink" href="#双亲委派机制"></a></h6>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>双亲委派模型</p>
+<p>双亲委派模型是Java虚拟机的一种类加载机制。它的工作原理是:当一个ClassLoader实例需要加载某个类时,它会先把这个请求委派给父类加载器去完成,每一个层次的ClassLoader实例都是如此,因此所有的类加载请求最终都应该被传递到最顶层的启动类加载器中。</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519125637347.png" alt="image-20240519125637347" style="zoom:25%;">
+</li>
+<li class="lvl-2">
+<p>为什么JVM采用双亲委派模型</p>
+<ol>
+<li class="lvl-5">
+<p>通过双亲委派机制可以避免某一个类被重复加载，当父类已经加载后则无需重复加载，保证唯一性。</p>
+</li>
+<li class="lvl-5">
+<p>防止核心API被篡改。</p>
+<p>如果我们自定义一个<code>String</code>类，它的包名也是<code>java.lang</code>，它其中定义了一个方法，我们尝试运行将会报错。如下：</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519130043100.png" alt="image-20240519130043100" style="zoom:33%;">
+</li>
+</ol>
+</li>
+<li class="lvl-2">
+<p>打破双亲委派模型</p>
+<p>虽然双亲委派模型是很好的设计,但也存在一些场景需要打破它:</p>
+<ol>
+<li class="lvl-5">
+<p><strong>使用线程上下文类加载器</strong></p>
+<p>这是最常见的一种,比如SPI实现、JNDI服务等会用到线程上下文类加载器。它打破了双亲委派模型的委派规则,可以对指定的类使用当前线程的类加载器进行加载。</p>
+</li>
+<li class="lvl-5">
+<p><strong>重写loadClass方法</strong></p>
+<p>我们可以自定义一个类加载器,重写其loadClass方法,在该方法中先委派父加载器加载,若父加载器无法加载则使用自身的加载逻辑。这种方式打破了双亲委派模型的父优先原则。</p>
+</li>
+<li class="lvl-5">
+<p><strong>使用热部署、代码热替换</strong></p>
+<p>这种场景下需要自定义类加载器加载新的类文件,而不能使用双亲委派模型。</p>
+</li>
+<li class="lvl-5">
+<p><strong>扩展或修改某些核心类</strong></p>
+<p>比如修改java.net.URLConnection等核心类,需要自定义类加载器直接加载这些类。</p>
+</li>
+<li class="lvl-5">
+<p><strong>Tomcat容器打破双亲委派模型</strong></p>
+<p>Tomcat容器会为每个Web应用创建一个独立的类加载器实例,以实现不同Web应用的类加载隔离。</p>
+</li>
+</ol>
+<p>要打破双亲委派模型,直接重写loadClass方法即可。但是不能破坏启动类加载器的工作,否则会导致程序崩溃。</p>
+</li>
+</ul>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519130148380.png" alt="image-20240519130148380" style="zoom:50%;">
+<hr>
+<h5 id="类装载的执行过程">类装载的执行过程<a class="headerlink" href="#类装载的执行过程"></a></h5>
+<p>类从加载到虚拟机中开始，直到卸载为止，它的整个生命周期包括了：加载、验证、准备、解析、初始化、使用和卸载这7个阶段。其中，验证、准备和解析这三个部分统称为连接（linking）。</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519135842384.png" alt="image-20240519135842384" style="zoom:33%;">
+<h6 id="加载-Loading">加载(Loading)<a class="headerlink" href="#加载-Loading"></a></h6>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>通过类的全名，获取类的二进制数据流。</p>
+</li>
+<li class="lvl-2">
+<p>解析类的二进制数据流为方法区内的数据结构（Java类模型）</p>
+</li>
+<li class="lvl-2">
+<p>创建java.lang.Class类的实例，代表该类。作为方法区这个类的各种数据的访问入口</p>
+</li>
+</ul>
+<p>当一个类（比如Person类）被类加载器加载后，它会被存入运行时数据区。这个数据区分为方法区（元空间）和堆。在方法区，存储着该类的结构信息，包括构造函数、方法、字段等；而在堆中，存放的是该类的Class对象。当我们创建类的实例时（比如&quot;张三&quot;、“李四”），这些对象的对象头都会指向堆中的Class对象。但是，具体的类数据（比如构造函数、方法、字段等）需要通过方法区才能获取。因此，Person的Class对象可以在方法区中找到Person类的信息，并根据这个信息结构来创建这些实例对象。</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519141353629.png" alt="image-20240519141353629" style="zoom:33%;">
+<h6 id="链接-Linking">链接(Linking)<a class="headerlink" href="#链接-Linking"></a></h6>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><strong>验证(Verify)</strong>: 确保加载的类信息符合JVM规范,没有安全方面的问题。</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519141711813.png" alt="image-20240519141711813" style="zoom:33%;">
+</li>
+<li class="lvl-2">
+<p><strong>准备(Prepare)</strong>: 为类的静态变量分配内存并设置默认初始值。</p>
+<ul class="lvl-2">
+<li class="lvl-4">static变量在准备阶段分配空间，基本类型会被设置为默认值（int类型为0），真正赋值在初始化阶段完成。</li>
+<li class="lvl-4">对于static变量是final的基本类型或字符串常量，其值在准备阶段已确定，直接赋值，而非null。</li>
+<li class="lvl-4">对于static变量是final的引用类型，同样在准备阶段初始化，实际赋值也在初始化阶段完成。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Application</span> &#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="type">int</span> <span class="variable">b</span> <span class="operator">=</span> <span class="number">10</span>; <span class="comment">// 准备阶段：b = 0；初始化阶段：b = 10</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> <span class="variable">c</span> <span class="operator">=</span> <span class="number">20</span>; <span class="comment">// 准备阶段和初始化阶段：c = 20</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">d</span> <span class="operator">=</span> <span class="string">&quot;hello&quot;</span>; <span class="comment">// 准备阶段和初始化阶段：d = &quot;hello&quot;</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">Object</span> <span class="variable">obj</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Object</span>(); <span class="comment">// 准备阶段：obj = null；初始化阶段：obj = new Object()</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li class="lvl-2">
+<p><strong>解析(Resolve)</strong>: 将类的二进制数据中的符号引用转换为直接引用。</p>
+<p>比如：方法中调用了其他方法，方法名可以理解为符号引用，而直接引用就是使用指针直接指向方法。</p>
+<p>下图中，<code>#21</code>这种是符号引用，<code>java/io/PrintStream</code>才是真正的方法</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519142733920.png" alt="image-20240519142733920" style="zoom:25%;">
+</li>
+</ul>
+<h6 id="初始化-Initialization">初始化(Initialization)<a class="headerlink" href="#初始化-Initialization"></a></h6>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>对于类的静态变量和静态代码块的初始化操作，遵循以下规则：</p>
+<ol>
+<li class="lvl-5">
+<p>当初始化一个类时，如果其父类尚未初始化，则会优先初始化其父类。</p>
+</li>
+<li class="lvl-5">
+<p>如果一个类中同时包含多个静态变量和静态代码块，则按照自上而下的顺序依次执行。</p>
+<ul class="lvl-4">
+<li class="lvl-7">
+<p><strong>静态变量赋值：</strong></p>
+<ul class="lvl-6">
+<li class="lvl-9">JVM会为类的静态变量分配内存并设置默认初始值（如0、false、null等），然后按照源码中定义的顺序执行显式的静态变量赋值操作。</li>
+</ul>
+</li>
+<li class="lvl-7">
+<p><strong>静态代码块执行：</strong></p>
+<ul class="lvl-6">
+<li class="lvl-9">JVM会执行类中的静态代码块，这些代码块是使用static关键字修饰的，位于类中的任何静态方法之外，并按照出现的顺序执行。</li>
+</ul>
+</li>
+<li class="lvl-7">
+<p><strong>静态方法执行：</strong></p>
+<ul class="lvl-6">
+<li class="lvl-9">如果存在显式的静态方法调用，相应的静态方法也会在初始化阶段被执行。</li>
+<li class="lvl-9">执行顺序为：
+<ol>
+<li class="lvl-12">静态变量和静态代码块按照源码顺序执行。</li>
+<li class="lvl-12">静态方法执行。</li>
+</ol>
+</li>
+</ul>
+</li>
+<li class="lvl-7">
+<p>静态变量只会在程序第一次主动使用该类时才会被初始化。</p>
+</li>
+</ul>
+</li>
+<li class="lvl-5">
+<p>当子类访问父类的静态变量时，只会触发父类的初始化。</p>
+</li>
+</ol>
+</li>
+</ul>
+<h6 id="使用-Usage">使用(Usage)<a class="headerlink" href="#使用-Usage"></a></h6>
+<p>JVM 开始从入口方法开始执行用户的程序代码，下述操作将被视为使用此类。</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>调用静态类成员信息（比如：静态字段、静态方法）</p>
+</li>
+<li class="lvl-2">
+<p>使用new关键字为其创建对象实例</p>
+</li>
+</ul>
+<h6 id="卸载-Uninstall">卸载(Uninstall)<a class="headerlink" href="#卸载-Uninstall"></a></h6>
+<p>当一个类的所有实例对象都已经被回收,并且在运行时常量池中没有其他地方引用这个类的常量时,JVM就可以卸载这个类了。</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519145311809.png" alt="image-20240519145311809" style="zoom:33%;">
+<h4 id="垃圾回收">垃圾回收<a class="headerlink" href="#垃圾回收"></a></h4>
+<hr>
+<h5 id="对象什么时候可以被垃圾器回收">对象什么时候可以被垃圾器回收<a class="headerlink" href="#对象什么时候可以被垃圾器回收"></a></h5>
+<p>垃圾回收主要指的是堆中的数据。简单一句就是：如果一个或多个对象没有任何的引用指向它了，那么这个对象现在就是垃圾，如果定位了垃圾，则有可能会被垃圾回收器回收。</p>
+<p>要定位什么是垃圾，有两种方式来确定，第一个是<strong>引用计数法</strong>，第二个是<strong>可达性分析算法</strong></p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>引用计数法</p>
+<p>一个对象被引用了一次，在当前的对象头上递增一次引用次数，如果这个对象的引用次数为0，代表这个对象可回收。</p>
+<ul class="lvl-2">
+<li class="lvl-4">
+<p>示例</p>
+<p>下述案例中，demo是个String类型。一开始它是引用到了堆中的一个String(“123”)，后面demo又被赋为null；那么栈对堆中对象的引用将会断开，现在的引用次数也就是0。</p>
+<div style="display: flex; max-width: 100%;">
+    <img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519150436490.png" alt="image-20240519150436490" style="max-width: 50%; height: auto;">
+    <img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519150154375.png" alt="image-20240519150154375" style="max-width: 50%; height: auto;">
+</div>
+<ul class="lvl-4">
+<li class="lvl-6">
+<p>当对象间出现了循环引用的话，则引用计数法就会失效</p>
+<ul class="lvl-6">
+<li class="lvl-8">
+<p>现在的Demo类的成员变量中包含了一个Demo对象instance，现在我们创建两个Demo对象a,b，然后让a的instance指向b，b的instance指向a，它们现在在内存中的状况如左图所示。它们的ref都是2（a：栈中引用和b的引用；b：栈中引用和a的引用）。</p>
+<p>然后再将a,b分别指向null，那么栈中两个变量就不再引用堆中那两个内存了，就会断开。断开后，ref就分别减一，但是它们都不为0。即使它们没有被使用，也不会被回收。如右图所示。出现了这种情况，就是循环引用了，容易引发内存泄漏。</p>
+</li>
+</ul>
+<div style="display: flex; max-width: 100%;">
+    <img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519151025365.png" alt="image-20240519151025365" style="max-width: 50%; height: auto;">
+    <img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519151632709.png" alt="image-20240519151632709" style="max-width: 50%; height: auto;">
+</div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="lvl-2">
+<p>可达性分析算法：</p>
+<p>现在的虚拟机采用的都是通过可达性分析算法来确定哪些内容是垃圾。</p>
+<p>Java虚拟机中的垃圾回收器采用可达性分析来探索所有存活的对象。它的工作原理是扫描堆中的对象，看是否能够沿着GC Root对象为起点的引用链找到该对象。如果找不到这样的引用链，表示该对象不再被任何活动对象所引用，可以被回收。</p>
+<ul class="lvl-2">
+<li class="lvl-4">
+<p>下图中，X-Y节点是可回收的。</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519152022020.png" alt="image-20240519152022020" style="zoom:25%;">
+</li>
+<li class="lvl-4">
+<p>哪些对象可以作为GC Root</p>
+<ol>
+<li class="lvl-7">
+<p><strong>虚拟机栈(栈帧中的本地变量表)中引用的对象</strong>：例如，一个方法中定义了一个局部变量，引用了一个对象实例。这个对象实例就可以作为GC Root。例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">method</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">Object</span> <span class="variable">obj</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Object</span>(); <span class="comment">// obj 是局部变量，引用了一个对象实例</span></span><br><span class="line">    <span class="comment">// obj 可以作为GC Root</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li class="lvl-7">
+<p><strong>方法区中 类的静态属性引用的对象</strong>：例如，一个类的静态变量引用了一个对象实例。这个对象实例就可以作为GC Root。例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Example</span> &#123;		  <span class="comment">// 类</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Object obj; <span class="comment">// 静态变量引用了一个对象实例</span></span><br><span class="line">    <span class="comment">// obj 可以作为GC Root</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li class="lvl-7">
+<p><strong>方法区中常量引用的对象</strong>：例如，一个常量池中的常量引用了一个对象实例。这个对象实例就可以作为GC Root。例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Example</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">Object</span> <span class="variable">obj</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Object</span>(); <span class="comment">// 常量引用了一个对象实例</span></span><br><span class="line">    <span class="comment">// obj 可以作为GC Root</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li class="lvl-7">
+<p><strong>本地方法栈中JNI(Native方法)引用的对象</strong>：例如，一个Native方法中引用了一个对象实例。这个对象实例也可以作为GC Root。</p>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519154624651.png" alt="image-20240519154624651" style="zoom:33%;">
+<hr>
+<h5 id="JVM垃圾回收算法有哪些">JVM垃圾回收算法有哪些<a class="headerlink" href="#JVM垃圾回收算法有哪些"></a></h5>
+<table>
+<thead>
+<tr>
+<th>垃圾回收算法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>标记-清除(Mark-Sweep)算法</strong></td>
+<td>标记阶段标记出所有需要回收的对象,清除阶段统一回收被标记的对象。它的缺点是会产生内存碎片。</td>
+</tr>
+<tr>
+<td><strong>复制(Copying)算法</strong></td>
+<td>将内存分为两块,每次只使用其中一块,当一块用完时将存活对象复制到另一块,然后清理已使用的那一块。</td>
+</tr>
+<tr>
+<td><strong>标记-整理(Mark-Compact)算法</strong></td>
+<td>先标记存活对象,然后将所有存活对象压缩到内存的一端,之后清理边界外所有空间。避免了内存碎片,但需要移动对象。</td>
+</tr>
+<tr>
+<td>分代收集(Generational Collection)算法</td>
+<td>根据对象存活周期,将内存划分为新生代和老年代,使用不同的垃圾回收算法。新生代使用复制算法,老年代使用标记-整理或标记-清除算法。</td>
+</tr>
+</tbody>
+</table>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><strong>标记清除算法</strong></p>
+<p>将垃圾回收分为两个阶段：标记和清除。</p>
+<ol>
+<li class="lvl-5">
+<p><strong>标记阶段</strong>：根据可达性分析算法标记出需要回收的垃圾对象。</p>
+</li>
+<li class="lvl-5">
+<p><strong>清除阶段</strong>：对标记为可回收的对象进行垃圾回收。</p>
+</li>
+</ol>
+<p>优点：标记和清除速度较快。缺点：碎片化严重，内存不连续。</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519155028027.png" alt="image-20240519155028027" style="zoom:33%;">
+</li>
+<li class="lvl-2">
+<p><strong>标记-整理算法</strong></p>
+<p>标记-整理算法与标记清除算法相似，都包含标记和清除阶段，但标记-整理算法额外增加了整理阶段。这一阶段将碎片化的内存整理到连续的内存空间上，提高了内存的可用性。虽然解决了标记清除算法的碎片化问题，但由于需要对象移动内存位置，其效率受到一定影响。</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519155421729.png" alt="image-20240519155421729" style="zoom:33%;">
+</li>
+<li class="lvl-2">
+<p><strong>复制算法</strong></p>
+<p>复制算法将内存分为两块，在进行垃圾回收时，将存活的对象复制并整理到另一块内存区域，等复制完成，全部清空原来的内存即可。</p>
+<p>优点：在存在大量垃圾对象的情况下，具有较高的效率。清理后，内存无碎片。</p>
+<p>缺点：分配的两块内存空间，在同一时刻只能使用其中一半，导致内存使用率较低。</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519155632628.png" alt="image-20240519155632628" style="zoom:33%;">
+</li>
+</ul>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519160117501.png" alt="image-20240519160117501" style="zoom:50%;">
+<hr>
+<h5 id="JVM中分代回收">JVM中分代回收<a class="headerlink" href="#JVM中分代回收"></a></h5>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>分代收集算法</p>
+<p>在Java 8 默认的垃圾回收算法中，堆被分为了两个部分：新生代和老年代，比例为 1:2。在新生代中，又被划分为三个部分：</p>
+<ul class="lvl-2">
+<li class="lvl-4">
+<p>伊甸园区（Eden）：新创建的对象都分配在这里。</p>
+</li>
+<li class="lvl-4">
+<p>幸存者区（Survivor），分成了 from 和 to 区。（from，to只是为了做区分起的逻辑名称而已）</p>
+</li>
+</ul>
+<p>其中，伊甸园区、from 区和 to 区的比例为 8:1:1。</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519160417244.png" alt="image-20240519160417244" style="zoom:33%;">
+</li>
+<li class="lvl-2">
+<p>分代收集算法-工作机制</p>
+<ol>
+<li class="lvl-5">新创建的对象首先被分配到伊甸园区。</li>
+<li class="lvl-5">当伊甸园区内存不足时，会标记伊甸园区和 from 区（如果存在）中的存活对象。</li>
+<li class="lvl-5">存活对象使用复制算法被复制到 to 区，完成复制后，伊甸园区和 from 区内存都被释放。</li>
+<li class="lvl-5">一段时间后，伊甸园区的内存再次不足，会标记伊甸园区和 to 区中的存活对象，将存活对象复制到 from 区。</li>
+<li class="lvl-5">当幸存区对象经过多次回收（最多15次）后，会晋升到老年代。若幸存区内存不足或存在大对象，则可能提前晋升。</li>
+</ol>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519162046236.png" alt="image-20240519162046236" style="zoom:33%;">
+</li>
+<li class="lvl-2">
+<p>MinorGC、MixedGC、FullGC的区别是什么</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519162707504.png" alt="image-20240519162707504" style="zoom:33%;">
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>描述</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Minor GC</td>
+<td>发生在新生代的垃圾回收，暂停时间短（STW）</td>
+<td>对新生代进行部分回收</td>
+</tr>
+<tr>
+<td>Mixed GC</td>
+<td>新生代+老年代部分区域的垃圾回收，G1 收集器特有</td>
+<td>针对新生代和老年代的部分区域进行回收</td>
+</tr>
+<tr>
+<td>Full GC</td>
+<td>新生代+老年代完整垃圾回收，暂停时间长（STW）</td>
+<td>对整个堆内存进行完整的回收</td>
+</tr>
+</tbody>
+</table>
+<ul class="lvl-2">
+<li class="lvl-4">
+<p>STW（Stop-The-World）：暂停所有应用程序线程，等待垃圾回收的完成。</p>
+</li>
+</ul>
+</li>
+</ul>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519162809950.png" alt="image-20240519162809950" style="zoom:50%;">
+<hr>
+<h5 id="JVM有哪些垃圾回收器">JVM有哪些垃圾回收器<a class="headerlink" href="#JVM有哪些垃圾回收器"></a></h5>
+<p>在JDK8中，默认的垃圾回收器是Parallel Scavenge（新生代）与Parallel Old（老年代）的组合。ParNew 通常是与CMS并发标记扫描垃圾收集器搭配使用的年轻代收集器。</p>
+<p>在 JVM 中，实现了多种垃圾收集器，包括：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>串行垃圾收集器</p>
+</li>
+<li class="lvl-2">
+<p>并行垃圾收集器</p>
+</li>
+<li class="lvl-2">
+<p>CMS（并发）垃圾收集器</p>
+</li>
+<li class="lvl-2">
+<p>G1 垃圾收集器</p>
+</li>
+</ul>
+<h6 id="串行垃圾收集器">串行垃圾收集器<a class="headerlink" href="#串行垃圾收集器"></a></h6>
+<p>在 JVM 中，Serial 和 SerialOld 串行垃圾收集器使用单线程进行垃圾回收。它们适用于堆内存较小的场景，比如个人电脑。Serial 收集器作用于新生代，采用复制算法；而 SerialOld 收集器作用于老年代，采用标记-整理算法。在垃圾回收时，只有一个线程在工作，并且 Java 应用中的所有线程都要暂停（STW），等待垃圾回收的完成。</p>
+<p>当程序运行到某个安全点时，就会触发垃圾回收。这时将会阻塞所有线程，而有一个单独的线程区进行垃圾回收。当此垃圾回收器运行结束，将恢复原来阻塞的线程。</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519163356088.png" alt="image-20240519163356088" style="zoom:33%;">
+<h6 id="并行垃圾回收器">并行垃圾回收器<a class="headerlink" href="#并行垃圾回收器"></a></h6>
+<p>ParallelNew 和 ParallelOld 是并行垃圾回收器，是 JDK 8 默认使用的垃圾回收器。</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>ParallelNew 作用于新生代，采用复制算法。</p>
+</li>
+<li class="lvl-2">
+<p>ParallelOld 作用于老年代，采用标记-整理算法。</p>
+</li>
+</ul>
+<p>在垃圾回收时，多个线程同时工作，并且 Java 应用中的所有线程都要暂停（STW），等待垃圾回收的完成。</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519163827947.png" alt="image-20240519163827947" style="zoom:33%;">
+<h6 id="CMS（并发）垃圾回收器">CMS（并发）垃圾回收器<a class="headerlink" href="#CMS（并发）垃圾回收器"></a></h6>
+<p>CMS全称Concurrent Mark Sweep，是一款<strong>并发</strong>的、使用<strong>标记-清除</strong>算法的垃圾回收器，该回收器是<strong>针对老年代垃圾回收</strong>的，是一款以获取最短回收停顿时间为目标的收集器，停顿时间短，用户体验就好。其最大特点是在进行垃圾回收时，应用仍然能正常运行。</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519164258259.png" alt="image-20240519164258259" style="zoom:25%;">
+<p>在CMS垃圾回收过程中，首先进行初始标记，仅标记与GC Root相关联的对象。然后，在并发标记阶段，追踪GC Root的引用链，并标记沿途的对象为存活对象。接着是重新标记阶段，因为在并发标记完成后，原先未标记为存活对象的对象被重新引用（与GC Root树关联），或者原先被标记为存活对象的对象的引用为0，需要将其作为垃圾对象回收。完成重新标记后，进行并发清理阶段，清理时其他线程也可以继续正常运行。</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519164925046.png" alt="image-20240519164925046" style="zoom:33%;">
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519165317309.png" alt="image-20240519165317309" style="zoom:50%;">
+<hr>
+<h5 id="G1垃圾回收器">G1垃圾回收器<a class="headerlink" href="#G1垃圾回收器"></a></h5>
+<p>在JDK9及以后的版本中，默认使用G1垃圾回收器，它适用于新生代和老年代。G1将堆内存划分为多个区域，每个区域都可以充当Eden、Survivor、Old、以及专为大对象准备的Humongous。该回收器采用复制算法，并兼顾了响应时间和吞吐量。G1的垃圾回收过程分为三个阶段：新生代回收、并发标记和混合收集。如果并发失败（即回收速度赶不上创建新对象速度），会触发FulIGC。</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519165733630.png" alt="image-20240519165733630" style="zoom:25%;">
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><strong>Young Collection （年轻代垃圾回收）</strong></p>
+<p>初始时，所有区域都处于空闲状态。随着对象的创建，一些空闲区域被选为伊甸园区存储这些对象。当伊甸园区需要垃圾回收时，会选择一个空闲区域作为幸存区，并使用复制算法复制存活对象。这个过程需要暂停用户线程。</p>
+<p>下图中，表示整个堆空间被划分为大小相等的区域，每个区域都可用作伊甸园、幸存者、老年代。随着对象增加，伊甸园区被填满，触发新生代的垃圾回收。G1中，伊甸园的垃圾回收采用复制算法，标记存活对象后复制到幸存者区域，其余区域释放。尽管复制算法需要暂停，但由于幸存者对象较少，暂停时间较短。</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519171405507.png" alt="image-20240519171405507" style="zoom:33%;">
+<p>随着时间流逝，伊甸园内存再次不足，将伊甸园及之前幸存区中的存活对象采用复制算法，复制到新的幸存区中；较老的对象晋升到老年代。然后，这些伊甸园区和上一次的幸存者区就可以释放了。</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519171746385.png" alt="image-20240519171746385" style="zoom:33%;">
+</li>
+<li class="lvl-2">
+<p><strong>Young Collection + Concurrent Mark (年轻代垃圾回收+并发标记)</strong></p>
+<ul class="lvl-2">
+<li class="lvl-4">
+<p>当老年代内存使用超过默认阈值（通常为45%）时，会触发并发标记。此时不会暂停用户线程。然而，它还会执行一次查漏操作，处理未正确标记的对象，进行重新标记。这个过程需要STW。</p>
+</li>
+<li class="lvl-4">
+<p>完成重新标记后，系统了解了老年代中的存活对象，并进入混合收集（E，S，O区都进行收集）阶段。在这个阶段，不会对所有老年代区域进行回收，而是根据<strong>暂停时间目标</strong>优先回收价值高（存活对象较少）的区域。这也是“Gabage First”名称的由来。</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519172517129.png" alt="image-20240519172517129" style="zoom:33%;">
+</li>
+</ul>
+</li>
+<li class="lvl-2">
+<p><strong>Mixed Collection （混合垃圾回收）</strong></p>
+<p>在混合收集阶段，参与复制的区域包括伊甸园Eden、幸存者Survivor和老年代Old。</p>
+<p>在这个阶段，伊甸园区和幸存者区中的存活对象会被复制到一个新的幸存者区（左图中蓝箭头所示）。同时，老年代区域中的存活对象数量较少的区域，以及达到一定阈值的对象，也会被复制到一个新的老年区（左图中红箭头所示）。完成这些复制后，原来的伊甸园、幸存者和老年代区域就可以被释放（右图）。</p>
+<div style="display:flex; justify-content:center; align-items:center;">
+  <img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519173207360.png" alt="image-20240519173207360" style="width:50%; margin-right:5px;">
+  <img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519173334460.png" alt="image-20240519173334460" style="width:50%; margin-left:5px;">
+</div>
+<p>在后续可能进行多次混合收集，将剩下的老年代再重新标记、清理之后，内存也逐渐释放了。当进行到了多次的混合收集，又会进行下一轮的新生代回收、并发标记、混合收集。</p>
+<p>当然，如果垃圾回收速度跟不上分配新对象的速度，那这时候就可能并发失败，这将会触发一次FullGC，导致所有线程阻塞。</p>
+<p>如果一个对象太大了，一个区域装不下，会分配一个连续的区域来存储巨型对象。</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519174105501.png" alt="image-20240519174105501" style="zoom:33%;">
+</li>
+</ul>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519174132244.png" alt="image-20240519174132244" style="zoom:50%;">
+<hr>
+<h5 id="强引用、软引用、弱引用、虚引用的区别">强引用、软引用、弱引用、虚引用的区别<a class="headerlink" href="#强引用、软引用、弱引用、虚引用的区别"></a></h5>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><strong>强引用(Strong Reference)</strong></p>
+<p>这是我们最常见的普通对象引用。只要GC Root有强引用指向一个对象,该对象就不会被垃圾回收器回收。强引用是造成内存泄漏的主要原因之一。</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519185453734.png" alt="image-20240519185453734" style="zoom:25%;">
+</li>
+</ul>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><strong>软引用(SoftReference)</strong></p>
+<p>如果一个对象只具有软引用,在垃圾回收后，内存仍不足时将会再次触发回收内存。</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519185504513.png" alt="image-20240519185504513" style="zoom: 25%;">
+</li>
+<li class="lvl-2">
+<p><strong>弱引用(WeakReference)</strong></p>
+<p>弱引用的生命周期比软引用短。只要垃圾回收器线程扫描到它,不管当前内存空间足够与否,都会回收这个弱引用指向的对象。弱引用同样适用于内存敏感的缓存,比软引用更加激进。</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519185658849.png" alt="image-20240519185658849" style="zoom: 25%;">
+</li>
+<li class="lvl-2">
+<p><strong>虚引用(PhantomReference)</strong></p>
+<p>虚引用是所有引用中最弱的一种,无法通过它访问对象的任何属性或函数。它仅仅是提供了一种确保对象被finalize以后,做某些事情的机制。虚引用必须和引用队列(ReferenceQueue)联合使用,当垃圾回收器准备回收一个对象时,如果发现它还有虚引用,就会在回收对象内存之前,将这个虚引用加入引用队列。虚引用主要用于跟踪对象被垃圾回收的活动。</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519190603301.png" alt="image-20240519190603301" style="zoom:25%;">
+</li>
+</ul>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519190634645.png" alt="image-20240519190634645" style="zoom:50%;">
+<h4 id="JVM实践">JVM实践<a class="headerlink" href="#JVM实践"></a></h4>
+<hr>
+<h5 id="JVM调优的参数可以在哪里设置参数值">JVM调优的参数可以在哪里设置参数值<a class="headerlink" href="#JVM调优的参数可以在哪里设置参数值"></a></h5>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><strong>war包部署在tomcat中设置</strong></p>
+<p>修改<code>%CATALINA_HOME%/bin/catalina.sh</code>文件</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519190925999.png" alt="image-20240519190925999" style="zoom:33%;">
+</li>
+<li class="lvl-2">
+<p><strong>jar包部署在启动参数设置</strong></p>
+<p>通常在linux系统下直接加参数启动springboot项目</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">nohup</span> java -Xms512m -Xmx1024m -jar xxx.jar --spring.profiles.active=prod &amp;</span><br></pre></td></tr></table></figure>
+<ul class="lvl-2">
+<li class="lvl-4">
+<p>nohup：用于在系统后台不挂断地运行命令，退出终端不会影响程序的运行</p>
+</li>
+<li class="lvl-4">
+<p>参数＆：让命令在后台执行，终端退出后命令仍旧执行</p>
+</li>
+</ul>
+</li>
+<li class="lvl-2">
+<p><strong>jar包在Docker中运行</strong></p>
+<ol>
+<li class="lvl-5">
+<p>在DockerFile中编辑<code>ENTRYPOINT</code></p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> openjdk:<span class="number">8</span>-jdk-alpine</span><br><span class="line"><span class="keyword">COPY</span><span class="language-bash"> target/myapp.jar /app.jar</span></span><br><span class="line"><span class="keyword">ENTRYPOINT</span><span class="language-bash"> [<span class="string">&quot;java&quot;</span>, <span class="string">&quot;-Xms512m&quot;</span>, <span class="string">&quot;-Xmx1g&quot;</span>, <span class="string">&quot;-jar&quot;</span>, <span class="string">&quot;/app.jar&quot;</span>]</span></span><br></pre></td></tr></table></figure>
+</li>
+<li class="lvl-5">
+<p>使用CMD指令</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> openjdk:<span class="number">8</span>-jdk-alpine </span><br><span class="line"><span class="keyword">COPY</span><span class="language-bash"> target/myapp.jar /app.jar</span></span><br><span class="line"><span class="keyword">CMD</span><span class="language-bash"> [<span class="string">&quot;java&quot;</span>, <span class="string">&quot;-Xms512m&quot;</span>, <span class="string">&quot;-Xmx1g&quot;</span>, <span class="string">&quot;-jar&quot;</span>, <span class="string">&quot;/app.jar&quot;</span>]</span></span><br></pre></td></tr></table></figure>
+</li>
+<li class="lvl-5">
+<p>在docker run时传递参数</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -e <span class="string">&quot;JAVA_OPTS=-Xms512m -Xmx1g&quot;</span> myapp</span><br></pre></td></tr></table></figure>
+<p>这里的-e参数用于设置容器的环境变量JAVA_OPTS。在容器内部,你需要从代码或者ENTRYPOINT/CMD中读取该环境变量的值作为JVM启动参数。</p>
+</li>
+</ol>
+</li>
+</ul>
+<hr>
+<h5 id="JVM调优的参数都有哪些？">JVM调优的参数都有哪些？<a class="headerlink" href="#JVM调优的参数都有哪些？"></a></h5>
+<p>对于JVM调优，主要就是调整年轻代、老年代、元空间的内存空间大小及使用的垃圾回收器类型。</p>
+<p>你可以通过访问<a target="_blank" rel="noopener" href="https://www.oracle.com/java/technologies/javase/vmoptions-jsp.html">Java HotSpot VM Options (oracle.com)</a>来查看VM参数。</p>
+<table>
+<thead>
+<tr>
+<th>设置项</th>
+<th>VM指令</th>
+<th>举例</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>堆空间大小</td>
+<td><code>-Xms&lt;size&gt; -Xmx&lt;size&gt;</code></td>
+<td><code>-Xms512m -Xmx1024m</code></td>
+<td>不指定单位默认为字节；指定单位，按照指定的单位设置。可用单位：k,m,g</td>
+</tr>
+<tr>
+<td>虚拟机栈设置</td>
+<td><code>-Xss&lt;size&gt;</code></td>
+<td><code>-Xss256k</code></td>
+<td>默认1m，一般256k就够</td>
+</tr>
+<tr>
+<td>年轻代中Eden区和两个Survivor区的大小比例</td>
+<td><code>-XX:SurvivorRatio=&lt;value&gt;</code></td>
+<td><code>-XX:SurvivorRatio=6</code></td>
+<td>表示Eden区的大小占比，默认为8:1:1</td>
+</tr>
+<tr>
+<td>年轻代晋升老年代阈值</td>
+<td><code>-XX:MaxTenuringThreshold=&lt;value&gt;</code></td>
+<td><code>-XX:MaxTenuringThreshold=10</code></td>
+<td>表示经过多少次挪动会晋升成为老年代，0-15，默认15</td>
+</tr>
+<tr>
+<td>垃圾回收收集器设置</td>
+<td><code>-XX:+Use&lt;CollectorName&gt;</code></td>
+<td><code>-XX:+UseG1GC</code></td>
+<td>表示使用什么样的垃圾回收器</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>设置项</th>
+<th>VM指令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>设置heapdump目录</td>
+<td><code>-XX:HeapDumpPath=$&#123;目录&#125;</code></td>
+<td>表示设置heapdump的生成目录</td>
+</tr>
+<tr>
+<td>设置heapdump在OOM时生成</td>
+<td><code>-XX:+HeapDumpOnOutOfMemoryError</code></td>
+<td>表示配置当程序发生内存溢出时自动生成 dump 文件</td>
+</tr>
+</tbody>
+</table>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>设置堆空间大小</p>
+<p>设置堆的初始大小和最大大小，为了防止垃圾收集器在初始大小、最大大小之间收缩堆而产生额外的时间，通常把最大、初始大小设置为相同的值。</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519192605401.png" alt="image-20240519192605401" style="zoom:33%;">
+<p>设置多少合适：</p>
+<ul class="lvl-2">
+<li class="lvl-4">
+<p>最大大小的默认值是物理内存的1/4，初始大小是物理内存的1/64。</p>
+</li>
+<li class="lvl-4">
+<p>堆太小，可能会频繁的导致年轻代和老年代的垃圾回收，会产生stw，暂停用户线程。</p>
+</li>
+<li class="lvl-4">
+<p>堆内存大肯定是好的。但也存在风险，假如发生了fullgc，它会扫描整个堆空间，暂停用户线程的时间长</p>
+</li>
+</ul>
+</li>
+<li class="lvl-2">
+<p>虚拟机栈的设置</p>
+<p>虚拟机栈的设置：<strong>每个线程默认会开启1M的内存</strong>，用于存放栈顿、调用参数、局部变量等，但一般256K就够用。通常减少每个线程的堆栈，可以产生更多的线程，但这实际上还受限于操作系统。</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519192809473.png" alt="image-20240519192809473" style="zoom:33%;">
+</li>
+<li class="lvl-2">
+<p>年轻代中Eden区和两个Survivor区的大小比例</p>
+<p>设置年轻代中Eden区和两个Survivor区的大小比例。该值如果不设置，则默认比例为8:1:1。通过增大Eden区的大小，来减少YGC发生的次数，但有时我们发现，虽然次数减少了，但Eden区满的时候，由于占用的空间较大，导致释放缓慢，此时STW的时间较长，因此需要按照程序情况去调优。</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519193124283.png" alt="image-20240519193124283" style="zoom:33%;">
+</li>
+<li class="lvl-2">
+<p>年轻代晋升老年代阈值</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519194904457.png" alt="image-20240519194904457" style="zoom:33%;">
+<ul class="lvl-2">
+<li class="lvl-4">
+<p>默认为15</p>
+</li>
+<li class="lvl-4">
+<p>取值范围0-15</p>
+</li>
+</ul>
+</li>
+<li class="lvl-2">
+<p>设置垃圾回收收集器</p>
+<p>通过增大吞吐量提高系统性能，可以通过设置并行垃圾回收收集器</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519195217518.png" alt="image-20240519195217518" style="zoom:25%;">
+</li>
+</ul>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519195528619.png" alt="image-20240519195528619" style="zoom:50%;">
+<hr>
+<h5 id="JVM调试的工具">JVM调试的工具<a class="headerlink" href="#JVM调试的工具"></a></h5>
+<table>
+<thead>
+<tr>
+<th>工具</th>
+<th>描述</th>
+<th>类型</th>
+<th>使用</th>
+<th>说明</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>jps</td>
+<td>查看进程状态信息</td>
+<td>命令行工具</td>
+<td>在目录下运行<code>jps</code>命令</td>
+<td></td>
+<td><img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519200340761.png" alt="image-20240519200340761" style="zoom:25%;"></td>
+</tr>
+<tr>
+<td>jstack</td>
+<td>查看Java进程内线程的堆栈信息</td>
+<td>命令行工具</td>
+<td><code>jstack [option] &lt;pid&gt;</code></td>
+<td></td>
+<td><img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519200514732.png" alt="image-20240519200514732" style="zoom:25%;"></td>
+</tr>
+<tr>
+<td>jmap</td>
+<td>查看堆转储信息</td>
+<td>命令行工具</td>
+<td><code>jmap -heap pid</code>显示Java堆的信息<br><code>jmap -dump:format=b,file=heap.hprof pid</code><br><code>-XX:+HeapDumpOnOutOfMemoryError</code>与<code>-XX:+HeapDumpPath=/home/app/dumps/</code></td>
+<td><code>format=b</code>表示以<code>hprof</code>二进制格式转储Java堆的内存<br><code>file=&lt;filename&gt;</code>用于指定快照<code>dump</code>文件的文件名。</td>
+<td><img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519201101673.png" alt="image-20240519201101673" style="zoom:25%;"></td>
+</tr>
+<tr>
+<td>jhat</td>
+<td>堆转储快照分析工具</td>
+<td>命令行工具</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>jstat</td>
+<td>JVM统计监测工具</td>
+<td>命令行工具</td>
+<td><code>jstat -gcutil pid</code>总结垃圾回收统计<br><code>jstat -gc pid</code>垃圾回收统计</td>
+<td>是VM统计监测工具。可以用来显示垃圾回收信息、类加载信息、新生代统计信息等</td>
+<td><img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519201326408.png" alt="image-20240519201326408" style="zoom:25%;"><img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519201338958.png" alt="image-20240519201338958" style="zoom:25%;"></td>
+</tr>
+<tr>
+<td>jconsole</td>
+<td>用于对JVM的内存，线程，类的监控</td>
+<td>可视化工具</td>
+<td>java 安装目录 bin目录下直接启动jconsole.exe</td>
+<td>用于对jvm的内存，线程，类的监控，是一个基于 jmx 的 GUI 性能监控工具</td>
+<td><img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519201526454.png" alt="image-20240519201526454" style="zoom:25%;"></td>
+</tr>
+<tr>
+<td>VisualVM</td>
+<td>能够监控线程，内存情况</td>
+<td>可视化工具</td>
+<td>java 安装目录 bin目录下 直接启动jvisualvm.exe就行</td>
+<td>能够监控线程，内存情况，查看方法的CPU时间和内存中的对象，已被GC的对象，反向查看分配的堆栈</td>
+<td><img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519201746129.png" alt="image-20240519201746129" style="zoom:25%;"></td>
+</tr>
+</tbody>
+</table>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519201951153.png" alt="image-20240519201951153" style="zoom:33%;">
+<hr>
+<h5 id="Java内存泄漏的排查思路">Java内存泄漏的排查思路<a class="headerlink" href="#Java内存泄漏的排查思路"></a></h5>
+<p>在Java程序运行时，有三块内存可能会导致内存泄漏或溢出的问题，分别是虚拟机栈、方法区、堆空间。其报错分别是<code>StackOverflowError</code>,<code>OutOfMemoryError:Metaspace</code>,<code>OutOfMemoryError:java heap space</code>。其可能的原因分别是递归造成的问题；动态加载的类过多；垃圾处理器来不及回收。</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519202522821.png" alt="image-20240519202522821" style="zoom:33%;">
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>但是我们一般是将服务部署在服务器上，而且使用微服务进行部署。每个微服务都有可能导致内存溢出，很有可能这个项目直接闪退了，或者根本没有运行起来，还有运行了一段时间内存不够了，然后就宕机了。我们可以先去获取堆内存快照文件dump，然后用VisualVM去分析dump文件，通过查看堆信息的情况，定位内存溢出的问题。</p>
+<p>在运行参数上指定要记录dump的错误，然后指定输出路径。然后再在JavaVisualVM上查看即可。</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519203107915.png" alt="image-20240519203107915" style="zoom:33%;">
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519203310434.png" alt="image-20240519203310434" style="zoom:23%;">
+</li>
+</ul>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519203344217.png" alt="image-20240519203344217" style="zoom:50%;">
+<hr>
+<h5 id="CPU飙高的排查方案与思路">CPU飙高的排查方案与思路<a class="headerlink" href="#CPU飙高的排查方案与思路"></a></h5>
+<ol>
+<li class="lvl-3">
+<p>使用<code>top</code>命令查看CPU情况</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519203440515.png" alt="image-20240519203440515" style="zoom:33%;">
+<p>可以发现，PID为40940的进程CPU占用很高</p>
+</li>
+<li class="lvl-3">
+<p>使用<code>ps H</code>命令查看线程</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps H -eo pid,tid,%cpu | grep &lt;PID&gt;</span><br></pre></td></tr></table></figure>
+<p>具体参数解释如下：</p>
+<ul class="lvl-2">
+<li class="lvl-5">
+<p><code>-H</code> 表示显示层级关系（即进程的线程）。</p>
+</li>
+<li class="lvl-5">
+<p><code>-eo pid,tid,%cpu</code> 指定了要显示的字段，包括进程ID（pid）、线程ID（tid）和CPU利用率（%cpu）。</p>
+</li>
+<li class="lvl-5">
+<p><code>|</code> 将 <code>ps</code> 命令的输出传递给 <code>grep</code> 命令。</p>
+</li>
+<li class="lvl-5">
+<p><code>grep &lt;PID&gt;</code> 表示从 <code>ps</code> 命令的输出中筛选出包含 “<code>&lt;PID&gt;</code>” 的行，即查找进程ID为 “<code>&lt;PID&gt;</code>” 的相关信息。</p>
+</li>
+</ul>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519204034127.png" alt="image-20240519204034127" style="zoom:35%;">
+<p>发现TID为<code>2276</code>的线程占用较高。</p>
+</li>
+<li class="lvl-3">
+<p>使用<code>jstack &lt;PID&gt;</code>来查看其线程的详细情况。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jstack &lt;PID&gt;</span><br></pre></td></tr></table></figure>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519204242854.png" alt="image-20240519204242854" style="zoom:33%;">
+<p>然后找到了线程TID为<code>2276</code>的线程（十六进制为<code>8e4</code>）的信息。</p>
+</li>
+<li class="lvl-3">
+<p>可以直接使用<code>cat</code>命令查看java代码。</p>
+</li>
+</ol>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-9/image-20240519204444691.png" alt="image-20240519204444691" style="zoom:33%;">
+</article><div class="post-copyright"><div class="copyright-cc-box"><i class="anzhiyufont anzhiyu-icon-copyright"></i></div><div class="post-copyright__author_box"><a class="post-copyright__author_img" href="/" title="头像"><img class="post-copyright__author_img_back" src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/avatar_joker.jpg" title="头像" alt="头像"><img class="post-copyright__author_img_front" src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/avatar_joker.jpg" title="头像" alt="头像"></a><div class="post-copyright__author_name">Joker2Yue</div><div class="post-copyright__author_desc">Joker2Yue的个人博客</div></div><div class="post-copyright__post__info"><a class="post-copyright__original" title="该文章为原创文章，注意版权协议" href="https://blog.joker2yue.cn/post/gen-sui-hei-ma-mian-java-9/">原创</a><a class="post-copyright-title"><span onclick="rm.copyPageUrl('https://blog.joker2yue.cn/post/gen-sui-hei-ma-mian-java-9/')">跟随黑马面Java-9，JVM篇</span></a></div><div class="post-tools" id="post-tools"><div class="post-tools-left"><div class="rewardLeftButton"><div class="post-reward" onclick="anzhiyu.addRewardMask()"><div class="reward-button button--animated" title="赞赏作者"><i class="anzhiyufont anzhiyu-icon-hand-heart-fill"></i>打赏作者</div><div class="reward-main"><div class="reward-all"><span class="reward-title">感谢你赐予我前进的力量</span><ul class="reward-group"><li class="reward-item"><a href="https://resource.joker2yue.cn/blog/images/reward/wechat.png" target="_blank"><img class="post-qr-code-img" src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/reward/wechat.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://resource.joker2yue.cn/blog/images/reward/alipay.png" target="_blank"><img class="post-qr-code-img" src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/reward/alipay.png" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul><a class="reward-main-btn" href="/about/#about-reward" target="_blank"><div class="reward-text">赞赏者名单</div><div class="reward-dec">因为你们的支持让我意识到写文章的价值🙏</div></a></div></div></div><div id="quit-box" onclick="anzhiyu.removeRewardMask()" style="display: none"></div></div><div class="shareRight"><div class="share-link mobile"><div class="share-qrcode"><div class="share-button" title="使用手机访问这篇文章"><i class="anzhiyufont anzhiyu-icon-qrcode"></i></div><div class="share-main"><div class="share-main-all"><div id="qrcode" title="https://blog.joker2yue.cn/post/gen-sui-hei-ma-mian-java-9/"></div><div class="reward-dec">使用手机访问这篇文章</div></div></div></div></div><div class="share-link weibo"><a class="share-button" target="_blank" href="https://service.weibo.com/share/share.php?title=跟随黑马面Java-9，JVM篇&amp;url=https://blog.joker2yue.cn/post/gen-sui-hei-ma-mian-java-9/&amp;pic=https://resource.joker2yue.cn/blog/images/coverImg/跟随黑马面Java/09.jpg" rel="external nofollow noreferrer noopener"><i class="anzhiyufont anzhiyu-icon-weibo"></i></a></div><script>function copyCurrentPageUrl() {
+  var currentPageUrl = window.location.href;
+  var input = document.createElement("input");
+  input.setAttribute("value", currentPageUrl);
+  document.body.appendChild(input);
+  input.select();
+  input.setSelectionRange(0, 99999);
+  document.execCommand("copy");
+  document.body.removeChild(input);
+}</script><div class="share-link copyurl"><div class="share-button" id="post-share-url" title="复制链接" onclick="copyCurrentPageUrl()"><i class="anzhiyufont anzhiyu-icon-link"></i></div></div></div></div></div><div class="post-copyright__notice"><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://Blog.Joker2Yue.cn" target="_blank">九歌</a>！</span></div></div><div class="post-tools-right"><div class="tag_share"><div class="post-meta__box"><div class="post-meta__box__tag-list"><a class="post-meta__box__tags" href="/tags/%E8%BF%9E%E8%BD%BD/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>连载<span class="tagsPageCount">92</span></a><a class="post-meta__box__tags" href="/tags/%E9%9D%A2%E8%AF%95/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>面试<span class="tagsPageCount">10</span></a><a class="post-meta__box__tags" href="/tags/%E9%BB%91%E9%A9%AC/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>黑马<span class="tagsPageCount">28</span></a><a class="post-meta__box__tags" href="/tags/Java/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>Java<span class="tagsPageCount">55</span></a></div></div></div><div class="post_share"><div class="social-share" data-image="https://resource.joker2yue.cn/blog/images/coverImg/实习/如何导入超大的SQL文件到Mysql.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"/><script src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer="defer"></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/post/gen-sui-hei-ma-mian-java-8/"><img class="prev-cover" src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/coverImg/跟随黑马面Java/08.jpg" onerror="onerror=null;src='/images/404.svg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">跟随黑马面Java-8，多线程篇</div></div></a></div><div class="next-post pull-right"><a href="/post/gen-sui-hei-ma-mian-java-10/"><img class="next-cover" src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/coverImg/跟随黑马面Java/10.jpg" onerror="onerror=null;src='/images/404.svg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">跟随黑马面Java-10，企业场景篇</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="anzhiyufont anzhiyu-icon-thumbs-up fa-fw" style="font-size: 1.5rem; margin-right: 4px"></i><span>喜欢这篇文章的人也看了</span></div><div class="relatedPosts-list"><div><a href="/post/gen-sui-hei-ma-mian-java-1/" title="跟随黑马面Java-1，准备篇"><img class="cover" src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/coverImg/跟随黑马面Java/01.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2024-06-06</div><div class="title">跟随黑马面Java-1，准备篇</div></div></a></div><div><a href="/post/gen-sui-hei-ma-mian-java-4/" title="跟随黑马面Java-4，框架篇"><img class="cover" src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/coverImg/跟随黑马面Java/04.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2024-06-10</div><div class="title">跟随黑马面Java-4，框架篇</div></div></a></div><div><a href="/post/gen-sui-hei-ma-mian-java-5/" title="跟随黑马面Java-5，微服务篇"><img class="cover" src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/coverImg/跟随黑马面Java/05.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2024-06-12</div><div class="title">跟随黑马面Java-5，微服务篇</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="anzhiyufont anzhiyu-icon-comments"></i><span> 评论</span></div><div class="comment-randomInfo"><a onclick="anzhiyu.addRandomCommentInfo()" href="javascript:void(0)">匿名评论</a><a href="/privacy" style="margin-left: 4px">隐私政策</a></div><div class="comment-tips" id="comment-tips"><span>✅ 你无需删除空行，直接评论以获取最佳展示效果</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div><div class="comment-barrage"></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-content"><div class="author-info__sayhi" id="author-info__sayhi" onclick="anzhiyu.changeSayHelloText()"></div><div class="author-info-avatar"><img class="avatar-img" src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/avatar_joker.jpg" onerror="this.onerror=null;this.src='/images/joker_404.png'" alt="avatar"/><div class="author-status"><img class="g-status" src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/statusImg/小丑.svg" alt="status"/></div></div><div class="author-info__description"><div style="line-height:1.38;margin:0.6rem 0;text-align:justify;color:rgba(255, 255, 255, 0.8);">我热衷于在<b style="color:#fff">数字世界</b>中寻找灵感，用<b style="color:#fff">文字</b>来记录下每一个<b style="color:#fff">思考和发现</b>。</div><div style="line-height:1.38;margin:0.6rem 0;text-align:justify;color:rgba(255, 255, 255, 0.8);">感谢你的光临，希望我的博客能为你带来有<b style="color:#fff">价值</b>的信息，<b style="color:#fff">享受</b>阅读的乐趣！</div></div><div class="author-info__bottom-group"><a class="author-info__bottom-group-left" target="_blank" rel="noopener" href="https://github.com/Joker2Yue"><h1 class="author-info__name">Joker2Yue</h1><div class="author-info__desc">Joker2Yue的个人博客</div></a><div class="card-info-social-icons is-center"><a class="social-icon faa-parent animated-hover" href="https://github.com/Joker2Yue" target="_blank" title="Github"><i class="anzhiyufont anzhiyu-icon-github"></i></a><a class="social-icon faa-parent animated-hover" href="https://space.bilibili.com/1288739606" target="_blank" title="BiliBili"><i class="anzhiyufont anzhiyu-icon-bilibili"></i></a></div></div></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-bullhorn anzhiyu-shake"></i><span>公告</span></div><div class="announcement_content"><div id="welcome-info">欢迎来看我的博客鸭~</div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-bars"></i><span>文章目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%80%E7%AF%87"><span class="toc-number">1.</span> <span class="toc-text">开篇</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#JVM%E7%BB%84%E6%88%90"><span class="toc-number">2.</span> <span class="toc-text">JVM组成</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E7%A8%8B%E5%BA%8F%E8%AE%A1%E6%95%B0%E5%99%A8"><span class="toc-number">2.1.</span> <span class="toc-text">什么是程序计数器</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Java%E5%A0%86"><span class="toc-number">2.2.</span> <span class="toc-text">Java堆</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%A0%88"><span class="toc-number">2.3.</span> <span class="toc-text">虚拟机栈</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%A0%88"><span class="toc-number">2.3.1.</span> <span class="toc-text">什么是虚拟机栈</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%98%AF%E5%90%A6%E6%B6%89%E5%8F%8A%E6%A0%88%E5%86%85%E5%AD%98%EF%BC%9F"><span class="toc-number">2.3.2.</span> <span class="toc-text">垃圾回收是否涉及栈内存？</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E5%86%85%E7%9A%84%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%E6%98%AF%E5%90%A6%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%EF%BC%9F"><span class="toc-number">2.3.3.</span> <span class="toc-text">方法内的局部变量是否线程安全？</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E4%BC%9A%E5%AF%BC%E8%87%B4%E6%A0%88%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA%EF%BC%9F"><span class="toc-number">2.3.4.</span> <span class="toc-text">什么情况下会导致栈内存溢出？</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%83%BD%E4%B8%8D%E8%83%BD%E8%A7%A3%E9%87%8A%E4%B8%80%E4%B8%8B%E6%96%B9%E6%B3%95%E5%8C%BA"><span class="toc-number">2.4.</span> <span class="toc-text">能不能解释一下方法区</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BD%A0%E5%90%AC%E8%BF%87%E7%9B%B4%E6%8E%A5%E5%86%85%E5%AD%98%E5%90%97"><span class="toc-number">2.5.</span> <span class="toc-text">你听过直接内存吗</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8"><span class="toc-number">3.</span> <span class="toc-text">类加载器</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8%E3%80%81%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%9C%BA%E5%88%B6"><span class="toc-number">3.1.</span> <span class="toc-text">什么是类加载器、双亲委派机制</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8-v2"><span class="toc-number">3.1.1.</span> <span class="toc-text">类加载器</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%9C%BA%E5%88%B6"><span class="toc-number">3.1.2.</span> <span class="toc-text">双亲委派机制</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%B1%BB%E8%A3%85%E8%BD%BD%E7%9A%84%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B"><span class="toc-number">3.2.</span> <span class="toc-text">类装载的执行过程</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%8A%A0%E8%BD%BD-Loading"><span class="toc-number">3.2.1.</span> <span class="toc-text">加载(Loading)</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E9%93%BE%E6%8E%A5-Linking"><span class="toc-number">3.2.2.</span> <span class="toc-text">链接(Linking)</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96-Initialization"><span class="toc-number">3.2.3.</span> <span class="toc-text">初始化(Initialization)</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-Usage"><span class="toc-number">3.2.4.</span> <span class="toc-text">使用(Usage)</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%8D%B8%E8%BD%BD-Uninstall"><span class="toc-number">3.2.5.</span> <span class="toc-text">卸载(Uninstall)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6"><span class="toc-number">4.</span> <span class="toc-text">垃圾回收</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AF%B9%E8%B1%A1%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E5%8F%AF%E4%BB%A5%E8%A2%AB%E5%9E%83%E5%9C%BE%E5%99%A8%E5%9B%9E%E6%94%B6"><span class="toc-number">4.1.</span> <span class="toc-text">对象什么时候可以被垃圾器回收</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#JVM%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%AE%97%E6%B3%95%E6%9C%89%E5%93%AA%E4%BA%9B"><span class="toc-number">4.2.</span> <span class="toc-text">JVM垃圾回收算法有哪些</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#JVM%E4%B8%AD%E5%88%86%E4%BB%A3%E5%9B%9E%E6%94%B6"><span class="toc-number">4.3.</span> <span class="toc-text">JVM中分代回收</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#JVM%E6%9C%89%E5%93%AA%E4%BA%9B%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8"><span class="toc-number">4.4.</span> <span class="toc-text">JVM有哪些垃圾回收器</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E4%B8%B2%E8%A1%8C%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8"><span class="toc-number">4.4.1.</span> <span class="toc-text">串行垃圾收集器</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%B9%B6%E8%A1%8C%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8"><span class="toc-number">4.4.2.</span> <span class="toc-text">并行垃圾回收器</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#CMS%EF%BC%88%E5%B9%B6%E5%8F%91%EF%BC%89%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8"><span class="toc-number">4.4.3.</span> <span class="toc-text">CMS（并发）垃圾回收器</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#G1%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8"><span class="toc-number">4.5.</span> <span class="toc-text">G1垃圾回收器</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%BC%BA%E5%BC%95%E7%94%A8%E3%80%81%E8%BD%AF%E5%BC%95%E7%94%A8%E3%80%81%E5%BC%B1%E5%BC%95%E7%94%A8%E3%80%81%E8%99%9A%E5%BC%95%E7%94%A8%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">4.6.</span> <span class="toc-text">强引用、软引用、弱引用、虚引用的区别</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#JVM%E5%AE%9E%E8%B7%B5"><span class="toc-number">5.</span> <span class="toc-text">JVM实践</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#JVM%E8%B0%83%E4%BC%98%E7%9A%84%E5%8F%82%E6%95%B0%E5%8F%AF%E4%BB%A5%E5%9C%A8%E5%93%AA%E9%87%8C%E8%AE%BE%E7%BD%AE%E5%8F%82%E6%95%B0%E5%80%BC"><span class="toc-number">5.1.</span> <span class="toc-text">JVM调优的参数可以在哪里设置参数值</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#JVM%E8%B0%83%E4%BC%98%E7%9A%84%E5%8F%82%E6%95%B0%E9%83%BD%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F"><span class="toc-number">5.2.</span> <span class="toc-text">JVM调优的参数都有哪些？</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#JVM%E8%B0%83%E8%AF%95%E7%9A%84%E5%B7%A5%E5%85%B7"><span class="toc-number">5.3.</span> <span class="toc-text">JVM调试的工具</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Java%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E7%9A%84%E6%8E%92%E6%9F%A5%E6%80%9D%E8%B7%AF"><span class="toc-number">5.4.</span> <span class="toc-text">Java内存泄漏的排查思路</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#CPU%E9%A3%99%E9%AB%98%E7%9A%84%E6%8E%92%E6%9F%A5%E6%96%B9%E6%A1%88%E4%B8%8E%E6%80%9D%E8%B7%AF"><span class="toc-number">5.5.</span> <span class="toc-text">CPU飙高的排查方案与思路</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-history"></i><span>最近发布</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/post/ru-he-dao-ru-chao-da-de-sql-wen-jian-dao-mysql/" title="如何导入超大的sql文件到Mysql"><img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/coverImg/实习/如何导入超大的SQL文件到Mysql.png" onerror="this.onerror=null;this.src='/images/404.svg'" alt="如何导入超大的sql文件到Mysql"/></a><div class="content"><a class="title" href="/post/ru-he-dao-ru-chao-da-de-sql-wen-jian-dao-mysql/" title="如何导入超大的sql文件到Mysql">如何导入超大的sql文件到Mysql</a><time datetime="2024-09-05T20:02:22.000Z" title="发表于 2024-09-06 04:02:22">2024-09-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/shi-yong-optional-lei-you-hua-dai-ma-zhong-duo-ceng-if-qian-tao/" title="使用Optional类优化代码中多层if嵌套"><img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/coverImg/实习/使用Optional类优化代码中多层if嵌套.png" onerror="this.onerror=null;this.src='/images/404.svg'" alt="使用Optional类优化代码中多层if嵌套"/></a><div class="content"><a class="title" href="/post/shi-yong-optional-lei-you-hua-dai-ma-zhong-duo-ceng-if-qian-tao/" title="使用Optional类优化代码中多层if嵌套">使用Optional类优化代码中多层if嵌套</a><time datetime="2024-08-20T12:46:25.000Z" title="发表于 2024-08-20 20:46:25">2024-08-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/gen-sui-hei-ma-mian-java-10/" title="跟随黑马面Java-10，企业场景篇"><img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/coverImg/跟随黑马面Java/10.jpg" onerror="this.onerror=null;this.src='/images/404.svg'" alt="跟随黑马面Java-10，企业场景篇"/></a><div class="content"><a class="title" href="/post/gen-sui-hei-ma-mian-java-10/" title="跟随黑马面Java-10，企业场景篇">跟随黑马面Java-10，企业场景篇</a><time datetime="2024-06-25T20:02:22.000Z" title="发表于 2024-06-26 04:02:22">2024-06-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/gen-sui-hei-ma-mian-java-9/" title="跟随黑马面Java-9，JVM篇"><img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/coverImg/跟随黑马面Java/09.jpg" onerror="this.onerror=null;this.src='/images/404.svg'" alt="跟随黑马面Java-9，JVM篇"/></a><div class="content"><a class="title" href="/post/gen-sui-hei-ma-mian-java-9/" title="跟随黑马面Java-9，JVM篇">跟随黑马面Java-9，JVM篇</a><time datetime="2024-06-19T20:02:22.000Z" title="发表于 2024-06-20 04:02:22">2024-06-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/gen-sui-hei-ma-mian-java-8/" title="跟随黑马面Java-8，多线程篇"><img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/coverImg/跟随黑马面Java/08.jpg" onerror="this.onerror=null;this.src='/images/404.svg'" alt="跟随黑马面Java-8，多线程篇"/></a><div class="content"><a class="title" href="/post/gen-sui-hei-ma-mian-java-8/" title="跟随黑马面Java-8，多线程篇">跟随黑马面Java-8，多线程篇</a><time datetime="2024-06-16T20:02:22.000Z" title="发表于 2024-06-17 04:02:22">2024-06-17</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div id="footer_deal"><a class="deal_link" href="mailto:feedback.blog@joker2yue.cn" title="Email"><i class="anzhiyufont anzhiyu-icon-envelope"></i></a><a class="deal_link" target="_blank" rel="noopener" href="https://m.weibo.cn/u/7799849297" title="微博"><i class="anzhiyufont anzhiyu-icon-weibo"></i></a><a class="deal_link" target="_blank" rel="noopener" href="https://twitter.com/joker0222yue?s=09" title="X"><i class="fa-brands fa-x-twitter"></i></a><a class="deal_link" href="/atom.xml" title="RSS"><i class="anzhiyufont anzhiyu-icon-rss"></i></a><img class="footer_mini_logo" title="返回顶部" alt="返回顶部" onclick="anzhiyu.scrollToDest(0, 500)" src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/avatar_joker.jpg" size="50px"/><a class="deal_link" target="_blank" rel="noopener" href="https://github.com/Joker2Yue" title="Github"><i class="anzhiyufont anzhiyu-icon-github"></i></a><a class="deal_link" target="_blank" rel="noopener" href="https://space.bilibili.com/1288739606" title="Bilibili"><i class="anzhiyufont anzhiyu-icon-bilibili"></i></a><a class="deal_link" target="_blank" rel="noopener" href="https://m.douyin.com/share/user/MS4wLjABAAAAO0Ao94XycJ3Jq_IVPLElwAjdQOonWW53heh1785VFYo" title="抖音"><i class="anzhiyufont anzhiyu-icon-tiktok"></i></a><a class="deal_link" href="/copyright/" title="CC"><i class="anzhiyufont anzhiyu-icon-copyright"></i></a></div><div id="workboard"><div id="runtimeTextTip"></div></div><div id="anzhiyu-footer"><div class="footer-group"><div class="footer-title">服务</div><div class="footer-links"><a class="footer-item" title="51la统计" target="_blank" rel="noopener" href="https://v6.51.la/">51la统计</a><a class="footer-item" title="十年之约" target="_blank" rel="noopener" href="https://foreverblog.cn/go.html">十年之约</a><a class="footer-item" title="开往" target="_blank" rel="noopener" href="https://github.com/travellings-link/travellings">开往</a></div></div><div class="footer-group"><div class="footer-title">主题</div><div class="footer-links"><a class="footer-item" title="文档" target="_blank" rel="noopener" href="https://docs.anheyu.com/">文档</a><a class="footer-item" title="源码" target="_blank" rel="noopener" href="https://github.com/anzhiyu-c/hexo-theme-anzhiyu">源码</a><a class="footer-item" title="本站建设" href="/website/">本站建设</a></div></div><div class="footer-group"><div class="footer-title">导航</div><div class="footer-links"><a class="footer-item" title="即刻短文" href="/essay/">即刻短文</a><a class="footer-item" title="友链文章" href="/fcircle/">友链文章</a><a class="footer-item" title="留言板" href="/comments/">留言板</a></div></div><div class="footer-group"><div class="footer-title">协议</div><div class="footer-links"><a class="footer-item" title="隐私政策" href="/privacy/">隐私政策</a><a class="footer-item" title="Cookies" href="/cookies/">Cookies</a><a class="footer-item" title="版权协议" href="/copyright/">版权协议</a></div></div><div class="footer-group"><div class="footer-title-group"><div class="footer-title">友链</div><a class="random-friends-btn" id="footer-random-friends-btn" href="javascript:addFriendLinksInFooter();" title="换一批友情链接"><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right"></i></a></div><div class="footer-links" id="friend-links-in-footer"></div></div></div><p id="ghbdages"><a class="github-badge" target="_blank" href="https://hexo.io/" style="margin-inline:5px" data-title="博客框架为Hexo_v7.3.0" title="博客框架为Hexo_v7.3.0"><img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/badge/Frame-Hexo.svg" alt="博客框架为Hexo_v7.3.0"/></a><a class="github-badge" target="_blank" href="https://blog.anheyu.com/" style="margin-inline:5px" data-title="本站使用AnZhiYu主题" title="本站使用AnZhiYu主题"><img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/badge/Theme-AnZhiYu.svg" alt="本站使用AnZhiYu主题"/></a><a class="github-badge" target="_blank" href="https://www.dogecloud.com/" style="margin-inline:5px" data-title="本站使用多吉云为静态资源提供CDN加速" title="本站使用多吉云为静态资源提供CDN加速"><img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/badge/CDN-Doge.svg" alt="本站使用多吉云为静态资源提供CDN加速"/></a><a class="github-badge" target="_blank" href="https://vercel.com/" style="margin-inline:5px" data-title="本站项目由Vercel部署" title="本站项目由Vercel部署"><img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/badge/Hosted-Vercel-brightgreen.svg" alt="本站项目由Vercel部署"/></a><a class="github-badge" target="_blank" href="https://github.com/Joker2Yue/Joker2Yue-Blog" style="margin-inline:5px" data-title="本站项目由Github托管" title="本站项目由Github托管"><img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/badge/Source-Github.svg" alt="本站项目由Github托管"/></a><a class="github-badge" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" style="margin-inline:5px" data-title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"><img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/badge/Copyright-BY-NC-SA.svg" alt="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"/></a></p></div><div id="footer-bar"><div class="footer-bar-links"><div class="footer-bar-left"><div id="footer-bar-tips"><div class="copyright">&copy;2023 - 2024 By <a class="footer-bar-link" href="https://github.com/Joker2Yue" title="Joker2Yue" target="_blank">Joker2Yue</a></div></div><div id="footer-type-tips"></div><div class="js-pjax"><script>function subtitleType () {
+  if (false) { 
+    window.typed = new Typed("#footer-type-tips", {
+      strings: ["<a href=\"https://www.joker2yue.cn\" target=\"_blank\">九歌</a>"],
+      startDelay: 300,
+      typeSpeed: 150,
+      loop: true,
+      backSpeed: 50
+    })
+  } else {
+    document.getElementById("footer-type-tips").innerHTML = '<a href="https://www.joker2yue.cn" target="_blank">九歌</a>'
+  }
+}
+
+if (false) {
+  if (typeof Typed === 'function') {
+    subtitleType()
+  } else {
+    getScript('https://cdn.cbd.int/typed.js@2.1.0/dist/typed.umd.js').then(subtitleType)
+  }
+} else {
+  subtitleType()
+}</script></div></div><div class="footer-bar-right"><a class="footer-bar-link" target="_blank" rel="noopener" href="https://github.com/anzhiyu-c/hexo-theme-anzhiyu" title="主题">主题</a><a class="footer-bar-link" href="/privacy/" title="隐私政策">隐私政策</a><a class="footer-bar-link" target="_blank" rel="noopener" href="https://beian.miit.gov.cn/" title="湘ICP备-2023023581号">湘ICP备-2023023581号</a><a class="footer-bar-link cc" href="/copyright/" title="cc协议"><i class="anzhiyufont anzhiyu-icon-copyright-line"></i><i class="anzhiyufont anzhiyu-icon-creative-commons-by-line"></i><i class="anzhiyufont anzhiyu-icon-creative-commons-nc-line"></i><i class="anzhiyufont anzhiyu-icon-creative-commons-nd-line"></i></a></div></div></div></footer></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="sidebar-site-data site-data is-center"><a href="/archives/" title="archive"><div class="headline">文章</div><div class="length-num">105</div></a><a href="/tags/" title="tag"><div class="headline">标签</div><div class="length-num">49</div></a><a href="/categories/" title="category"><div class="headline">分类</div><div class="length-num">19</div></a></div><span class="sidebar-menu-item-title">功能</span><div class="sidebar-menu-item"><a class="darkmode_switchbutton menu-child" href="javascript:void(0);" title="显示模式"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span>显示模式</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> 隧道</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 标签</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 社交</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/fcircle/"><i class="anzhiyufont anzhiyu-icon-artstation faa-tada" style="font-size: 0.9em;"></i><span> 朋友圈</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/link/"><i class="anzhiyufont anzhiyu-icon-link faa-tada" style="font-size: 0.9em;"></i><span> 友人账</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/comments/"><i class="anzhiyufont anzhiyu-icon-envelope faa-tada" style="font-size: 0.9em;"></i><span> 留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 我的</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/music/?id=648886106&amp;server=netease"><i class="anzhiyufont anzhiyu-icon-music faa-tada" style="font-size: 0.9em;"></i><span> 音乐馆</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/air-conditioner/"><i class="anzhiyufont anzhiyu-icon-fan faa-tada" style="font-size: 0.9em;"></i><span> 小空调</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 关于</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/about/"><i class="anzhiyufont anzhiyu-icon-paper-plane faa-tada" style="font-size: 0.9em;"></i><span> 关于本人</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/website/"><i class="anzhiyufont anzhiyu-icon-cube faa-tada" style="font-size: 0.9em;"></i><span> 本站建设</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/essay/"><i class="anzhiyufont anzhiyu-icon-lightbulb faa-tada" style="font-size: 0.9em;"></i><span> 闲言碎语</span></a></li><li><a class="site-page child faa-parent animated-hover" href="javascript:toRandomPost()"><i class="anzhiyufont anzhiyu-icon-shoe-prints1 faa-tada" style="font-size: 0.9em;"></i><span> 随便逛逛</span></a></li></ul></div></div><span class="sidebar-menu-item-title">标签</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/AI/" style="font-size: 0.88rem;">AI<sup>1</sup></a><a href="/tags/AMD/" style="font-size: 0.88rem;">AMD<sup>1</sup></a><a href="/tags/CSS/" style="font-size: 0.88rem;">CSS<sup>14</sup></a><a href="/tags/Git/" style="font-size: 0.88rem;">Git<sup>2</sup></a><a href="/tags/HTML/" style="font-size: 0.88rem;">HTML<sup>3</sup></a><a href="/tags/Hexo/" style="font-size: 0.88rem;">Hexo<sup>2</sup></a><a href="/tags/JDBC/" style="font-size: 0.88rem;">JDBC<sup>1</sup></a><a href="/tags/Java/" style="font-size: 0.88rem; font-weight: 500; color: var(--anzhiyu-lighttext)">Java<sup>55</sup></a><a href="/tags/Linux/" style="font-size: 0.88rem;">Linux<sup>4</sup></a><a href="/tags/Maven/" style="font-size: 0.88rem;">Maven<sup>1</sup></a><a href="/tags/Mysql/" style="font-size: 0.88rem;">Mysql<sup>3</sup></a><a href="/tags/SSM/" style="font-size: 0.88rem;">SSM<sup>3</sup></a><a href="/tags/Vue/" style="font-size: 0.88rem;">Vue<sup>1</sup></a><a href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 0.88rem;">中间件<sup>1</sup></a><a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" style="font-size: 0.88rem;">分布式<sup>4</sup></a><a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 0.88rem;">前端<sup>22</sup></a><a href="/tags/%E5%A4%8D%E4%B9%A0%E9%A2%98/" style="font-size: 0.88rem;">复习题<sup>3</sup></a><a href="/tags/%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B/" style="font-size: 0.88rem;">大学课程<sup>23</sup></a><a href="/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/" style="font-size: 0.88rem;">大模型<sup>1</sup></a><a href="/tags/%E5%BF%85%E7%9C%8B/" style="font-size: 0.88rem; font-weight: 500; color: var(--anzhiyu-lighttext)">必看<sup>26</sup></a><a href="/tags/%E6%8A%80%E6%9C%AF/" style="font-size: 0.88rem; font-weight: 500; color: var(--anzhiyu-lighttext)">技术<sup>7</sup></a><a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 0.88rem;">数据库<sup>4</sup></a><a href="/tags/%E7%8B%82%E7%A5%9E/" style="font-size: 0.88rem; font-weight: 500; color: var(--anzhiyu-lighttext)">狂神<sup>44</sup></a><a href="/tags/%E8%BD%AC%E8%BD%BD/" style="font-size: 0.88rem;">转载<sup>1</sup></a><a href="/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/" style="font-size: 0.88rem;">软件测试<sup>1</sup></a><a href="/tags/%E8%BD%AF%E8%80%83/" style="font-size: 0.88rem;">软考<sup>20</sup></a><a href="/tags/%E8%BF%90%E7%BB%B4/" style="font-size: 0.88rem;">运维<sup>3</sup></a><a href="/tags/%E8%BF%9E%E8%BD%BD/" style="font-size: 0.88rem;">连载<sup>92</sup></a><a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 0.88rem;">面试<sup>10</sup></a><a href="/tags/%E9%BB%91%E9%A9%AC/" style="font-size: 0.88rem;">黑马<sup>28</sup></a></div></div><hr/></div></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="anzhiyufont anzhiyu-icon-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="anzhiyufont anzhiyu-icon-gear"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="anzhiyufont anzhiyu-icon-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="anzhiyufont anzhiyu-icon-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></button></div></div><div id="nav-music"><a id="nav-music-hoverTips" onclick="anzhiyu.musicToggle()" accesskey="m">播放音乐</a><div id="console-music-bg"></div><meting-js id="648886106" server="netease" type="playlist" mutex="true" preload="none" theme="var(--anzhiyu-main)" data-lrctype="0" order="random" volume="0.7"></meting-js></div><div id="algolia-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><button class="search-close-button"><i class="anzhiyufont anzhiyu-icon-xmark"></i></button></nav><div class="search-wrap"><div id="algolia-search-input"></div><hr/><div id="algolia-search-results"><div id="algolia-hits"><a class="tag-list" href="/tags/%E5%BF%85%E7%9C%8B" title="必看">必看</a><a class="tag-list" href="/tags/Java" title="Java">Java</a><a class="tag-list" href="/tags/Spring" title="Spring">Spring</a><a class="tag-list" href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F" title="分布式">分布式</a><a class="tag-list" href="/tags/%E5%89%8D%E7%AB%AF" title="前端">前端</a><a class="tag-list" href="/tags/Hexo" title="Hexo">Hexo</a></div><div id="algolia-pagination"></div><div id="algolia-info"><div class="algolia-stats"></div><div class="algolia-poweredBy"></div></div></div></div></div><div id="search-mask"></div></div><div id="rightMenu"><div class="rightMenu-group rightMenu-small"><div class="rightMenu-item" id="menu-backward"><i class="anzhiyufont anzhiyu-icon-arrow-left"></i></div><div class="rightMenu-item" id="menu-forward"><i class="anzhiyufont anzhiyu-icon-arrow-right"></i></div><div class="rightMenu-item" id="menu-refresh"><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right" style="font-size: 1rem;"></i></div><div class="rightMenu-item" id="menu-top"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></div></div><div class="rightMenu-group rightMenu-line rightMenuPlugin"><div class="rightMenu-item" id="menu-copytext"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制选中文本</span></div><div class="rightMenu-item" id="menu-pastetext"><i class="anzhiyufont anzhiyu-icon-paste"></i><span>粘贴文本</span></div><a class="rightMenu-item" id="menu-commenttext"><i class="anzhiyufont anzhiyu-icon-comment-medical"></i><span>引用到评论</span></a><div class="rightMenu-item" id="menu-newwindow"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开</span></div><div class="rightMenu-item" id="menu-copylink"><i class="anzhiyufont anzhiyu-icon-link"></i><span>复制链接地址</span></div><div class="rightMenu-item" id="menu-copyimg"><i class="anzhiyufont anzhiyu-icon-images"></i><span>复制此图片</span></div><div class="rightMenu-item" id="menu-downloadimg"><i class="anzhiyufont anzhiyu-icon-download"></i><span>下载此图片</span></div><div class="rightMenu-item" id="menu-newwindowimg"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开图片</span></div><div class="rightMenu-item" id="menu-search"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>站内搜索</span></div><div class="rightMenu-item" id="menu-searchBaidu"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>百度搜索</span></div><div class="rightMenu-item" id="menu-music-toggle"><i class="anzhiyufont anzhiyu-icon-play"></i><span>播放音乐</span></div><div class="rightMenu-item" id="menu-music-back"><i class="anzhiyufont anzhiyu-icon-backward"></i><span>切换到上一首</span></div><div class="rightMenu-item" id="menu-music-forward"><i class="anzhiyufont anzhiyu-icon-forward"></i><span>切换到下一首</span></div><div class="rightMenu-item" id="menu-music-playlist" onclick="window.open(&quot;https://music.163.com/#/my/m/music/playlist?id=648886106&quot;, &quot;_blank&quot;);" style="display: none;"><i class="anzhiyufont anzhiyu-icon-radio"></i><span>查看所有歌曲</span></div><div class="rightMenu-item" id="menu-music-copyMusicName"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制歌名</span></div></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item menu-link" id="menu-randomPost"><i class="anzhiyufont anzhiyu-icon-shuffle"></i><span>随便逛逛</span></a><a class="rightMenu-item menu-link" href="/categories/"><i class="anzhiyufont anzhiyu-icon-cube"></i><span>博客分类</span></a><a class="rightMenu-item menu-link" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags"></i><span>文章标签</span></a></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item" id="menu-copy" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制地址</span></a><a class="rightMenu-item" id="menu-commentBarrage" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-message"></i><span class="menu-commentBarrage-text">关闭热评</span></a><a class="rightMenu-item" id="menu-darkmode" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span class="menu-darkmode-text">深色模式</span></a><a class="rightMenu-item" id="menu-translate" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-language"></i><span>轉為繁體</span></a></div></div><div id="rightmenu-mask"></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.cbd.int/@fancyapps/ui@5.0.36/dist/fancybox/fancybox.umd.js"></script><script src="https://cdn.cbd.int/instant.page@5.2.0/instantpage.js" type="module"></script><script src="https://cdn.cbd.int/vanilla-lazyload@19.1.3/dist/lazyload.iife.min.js"></script><script src="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.cbd.int/pangu@4.0.7/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script>var meting_api = "https://meting-api.joker2yue.cn/api?server=:server&type=:type&id=:id&auth=:auth&r=:r";
+</script><canvas id="universe"></canvas><script async src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/dark/dark.js"></script><script>// 消除控制台打印
+var HoldLog = console.log;
+console.log = function () {};
+let now1 = new Date();
+queueMicrotask(() => {
+  const Log = function () {
+    HoldLog.apply(console, arguments);
+  }; //在恢复前输出日志
+  const grt = new Date("08/25/2023 00:00:00"); //此处修改你的建站时间或者网站上线时间
+  now1.setTime(now1.getTime() + 250);
+  const days = (now1 - grt) / 1000 / 60 / 60 / 24;
+  const dnum = Math.floor(days);
+  const ascll = [
+    `欢迎使用安知鱼!`,
+    `生活明朗, 万物可爱`,
+    `
+        
+       █████╗ ███╗   ██╗███████╗██╗  ██╗██╗██╗   ██╗██╗   ██╗
+      ██╔══██╗████╗  ██║╚══███╔╝██║  ██║██║╚██╗ ██╔╝██║   ██║
+      ███████║██╔██╗ ██║  ███╔╝ ███████║██║ ╚████╔╝ ██║   ██║
+      ██╔══██║██║╚██╗██║ ███╔╝  ██╔══██║██║  ╚██╔╝  ██║   ██║
+      ██║  ██║██║ ╚████║███████╗██║  ██║██║   ██║   ╚██████╔╝
+      ╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝╚═╝   ╚═╝    ╚═════╝
+        
+        `,
+    "已上线",
+    dnum,
+    "天",
+    "©2023 By 安知鱼 V1.6.12",
+  ];
+  const ascll2 = [`NCC2-036`, `调用前置摄像头拍照成功，识别为【小笨蛋】.`, `Photo captured: `, `🤪`];
+
+  setTimeout(
+    Log.bind(
+      console,
+      `\n%c${ascll[0]} %c ${ascll[1]} %c ${ascll[2]} %c${ascll[3]}%c ${ascll[4]}%c ${ascll[5]}\n\n%c ${ascll[6]}\n`,
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      ""
+    )
+  );
+  setTimeout(
+    Log.bind(
+      console,
+      `%c ${ascll2[0]} %c ${ascll2[1]} %c \n${ascll2[2]} %c\n${ascll2[3]}\n`,
+      "color:white; background-color:#4fd953",
+      "",
+      "",
+      'background:url("https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/tinggge.gif") no-repeat;font-size:450%'
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c WELCOME %c 你好，小笨蛋.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(
+      console,
+      "%c ⚡ Powered by 安知鱼 %c 你正在访问 Joker2Yue 的博客.",
+      "color:white; background-color:#f0ad4e",
+      ""
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c W23-12 %c 你已打开控制台.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(console, "%c S013-782 %c 你现在正处于监控中.", "color:white; background-color:#d9534f", "")
+  );
+});</script><script async src="/anzhiyu/random.js"></script><script async="async">(function () {
+  var grt = new Date("08/25/2023 00:00:00"); //设置网站上线时间
+  var now = new Date();
+  var dnum;
+  var hnum;
+  var mnum;
+  var snum;
+  var nowHour;
+
+  // 计算并更新天数、小时数、分钟数和秒数
+  function updateTime() {
+    now = new Date(); // 更新 now 的值
+    nowHour = now.getHours(); // 更新 nowHour 的值
+    var days = (now - grt) / 1000 / 60 / 60 / 24;
+    dnum = Math.floor(days);
+    var hours = (now - grt) / 1000 / 60 / 60 - 24 * dnum;
+    hnum = Math.floor(hours);
+    if (String(hnum).length == 1) {
+      hnum = "0" + hnum;
+    }
+    var minutes = (now - grt) / 1000 / 60 - 24 * 60 * dnum - 60 * hnum;
+    mnum = Math.floor(minutes);
+    if (String(mnum).length == 1) {
+      mnum = "0" + mnum;
+    }
+    var seconds = (now - grt) / 1000 - 24 * 60 * 60 * dnum - 60 * 60 * hnum - 60 * mnum;
+    snum = Math.round(seconds);
+    if (String(snum).length == 1) {
+      snum = "0" + snum;
+    }
+  }
+
+  // 更新网页中显示的网站运行时间
+  function updateHtml() {
+    const footer = document.getElementById("footer");
+    if (!footer) return
+    let currentTimeHtml = "";
+    if (nowHour < 18 && nowHour >= 9) {
+      // 如果是上班时间，默认就是"安知鱼-上班摸鱼中.svg"图片，不需要更改
+      currentTimeHtml = `本站居然运行了 ${dnum} 天<span id='runtime'> ${hnum} 小时 ${mnum} 分 ${snum} 秒 </span><i class='anzhiyufont anzhiyu-icon-heartbeat' style='color:red'></i>`;
+    } else {
+      // 如果是下班时间，插入"安知鱼-下班啦.svg"图片
+      let img = document.querySelector("#workboard .workSituationImg");
+      if (img != null) {
+        img.src = "";
+        img.title = "";
+        img.alt = "";
+      }
+
+      currentTimeHtml = `本站居然运行了 ${dnum} 天<span id='runtime'> ${hnum} 小时 ${mnum} 分 ${snum} 秒 </span><i class='anzhiyufont anzhiyu-icon-heartbeat' style='color:red'></i>`;
+    }
+
+    if (document.getElementById("runtimeTextTip")) {
+      document.getElementById("runtimeTextTip").innerHTML = currentTimeHtml;
+    }
+  }
+
+  setInterval(() => {
+    updateTime();
+    updateHtml();
+  }, 1000);
+})();</script><script src="https://cdn.bootcdn.net/ajax/libs/algoliasearch/4.9.3/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.cbd.int/instantsearch.js@4.60.0/dist/instantsearch.production.min.js"></script><script src="/js/search/algolia.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.cbd.int/mermaid@10.2.4/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  anzhiyu.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>(() => {
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo.joker2yue.cn/',
+      region: '',
+      onCommentLoaded: () => {
+        anzhiyu.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(runFn,0)
+    else getScript('https://cdn.bootcdn.net/ajax/libs/twikoo/1.6.39/twikoo.all.min.js').then(runFn)
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo.joker2yue.cn/',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const runFn = () => {
+    init();
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) anzhiyu.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else {
+      loadTwikoo()
+    }
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script><input type="hidden" name="page-type" id="page-type" value="post"></div><script>window.addEventListener('load', () => {
+  const changeContent = (content) => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[图片]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[链接]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[代码]') // replace code
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const getComment = () => {
+    const runTwikoo = () => {
+      twikoo.getRecentComments({
+        envId: 'https://twikoo.joker2yue.cn/',
+        region: '',
+        pageSize: 6,
+        includeReply: true
+      }).then(function (res) {
+        const twikooArray = res.map(e => {
+          return {
+            'content': changeContent(e.comment),
+            'avatar': e.avatar,
+            'nick': e.nick,
+            'url': e.url + '#' + e.id,
+            'date': new Date(e.created).toISOString()
+          }
+        })
+
+        saveToLocal.set('twikoo-newest-comments', JSON.stringify(twikooArray), 10/(60*24))
+        generateHtml(twikooArray)
+      }).catch(function (err) {
+        const $dom = document.querySelector('#card-newest-comments .aside-list')
+        $dom.textContent= "无法获取评论，请确认相关配置是否正确"
+      })
+    }
+
+    if (typeof twikoo === 'object') {
+      runTwikoo()
+    } else {
+      getScript('https://cdn.bootcdn.net/ajax/libs/twikoo/1.6.39/twikoo.all.min.js').then(runTwikoo)
+    }
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (true) {
+          const name = 'data-lazy-src'
+          result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'><div class='name'><span>${array[i].nick} </span></div></a>`
+        }
+        
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}' title='${array[i].content}'>${array[i].content}</a>
+        <time datetime="${array[i].date}">${anzhiyu.diffDate(array[i].date, true)}</time></div>
+        </div>`
+      }
+    } else {
+      result += '没有评论'
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom && ($dom.innerHTML= result)
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('twikoo-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><script async data-pjax src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.1/bubble/bubble.js"></script><script>var visitorMail = "visitor@joker2yue.cn";
+</script><script async data-pjax src="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/waterfall/waterfall.js"></script><script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/qrcodejs/1.0.0/qrcode.min.js"></script><script src="/js/anzhiyu/right_click_menu.js"></script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.9/icon/ali_iconfont_css.css"><script async src="https://at.alicdn.com/t/c/font_3320075_10tn9j0ga3lb.js"></script><script> window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); }; </script><script> window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); }; </script><script defer data-pjax src="/_vercel/insights/script.js"></script><script defer data-pjax src="/_vercel/speed-insights/script.js"></script><script defer data-pjax src="/js/joker.js"></script><script src="/js/mobile-toc-mask.js"></script><script src="/js/code-expanded.js"></script><script src="/js/fancybox-popstate.js"></script><script src="/js/progressive-load.js"></script><script src="/js/welcome.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/dist/canvas-nest.min.js"></script><script src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-show-text" src="https://cdn.bootcdn.net/ajax/libs/butterfly-extsrc/1.1.4/click-show-text.min.js" data-mobile="true" data-text="富强,民主,文明,和谐,自由,平等,公正,法治,爱国,敬业,诚信,友善" data-fontsize="15px" data-random="false" async="async"></script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/aplayer/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.cbd.int/anzhiyu-blog-static@1.0.1/js/APlayer.min.js"></script><script src="https://cdn.cbd.int/meting@2.0.1/dist/Meting.min.js"></script><script src="https://cdn.cbd.int/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["meta[property=\"og:image\"]","meta[property=\"og:title\"]","meta[property=\"og:url\"]","meta[property=\"og:type\"]","meta[property=\"og:site_name\"]","meta[property=\"og:description\"]","head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"]):not([href="/music/"]):not([href="/images/"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+  // removeEventListener scroll 
+  anzhiyu.removeGlobalFnEvent('pjax')
+  anzhiyu.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404')
+  }
+})</script><script async data-pjax src="https://busuanzi.sukap.cn/busuanzi.pure.mini.js"></script><script charset="UTF-8" src="https://cdn.cbd.int/anzhiyu-theme-static@1.1.5/accesskey/accesskey.js"></script></div><div id="popup-window"><div class="popup-window-title">通知</div><div class="popup-window-divider"></div><div class="popup-window-content"><div class="popup-tip">你好呀</div><div class="popup-link"><i class="anzhiyufont anzhiyu-icon-arrow-circle-right"></i></div></div></div></body></html>

@@ -1,0 +1,1358 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><!-- hexo injector head_begin start --><script>
+                    (() => {
+                        const sw = navigator.serviceWorker
+                        const error = () => console.error("ServiceWorker 注册失败，可能是您的浏览器不支持该功能。")
+                        if (!sw?.register('/sw.js')
+                            
+                            ?.catch(error)
+                            ) error()
+                    })()
+                </script><!-- hexo injector head_begin end --><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><title>跟随黑马面Java-3，Mysql篇 | 九歌</title><meta name="keywords" content="面试,黑马程序员,简历,Java面试,面试准备,程序员,技术栈,Redis,Java"><meta name="author" content="Joker2Yue"><meta name="copyright" content="Joker2Yue"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#f7f9fe"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-touch-fullscreen" content="yes"><meta name="apple-mobile-web-app-title" content="跟随黑马面Java-3，Mysql篇"><meta name="application-name" content="跟随黑马面Java-3，Mysql篇"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="#f7f9fe"><meta property="og:type" content="article"><meta property="og:title" content="跟随黑马面Java-3，Mysql篇"><meta property="og:url" content="https://blog.joker2yue.cn/post/gen-sui-hei-ma-mian-java-3/index.html"><meta property="og:site_name" content="九歌"><meta property="og:description" content="第三篇：Mysql篇  “求其上，得其中；求其中，得其下，求其下，必败” 新版Java面试专题视频教程，java八股文面试全套真题+深度详解（含大厂高频面试真题）_哔哩哔哩_bilibili  开篇   Mysql-优化  定位慢查询   方案一：开源工具  调试工具：Arthas 运维工具：Pro"><meta property="og:locale" content="zh-CN"><meta property="og:image" content="https://resource.joker2yue.cn/blog/images/coverImg/跟随黑马面Java/03.jpg"><meta property="article:author" content="Joker2Yue"><meta property="article:tag" content="Hexo,Java,JavaScript,html5,css3,Jquery,NodeJs,github,css,js,html,AnZhiYu,博客,学习"><meta name="twitter:card" content="summary"><meta name="twitter:image" content="https://resource.joker2yue.cn/blog/images/coverImg/跟随黑马面Java/03.jpg"><meta name="description" content="第三篇：Mysql篇  “求其上，得其中；求其中，得其下，求其下，必败” 新版Java面试专题视频教程，java八股文面试全套真题+深度详解（含大厂高频面试真题）_哔哩哔哩_bilibili  开篇   Mysql-优化  定位慢查询   方案一：开源工具  调试工具：Arthas 运维工具：Pro"><link rel="shortcut icon" href="/favicon.ico"><link rel="canonical" href="https://blog.joker2yue.cn/post/gen-sui-hei-ma-mian-java-3/"><link rel="preconnect" href="//cdn.cbd.int"/><meta name="google-site-verification" content="pbOVJD5xCJ_hy8qsEllb_o72A1ToJVHND5VcaZthS4U"/><meta name="baidu-site-verification" content="codeva-Y6WRbw4qhm"/><meta name="msvalidate.01" content="805A6EE29D8356ED4ECD4A62D9A0151D"/><link rel="manifest" href="/manifest.json"/><meta name="msapplication-TileColor" content="var(--anzhiyu-main)"/><link rel="mask-icon" href="/images/siteicon/apple-icon-180.png" color="#5bbad5"/><link rel="apple-touch-icon" sizes="180x180" href="/images/siteicon/apple-icon-180.png"/><link rel="apple-touch-icon-precomposed" sizes="180x180" href="/images/siteicon/apple-icon-180.png"/><link rel="icon" type="image/png" sizes="32x32" href="/images/siteicon/32.png"/><link rel="icon" type="image/png" sizes="16x16" href="/images/siteicon/16.png"/><link rel="bookmark" href="/images/siteicon/apple-icon-180.png"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2048-2732.jpg" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2732-2048.jpg" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1668-2388.jpg" media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2388-1668.jpg" media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1536-2048.jpg" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2048-1536.jpg" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1668-2224.jpg" media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2224-1668.jpg" media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1620-2160.jpg" media="(device-width: 810px) and (device-height: 1080px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2160-1620.jpg" media="(device-width: 810px) and (device-height: 1080px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1290-2796.jpg" media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2796-1290.jpg" media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1179-2556.jpg" media="(device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2556-1179.jpg" media="(device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1284-2778.jpg" media="(device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2778-1284.jpg" media="(device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1170-2532.jpg" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2532-1170.jpg" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1125-2436.jpg" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2436-1125.jpg" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1242-2688.jpg" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2688-1242.jpg" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-828-1792.jpg" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1792-828.jpg" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1242-2208.jpg" media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2208-1242.jpg" media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-750-1334.jpg" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1334-750.jpg" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-640-1136.jpg" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1136-640.jpg" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.6.0/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/@fancyapps/ui@5.0.36/dist/fancybox/fancybox.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/swiper@5.4.5/css/swiper.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  linkPageTop: {"enable":true,"title":"与数百名博主无限进步","addFriendPlaceholder":""},
+  peoplecanvas: undefined,
+  postHeadAiDescription: {"enable":true,"gptName":"Joker","mode":"local","switchBtn":true,"btnLink":"https://afdian.net/item/886a79d4db6711eda42a52540025c377","randomNum":1,"basicWordCount":1000,"key":"7d68f96f3824c2340712","Referer":"https://Blog.Joker2Yue.cn/"},
+  diytitle: {"enable":true,"leaveTitle":"w(ﾟДﾟ)w 大佬，别丢下我呀555","backTitle":"♪(^∇^*)欢迎肥来！"},
+  LA51: {"enable":true,"ck":"3FljRaaHsuwhQACC","LingQueMonitorID":"3FljRaaHsuwhQACC"},
+  greetingBox: {"enable":true,"default":"欢迎大佬！🫡","list":[{"greeting":"时间不早啦，早点休息吧😴","startTime":0,"endTime":1},{"greeting":"小夜猫子，快去睡觉吧，明天要有精力哦🌙","startTime":1,"endTime":2},{"greeting":"再不睡觉会变成光头哦！梦中见吧💤","startTime":2,"endTime":3},{"greeting":"别熬啦，再熬就熬穿啦~🦉","startTime":3,"endTime":4},{"greeting":"你见过凌晨四点的洛杉矶吗🕓","startTime":4,"endTime":5},{"greeting":"早期的鸟儿有虫吃，今天也要加油哦 💪","startTime":5,"endTime":6},{"greeting":"新的一天开始了，早安！希望今天一切顺利☀️","startTime":6,"endTime":7},{"greeting":"早上好，准备好迎接新一天的挑战吧😊","startTime":7,"endTime":8},{"greeting":"今天是美好的一天，祝你有个愉快的早晨🕊️","startTime":8,"endTime":9},{"greeting":"上午好，工作顺利吗？记得适当休息哦📈","startTime":9,"endTime":10},{"greeting":"生活不易，加油，再坚持一下！💪","startTime":10,"endTime":11},{"greeting":"午餐时间快到了，别忘了吃点好吃的🍲","startTime":11,"endTime":12},{"greeting":"午安！享受这段轻松的时光吧😊","startTime":12,"endTime":13},{"greeting":"下午好，继续努力，今天还没有结束哦☕","startTime":13,"endTime":14},{"greeting":"工作辛苦啦~记得喝水保持清醒哦💧","startTime":14,"endTime":15},{"greeting":"工作中的小休息，放松一下吧🎵","startTime":15,"endTime":16},{"greeting":"离下班还有一点时间，再坚持一下！💼","startTime":16,"endTime":17},{"greeting":"傍晚好，辛苦了一整天，快回家放松吧🌇","startTime":17,"endTime":18},{"greeting":"晚餐时间到了，和家人们一起享受美好时光吧🍽️","startTime":18,"endTime":19},{"greeting":"晚上好，来放松一下自己吧🎬","startTime":19,"endTime":20},{"greeting":"夜晚的时光，属于你自己，享受吧🌙","startTime":20,"endTime":21},{"greeting":"准备好迎接美好的梦境吧💤","startTime":21,"endTime":22},{"greeting":"深夜时分，放松一下，做好睡觉准备吧🌌","startTime":22,"endTime":23},{"greeting":"夜深啦~ 赶紧入睡吧，明天会更好🛏️","startTime":23,"endTime":24}]},
+  twikooEnvId: 'https://twikoo.joker2yue.cn/',
+  commentBarrageConfig:undefined,
+  root: '/',
+  preloader: {"source":3},
+  friends_vue_info: {"apiurl":"https://hexo-circle-of-firends.joker2yue.cn/"},
+  navMusic: true,
+  mainTone: {"mode":"both","api":"https://img2color-go.joker2yue.cn/api?img=","cover_change":true},
+  authorStatus: {"skills":["🤖️ 数码科技爱好者","🔍 分享与热心帮助","🏠 智能家居小能手","🔨 设计开发一条龙","🤝 专修交互与设计","🏃 脚踏实地行动派","🧱 团队小组发动机","💢 壮汉人狠话不多"]},
+  algolia: {"appId":"02BLPWUQGR","apiKey":"c5b7016a2933af8c5cb09dfb4a490988","indexName":"blog_joker2yue_index","hits":{"per_page":6},"languages":{"input_placeholder":"输入关键词后按下回车查找","hits_empty":"找不到您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0.5,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简","rightMenuMsgToTraditionalChinese":"转为繁体","rightMenuMsgToSimplifiedChinese":"转为简体"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":330},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    simplehomepage: true,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"copy":true,"copyrightEbable":false,"limitCount":50,"languages":{"author":"作者: Joker2Yue","link":"链接: ","source":"来源: 九歌","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。","copySuccess":"复制成功，复制和转载请标注本文地址"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#425AEF","bgDark":"#1f1f1f","position":"bottom-right"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.min.js',
+      css: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: true,
+  shortcutKey: undefined,
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  configTitle: '九歌',
+  title: '跟随黑马面Java-3，Mysql篇',
+  postAI: '本文主要介绍了MySQL数据库的优化方法和一些常见的面试题。,本文首先讲解了如何使用慢查询日志和explain命令定位和分析慢SQL语句，并介绍了索引的概念、底层数据结构以及聚簇索引和非聚簇索引的区别。接着，文章详细解释了覆盖索引的定义和作用，并以MySQL超大分页为例说明了覆盖索引的应用。此外，文章还列举了索引失效的常见场景，以及SQL优化的经验，包括表设计优化、SQL语句优化和读写分离等方面。在面试题部分，文章讲解了事务的特性、并发事务问题、隔离级别、undo log和redo log的区别、MVCC的概念和实现原理、MySQL主从同步的原理以及分库分表的策略和常见中间件。,本文首先介绍了如何通过慢查询日志和explain命令定位和分析慢SQL语句，并详细讲解了索引的概念、索引的底层数据结构（B+树）、聚簇索引和非聚簇索引的区别，以及覆盖索引的定义、作用以及在MySQL超大分页优化中的应用。在索引失效方面，文章总结了最左前缀法则失效、范围查询、索引列运算、字符串类型不使用引号以及like模糊查询等常见场景。此外，文章还分享了SQL优化的经验，包括表设计优化、SQL语句优化和读写分离策略等。在面试题部分，作者讲解了事务的特性（ACID）、并发事务问题（脏读、不可重复读、幻读）、事务的隔离级别、undo log和redo log的区别、MVCC的概念和实现原理、MySQL主从同步的原理以及分库分表的策略和常见中间件。,本文围绕MySQL数据库的优化和常见面试题展开，内容涵盖MySQL慢查询优化、索引、事务、并发控制、主从同步以及分库分表等重要知识点。文章首先介绍了如何通过慢查询日志和explain命令定位慢SQL语句并进行分析，并结合代码示例讲解了索引的概念、索引的底层数据结构、聚簇索引和非聚簇索引的区别、覆盖索引的定义和作用，以及索引失效的常见场景。在SQL优化方面，文章总结了阿里巴巴Java开发手册中关于表设计优化的规范，并分别从SQL语句优化和读写分离策略两方面进行了详细的讲解。在面试题部分，文章详细介绍了事务的四大特性（ACID）、并发事务带来的问题（脏读、不可重复读、幻读）以及MySQL提供的四种隔离级别，并对undo log和redo log的区别、MVCC的概念和实现原理、MySQL主从同步的原理以及分库分表的策略和常见中间件（sharding-sphere、mycat）等知识点进行了深入浅出的讲解。',
+  pageFillDescription: '开篇, Mysql-优化, 定位慢查询, 分析慢查询, 索引概念以及索引底层数据结构, 聚簇索引和非聚簇索引, 覆盖索引, 索引创建的原则, 什么情况下索引会失效, 谈一谈你对SQL优化的经验, Mysql-其他面试题, 事务相关, 并发事务问题、隔离问题, undo log和redo log的区别, 解释MVCC(事务隔离性是如何保证的), MySQL主从同步原理, Mysql分库分表第三篇篇求其上得其中求其中得其下求其下必败新版面试专题视频教程八股文面试全套真题深度详解含大厂高频面试真题哔哩哔哩开篇优化定位慢查询方案一开源工具调试工具运维工具方案二自带慢日志慢查询日志记录了所有执行时间超过指定参数单位秒默认秒的所有语句的日志如果要开启慢查询日志需要在的配置文件中配置如下信息开启慢日志查询开关设置慢日志的时间为秒语句执行时间超过秒就会视为慢查询记录慢查询日志配置完毕之后通过指令重新启动服务器进行测试查看慢日志文件中记录的信息分析慢查询可以采用或者命令获取如何执行命令直接在语句前加上字段列表表名条件当前可能会使用到的索引当前实际命中的索引索引占用的大小这条的连接的类型性能由好到差为不查询任何表查询系统中的表根据主键查询主键索引查询或唯一索引查询索引查询范围查询索引树扫描全盘扫描额外的优化建议我们可以通过和来查看是否可能会命中索引也可以通过来查看优化建议索引概念以及索引底层数据结构数据结构对比默认使用的索引底层数据结构是树与二叉搜索树红黑树对比二叉搜索树因为插入顺序不当可能会退化成链表这会导致搜索效率由理想情况的退化成红黑树大部分情况下的查找复杂度确实为但是在极端情况下可能出现遍历过深导致效率下降树树是一种多叉路衡查找树相对于二叉树树每个节点可以有多个分支即多叉以一颗最大度数为阶的为例那这个树每个节点最多存储个此图中蓝色部分表示数据灰色部分表示指针树中每一分支最多存储个这个从左向右是逐渐变大的根节点中左边的指针指向的是小于的节点与之间的指针指向的是的节点树是在基础上的一种优化使其更适合实现外存储索引结构存储引擎就是用实现其索引结构树只有叶子节点真正存储数据路径节点存储的都是指针叶子节点之间是有双向指针的如果我们想要范围查找那么就不需要再返回根节点了这加快了区间查询效率树与树对比磁盘读写代价树更低查询效率树更加稳定树便于扫库和区间查询聚簇索引和非聚簇索引也叫聚集索引和非聚集索引聚簇索引和非聚簇索引分类含义特点聚集索引将数据存储与索引放到了一块索引结构的叶子节点保存了行数据必须有而且只有一个二级索引将数据与索引分开存储索引结构的叶子节点关联的是对应的主键可以存在多个聚集索引选取规则如果存在主键主键索引就是聚集索引如果不存在主键将使用第一个唯一索引作为聚集索引如果表没有主键或没有合适的唯一索引则会自动生成一个作为隐藏的聚集索引聚簇索引注意叶子节点中存储的是一行的数据中途节点存储的是主键对于每个表有且只能有一个聚簇索引非聚簇索引二级索引注意上述表结构对字段进行了唯一性标注叶子节点中存储的是主键我们单独给字段创建的索引大部分都是二级索引回表查询回表查询是指在数据库查询过程中通过索引找到记录的位置后还需要再次访问表的实际数据行以获取所需的完整数据这将先从二级索引中查找主键然后从聚簇索引中查找行数据这个过程就是回表查询覆盖索引覆盖索引是指查询使用了索引并且需要返回的列在该索引中已经全部能够找到要创建一个覆盖索引索引的字段必须包含查询语句中所有需要的字段例如由于索引包含了查询所需的所有列这个索引就是一个覆盖索引数据库可以直接从索引中获取数据而不需要访问表的实际数据行超大分页举例在数据量比较大时如果进行分页查询在查询时越往后分页查询效率越低因为当在进行分页查询时如果执行此时需要排序前记录而仅仅返回的记录其他记录丢弃这样做查询排序的代价非常大优化思路一般分页查询时通过创建覆盖索引能够比较好地提高性能可以通过覆盖索引加子查询形式进行优化先分页查询数据的字段确定了之后再用子查询来过滤只查询这个列表中的数据就可以了因为查询的时候走的覆盖索引所以效率可以提升很多索引创建的原则针对于数据量较大且查询比较频繁的表建立索引单表超过万数据增加用户体验针对于常作为查询条件排序分组操作的字段建立索引尽量选择区分度高的列作为索引尽量建立唯一索引区分度越高使用索引的效率越高如果是字符串类型的字段字段的长度较长可以针对于字段的特点建立前缀索引尽量使用联合索引减少单列索引查询时联合索引很多时候可以覆盖索引节省存储空间避免回表提高查询效率要控制索引的数量索引并不是多多益善索引越多维护索引结构的代价也就越大会影响增删改的效率如果索引列不能存诸值请在创建表时使用约束它当优化器知道每列是否包含值时它可以更好地确定哪个索引最有效地用于查询什么情况下索引会失效背景比如创建联合索引字段顺序什么情况下索引会失效违反最左前缀法则匹配最左前缀法则索引命中如果索引了多列要遵守最左前缀法则指的是查询从索引的最左前列开始并且不跳过索引中的列匹配最左前缀法则的话将走索引注意索引长度需要按顺序匹配索引上图中都是命中索引的违反最左前缀法则索引失效如果符合最左法则但是出现跳跃某一列只有最左列索引生效注意看索引长度和之前小米科技一样范围查询右边的列不能使用索引上图中第一列能够命中索引而下图中导致北京市失效在索引上进行运算操作索引将失效字符串不加单引号造成索引失效类型转换以开头的模糊查询索引失效如果仅仅是尾部模糊匹配索引不会失效如果是头部模糊匹配索引失效谈一谈你对优化的经验表的设计优化参考阿里巴巴开发手册终极版比如设置合适的数值要根据实际情况选择比如设置合适的字符串类型和定长效率高可变长度效率稍低语句的优化查询中务必指定具体字段名避免使用使用会返回查询结果中所有字段包括可能不需要的字段这样会增加数据传输和处理的负担尤其是在处理大型表时另外如果表结构发生变化可能会导致代码出现错误或者不可预料的行为指定具体字段名可以确保只返回需要的数据提高查询效率和代码的可维护性避免编写语句导致索引失效当查询条件中使用了函数表达式或者类型转换时会导致数据库无法有效使用索引索引失效会使查询变慢因为数据库需要遍历整个表来获取符合条件的数据而不是直接利用索引进行快速定位因此在编写语句时应该避免这些情况以确保索引的有效使用提高查询性能使用替代操作符会执行额外的步骤来确保结果集中不包含重复的行这会增加查询的开销相比之下不会去除重复行因此效率更高除非需要去重否则应该优先选择使用避免在子句中进行字段表达式操作在子句中对字段进行表达式操作会导致数据库无法使用索引因为它无法提前确定表达式的结果这样会导致查询效率下降尤其是在处理大量数据时为了保证查询的高效率应该尽量避免在子句中进行字段表达式操作或者通过其他方式重写查询以利用索引优先选择而不是或会返回两个表中共有的记录而和则会返回左表或右表的所有记录以及与之匹配的右表或左表的记录因此比和更高效因为它只需要处理共有的记录另外在进行表连接时应该将小表作为驱动表这样可以减少连接操作的数据量提高查询效率内连接会对两个表进行优化优先把小表放到外边把大表放到里边或不重新调顺序主从复制读写分离如果数据库的使用场景读的操作比较多的时候为了避免写的操作所造成的性能影响可以采用读写分离的架构读写分离解决的是数据库的写入影响查询的效率像一样负责写操作负责读操作其他面试题事务相关事务是一组操作的集合它是一个不可分割的工作单位事务会把所有的操作作为一个整体一起向系统提交或撤销操作请求即这些操作要么同时成功要么同时失败事务的特性原子性事务是不可分割的最小操作单元要么全部成功要么全部失败一致性事务完成时必须使所有的数据都保持一致状态隔离性数据库系统提供的隔离机制保证事务在不受外部并发操作影响的独立环境下运行持久性事务一旦提交或回滚它对数据库中的数据的改变就是永久的最好结合案例并发事务问题隔离问题并发事务问题解决方法对事务进行隔离问题描述脏读一个事务读到另外一个事务还没有提交的数据不可重复读一个事务先后读取同一条记录但两次读取的数据不同称之为不可重复读幻读一个事务按照条件查询数据时没有对应的数据行但是在插入数据时又发现这行数据已经存在好像出现了幻影事务的隔离级别隔离级别锁脏读不可重复读幻读未提交读无锁读已提交行锁读不加锁默认可重复读行锁读写都加锁串行化表锁不可解决可解决注意事务隔离级别越高数据越安全但是性能越低和的区别概念缓冲池主内存中的一个区域里面可以缓存磁盘上经常操作的真实数据在执行增删改查操作时先操作缓冲池中的数据若缓冲池没有数据则从磁盘加载并缓存以一定频率刷新到磁盘从而减少磁盘加快处理速度数据页是存储引擎磁盘管理的最小单元每个页的大小默认为页中存储的是行数据正常操作当我们提交了写事务将不会直接操作磁盘首先会去操作内存即缓冲池如果其中没有需要操作的数据将会把某一页的数据加载到缓冲池等操作完成后将会按照一定频率把数据同步到磁盘脏页我们在操作完后还没来得及将也从中同步到磁盘中此时服务器宕机那么内存中的数据可能消失那么我们修改的数据也丢失了脏页解决中引入了一种日志文件叫做重做日志重做日志记录的是事务提交时数据页的物理修改是用来实现事务的持久性该日志文件由两部分组成重做日志缓冲以及重做日志文件前者是在内存中后者在磁盘中当事务提交之后会把所有修改信息都存到该日志文件中用于在刷新脏页到磁盘发生错误时进行数据恢复使用回滚日志用于记录数据被修改前的信息作用包含两个提供回滚和多版本并发控制和记录物理日志不一样它是逻辑日志可以认为当一条记录时中会记录一条对应的记录反之亦然当一条记录时它记录一条对应相反的记录当执行时就可以从中的逻辑记录读取到相应的内容并进行回滚可以实现事务的一致性和原子性解释事务隔离性是如何保证的全称多版本并发控制指维护一个数据的多个版本使得读写操作没有冲突的具体实现主要依赖于数据库记录中的隐式字段日志记录中的隐藏字段隐藏字段含义最近修改事务记录插入这条记录或最后一次修改该记录的事务回滚指针指向这条记录的上一个版本用于配合指向上一个版本隐藏主键如果表结构没有指定主键将会生成该隐藏字段回滚日志在的时候产生的便于数据回滚的日志当的时候产生的日志只在回滚时需要在事务提交后可被立即删除而的时候产生的日志不仅在回滚时需要版本访问也需要不会立即被删除版本链每修改一次行对其进行一次记录每记录一次将记录添加到链表不同事务或相同事务对同一条记录进行修改会导致该记录的生成一条记录版本链表链表的头部是最新的旧记录链表尾部是最早的旧记录读视图是快照读执行时提取数据的依据记录并维护系统当前活跃的事务未提交的当前读读取的是记录的最新版本读取时还要保证其他并发事务不能修改当前记录会对读取的记录进行加锁对于我们日常的操作如共享锁排他锁都是一种当前读快照读简单的不加锁就是快照读快照读读取的是记录数据的可见版本有可能是历史数据不加锁是非阻塞读每次都生成一个快照读开启事务后第一个语句才是快照读的地方实现原理根据下表如果隔离级别下事务的第一次查询创建了读视图判断读视图中的核心字段中包含了个核心字段字段含义在此读视图中的值当前活跃的事务集合最小的活跃事务预分配事务当前最大事务因为事务是自增的创建者的事务规则如下不需要记了解即可不同的隔离级别生成的时机不同隔离级别下的在事务中每一次执行快照读时生成隔离级别下的仅在事务中第一次执行快照读时生成后续复用该主从同步原理主从复制的核心在于二进制文件二进制日志记录了所有的数据定义语言语句和数据操纵语言语句但不包括数据查询语句主库专门写入从库专门读取当主库修改数据时会将日志文件写入从库的线程监听主库的读取到差异后写入从库的中继日志接着从库的线程读取中继日志的文件执行其中的差异命令执行完成后主从库的数据保持同步分库分表我们之前提到了主从同步其中主库负责写入从库负责读取假如现在有海量的数据进行存储那这个主从同步架构无法解决此问题因为那个架构只能解决访问压力不能解决存储压力随着项目业务数据逐渐增多业务发展比较迅速单表的数据量达到万或者优化也解决不了性能问题主从读写分离查询索引或者遇到了瓶颈磁盘网络瓶颈聚合查询连接数太多分库策略垂直拆分垂直分库将不同业务模块的数据分布到不同的数据库中例如一个电子商务系统可以将用户信息订单信息商品信息分别存储在不同的数据库中这样可以减少单个数据库的负担提高整体系统的性能和可扩展性特点按业务对数据分级管理维护监控扩展在高并发下提高磁盘和数据量连接数垂直分表将同一个业务模块的数据按列拆分成多个表例如将商品表中的基本信息如商品名价格和扩展信息如描述信息分成两张不同的表这种方式可以优化某些查询提高数据库的读写效率拆分规则特点把不常用的字段单独放在一张表把等大字段拆分出来放在附表中冷热数据分离减少过渡争抢两表互不影响水平拆分水平分库将同一个表的数据按行拆分到多个数据库中例如将用户数据按用户范围分布到不同的数据库中如用户在万的放在数据库在万万的放在数据库或者按照进行取模取模后余则在数据库余则在数据库这样可以有效分散负载避免单个数据库的性能瓶颈路由规则特点根据进行取模分配节点按大小也就是范围路由节点万节点万万解决了单库大数量高并发的性能瓶颈问题提高了系统的稳定性和可用性水平分表将同一个表的数据按行拆分成多个表例如将订单表按照订单日期拆分成多张表每个月的数据存储在一张表中这样可以减少单表的数据量提高查询和写入的效率特点优化单一表数据量过大而产生的性能问题避免争抢并减少锁表的几率新的问题和新的技术分库之后的问题分布式事务一致性问题跨节点关联查询跨节点分页排序函数主键避重针对上述问题我们可以采用中间件来桥接应用程序和数据库群主流的中间件有',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-06-09 04:02:22',
+  postMainColor: '',
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#18171d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f7f9fe')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 18 || hour >= 6
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(e => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"><meta http-equiv="Access-Control-Allow-Origin" content="*" /><meta http-equiv="Access-Control-Allow-Methods" content="HEAD,GET,POST,PUT,DELETE,OPTIONS" /><meta http-equiv="Access-Control-Allow-Headers" content="Content-Type,Authorization,Origin,X-Requested-With,Accept" /><meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"><link rel="stylesheet" href="/css/joker.css" media="defer" onload="this.media='all'"><script src="https://cdn.cbd.int/jquery@3.7.1/dist/jquery.min.js"></script><script src="/js/notice.js"></script><!-- hexo injector head_end start --><script defer src="/sw-dom.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="九歌" type="application/atom+xml">
+</head><body data-type="anzhiyu"><div id="web_bg"></div><div id="an_music_bg"></div><div id="loading-box" onclick="document.getElementById(&quot;loading-box&quot;).classList.add(&quot;loaded&quot;)"><div class="loading-bg"><img class="loading-img nolazyload" alt="加载头像" src="https://resource.joker2yue.cn/blog/images/avatar_load.jpg"/><div class="loading-image-dot"></div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.getElementById('loading-box').classList.add("loaded");
+  },
+  initLoading: () => {
+    document.getElementById('loading-box').classList.remove("loaded")
+  }
+}
+window.addEventListener('load',()=> { preloader.endLoading() })
+setTimeout(function(){preloader.endLoading();},10000)
+
+if (true) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.10/progress_bar/progress_bar.css"/><script async="async" src="https://cdn.cbd.int/pace-js@1.2.4/pace.min.js" data-pace-options="{ &quot;restartOnRequestAfter&quot;:false,&quot;eventLag&quot;:false}"></script><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><div id="nav-group"><span id="blog_name"><div class="back-home-button"><i class="anzhiyufont anzhiyu-icon-grip-vertical"></i><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" href="https://Blog.Joker2Yue.cn/" title="博客"><img class="back-menu-item-icon" src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/joker_icon.ico" alt="博客"/><span class="back-menu-item-text">博客</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">项目</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://gpt.joker2yue.cn/" title="JokerGPT"><img class="back-menu-item-icon" src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://gpt.joker2yue.cn/favicon.ico" alt="JokerGPT"/><span class="back-menu-item-text">JokerGPT</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="https://www.joker2yue.cn/" title="主页"><img class="back-menu-item-icon" src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/avatar_joker.jpg" alt="主页"/><span class="back-menu-item-text">主页</span></a></div></div></div></div><a id="site-name" href="/" accesskey="h"><div class="title">九歌</div><i class="anzhiyufont anzhiyu-icon-house-chimney"></i></a></span><div class="mask-name-container"><div id="name-container"><a id="page-name" href="javascript:anzhiyu.scrollToDest(0, 500)">PAGE_NAME</a></div></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> 隧道</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 标签</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 社交</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/fcircle/"><i class="anzhiyufont anzhiyu-icon-artstation faa-tada" style="font-size: 0.9em;"></i><span> 朋友圈</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/link/"><i class="anzhiyufont anzhiyu-icon-link faa-tada" style="font-size: 0.9em;"></i><span> 友人账</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/comments/"><i class="anzhiyufont anzhiyu-icon-envelope faa-tada" style="font-size: 0.9em;"></i><span> 留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 我的</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/music/?id=648886106&amp;server=netease"><i class="anzhiyufont anzhiyu-icon-music faa-tada" style="font-size: 0.9em;"></i><span> 音乐馆</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/air-conditioner/"><i class="anzhiyufont anzhiyu-icon-fan faa-tada" style="font-size: 0.9em;"></i><span> 小空调</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 关于</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/about/"><i class="anzhiyufont anzhiyu-icon-paper-plane faa-tada" style="font-size: 0.9em;"></i><span> 关于本人</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/website/"><i class="anzhiyufont anzhiyu-icon-cube faa-tada" style="font-size: 0.9em;"></i><span> 本站建设</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/essay/"><i class="anzhiyufont anzhiyu-icon-lightbulb faa-tada" style="font-size: 0.9em;"></i><span> 闲言碎语</span></a></li><li><a class="site-page child faa-parent animated-hover" href="javascript:toRandomPost()"><i class="anzhiyufont anzhiyu-icon-shoe-prints1 faa-tada" style="font-size: 0.9em;"></i><span> 随便逛逛</span></a></li></ul></div></div></div><div id="nav-right"><div class="nav-button only-home" id="travellings_button" title="随机前往一个开往项目网站"><a class="site-page" onclick="anzhiyu.totraveling()" title="随机前往一个开往项目网站" href="javascript:void(0);" rel="external nofollow" data-pjax-state="external"><i class="anzhiyufont anzhiyu-icon-train"></i></a></div><div class="nav-button" id="randomPost_button"><a class="site-page" onclick="toRandomPost()" title="随机前往一个文章" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-dice"></i></a></div><div class="nav-button" id="search-button"><a class="site-page social-icon search" href="javascript:void(0);" title="搜索🔍" accesskey="s"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span> 搜索</span></a></div><input id="center-console" type="checkbox"/><label class="widget" for="center-console" title="中控台" onclick="anzhiyu.switchConsole();"><i class="left"></i><i class="widget center"></i><i class="widget right"></i></label><div id="console"><div class="console-card-group-reward"><ul class="reward-all console-card"><li class="reward-item"><a href="https://resource.joker2yue.cn/blog/images/reward/wechat.png" target="_blank"><img class="post-qr-code-img" alt="微信" src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/reward/wechat.png"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://resource.joker2yue.cn/blog/images/reward/alipay.png" target="_blank"><img class="post-qr-code-img" alt="支付宝" src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/reward/alipay.png"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div><div class="console-card-group"><div class="console-card-group-left"><div class="console-card" id="card-newest-comments"><div class="card-content"><div class="author-content-item-tips">互动</div><span class="author-content-item-title"> 最新评论</span></div><div class="aside-list"><span>正在加载中...</span></div></div></div><div class="console-card-group-right"><div class="console-card tags"><div class="card-content"><div class="author-content-item-tips">兴趣点</div><span class="author-content-item-title">寻找你感兴趣的领域</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/AI/" style="font-size: 1.05rem;">AI<sup>1</sup></a><a href="/tags/AMD/" style="font-size: 1.05rem;">AMD<sup>1</sup></a><a href="/tags/CSS/" style="font-size: 1.05rem;">CSS<sup>14</sup></a><a href="/tags/Git/" style="font-size: 1.05rem;">Git<sup>2</sup></a><a href="/tags/Github/" style="font-size: 1.05rem;">Github<sup>2</sup></a><a href="/tags/HTML/" style="font-size: 1.05rem;">HTML<sup>3</sup></a><a href="/tags/Hexo/" style="font-size: 1.05rem;">Hexo<sup>2</sup></a><a href="/tags/JDBC/" style="font-size: 1.05rem;">JDBC<sup>1</sup></a><a href="/tags/Java/" style="font-size: 1.05rem;">Java<sup>55</sup></a><a href="/tags/JavaEE/" style="font-size: 1.05rem;">JavaEE<sup>1</sup></a><a href="/tags/JavaSE/" style="font-size: 1.05rem;">JavaSE<sup>29</sup></a><a href="/tags/JavaWeb/" style="font-size: 1.05rem;">JavaWeb<sup>1</sup></a><a href="/tags/Kotlin/" style="font-size: 1.05rem;">Kotlin<sup>1</sup></a><a href="/tags/Linux/" style="font-size: 1.05rem;">Linux<sup>4</sup></a><a href="/tags/Markdown/" style="font-size: 1.05rem;">Markdown<sup>1</sup></a><a href="/tags/Maven/" style="font-size: 1.05rem;">Maven<sup>1</sup></a><a href="/tags/MyabtisPlus/" style="font-size: 1.05rem;">MyabtisPlus<sup>1</sup></a><a href="/tags/Mybatis/" style="font-size: 1.05rem;">Mybatis<sup>3</sup></a><a href="/tags/Mysql/" style="font-size: 1.05rem;">Mysql<sup>3</sup></a><a href="/tags/NodeJS/" style="font-size: 1.05rem;">NodeJS<sup>1</sup></a><a href="/tags/Ollama/" style="font-size: 1.05rem;">Ollama<sup>1</sup></a><a href="/tags/Redis/" style="font-size: 1.05rem;">Redis<sup>1</sup></a><a href="/tags/SSM/" style="font-size: 1.05rem;">SSM<sup>3</sup></a><a href="/tags/Spring/" style="font-size: 1.05rem;">Spring<sup>6</sup></a><a href="/tags/SpringBoot/" style="font-size: 1.05rem;">SpringBoot<sup>3</sup></a><a href="/tags/SpringCloud/" style="font-size: 1.05rem;">SpringCloud<sup>3</sup></a><a href="/tags/SpringFramework/" style="font-size: 1.05rem;">SpringFramework<sup>1</sup></a><a href="/tags/SpringMVC/" style="font-size: 1.05rem;">SpringMVC<sup>1</sup></a><a href="/tags/Spring%E6%A1%86%E6%9E%B6/" style="font-size: 1.05rem;">Spring框架<sup>4</sup></a><a href="/tags/Vue/" style="font-size: 1.05rem;">Vue<sup>1</sup></a><a href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 1.05rem;">中间件<sup>1</sup></a><a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" style="font-size: 1.05rem;">分布式<sup>4</sup></a><a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 1.05rem;">前端<sup>22</sup></a><a href="/tags/%E5%A4%8D%E4%B9%A0%E9%A2%98/" style="font-size: 1.05rem;">复习题<sup>3</sup></a><a href="/tags/%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B/" style="font-size: 1.05rem;">大学课程<sup>23</sup></a><a href="/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/" style="font-size: 1.05rem;">大模型<sup>1</sup></a><a href="/tags/%E5%BF%85%E7%9C%8B/" style="font-size: 1.05rem;">必看<sup>26</sup></a><a href="/tags/%E6%8A%80%E6%9C%AF/" style="font-size: 1.05rem;">技术<sup>7</sup></a><a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 1.05rem;">数据库<sup>4</sup></a><a href="/tags/%E7%8B%82%E7%A5%9E/" style="font-size: 1.05rem;">狂神<sup>44</sup></a><a href="/tags/%E8%BD%AC%E8%BD%BD/" style="font-size: 1.05rem;">转载<sup>1</sup></a><a href="/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/" style="font-size: 1.05rem;">软件测试<sup>1</sup></a><a href="/tags/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%B8%88/" style="font-size: 1.05rem;">软件设计师<sup>20</sup></a><a href="/tags/%E8%BD%AF%E4%BB%B6%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/" style="font-size: 1.05rem;">软件项目管理<sup>2</sup></a><a href="/tags/%E8%BD%AF%E8%80%83/" style="font-size: 1.05rem;">软考<sup>20</sup></a><a href="/tags/%E8%BF%90%E7%BB%B4/" style="font-size: 1.05rem;">运维<sup>3</sup></a><a href="/tags/%E8%BF%9E%E8%BD%BD/" style="font-size: 1.05rem;">连载<sup>92</sup></a><a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 1.05rem;">面试<sup>10</sup></a><a href="/tags/%E9%BB%91%E9%A9%AC/" style="font-size: 1.05rem;">黑马<sup>28</sup></a></div></div><hr/></div></div><div class="console-card history"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-box-archiv"></i><span>文章</span></div><div class="card-archives"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-archive"></i><span>归档</span><a class="card-more-btn" href="/archives/" title="查看更多">
+    <i class="anzhiyufont anzhiyu-icon-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/09/"><span class="card-archive-list-date">九月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/08/"><span class="card-archive-list-date">八月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/06/"><span class="card-archive-list-date">六月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">10</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/05/"><span class="card-archive-list-date">五月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">4</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/01/"><span class="card-archive-list-date">一月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/10/"><span class="card-archive-list-date">十月 2023</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">11</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/09/"><span class="card-archive-list-date">九月 2023</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">12</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/08/"><span class="card-archive-list-date">八月 2023</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">11</span><span>篇</span></div></a></li></ul></div><hr/></div></div></div><div class="button-group"><div class="console-btn-item"><a class="darkmode_switchbutton" title="显示模式切换" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-moon"></i></a></div><div class="console-btn-item" id="consoleHideAside" onclick="anzhiyu.hideAsideBtn()" title="边栏显示控制"><a class="asideSwitch"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></a></div><div class="console-btn-item" id="consoleMusic" onclick="anzhiyu.musicToggle()" title="音乐开关"><a class="music-switch"><i class="anzhiyufont anzhiyu-icon-music"></i></a></div></div><div class="console-mask" onclick="anzhiyu.hideConsole()" href="javascript:void(0);"></div></div><div class="nav-button" id="nav-totop"><a class="totopbtn" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i><span id="percent" onclick="anzhiyu.scrollToDest(0,500)">0</span></a></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);" title="切换"><i class="anzhiyufont anzhiyu-icon-bars"></i></a></div></div></div></nav><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original">原创</a><span class="post-meta-categories"><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-inbox post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%B7%9F%E9%9A%8F%E9%BB%91%E9%A9%AC%E9%9D%A2Java/" itemprop="url">跟随黑马面Java</a><i class="anzhiyufont anzhiyu-icon-angle-right post-meta-separator"></i><i class="anzhiyufont anzhiyu-icon-inbox post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%B7%9F%E9%9A%8F%E9%BB%91%E9%A9%AC%E9%9D%A2Java/Java/" itemprop="url">Java</a><i class="anzhiyufont anzhiyu-icon-angle-right post-meta-separator"></i><i class="anzhiyufont anzhiyu-icon-inbox post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%B7%9F%E9%9A%8F%E9%BB%91%E9%A9%AC%E9%9D%A2Java/Java/%E9%9D%A2%E8%AF%95/" itemprop="url">面试</a><i class="anzhiyufont anzhiyu-icon-angle-right post-meta-separator"></i><i class="anzhiyufont anzhiyu-icon-inbox post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%B7%9F%E9%9A%8F%E9%BB%91%E9%A9%AC%E9%9D%A2Java/Java/%E9%9D%A2%E8%AF%95/%E6%8A%80%E6%9C%AF/" itemprop="url">技术</a></span><span class="article-meta tags"><a class="article-meta__tags" href="/tags/%E8%BF%9E%E8%BD%BD/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>连载</span></a><a class="article-meta__tags" href="/tags/%E9%9D%A2%E8%AF%95/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>面试</span></a><a class="article-meta__tags" href="/tags/%E9%BB%91%E9%A9%AC/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>黑马</span></a><a class="article-meta__tags" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>数据库</span></a><a class="article-meta__tags" href="/tags/Java/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>Java</span></a><a class="article-meta__tags" href="/tags/Mysql/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>Mysql</span></a></span></div></div><h1 class="post-title" itemprop="name headline">跟随黑马面Java-3，Mysql篇<a class="post-edit-link" href="https://github.com/Joker2Yue/Joker2Yue-Blog/edit/main/source/_posts/跟随黑马面Java-3.md" title="在 GitHub 上编辑 - 跟随黑马面Java-3，Mysql篇" target="_blank"><i class="anzhiyufont anzhiyu-icon-pencil"></i></a></h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="anzhiyufont anzhiyu-icon-calendar-days post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" itemprop="dateCreated datePublished" datetime="2024-06-08T20:02:22.000Z" title="发表于 2024-06-09 04:02:22">2024-06-09</time><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-history post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" itemprop="dateCreated datePublished" datetime="2024-06-08T20:02:22.000Z" title="更新于 2024-06-09 04:02:22">2024-06-09</time></span></div><div class="meta-secondline"><span class="post-meta-separator"></span><span class="post-meta-wordcount"><i class="anzhiyufont anzhiyu-icon-file-word post-meta-icon" title="文章字数"></i><span class="post-meta-label" title="文章字数">字数总计:</span><span class="word-count" title="文章字数">5.8k</span><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-clock post-meta-icon" title="阅读时长"></i><span class="post-meta-label" title="阅读时长">阅读时长:</span><span>17分钟</span></span><span class="post-meta-separator"></span><span class="post-meta-pv-cv" id="" data-flag-title="跟随黑马面Java-3，Mysql篇"><i class="anzhiyufont anzhiyu-icon-fw-eye post-meta-icon"></i><span class="post-meta-label" title="阅读量">阅读量:</span><span id="busuanzi_value_page_pv"><i class="anzhiyufont anzhiyu-icon-spinner anzhiyu-spin"></i></span></span><span class="post-meta-separator">       </span><span class="post-meta-position" title="作者IP属地为衡阳"><i class="anzhiyufont anzhiyu-icon-location-dot"></i>衡阳</span></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section><div id="post-top-cover"><img class="nolazyload" id="post-top-bg" src="https://resource.joker2yue.cn/blog/images/coverImg/跟随黑马面Java/03.jpg"></div></header><main id="blog-container"><div class="layout" id="content-inner"><div id="post"><div class="post-ai-description"><div class="ai-title"><i class="anzhiyufont anzhiyu-icon-bilibili"></i><div class="ai-title-text">AI-摘要</div><div id="ai-Toggle">切换</div><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right"></i><i class="anzhiyufont anzhiyu-icon-circle-dot" title="朗读摘要"></i><div id="ai-tag">Joker GPT</div></div><div class="ai-explanation">AI初始化中...</div><div class="ai-btn-box"><div class="ai-btn-item">介绍自己 🙈</div><div class="ai-btn-item">生成本文简介 👋</div><div class="ai-btn-item">推荐相关文章 📖</div><div class="ai-btn-item">前往主页 🏠</div><div class="ai-btn-item" id="go-tianli-blog">前往爱发电购买</div></div><script data-pjax src="/js/ai_abstract.min.js"></script></div><article class="post-content" id="article-container" itemscope itemtype="https://blog.joker2yue.cn/post/gen-sui-hei-ma-mian-java-3/"><header><a class="post-meta-categories" href="/categories/%E8%B7%9F%E9%9A%8F%E9%BB%91%E9%A9%AC%E9%9D%A2Java/" itemprop="url">跟随黑马面Java</a><a class="post-meta-categories" href="/categories/%E8%B7%9F%E9%9A%8F%E9%BB%91%E9%A9%AC%E9%9D%A2Java/Java/" itemprop="url">Java</a><a class="post-meta-categories" href="/categories/%E8%B7%9F%E9%9A%8F%E9%BB%91%E9%A9%AC%E9%9D%A2Java/Java/%E9%9D%A2%E8%AF%95/" itemprop="url">面试</a><a class="post-meta-categories" href="/categories/%E8%B7%9F%E9%9A%8F%E9%BB%91%E9%A9%AC%E9%9D%A2Java/Java/%E9%9D%A2%E8%AF%95/%E6%8A%80%E6%9C%AF/" itemprop="url">技术</a><a href="/tags/%E8%BF%9E%E8%BD%BD/" tabindex="-1" itemprop="url">连载</a><a href="/tags/%E9%9D%A2%E8%AF%95/" tabindex="-1" itemprop="url">面试</a><a href="/tags/%E9%BB%91%E9%A9%AC/" tabindex="-1" itemprop="url">黑马</a><a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" tabindex="-1" itemprop="url">数据库</a><a href="/tags/Java/" tabindex="-1" itemprop="url">Java</a><a href="/tags/Mysql/" tabindex="-1" itemprop="url">Mysql</a><h1 id="CrawlerTitle" itemprop="name headline">跟随黑马面Java-3，Mysql篇</h1><span itemprop="author" itemscope itemtype="http://schema.org/Person">Joker2Yue</span><time itemprop="dateCreated datePublished" datetime="2024-06-08T20:02:22.000Z" title="发表于 2024-06-09 04:02:22">2024-06-09</time><time itemprop="dateCreated datePublished" datetime="2024-06-08T20:02:22.000Z" title="更新于 2024-06-09 04:02:22">2024-06-09</time></header><p><strong>第三篇：Mysql篇</strong></p>
+<blockquote>
+<p>“求其上，得其中；求其中，得其下，求其下，必败”</p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1yT411H7YK?p=6&amp;spm_id_from=pageDriver&amp;vd_source=814489e71df641c4b2c0ff7d4659b2d0">新版Java面试专题视频教程，java八股文面试全套真题+深度详解（含大厂高频面试真题）_哔哩哔哩_bilibili</a></p>
+</blockquote>
+<h4 id="开篇">开篇<a class="headerlink" href="#开篇"></a></h4>
+<hr>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-3/image-20240516001647722.png" alt="image-20240516001647722" style="zoom:33%;">
+<h4 id="Mysql-优化">Mysql-优化<a class="headerlink" href="#Mysql-优化"></a></h4>
+<hr>
+<h5 id="定位慢查询">定位慢查询<a class="headerlink" href="#定位慢查询"></a></h5>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>方案一：开源工具</p>
+<ul class="lvl-2">
+<li class="lvl-4">调试工具：<a target="_blank" rel="noopener" href="https://arthas.aliyun.com/">Arthas</a></li>
+<li class="lvl-4">运维工具：<a target="_blank" rel="noopener" href="https://prometheus.io/">Prometheus</a>、<a target="_blank" rel="noopener" href="https://skywalking.apache.org/">Apache SkyWalking</a></li>
+</ul>
+</li>
+<li class="lvl-2">
+<p>方案二：Mysql自带慢日志</p>
+<ul class="lvl-2">
+<li class="lvl-4">
+<p>慢查询日志记录了所有执行时间超过指定参数（long_query_time，单位：秒，默认10秒）的所有SQL语句的日志。如果要开启慢查询日志，需要在MySQL的配置文件（/etc/my.cnf）中配置如下信息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 开启MVSQL慢日志查询开关</span></span><br><span class="line">slow_query_log=1</span><br><span class="line"><span class="comment"># 设置慢日志的时间为2秒，SQL语句执行时间超过2秒，就会视为慢查询，记录慢查询日志</span></span><br><span class="line">long_query_time=2</span><br></pre></td></tr></table></figure>
+</li>
+<li class="lvl-4">
+<p>配置完毕之后，通过指令重新启动MySQL服务器进行测试，查看慢日志文件中记录的信息</p>
+<p>/var/lib/mysql/localhost-slow.log</p>
+</li>
+</ul>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-3/image-20240516003736032.png" alt="image-20240516003736032" style="zoom:33%;">
+</li>
+</ul>
+<hr>
+<h5 id="分析慢查询">分析慢查询<a class="headerlink" href="#分析慢查询"></a></h5>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>可以采用<code>expalin</code>或者<code>desc</code>命令获取Mysql如何执行SELECT命令</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--  直接在select语句前加上explain/desc</span></span><br><span class="line">EXPLAIN SECLET 字段列表 <span class="keyword">FROM</span> 表名 <span class="keyword">WHERE</span> 条件;</span><br></pre></td></tr></table></figure>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-3/image-20240516004054980.png" alt="image-20240516004054980" style="zoom:50%;">
+<ul class="lvl-2">
+<li class="lvl-4">
+<p><code>possible_key</code>当前sql可能会使用到的索引</p>
+</li>
+<li class="lvl-4">
+<p><code>key</code>当前sql实际命中的索引</p>
+</li>
+<li class="lvl-4">
+<p><code>key_len</code>索引占用的大小</p>
+</li>
+<li class="lvl-4">
+<p><code>type</code> 这条sql的连接的类型，性能由好到差为NULL、system、const、eq_ref、ref、range、index、all</p>
+<ul class="lvl-4">
+<li class="lvl-6">NULL: 不查询任何表</li>
+<li class="lvl-6">system：查询系统中的表</li>
+<li class="lvl-6">const: 根据主键查询</li>
+<li class="lvl-6">eq_ref：主键索引查询或唯一索引查询</li>
+<li class="lvl-6">ref：索引查询</li>
+<li class="lvl-6">range：范围查询</li>
+<li class="lvl-6">index：索引树扫描</li>
+<li class="lvl-6">all：全盘扫描</li>
+</ul>
+</li>
+<li class="lvl-4">
+<p><code>Extra</code>额外的优化建议</p>
+</li>
+</ul>
+<p>我们可以通过<code>key</code>和<code>key_len</code>来查看是否可能会命中索引，也可以通过<code>Extra</code>来查看优化建议</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-3/image-20240516004358834.png" alt="image-20240516004358834" style="zoom:33%;">
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-3/image-20240516004818659.png" alt="image-20240516004818659" style="zoom:33%;">
+</li>
+</ul>
+<hr>
+<h5 id="索引概念以及索引底层数据结构">索引概念以及索引底层数据结构<a class="headerlink" href="#索引概念以及索引底层数据结构"></a></h5>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>数据结构对比</p>
+<p>MySQL默认使用的索引底层数据结构是B+树。</p>
+<ul class="lvl-2">
+<li class="lvl-4">
+<p>与二叉搜索树、红黑树对比：</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-3/image-20240516005436340.png" alt="image-20240516005436340" style="zoom:33%;">
+<ul class="lvl-4">
+<li class="lvl-6">
+<p>二叉搜索树因为插入顺序不当可能会退化成链表，这会导致搜索效率由理想情况的O(logn)退化成O(n)。</p>
+</li>
+<li class="lvl-6">
+<p>红黑树大部分情况下的查找复杂度确实为O(logn)，但是在极端情况下可能出现遍历过深，导致效率下降。</p>
+</li>
+</ul>
+</li>
+<li class="lvl-4">
+<p>B树</p>
+<p>B-Tree，B树是一种多叉路衡查找树，相对于二叉树，B树每个节点可以有多个分支，即多叉。</p>
+<p>以一颗最大度数（max-degree）为5(5阶)的b-tree为例，那这个B树每个节点最多存储4个key。</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-3/image-20240516010343719.png" alt="image-20240516010343719" style="zoom:33%;">
+<p>此图中，蓝色部分表示数据，灰色部分表示指针。B树中每一分支最多存储4个key，这4个key从左向右是逐渐变大的。根节点中20左边的指针，指向的是小于20的节点；20与30之间的指针指向的是20~30的节点。</p>
+</li>
+<li class="lvl-4">
+<p>B+树</p>
+<p>B+Tree是在BTree基础上的一种优化，使其更适合实现外存储索引结构，InnoDB存储引擎就是用B+Tree实现其索引结构。</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-3/ds_bplus_tree2.jpg" alt="ds-bplus-tree2" style="zoom:100%;">
+<p>B+树只有叶子节点真正存储数据，路径节点存储的都是指针。叶子节点之间是有双向指针的，如果我们想要范围查找，那么就不需要再返回根节点了，这加快了区间查询效率。</p>
+<p>B树与B+树对比</p>
+<p>①：磁盘读写代价B+树更低；②：查询效率B+树更加稳定；③：B+树便于扫库和区间查询</p>
+</li>
+</ul>
+</li>
+</ul>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-3/image-20240516011601848.png" alt="image-20240516011601848" style="zoom:50%;">
+<hr>
+<h5 id="聚簇索引和非聚簇索引">聚簇索引和非聚簇索引<a class="headerlink" href="#聚簇索引和非聚簇索引"></a></h5>
+<p>也叫聚集索引和非聚集索引</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>聚簇索引和非聚簇索引</p>
+<table>
+<thead>
+<tr>
+<th>分类</th>
+<th>含义</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>聚集索引(Clustered Index)</td>
+<td>将数据存储与索引放到了一块，索引结构的叶子节点保存了<strong>行数据</strong></td>
+<td>必须有，而且只有一个</td>
+</tr>
+<tr>
+<td>二级索引(SecondaryIndex)</td>
+<td>将数据与索引分开存储，索引结构的叶子节点关联的是<strong>对应的主键</strong></td>
+<td>可以存在多个</td>
+</tr>
+</tbody>
+</table>
+<ul class="lvl-2">
+<li class="lvl-4">
+<p>聚集索引选取规则：</p>
+<ul class="lvl-4">
+<li class="lvl-6">如果存在主键，主键索引就是聚集索引。</li>
+<li class="lvl-6">如果不存在主键，将使用第一个唯一（<code>UNIQUE</code>）索引作为聚集索引</li>
+<li class="lvl-6">如果表没有主键，或没有合适的唯一索引。则InnoDB会自动生成一个<code>rowid</code>作为隐藏的聚集索引</li>
+</ul>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-3/image-20240516090712593.png" alt="image-20240516090712593" style="zoom:25%;">
+</li>
+<li class="lvl-4">
+<p>聚簇索引</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-3/image-20240516090948753.png" alt="image-20240516090948753" style="zoom:50%;">
+<p>注意：叶子节点中存储的是一行的数据。中途节点存储的是主键。对于每个表，有且只能有一个聚簇索引。</p>
+</li>
+<li class="lvl-4">
+<p>非聚簇索引/二级索引</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-3/image-20240516091117401.png" alt="image-20240516091117401" style="zoom:50%;">
+<p>注意：上述表结构对name字段进行了唯一性标注，叶子节点中存储的是主键。我们单独给字段创建的索引，大部分都是二级索引。</p>
+</li>
+</ul>
+</li>
+<li class="lvl-2">
+<p>回表查询</p>
+<p><mark>回表查询（Table Lookup or Row Lookup）是指在数据库查询过程中，通过索引找到记录的位置后，还需要再次访问表的实际数据行以获取所需的完整数据。</mark></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span><span class="keyword">from</span> <span class="keyword">user</span> <span class="keyword">where</span> name <span class="operator">=</span> <span class="string">&#x27;Arm&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<p>这将先从二级索引中查找主键，然后从聚簇索引中查找行数据。这个过程就是回表查询。</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-3/image-20240516091545951.png" alt="image-20240516091545951" style="zoom: 25%;">
+</li>
+</ul>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-3/image-20240516091745464.png" alt="image-20240516091745464" style="zoom:33%;">
+<hr>
+<h5 id="覆盖索引">覆盖索引<a class="headerlink" href="#覆盖索引"></a></h5>
+<p><strong>覆盖索引</strong>（Covering Index）是指查询使用了索引，并且需要返回的列，在该索引中已经全部能够找到。</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>要创建一个覆盖索引,索引的字段必须包含查询语句中所有需要的字段。例如:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> INDEX idx_name <span class="keyword">ON</span> <span class="keyword">table</span> (col1, col2, col3);</span><br><span class="line"><span class="keyword">SELECT</span> col1, col2, col3 <span class="keyword">FROM</span> <span class="keyword">table</span> <span class="keyword">WHERE</span> col1 <span class="operator">=</span> ?;</span><br></pre></td></tr></table></figure>
+<p>由于索引 <code>idx_name</code> 包含了查询所需的所有列（<code>col1</code>, <code>col2</code>, <code>col3</code>），这个索引就是一个覆盖索引。数据库可以直接从索引中获取数据，而不需要访问表的实际数据行。</p>
+</li>
+</ul>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-3/image-20240516093908847.png" alt="image-20240516093908847" style="zoom:33%;">
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>Mysql超大分页</p>
+<ul class="lvl-2">
+<li class="lvl-4">
+<p>举例</p>
+<p>在数据量比较大时，如果进行limit分页查询，在查询时，越往后，分页查询效率越低。</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-3/image-20240516094440293.png" alt="image-20240516094440293" style="zoom:33%;">
+<p>因为，当在进行分页查询时，如果执行limit 9000000,10，此时需要MySQL排序前9000010记录，而仅仅返回9000000－9000010的记录，其他记录丢弃。这样做查询排序的代价非常大。</p>
+</li>
+<li class="lvl-4">
+<p>优化思路</p>
+<p>一般分页查询时，通过创建<strong>覆盖索引</strong>能够比较好地提高性能，可以通过<strong>覆盖索引加子查询</strong>形式进行优化</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-3/image-20240516094722254.png" alt="image-20240516094722254" style="zoom:33%;">
+<p>先分页查询数据的id字段，确定了id之后，再用子查询来过滤，只查询这个id列表中的数据就可以了。</p>
+<p>因为查询id的时候，走的覆盖索引，所以效率可以提升很多</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h5 id="索引创建的原则">索引创建的原则<a class="headerlink" href="#索引创建的原则"></a></h5>
+<ol>
+<li class="lvl-3">
+<p>**针对于数据量较大，且查询比较频繁的表建立索引。**单表超过10万数据（增加用户体验）。</p>
+</li>
+<li class="lvl-3">
+<p>针对于常作为查询条件（where）、排序（orderby）、分组（groupby）操作的字段建立索引。</p>
+</li>
+<li class="lvl-3">
+<p>尽量选择<strong>区分度高</strong>的列作为索引，尽量建立唯一索引。区分度越高，使用索引的效率越高。</p>
+</li>
+<li class="lvl-3">
+<p>如果是字符串类型的字段，字段的长度较长，可以针对于字段的特点，建立前缀索引。</p>
+</li>
+<li class="lvl-3">
+<p>尽量使用联合索引，减少单列索引，查询时，联合索引很多时候可以覆盖索引，节省存储空间，避免回表，提高查询效率。</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-3/image-20240516103835335.png" alt="image-20240516103835335" style="zoom:33%;">
+</li>
+<li class="lvl-3">
+<p>要控制索引的数量，索引并不是多多益善，索引越多，维护索引结构的代价也就越大，会影响增删改的效率。</p>
+</li>
+<li class="lvl-3">
+<p>如果索引列不能存诸NULL值，请在创建表时使用NOT NULL约束它。当优化器知道每列是否包含NULL值时，它可以更好地确定哪个索引最有效地用于查询。</p>
+</li>
+</ol>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-3/image-20240516104044330.png" alt="image-20240516104044330" style="zoom:33%;">
+<hr>
+<h5 id="什么情况下索引会失效">什么情况下索引会失效<a class="headerlink" href="#什么情况下索引会失效"></a></h5>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>背景</p>
+<p>比如tb_seller创建联合索引，字段顺序：name，status，address。</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-3/image-20240516104615741.png" alt="image-20240516104615741" style="zoom:33%;">
+</li>
+<li class="lvl-2">
+<p>什么情况下索引会失效</p>
+<ol>
+<li class="lvl-5">
+<p>违反最左前缀法则</p>
+<ul class="lvl-4">
+<li class="lvl-7">
+<p>匹配最左前缀法则，索引命中</p>
+<p>如果索引了多列，要遵守最左前缀法则。指的是查询从索引的最左前列开始，并且不跳过索引中的列。匹配最左前缀法则的话，将走索引。（注意索引长度）</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-3/image-20240516104854291.png" alt="image-20240516104854291" style="zoom:33%;">
+<p>需要按顺序匹配索引，上图中都是命中索引的。</p>
+</li>
+<li class="lvl-7">
+<p>违反最左前缀法则，索引失效</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-3/image-20240516105123438.png" alt="image-20240516105123438" style="zoom:33%;">
+</li>
+<li class="lvl-7">
+<p>如果符合最左法则，但是出现跳跃某一列，只有最左列索引生效：</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-3/image-20240516105242731.png" alt="image-20240516105242731" style="zoom:33%;">
+<p>注意看索引长度，和之前<code>select * from tb_seller where name = '小米科技';</code>一样。</p>
+</li>
+</ul>
+</li>
+<li class="lvl-5">
+<p>范围查询右边的列，不能使用索引。</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-3/image-20240516105506457.png" alt="image-20240516105506457" style="zoom:33%;">
+<p>上图中第一列能够命中索引，而下图中<code>status &gt; '1'</code>，导致<code>address = '北京市'</code>失效。</p>
+</li>
+<li class="lvl-5">
+<p>在索引上进行运算操作 ，索引将失效</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-3/image-20240516105722518.png" alt="image-20240516105722518" style="zoom:33%;">
+</li>
+<li class="lvl-5">
+<p>字符串不加单引号，造成索引失效（类型转换）</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-3/image-20240516105848050.png" alt="image-20240516105848050" style="zoom:33%;">
+</li>
+<li class="lvl-5">
+<p>以%开头的Like模糊查询，索引失效。如果仅仅是尾部模糊匹配，索引不会失效。如果是头部模糊匹配，索引失效。</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-3/image-20240516110241744.png" alt="image-20240516110241744" style="zoom:33%;">
+</li>
+</ol>
+</li>
+</ul>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-3/image-20240516110358974.png" alt="image-20240516110358974" style="zoom:33%;">
+<hr>
+<h5 id="谈一谈你对SQL优化的经验">谈一谈你对SQL优化的经验<a class="headerlink" href="#谈一谈你对SQL优化的经验"></a></h5>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>表的设计优化（参考阿里巴巴Java开发手册（终极版））</p>
+<ul class="lvl-2">
+<li class="lvl-4">比如设置合适的数值（tinyintintbigint），要根据实际情况选择</li>
+<li class="lvl-4">比如设置合适的字符串类型（char和varchar）char定长效率高，varchar可变长度，效率稍低</li>
+</ul>
+</li>
+<li class="lvl-2">
+<p>SQL语句的优化</p>
+<ul class="lvl-2">
+<li class="lvl-4"><strong>SQL查询中，务必指定具体字段名，避免使用 <code>SELECT *</code>。</strong>：使用 <code>SELECT *</code> 会返回查询结果中所有字段，包括可能不需要的字段，这样会增加数据传输和处理的负担，尤其是在处理大型表时。另外，如果表结构发生变化，可能会导致代码出现错误或者不可预料的行为。指定具体字段名可以确保只返回需要的数据，提高查询效率和代码的可维护性。</li>
+</ul>
+<ol start="2">
+<li class="lvl-5">
+<p><strong>避免编写SQL语句导致索引失效。</strong>：当 SQL 查询条件中使用了函数、表达式、或者类型转换时，会导致数据库无法有效使用索引。索引失效会使查询变慢，因为数据库需要遍历整个表来获取符合条件的数据，而不是直接利用索引进行快速定位。因此，在编写 SQL 语句时，应该避免这些情况，以确保索引的有效使用，提高查询性能。</p>
+</li>
+<li class="lvl-5">
+<p><strong>使用 UNION ALL 替代 UNION</strong>：<code>UNION</code> 操作符会执行额外的步骤来确保结果集中不包含重复的行，这会增加查询的开销。相比之下，<code>UNION ALL</code> 不会去除重复行，因此效率更高。除非需要去重，否则应该优先选择使用 <code>UNION ALL</code>。</p>
+</li>
+<li class="lvl-5">
+<p><strong>避免在 WHERE 子句中进行字段表达式操作</strong>：在 WHERE 子句中对字段进行表达式操作会导致数据库无法使用索引，因为它无法提前确定表达式的结果。这样会导致查询效率下降，尤其是在处理大量数据时。为了保证查询的高效率，应该尽量避免在 WHERE 子句中进行字段表达式操作，或者通过其他方式重写查询以利用索引。</p>
+</li>
+</ol>
+<ul class="lvl-2">
+<li class="lvl-5">
+<p><strong>优先选择 INNER JOIN 而不是 LEFT JOIN 或 RIGHT JOIN</strong>：INNER JOIN 会返回两个表中共有的记录，而 LEFT JOIN 和 RIGHT JOIN 则会返回左表或右表的所有记录，以及与之匹配的右表或左表的记录。因此，INNER JOIN 比 LEFT JOIN 和 RIGHT JOIN 更高效，因为它只需要处理共有的记录。<strong>另外，在进行表连接时，应该将小表作为驱动表，这样可以减少连接操作的数据量，提高查询效率。</strong></p>
+<p>内连接会对两个表进行优化，优先把小表放到外边，把大表放到里边。left join 或 right join，不重新调顺序。</p>
+</li>
+</ul>
+</li>
+<li class="lvl-2">
+<p>主从复制，读写分离</p>
+<ul class="lvl-2">
+<li class="lvl-4">
+<p>如果数据库的使用场景读的操作比较多的时候，为了避免写的操作所造成的性能影响可以采用读写分离的架构。</p>
+<p>读写分离解决的是，数据库的写入影响查询的效率。</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-3/image-20240516122509935.png" alt="image-20240516122509935" style="zoom:25%;">
+<ul class="lvl-4">
+<li class="lvl-6">
+<p>像redis一样，Master负责写操作，Slave负责读操作。</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-3/image-20240516122729960.png" alt="image-20240516122729960" style="zoom:33%;">
+<h4 id="Mysql-其他面试题">Mysql-其他面试题<a class="headerlink" href="#Mysql-其他面试题"></a></h4>
+<hr>
+<h5 id="事务相关">事务相关<a class="headerlink" href="#事务相关"></a></h5>
+<p>事务是一组操作的集合，它是一个不可分割的工作单位，事务会把所有的操作作为一个整体一起向系统提交或撤销操作请求，即这些操作要么同时成功，要么同时失败。</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>事务的特性-ACID</p>
+<ul class="lvl-2">
+<li class="lvl-4">原子性（<strong>A</strong>tomicity）：事务是不可分割的最小操作单元，要么全部成功，要么全部失败。</li>
+<li class="lvl-4">一致性（<strong>C</strong>onsistency）：事务完成时，必须使所有的数据都保持一致状态。</li>
+<li class="lvl-4">隔离性（<strong>I</strong>solation）：数据库系统提供的隔离机制，保证事务在不受外部并发操作影响的独立环境下运行。</li>
+<li class="lvl-4">持久性（<strong>D</strong>urability）：事务一旦提交或回滚，它对数据库中的数据的改变就是永久的。</li>
+</ul>
+</li>
+<li class="lvl-2">
+<p>最好结合案例</p>
+</li>
+</ul>
+<hr>
+<h5 id="并发事务问题、隔离问题">并发事务问题、隔离问题<a class="headerlink" href="#并发事务问题、隔离问题"></a></h5>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>并发事务问题，解决方法：对事务进行隔离</p>
+<table>
+<thead>
+<tr>
+<th>问题</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>脏读</td>
+<td>一个事务读到另外一个事务还没有提交的数据。<br><img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-3/image-20240516135742698.png" alt="image-20240516135742698" style="zoom:33%;"></td>
+</tr>
+<tr>
+<td>不可重复读</td>
+<td>一个事务先后读取同一条记录，但两次读取的数据不同，称之为不可重复读。<br><img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-3/image-20240516135833996.png" alt="image-20240516135833996" style="zoom:33%;"></td>
+</tr>
+<tr>
+<td>幻读</td>
+<td>一个事务按照条件查询数据时，没有对应的数据行，但是在插入数据时，又发现这行数据已经存在，好像出现了幻影。<br><img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-3/image-20240516135945690.png" alt="image-20240516135945690" style="zoom:33%;"></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li class="lvl-2">
+<p>事务的隔离级别</p>
+<table>
+<thead>
+<tr>
+<th>隔离级别</th>
+<th>锁</th>
+<th>脏读</th>
+<th>不可重复读</th>
+<th>幻读</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Read uncommitted 未提交读</td>
+<td>无锁</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>Read committed 读已提交</td>
+<td>行锁，读不加锁</td>
+<td>✔️</td>
+<td>❌</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>Repeatable Read(默认) 可重复读</td>
+<td>行锁，读写都加锁</td>
+<td>✔️</td>
+<td>✔️</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>Serializable 串行化</td>
+<td>表锁</td>
+<td>✔️</td>
+<td>✔️</td>
+<td>✔️</td>
+</tr>
+</tbody>
+</table>
+<p>❌：不可解决；✔️：可解决</p>
+<p>注意：事务隔离级别越高，数据越安全，但是性能越低。</p>
+</li>
+</ul>
+<hr>
+<h5 id="undo-log和redo-log的区别">undo log和redo log的区别<a class="headerlink" href="#undo-log和redo-log的区别"></a></h5>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>概念</p>
+<ul class="lvl-2">
+<li class="lvl-4"><strong>缓冲池（bufferpool）</strong>：主内存中的一个区域，里面可以缓存磁盘上经常操作的真实数据，在执行增删改查操作时，先操作缓冲池中的数据（若缓冲池没有数据，则从磁盘加载并缓存），以一定频率刷新到磁盘，从而减少磁盘IO，加快处理速度</li>
+<li class="lvl-4"><strong>数据页（page）</strong>：是InnoDB存储引擎磁盘管理的最小单元，每个页的大小默认为16KB。页中存储的是行数据</li>
+</ul>
+</li>
+<li class="lvl-2">
+<p><strong>redo log</strong></p>
+<ul class="lvl-2">
+<li class="lvl-4">
+<p>正常操作：当我们提交了写事务(<code>update</code>,<code>delete</code>)，将不会直接操作磁盘，首先会去操作内存，即缓冲池。如果其中没有需要操作的数据，将会把某一页的数据加载到缓冲池。等操作完成后，将会按照一定频率把数据同步到磁盘。</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-3/image-20240516142259668.png" alt="image-20240516142259668" style="zoom:23%;">
+</li>
+<li class="lvl-4">
+<p>脏页：我们在操作完pool后，还没来得及将也从pool中同步到磁盘中，此时服务器宕机，那么内存中的数据可能消失，那么我们修改的数据也丢失了。</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-3/image-20240516142507904.png" alt="image-20240516142507904" style="zoom:23%;">
+</li>
+<li class="lvl-4">
+<p>脏页解决：Mysql中引入了一种日志文件，叫做<strong>Redo Log（重做日志）</strong>，</p>
+<ul class="lvl-4">
+<li class="lvl-6">
+<p>重做日志，记录的是事务提交时数据页的物理修改，是<strong>用来实现事务的持久性</strong></p>
+</li>
+<li class="lvl-6">
+<p>该日志文件由两部分组成：重做日志缓冲（redolog buffer）以及重做日志文件（redo log file）前者是在内存中，后者在磁盘中。当事务提交之后会把所有修改信息都存到该日志文件中，用于在刷新脏页到磁盘,发生错误时，进行数据恢复使用。</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-3/image-20240516142910931.png" alt="image-20240516142910931" style="zoom:25%;">
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="lvl-2">
+<p><strong>undo log</strong></p>
+<p>回滚日志，用于记录数据被修改前的信息，作用包含两个：<strong>提供回滚</strong>和<strong>MVCC(多版本并发控制)</strong>。undo log和redolog记录物理日志不一样，它是<strong>逻辑日志</strong>。</p>
+<ul class="lvl-2">
+<li class="lvl-4">
+<p>可以认为当delete一条记录时，undo log中会记录一条对应的insert记录，反之亦然</p>
+</li>
+<li class="lvl-4">
+<p>当update一条记录时，它记录一条对应相反的update记录。当执行rollback时，就可以从undo log中的逻辑记录读取到相应的内容并进行回滚。</p>
+</li>
+</ul>
+<p>undo log可以实现事务的一致性和原子性。</p>
+</li>
+</ul>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-3/image-20240516143212254.png" alt="image-20240516143212254" style="zoom: 33%;">
+<hr>
+<h5 id="解释MVCC-事务隔离性是如何保证的">解释MVCC(事务隔离性是如何保证的)<a class="headerlink" href="#解释MVCC-事务隔离性是如何保证的"></a></h5>
+<p>全称 <strong>Multi-Version Concurrency Control，多版本并发控制</strong>。指维护一个数据的多个版本，使得读写操作没有冲突。</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-3/image-20240516143656495.png" alt="image-20240516143656495" style="zoom: 25%;">
+<p>MVCC的具体实现，主要依赖于数据库记录中的<strong>隐式字段、undo log日志、readView</strong>。</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><strong>记录中的隐藏字段</strong></p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-3/image-20240516143948932.png" alt="image-20240516143948932" style="zoom:33%;">
+<table>
+<thead>
+<tr>
+<th>隐藏字段</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DB_TRX_ID</td>
+<td>最近修改事务ID，记录插入这条记录或最后一次修改该记录的事务ID。</td>
+</tr>
+<tr>
+<td>DB_ROLL_PTR</td>
+<td>回滚指针，指向这条记录的上一个版本，用于配合undo log，指向上一个版本。</td>
+</tr>
+<tr>
+<td>DB_ROW_ID</td>
+<td>隐藏主键，如果表结构没有指定主键，将会生成该隐藏字段。</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li class="lvl-2">
+<p>undo log</p>
+<p>回滚日志，在insert、update、delete的时候产生的便于数据回滚的日志。</p>
+<p>当insert的时候，产生的undo log日志只在回滚时需要，在事务提交后，可被立即删除。</p>
+<p>而update、delete的时候，产生的undolog日志不仅在回滚时需要，mvcc版本访问也需要，不会立即被删除</p>
+</li>
+<li class="lvl-2">
+<p><strong>undo log版本链</strong></p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-3/image-20240516144611383.png" alt="image-20240516144611383" style="zoom:33%;">
+<p>每修改一次行，对其进行一次记录；每记录一次，将记录添加到链表。</p>
+<p>不同事务或相同事务对同一条记录进行修改，会导致该记录的undolog生成一条记录版本链表，链表的头部是最新的旧记录，链表尾部是最早的旧记录。</p>
+</li>
+<li class="lvl-2">
+<p><strong>readView</strong></p>
+<p>readView（读视图）是<strong>快照读</strong>SQL执行时，MVCC提取数据的依据，记录并维护系统当前活跃的事务（未提交的）id。</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-3/image-20240516145946850.png" alt="image-20240516145946850" style="zoom:50%;">
+<ul class="lvl-2">
+<li class="lvl-4">
+<p>当前读</p>
+<p>读取的是记录的<strong>最新版本</strong>，读取时还要保证其他并发事务不能修改当前记录，会对读取的记录进行加锁。对于我们日常的操作，如：</p>
+<p>select …lock in share mode(共享锁)，select …for update、update、insert、delete(排他锁)都是一种当前读。</p>
+</li>
+<li class="lvl-4">
+<p>快照读</p>
+<p>简单的select（不加锁）就是快照读，快照读，读取的是记录数据的可见版本，有可能是历史数据，不加锁，是非阻塞读。</p>
+<ul class="lvl-4">
+<li class="lvl-6">
+<p>ReadCommitted：每次select，都生成一个快照读</p>
+</li>
+<li class="lvl-6">
+<p>RepeatableRead：开启事务后第一个select语句才是快照读的地方。</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="lvl-2">
+<p><strong>MVCC-实现原理</strong></p>
+<p>根据下表，如果RC隔离级别下，事务5的第一次查询创建了读视图，判断读视图中的核心字段。</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-3/image-20240516150736533.png" alt="image-20240516150736533" style="zoom:30%;">
+<p>readview中包含了4个核心字段</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>含义</th>
+<th>在此读视图中的值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>m_ids</td>
+<td>当前活跃的事务id集合</td>
+<td>{3,4,5}</td>
+</tr>
+<tr>
+<td>min_trx_id</td>
+<td>最小的活跃事务ID</td>
+<td>3</td>
+</tr>
+<tr>
+<td>max_trx_id</td>
+<td>预分配事务id，当前最大事务ID+1（因为事务ID是自增的）</td>
+<td>6</td>
+</tr>
+<tr>
+<td>creator_trx_id</td>
+<td>ReadView创建者的事务ID</td>
+<td>5</td>
+</tr>
+</tbody>
+</table>
+<p><s>规则如下，不需要记，了解即可。</s></p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-3/image-20240516151214931.png" alt="image-20240516151214931" style="zoom:33%;">
+<ul class="lvl-2">
+<li class="lvl-4">
+<p>不同的隔离级别，生成ReadView的时机不同：</p>
+<ul class="lvl-4">
+<li class="lvl-6">
+<p>RC隔离级别下的ReadView</p>
+<p>READ COMMITTED：在事务中每一次执行快照读时生成ReadView。</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-3/image-20240516151338255.png" alt="image-20240516151338255" style="zoom:33%;">
+</li>
+<li class="lvl-6">
+<p>RR隔离级别下的ReadView</p>
+<p>REPEATABLEREAD：仅在事务中第一次执行快照读时生成ReadView，后续复用该ReadView。</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-3/image-20240516151633973.png" alt="image-20240516151633973" style="zoom:40%;">
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-3/image-20240516152109165.png" alt="image-20240516152109165" style="zoom:33%;">
+<hr>
+<h5 id="MySQL主从同步原理">MySQL主从同步原理<a class="headerlink" href="#MySQL主从同步原理"></a></h5>
+<p>MySQL主从复制的核心在于二进制文件。</p>
+<p><code>二进制日志（BINLOG）记录了所有的DDL（数据定义语言）语句和DML（数据操纵语言）语句，但不包括数据查询（SELECT、SHOW）语句。</code></p>
+<p>主库专门写入，从库专门读取。当主库修改数据时，会将日志文件写入binlog。从库的IO线程监听主库的binlog，读取到差异后写入从库的Relay log（中继日志）。接着，从库的SQL线程读取中继日志的文件，执行其中的差异命令。执行完成后，主从库的数据保持同步。</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-3/image-20240516152913830.png" alt="image-20240516152913830" style="zoom:33%;">
+<hr>
+<h5 id="Mysql分库分表">Mysql分库分表<a class="headerlink" href="#Mysql分库分表"></a></h5>
+<p>我们之前提到了主从同步，其中主库负责写入，从库负责读取。假如现在有海量的数据进行存储，那这个主从同步架构无法解决此问题。因为那个架构只能解决访问压力，不能解决存储压力。随着项目业务数据逐渐增多，业务发展比较迅速（单表的数据量达到100万或者20G），优化也解决不了性能问题（主从读写分离、查询索引），或者遇到了IO瓶颈（磁盘、网络）/CPU瓶颈（聚合查询、连接数太多）</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-3/image-20240516153437953.png" alt="image-20240516153437953" style="zoom:25%;">
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>分库策略</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-3/image-20240516155122602.png" alt="image-20240516155122602" style="zoom:20%;">
+<ul class="lvl-2">
+<li class="lvl-4">
+<p><strong>垂直拆分</strong></p>
+<ul class="lvl-4">
+<li class="lvl-6">
+<p><strong>垂直分库</strong>：将不同<strong>业务</strong>模块的数据分布到不同的数据库中。例如，一个电子商务系统可以将用户信息、订单信息、商品信息分别存储在不同的数据库中。这样可以减少单个数据库的负担，提高整体系统的性能和可扩展性。</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-3/image-20240516155413633.png" alt="image-20240516155413633" style="zoom:25%;">
+<table>
+<thead>
+<tr>
+<th>特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>按业务对数据分级管理、维护、监控、扩展<br>在高并发下，提高磁盘IO和数据量连接数</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li class="lvl-6">
+<p><strong>垂直分表</strong>：将同一个业务模块的数据<strong>按列</strong>拆分成多个表。例如，将商品表中的基本信息（如商品名、价格）和扩展信息（如描述信息）分成两张不同的表。这种方式可以优化某些查询，提高数据库的读写效率。</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-3/image-20240516155802092.png" alt="image-20240516155802092" style="zoom:25%;">
+<table>
+<thead>
+<tr>
+<th>拆分规则</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>把不常用的字段单独放在一张表<br>把text，blob等大字段拆分出来放在附表中</td>
+<td>冷热数据分离<br>减少IO过渡争抢，两表互不影响</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+<li class="lvl-4">
+<p><strong>水平拆分</strong></p>
+<ul class="lvl-4">
+<li class="lvl-6">
+<p><strong>水平分库</strong>：将同一个表的数据<strong>按行</strong>拆分到多个数据库中。例如，将用户数据按用户ID范围分布到不同的数据库中，如用户ID在1-100万的放在数据库A，ID在100万-200万的放在数据库B；或者按照ID进行取模，取模后余0则在数据库A，余2则在数据库B。这样可以有效分散负载，避免单个数据库的性能瓶颈。</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-3/image-20240516160351168.png" alt="image-20240516160351168" style="zoom:33%;">
+<table>
+<thead>
+<tr>
+<th>路由规则</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>根据id进行取模，分配节点<br>按id大小，也就是范围路由，节点1(1-100万),节点2(100万-200万）</td>
+<td>解决了单库大数量，高并发的性能瓶颈问题<br>提高了系统的稳定性和可用性</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li class="lvl-6">
+<p><strong>水平分表</strong>：将同一个表的数据<strong>按行</strong>拆分成多个表。例如，将订单表按照订单日期拆分成多张表，每个月的数据存储在一张表中。这样可以减少单表的数据量，提高查询和写入的效率。</p>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-3/image-20240516161542981.png" alt="image-20240516161542981" style="zoom:33%;">
+<table>
+<thead>
+<tr>
+<th>特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>优化单一表数据量过大而产生的性能问题<br>避免IO争抢并减少锁表的几率</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="lvl-2">
+<p>新的问题和新的技术</p>
+<p>分库之后的问题：</p>
+<ul class="lvl-2">
+<li class="lvl-4">
+<p>分布式事务一致性问题</p>
+</li>
+<li class="lvl-4">
+<p>跨节点关联查询</p>
+</li>
+<li class="lvl-4">
+<p>跨节点分页、排序函数</p>
+</li>
+<li class="lvl-4">
+<p>主键避重</p>
+</li>
+</ul>
+<p>针对上述问题，我们可以采用中间件来桥接Java应用程序和数据库群，主流的中间件有：</p>
+<ul class="lvl-2">
+<li class="lvl-4">
+<p>sharding-sphere</p>
+</li>
+<li class="lvl-4">
+<p>mycat</p>
+</li>
+</ul>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-3/image-20240516161911448.png" alt="image-20240516161911448" style="zoom:25%;">
+</li>
+</ul>
+<img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="/post/gen-sui-hei-ma-mian-java-3/image-20240516162138709.png" alt="image-20240516162138709" style="zoom:25%;">
+</article><div class="post-copyright"><div class="copyright-cc-box"><i class="anzhiyufont anzhiyu-icon-copyright"></i></div><div class="post-copyright__author_box"><a class="post-copyright__author_img" href="/" title="头像"><img class="post-copyright__author_img_back" src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/avatar_joker.jpg" title="头像" alt="头像"><img class="post-copyright__author_img_front" src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/avatar_joker.jpg" title="头像" alt="头像"></a><div class="post-copyright__author_name">Joker2Yue</div><div class="post-copyright__author_desc">Joker2Yue的个人博客</div></div><div class="post-copyright__post__info"><a class="post-copyright__original" title="该文章为原创文章，注意版权协议" href="https://blog.joker2yue.cn/post/gen-sui-hei-ma-mian-java-3/">原创</a><a class="post-copyright-title"><span onclick="rm.copyPageUrl('https://blog.joker2yue.cn/post/gen-sui-hei-ma-mian-java-3/')">跟随黑马面Java-3，Mysql篇</span></a></div><div class="post-tools" id="post-tools"><div class="post-tools-left"><div class="rewardLeftButton"><div class="post-reward" onclick="anzhiyu.addRewardMask()"><div class="reward-button button--animated" title="赞赏作者"><i class="anzhiyufont anzhiyu-icon-hand-heart-fill"></i>打赏作者</div><div class="reward-main"><div class="reward-all"><span class="reward-title">感谢你赐予我前进的力量</span><ul class="reward-group"><li class="reward-item"><a href="https://resource.joker2yue.cn/blog/images/reward/wechat.png" target="_blank"><img class="post-qr-code-img" src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/reward/wechat.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://resource.joker2yue.cn/blog/images/reward/alipay.png" target="_blank"><img class="post-qr-code-img" src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/reward/alipay.png" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul><a class="reward-main-btn" href="/about/#about-reward" target="_blank"><div class="reward-text">赞赏者名单</div><div class="reward-dec">因为你们的支持让我意识到写文章的价值🙏</div></a></div></div></div><div id="quit-box" onclick="anzhiyu.removeRewardMask()" style="display: none"></div></div><div class="shareRight"><div class="share-link mobile"><div class="share-qrcode"><div class="share-button" title="使用手机访问这篇文章"><i class="anzhiyufont anzhiyu-icon-qrcode"></i></div><div class="share-main"><div class="share-main-all"><div id="qrcode" title="https://blog.joker2yue.cn/post/gen-sui-hei-ma-mian-java-3/"></div><div class="reward-dec">使用手机访问这篇文章</div></div></div></div></div><div class="share-link weibo"><a class="share-button" target="_blank" href="https://service.weibo.com/share/share.php?title=跟随黑马面Java-3，Mysql篇&amp;url=https://blog.joker2yue.cn/post/gen-sui-hei-ma-mian-java-3/&amp;pic=https://resource.joker2yue.cn/blog/images/coverImg/跟随黑马面Java/03.jpg" rel="external nofollow noreferrer noopener"><i class="anzhiyufont anzhiyu-icon-weibo"></i></a></div><script>function copyCurrentPageUrl() {
+  var currentPageUrl = window.location.href;
+  var input = document.createElement("input");
+  input.setAttribute("value", currentPageUrl);
+  document.body.appendChild(input);
+  input.select();
+  input.setSelectionRange(0, 99999);
+  document.execCommand("copy");
+  document.body.removeChild(input);
+}</script><div class="share-link copyurl"><div class="share-button" id="post-share-url" title="复制链接" onclick="copyCurrentPageUrl()"><i class="anzhiyufont anzhiyu-icon-link"></i></div></div></div></div></div><div class="post-copyright__notice"><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://Blog.Joker2Yue.cn" target="_blank">九歌</a>！</span></div></div><div class="post-tools-right"><div class="tag_share"><div class="post-meta__box"><div class="post-meta__box__tag-list"><a class="post-meta__box__tags" href="/tags/%E8%BF%9E%E8%BD%BD/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>连载<span class="tagsPageCount">92</span></a><a class="post-meta__box__tags" href="/tags/%E9%9D%A2%E8%AF%95/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>面试<span class="tagsPageCount">10</span></a><a class="post-meta__box__tags" href="/tags/%E9%BB%91%E9%A9%AC/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>黑马<span class="tagsPageCount">28</span></a><a class="post-meta__box__tags" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>数据库<span class="tagsPageCount">4</span></a><a class="post-meta__box__tags" href="/tags/Java/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>Java<span class="tagsPageCount">55</span></a><a class="post-meta__box__tags" href="/tags/Mysql/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>Mysql<span class="tagsPageCount">3</span></a></div></div></div><div class="post_share"><div class="social-share" data-image="https://resource.joker2yue.cn/blog/images/coverImg/实习/如何导入超大的SQL文件到Mysql.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"/><script src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer="defer"></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/post/gen-sui-hei-ma-mian-java-2/"><img class="prev-cover" src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/coverImg/跟随黑马面Java/02.jpg" onerror="onerror=null;src='/images/404.svg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">跟随黑马面Java-2，Redis篇</div></div></a></div><div class="next-post pull-right"><a href="/post/gen-sui-hei-ma-mian-java-4/"><img class="next-cover" src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/coverImg/跟随黑马面Java/04.jpg" onerror="onerror=null;src='/images/404.svg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">跟随黑马面Java-4，框架篇</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="anzhiyufont anzhiyu-icon-thumbs-up fa-fw" style="font-size: 1.5rem; margin-right: 4px"></i><span>喜欢这篇文章的人也看了</span></div><div class="relatedPosts-list"><div><a href="/post/gen-sui-hei-ma-mian-java-2/" title="跟随黑马面Java-2，Redis篇"><img class="cover" src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/coverImg/跟随黑马面Java/02.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2024-06-07</div><div class="title">跟随黑马面Java-2，Redis篇</div></div></a></div><div><a href="/post/gen-sui-hei-ma-mian-java-1/" title="跟随黑马面Java-1，准备篇"><img class="cover" src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/coverImg/跟随黑马面Java/01.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2024-06-06</div><div class="title">跟随黑马面Java-1，准备篇</div></div></a></div><div><a href="/post/gen-sui-hei-ma-mian-java-4/" title="跟随黑马面Java-4，框架篇"><img class="cover" src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/coverImg/跟随黑马面Java/04.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2024-06-10</div><div class="title">跟随黑马面Java-4，框架篇</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="anzhiyufont anzhiyu-icon-comments"></i><span> 评论</span></div><div class="comment-randomInfo"><a onclick="anzhiyu.addRandomCommentInfo()" href="javascript:void(0)">匿名评论</a><a href="/privacy" style="margin-left: 4px">隐私政策</a></div><div class="comment-tips" id="comment-tips"><span>✅ 你无需删除空行，直接评论以获取最佳展示效果</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div><div class="comment-barrage"></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-content"><div class="author-info__sayhi" id="author-info__sayhi" onclick="anzhiyu.changeSayHelloText()"></div><div class="author-info-avatar"><img class="avatar-img" src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/avatar_joker.jpg" onerror="this.onerror=null;this.src='/images/joker_404.png'" alt="avatar"/><div class="author-status"><img class="g-status" src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/statusImg/小丑.svg" alt="status"/></div></div><div class="author-info__description"><div style="line-height:1.38;margin:0.6rem 0;text-align:justify;color:rgba(255, 255, 255, 0.8);">我热衷于在<b style="color:#fff">数字世界</b>中寻找灵感，用<b style="color:#fff">文字</b>来记录下每一个<b style="color:#fff">思考和发现</b>。</div><div style="line-height:1.38;margin:0.6rem 0;text-align:justify;color:rgba(255, 255, 255, 0.8);">感谢你的光临，希望我的博客能为你带来有<b style="color:#fff">价值</b>的信息，<b style="color:#fff">享受</b>阅读的乐趣！</div></div><div class="author-info__bottom-group"><a class="author-info__bottom-group-left" target="_blank" rel="noopener" href="https://github.com/Joker2Yue"><h1 class="author-info__name">Joker2Yue</h1><div class="author-info__desc">Joker2Yue的个人博客</div></a><div class="card-info-social-icons is-center"><a class="social-icon faa-parent animated-hover" href="https://github.com/Joker2Yue" target="_blank" title="Github"><i class="anzhiyufont anzhiyu-icon-github"></i></a><a class="social-icon faa-parent animated-hover" href="https://space.bilibili.com/1288739606" target="_blank" title="BiliBili"><i class="anzhiyufont anzhiyu-icon-bilibili"></i></a></div></div></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-bullhorn anzhiyu-shake"></i><span>公告</span></div><div class="announcement_content"><div id="welcome-info">欢迎来看我的博客鸭~</div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-bars"></i><span>文章目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%80%E7%AF%87"><span class="toc-number">1.</span> <span class="toc-text">开篇</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Mysql-%E4%BC%98%E5%8C%96"><span class="toc-number">2.</span> <span class="toc-text">Mysql-优化</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AE%9A%E4%BD%8D%E6%85%A2%E6%9F%A5%E8%AF%A2"><span class="toc-number">2.1.</span> <span class="toc-text">定位慢查询</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%86%E6%9E%90%E6%85%A2%E6%9F%A5%E8%AF%A2"><span class="toc-number">2.2.</span> <span class="toc-text">分析慢查询</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95%E6%A6%82%E5%BF%B5%E4%BB%A5%E5%8F%8A%E7%B4%A2%E5%BC%95%E5%BA%95%E5%B1%82%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-number">2.3.</span> <span class="toc-text">索引概念以及索引底层数据结构</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%81%9A%E7%B0%87%E7%B4%A2%E5%BC%95%E5%92%8C%E9%9D%9E%E8%81%9A%E7%B0%87%E7%B4%A2%E5%BC%95"><span class="toc-number">2.4.</span> <span class="toc-text">聚簇索引和非聚簇索引</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%A6%86%E7%9B%96%E7%B4%A2%E5%BC%95"><span class="toc-number">2.5.</span> <span class="toc-text">覆盖索引</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95%E5%88%9B%E5%BB%BA%E7%9A%84%E5%8E%9F%E5%88%99"><span class="toc-number">2.6.</span> <span class="toc-text">索引创建的原则</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E7%B4%A2%E5%BC%95%E4%BC%9A%E5%A4%B1%E6%95%88"><span class="toc-number">2.7.</span> <span class="toc-text">什么情况下索引会失效</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%B0%88%E4%B8%80%E8%B0%88%E4%BD%A0%E5%AF%B9SQL%E4%BC%98%E5%8C%96%E7%9A%84%E7%BB%8F%E9%AA%8C"><span class="toc-number">2.8.</span> <span class="toc-text">谈一谈你对SQL优化的经验</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Mysql-%E5%85%B6%E4%BB%96%E9%9D%A2%E8%AF%95%E9%A2%98"><span class="toc-number">3.</span> <span class="toc-text">Mysql-其他面试题</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BA%8B%E5%8A%A1%E7%9B%B8%E5%85%B3"><span class="toc-number">3.1.</span> <span class="toc-text">事务相关</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%B9%B6%E5%8F%91%E4%BA%8B%E5%8A%A1%E9%97%AE%E9%A2%98%E3%80%81%E9%9A%94%E7%A6%BB%E9%97%AE%E9%A2%98"><span class="toc-number">3.2.</span> <span class="toc-text">并发事务问题、隔离问题</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#undo-log%E5%92%8Credo-log%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">3.3.</span> <span class="toc-text">undo log和redo log的区别</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%A7%A3%E9%87%8AMVCC-%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E6%80%A7%E6%98%AF%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E7%9A%84"><span class="toc-number">3.4.</span> <span class="toc-text">解释MVCC(事务隔离性是如何保证的)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#MySQL%E4%B8%BB%E4%BB%8E%E5%90%8C%E6%AD%A5%E5%8E%9F%E7%90%86"><span class="toc-number">3.5.</span> <span class="toc-text">MySQL主从同步原理</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Mysql%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8"><span class="toc-number">3.6.</span> <span class="toc-text">Mysql分库分表</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-history"></i><span>最近发布</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/post/ru-he-dao-ru-chao-da-de-sql-wen-jian-dao-mysql/" title="如何导入超大的sql文件到Mysql"><img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/coverImg/实习/如何导入超大的SQL文件到Mysql.png" onerror="this.onerror=null;this.src='/images/404.svg'" alt="如何导入超大的sql文件到Mysql"/></a><div class="content"><a class="title" href="/post/ru-he-dao-ru-chao-da-de-sql-wen-jian-dao-mysql/" title="如何导入超大的sql文件到Mysql">如何导入超大的sql文件到Mysql</a><time datetime="2024-09-05T20:02:22.000Z" title="发表于 2024-09-06 04:02:22">2024-09-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/shi-yong-optional-lei-you-hua-dai-ma-zhong-duo-ceng-if-qian-tao/" title="使用Optional类优化代码中多层if嵌套"><img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/coverImg/实习/使用Optional类优化代码中多层if嵌套.png" onerror="this.onerror=null;this.src='/images/404.svg'" alt="使用Optional类优化代码中多层if嵌套"/></a><div class="content"><a class="title" href="/post/shi-yong-optional-lei-you-hua-dai-ma-zhong-duo-ceng-if-qian-tao/" title="使用Optional类优化代码中多层if嵌套">使用Optional类优化代码中多层if嵌套</a><time datetime="2024-08-20T12:46:25.000Z" title="发表于 2024-08-20 20:46:25">2024-08-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/gen-sui-hei-ma-mian-java-10/" title="跟随黑马面Java-10，企业场景篇"><img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/coverImg/跟随黑马面Java/10.jpg" onerror="this.onerror=null;this.src='/images/404.svg'" alt="跟随黑马面Java-10，企业场景篇"/></a><div class="content"><a class="title" href="/post/gen-sui-hei-ma-mian-java-10/" title="跟随黑马面Java-10，企业场景篇">跟随黑马面Java-10，企业场景篇</a><time datetime="2024-06-25T20:02:22.000Z" title="发表于 2024-06-26 04:02:22">2024-06-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/gen-sui-hei-ma-mian-java-9/" title="跟随黑马面Java-9，JVM篇"><img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/coverImg/跟随黑马面Java/09.jpg" onerror="this.onerror=null;this.src='/images/404.svg'" alt="跟随黑马面Java-9，JVM篇"/></a><div class="content"><a class="title" href="/post/gen-sui-hei-ma-mian-java-9/" title="跟随黑马面Java-9，JVM篇">跟随黑马面Java-9，JVM篇</a><time datetime="2024-06-19T20:02:22.000Z" title="发表于 2024-06-20 04:02:22">2024-06-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/gen-sui-hei-ma-mian-java-8/" title="跟随黑马面Java-8，多线程篇"><img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/coverImg/跟随黑马面Java/08.jpg" onerror="this.onerror=null;this.src='/images/404.svg'" alt="跟随黑马面Java-8，多线程篇"/></a><div class="content"><a class="title" href="/post/gen-sui-hei-ma-mian-java-8/" title="跟随黑马面Java-8，多线程篇">跟随黑马面Java-8，多线程篇</a><time datetime="2024-06-16T20:02:22.000Z" title="发表于 2024-06-17 04:02:22">2024-06-17</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div id="footer_deal"><a class="deal_link" href="mailto:feedback.blog@joker2yue.cn" title="Email"><i class="anzhiyufont anzhiyu-icon-envelope"></i></a><a class="deal_link" target="_blank" rel="noopener" href="https://m.weibo.cn/u/7799849297" title="微博"><i class="anzhiyufont anzhiyu-icon-weibo"></i></a><a class="deal_link" target="_blank" rel="noopener" href="https://twitter.com/joker0222yue?s=09" title="X"><i class="fa-brands fa-x-twitter"></i></a><a class="deal_link" href="/atom.xml" title="RSS"><i class="anzhiyufont anzhiyu-icon-rss"></i></a><img class="footer_mini_logo" title="返回顶部" alt="返回顶部" onclick="anzhiyu.scrollToDest(0, 500)" src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/avatar_joker.jpg" size="50px"/><a class="deal_link" target="_blank" rel="noopener" href="https://github.com/Joker2Yue" title="Github"><i class="anzhiyufont anzhiyu-icon-github"></i></a><a class="deal_link" target="_blank" rel="noopener" href="https://space.bilibili.com/1288739606" title="Bilibili"><i class="anzhiyufont anzhiyu-icon-bilibili"></i></a><a class="deal_link" target="_blank" rel="noopener" href="https://m.douyin.com/share/user/MS4wLjABAAAAO0Ao94XycJ3Jq_IVPLElwAjdQOonWW53heh1785VFYo" title="抖音"><i class="anzhiyufont anzhiyu-icon-tiktok"></i></a><a class="deal_link" href="/copyright/" title="CC"><i class="anzhiyufont anzhiyu-icon-copyright"></i></a></div><div id="workboard"><div id="runtimeTextTip"></div></div><div id="anzhiyu-footer"><div class="footer-group"><div class="footer-title">服务</div><div class="footer-links"><a class="footer-item" title="51la统计" target="_blank" rel="noopener" href="https://v6.51.la/">51la统计</a><a class="footer-item" title="十年之约" target="_blank" rel="noopener" href="https://foreverblog.cn/go.html">十年之约</a><a class="footer-item" title="开往" target="_blank" rel="noopener" href="https://github.com/travellings-link/travellings">开往</a></div></div><div class="footer-group"><div class="footer-title">主题</div><div class="footer-links"><a class="footer-item" title="文档" target="_blank" rel="noopener" href="https://docs.anheyu.com/">文档</a><a class="footer-item" title="源码" target="_blank" rel="noopener" href="https://github.com/anzhiyu-c/hexo-theme-anzhiyu">源码</a><a class="footer-item" title="本站建设" href="/website/">本站建设</a></div></div><div class="footer-group"><div class="footer-title">导航</div><div class="footer-links"><a class="footer-item" title="即刻短文" href="/essay/">即刻短文</a><a class="footer-item" title="友链文章" href="/fcircle/">友链文章</a><a class="footer-item" title="留言板" href="/comments/">留言板</a></div></div><div class="footer-group"><div class="footer-title">协议</div><div class="footer-links"><a class="footer-item" title="隐私政策" href="/privacy/">隐私政策</a><a class="footer-item" title="Cookies" href="/cookies/">Cookies</a><a class="footer-item" title="版权协议" href="/copyright/">版权协议</a></div></div><div class="footer-group"><div class="footer-title-group"><div class="footer-title">友链</div><a class="random-friends-btn" id="footer-random-friends-btn" href="javascript:addFriendLinksInFooter();" title="换一批友情链接"><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right"></i></a></div><div class="footer-links" id="friend-links-in-footer"></div></div></div><p id="ghbdages"><a class="github-badge" target="_blank" href="https://hexo.io/" style="margin-inline:5px" data-title="博客框架为Hexo_v7.3.0" title="博客框架为Hexo_v7.3.0"><img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/badge/Frame-Hexo.svg" alt="博客框架为Hexo_v7.3.0"/></a><a class="github-badge" target="_blank" href="https://blog.anheyu.com/" style="margin-inline:5px" data-title="本站使用AnZhiYu主题" title="本站使用AnZhiYu主题"><img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/badge/Theme-AnZhiYu.svg" alt="本站使用AnZhiYu主题"/></a><a class="github-badge" target="_blank" href="https://www.dogecloud.com/" style="margin-inline:5px" data-title="本站使用多吉云为静态资源提供CDN加速" title="本站使用多吉云为静态资源提供CDN加速"><img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/badge/CDN-Doge.svg" alt="本站使用多吉云为静态资源提供CDN加速"/></a><a class="github-badge" target="_blank" href="https://vercel.com/" style="margin-inline:5px" data-title="本站项目由Vercel部署" title="本站项目由Vercel部署"><img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/badge/Hosted-Vercel-brightgreen.svg" alt="本站项目由Vercel部署"/></a><a class="github-badge" target="_blank" href="https://github.com/Joker2Yue/Joker2Yue-Blog" style="margin-inline:5px" data-title="本站项目由Github托管" title="本站项目由Github托管"><img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/badge/Source-Github.svg" alt="本站项目由Github托管"/></a><a class="github-badge" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" style="margin-inline:5px" data-title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"><img src= "https://resource.joker2yue.cn/blog/images/loading.svg" onerror="this.onerror=null,this.src=&quot;/images/404.svg&quot;" data-lazy-src="https://resource.joker2yue.cn/blog/images/badge/Copyright-BY-NC-SA.svg" alt="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"/></a></p></div><div id="footer-bar"><div class="footer-bar-links"><div class="footer-bar-left"><div id="footer-bar-tips"><div class="copyright">&copy;2023 - 2024 By <a class="footer-bar-link" href="https://github.com/Joker2Yue" title="Joker2Yue" target="_blank">Joker2Yue</a></div></div><div id="footer-type-tips"></div><div class="js-pjax"><script>function subtitleType () {
+  if (false) { 
+    window.typed = new Typed("#footer-type-tips", {
+      strings: ["<a href=\"https://www.joker2yue.cn\" target=\"_blank\">九歌</a>"],
+      startDelay: 300,
+      typeSpeed: 150,
+      loop: true,
+      backSpeed: 50
+    })
+  } else {
+    document.getElementById("footer-type-tips").innerHTML = '<a href="https://www.joker2yue.cn" target="_blank">九歌</a>'
+  }
+}
+
+if (false) {
+  if (typeof Typed === 'function') {
+    subtitleType()
+  } else {
+    getScript('https://cdn.cbd.int/typed.js@2.1.0/dist/typed.umd.js').then(subtitleType)
+  }
+} else {
+  subtitleType()
+}</script></div></div><div class="footer-bar-right"><a class="footer-bar-link" target="_blank" rel="noopener" href="https://github.com/anzhiyu-c/hexo-theme-anzhiyu" title="主题">主题</a><a class="footer-bar-link" href="/privacy/" title="隐私政策">隐私政策</a><a class="footer-bar-link" target="_blank" rel="noopener" href="https://beian.miit.gov.cn/" title="湘ICP备-2023023581号">湘ICP备-2023023581号</a><a class="footer-bar-link cc" href="/copyright/" title="cc协议"><i class="anzhiyufont anzhiyu-icon-copyright-line"></i><i class="anzhiyufont anzhiyu-icon-creative-commons-by-line"></i><i class="anzhiyufont anzhiyu-icon-creative-commons-nc-line"></i><i class="anzhiyufont anzhiyu-icon-creative-commons-nd-line"></i></a></div></div></div></footer></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="sidebar-site-data site-data is-center"><a href="/archives/" title="archive"><div class="headline">文章</div><div class="length-num">105</div></a><a href="/tags/" title="tag"><div class="headline">标签</div><div class="length-num">49</div></a><a href="/categories/" title="category"><div class="headline">分类</div><div class="length-num">19</div></a></div><span class="sidebar-menu-item-title">功能</span><div class="sidebar-menu-item"><a class="darkmode_switchbutton menu-child" href="javascript:void(0);" title="显示模式"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span>显示模式</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> 隧道</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 标签</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 社交</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/fcircle/"><i class="anzhiyufont anzhiyu-icon-artstation faa-tada" style="font-size: 0.9em;"></i><span> 朋友圈</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/link/"><i class="anzhiyufont anzhiyu-icon-link faa-tada" style="font-size: 0.9em;"></i><span> 友人账</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/comments/"><i class="anzhiyufont anzhiyu-icon-envelope faa-tada" style="font-size: 0.9em;"></i><span> 留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 我的</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/music/?id=648886106&amp;server=netease"><i class="anzhiyufont anzhiyu-icon-music faa-tada" style="font-size: 0.9em;"></i><span> 音乐馆</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/air-conditioner/"><i class="anzhiyufont anzhiyu-icon-fan faa-tada" style="font-size: 0.9em;"></i><span> 小空调</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 关于</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/about/"><i class="anzhiyufont anzhiyu-icon-paper-plane faa-tada" style="font-size: 0.9em;"></i><span> 关于本人</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/website/"><i class="anzhiyufont anzhiyu-icon-cube faa-tada" style="font-size: 0.9em;"></i><span> 本站建设</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/essay/"><i class="anzhiyufont anzhiyu-icon-lightbulb faa-tada" style="font-size: 0.9em;"></i><span> 闲言碎语</span></a></li><li><a class="site-page child faa-parent animated-hover" href="javascript:toRandomPost()"><i class="anzhiyufont anzhiyu-icon-shoe-prints1 faa-tada" style="font-size: 0.9em;"></i><span> 随便逛逛</span></a></li></ul></div></div><span class="sidebar-menu-item-title">标签</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/AI/" style="font-size: 0.88rem;">AI<sup>1</sup></a><a href="/tags/AMD/" style="font-size: 0.88rem;">AMD<sup>1</sup></a><a href="/tags/CSS/" style="font-size: 0.88rem;">CSS<sup>14</sup></a><a href="/tags/Git/" style="font-size: 0.88rem;">Git<sup>2</sup></a><a href="/tags/HTML/" style="font-size: 0.88rem;">HTML<sup>3</sup></a><a href="/tags/Hexo/" style="font-size: 0.88rem;">Hexo<sup>2</sup></a><a href="/tags/JDBC/" style="font-size: 0.88rem;">JDBC<sup>1</sup></a><a href="/tags/Java/" style="font-size: 0.88rem; font-weight: 500; color: var(--anzhiyu-lighttext)">Java<sup>55</sup></a><a href="/tags/Linux/" style="font-size: 0.88rem;">Linux<sup>4</sup></a><a href="/tags/Maven/" style="font-size: 0.88rem;">Maven<sup>1</sup></a><a href="/tags/Mysql/" style="font-size: 0.88rem;">Mysql<sup>3</sup></a><a href="/tags/SSM/" style="font-size: 0.88rem;">SSM<sup>3</sup></a><a href="/tags/Vue/" style="font-size: 0.88rem;">Vue<sup>1</sup></a><a href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 0.88rem;">中间件<sup>1</sup></a><a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" style="font-size: 0.88rem;">分布式<sup>4</sup></a><a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 0.88rem;">前端<sup>22</sup></a><a href="/tags/%E5%A4%8D%E4%B9%A0%E9%A2%98/" style="font-size: 0.88rem;">复习题<sup>3</sup></a><a href="/tags/%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B/" style="font-size: 0.88rem;">大学课程<sup>23</sup></a><a href="/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/" style="font-size: 0.88rem;">大模型<sup>1</sup></a><a href="/tags/%E5%BF%85%E7%9C%8B/" style="font-size: 0.88rem; font-weight: 500; color: var(--anzhiyu-lighttext)">必看<sup>26</sup></a><a href="/tags/%E6%8A%80%E6%9C%AF/" style="font-size: 0.88rem; font-weight: 500; color: var(--anzhiyu-lighttext)">技术<sup>7</sup></a><a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 0.88rem;">数据库<sup>4</sup></a><a href="/tags/%E7%8B%82%E7%A5%9E/" style="font-size: 0.88rem; font-weight: 500; color: var(--anzhiyu-lighttext)">狂神<sup>44</sup></a><a href="/tags/%E8%BD%AC%E8%BD%BD/" style="font-size: 0.88rem;">转载<sup>1</sup></a><a href="/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/" style="font-size: 0.88rem;">软件测试<sup>1</sup></a><a href="/tags/%E8%BD%AF%E8%80%83/" style="font-size: 0.88rem;">软考<sup>20</sup></a><a href="/tags/%E8%BF%90%E7%BB%B4/" style="font-size: 0.88rem;">运维<sup>3</sup></a><a href="/tags/%E8%BF%9E%E8%BD%BD/" style="font-size: 0.88rem;">连载<sup>92</sup></a><a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 0.88rem;">面试<sup>10</sup></a><a href="/tags/%E9%BB%91%E9%A9%AC/" style="font-size: 0.88rem;">黑马<sup>28</sup></a></div></div><hr/></div></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="anzhiyufont anzhiyu-icon-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="anzhiyufont anzhiyu-icon-gear"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="anzhiyufont anzhiyu-icon-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="anzhiyufont anzhiyu-icon-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></button></div></div><div id="nav-music"><a id="nav-music-hoverTips" onclick="anzhiyu.musicToggle()" accesskey="m">播放音乐</a><div id="console-music-bg"></div><meting-js id="648886106" server="netease" type="playlist" mutex="true" preload="none" theme="var(--anzhiyu-main)" data-lrctype="0" order="random" volume="0.7"></meting-js></div><div id="algolia-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><button class="search-close-button"><i class="anzhiyufont anzhiyu-icon-xmark"></i></button></nav><div class="search-wrap"><div id="algolia-search-input"></div><hr/><div id="algolia-search-results"><div id="algolia-hits"><a class="tag-list" href="/tags/%E5%BF%85%E7%9C%8B" title="必看">必看</a><a class="tag-list" href="/tags/Java" title="Java">Java</a><a class="tag-list" href="/tags/Spring" title="Spring">Spring</a><a class="tag-list" href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F" title="分布式">分布式</a><a class="tag-list" href="/tags/%E5%89%8D%E7%AB%AF" title="前端">前端</a><a class="tag-list" href="/tags/Hexo" title="Hexo">Hexo</a></div><div id="algolia-pagination"></div><div id="algolia-info"><div class="algolia-stats"></div><div class="algolia-poweredBy"></div></div></div></div></div><div id="search-mask"></div></div><div id="rightMenu"><div class="rightMenu-group rightMenu-small"><div class="rightMenu-item" id="menu-backward"><i class="anzhiyufont anzhiyu-icon-arrow-left"></i></div><div class="rightMenu-item" id="menu-forward"><i class="anzhiyufont anzhiyu-icon-arrow-right"></i></div><div class="rightMenu-item" id="menu-refresh"><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right" style="font-size: 1rem;"></i></div><div class="rightMenu-item" id="menu-top"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></div></div><div class="rightMenu-group rightMenu-line rightMenuPlugin"><div class="rightMenu-item" id="menu-copytext"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制选中文本</span></div><div class="rightMenu-item" id="menu-pastetext"><i class="anzhiyufont anzhiyu-icon-paste"></i><span>粘贴文本</span></div><a class="rightMenu-item" id="menu-commenttext"><i class="anzhiyufont anzhiyu-icon-comment-medical"></i><span>引用到评论</span></a><div class="rightMenu-item" id="menu-newwindow"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开</span></div><div class="rightMenu-item" id="menu-copylink"><i class="anzhiyufont anzhiyu-icon-link"></i><span>复制链接地址</span></div><div class="rightMenu-item" id="menu-copyimg"><i class="anzhiyufont anzhiyu-icon-images"></i><span>复制此图片</span></div><div class="rightMenu-item" id="menu-downloadimg"><i class="anzhiyufont anzhiyu-icon-download"></i><span>下载此图片</span></div><div class="rightMenu-item" id="menu-newwindowimg"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开图片</span></div><div class="rightMenu-item" id="menu-search"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>站内搜索</span></div><div class="rightMenu-item" id="menu-searchBaidu"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>百度搜索</span></div><div class="rightMenu-item" id="menu-music-toggle"><i class="anzhiyufont anzhiyu-icon-play"></i><span>播放音乐</span></div><div class="rightMenu-item" id="menu-music-back"><i class="anzhiyufont anzhiyu-icon-backward"></i><span>切换到上一首</span></div><div class="rightMenu-item" id="menu-music-forward"><i class="anzhiyufont anzhiyu-icon-forward"></i><span>切换到下一首</span></div><div class="rightMenu-item" id="menu-music-playlist" onclick="window.open(&quot;https://music.163.com/#/my/m/music/playlist?id=648886106&quot;, &quot;_blank&quot;);" style="display: none;"><i class="anzhiyufont anzhiyu-icon-radio"></i><span>查看所有歌曲</span></div><div class="rightMenu-item" id="menu-music-copyMusicName"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制歌名</span></div></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item menu-link" id="menu-randomPost"><i class="anzhiyufont anzhiyu-icon-shuffle"></i><span>随便逛逛</span></a><a class="rightMenu-item menu-link" href="/categories/"><i class="anzhiyufont anzhiyu-icon-cube"></i><span>博客分类</span></a><a class="rightMenu-item menu-link" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags"></i><span>文章标签</span></a></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item" id="menu-copy" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制地址</span></a><a class="rightMenu-item" id="menu-commentBarrage" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-message"></i><span class="menu-commentBarrage-text">关闭热评</span></a><a class="rightMenu-item" id="menu-darkmode" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span class="menu-darkmode-text">深色模式</span></a><a class="rightMenu-item" id="menu-translate" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-language"></i><span>轉為繁體</span></a></div></div><div id="rightmenu-mask"></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.cbd.int/@fancyapps/ui@5.0.36/dist/fancybox/fancybox.umd.js"></script><script src="https://cdn.cbd.int/instant.page@5.2.0/instantpage.js" type="module"></script><script src="https://cdn.cbd.int/vanilla-lazyload@19.1.3/dist/lazyload.iife.min.js"></script><script src="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.cbd.int/pangu@4.0.7/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script>var meting_api = "https://meting-api.joker2yue.cn/api?server=:server&type=:type&id=:id&auth=:auth&r=:r";
+</script><canvas id="universe"></canvas><script async src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/dark/dark.js"></script><script>// 消除控制台打印
+var HoldLog = console.log;
+console.log = function () {};
+let now1 = new Date();
+queueMicrotask(() => {
+  const Log = function () {
+    HoldLog.apply(console, arguments);
+  }; //在恢复前输出日志
+  const grt = new Date("08/25/2023 00:00:00"); //此处修改你的建站时间或者网站上线时间
+  now1.setTime(now1.getTime() + 250);
+  const days = (now1 - grt) / 1000 / 60 / 60 / 24;
+  const dnum = Math.floor(days);
+  const ascll = [
+    `欢迎使用安知鱼!`,
+    `生活明朗, 万物可爱`,
+    `
+        
+       █████╗ ███╗   ██╗███████╗██╗  ██╗██╗██╗   ██╗██╗   ██╗
+      ██╔══██╗████╗  ██║╚══███╔╝██║  ██║██║╚██╗ ██╔╝██║   ██║
+      ███████║██╔██╗ ██║  ███╔╝ ███████║██║ ╚████╔╝ ██║   ██║
+      ██╔══██║██║╚██╗██║ ███╔╝  ██╔══██║██║  ╚██╔╝  ██║   ██║
+      ██║  ██║██║ ╚████║███████╗██║  ██║██║   ██║   ╚██████╔╝
+      ╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝╚═╝   ╚═╝    ╚═════╝
+        
+        `,
+    "已上线",
+    dnum,
+    "天",
+    "©2023 By 安知鱼 V1.6.12",
+  ];
+  const ascll2 = [`NCC2-036`, `调用前置摄像头拍照成功，识别为【小笨蛋】.`, `Photo captured: `, `🤪`];
+
+  setTimeout(
+    Log.bind(
+      console,
+      `\n%c${ascll[0]} %c ${ascll[1]} %c ${ascll[2]} %c${ascll[3]}%c ${ascll[4]}%c ${ascll[5]}\n\n%c ${ascll[6]}\n`,
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      ""
+    )
+  );
+  setTimeout(
+    Log.bind(
+      console,
+      `%c ${ascll2[0]} %c ${ascll2[1]} %c \n${ascll2[2]} %c\n${ascll2[3]}\n`,
+      "color:white; background-color:#4fd953",
+      "",
+      "",
+      'background:url("https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/tinggge.gif") no-repeat;font-size:450%'
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c WELCOME %c 你好，小笨蛋.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(
+      console,
+      "%c ⚡ Powered by 安知鱼 %c 你正在访问 Joker2Yue 的博客.",
+      "color:white; background-color:#f0ad4e",
+      ""
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c W23-12 %c 你已打开控制台.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(console, "%c S013-782 %c 你现在正处于监控中.", "color:white; background-color:#d9534f", "")
+  );
+});</script><script async src="/anzhiyu/random.js"></script><script async="async">(function () {
+  var grt = new Date("08/25/2023 00:00:00"); //设置网站上线时间
+  var now = new Date();
+  var dnum;
+  var hnum;
+  var mnum;
+  var snum;
+  var nowHour;
+
+  // 计算并更新天数、小时数、分钟数和秒数
+  function updateTime() {
+    now = new Date(); // 更新 now 的值
+    nowHour = now.getHours(); // 更新 nowHour 的值
+    var days = (now - grt) / 1000 / 60 / 60 / 24;
+    dnum = Math.floor(days);
+    var hours = (now - grt) / 1000 / 60 / 60 - 24 * dnum;
+    hnum = Math.floor(hours);
+    if (String(hnum).length == 1) {
+      hnum = "0" + hnum;
+    }
+    var minutes = (now - grt) / 1000 / 60 - 24 * 60 * dnum - 60 * hnum;
+    mnum = Math.floor(minutes);
+    if (String(mnum).length == 1) {
+      mnum = "0" + mnum;
+    }
+    var seconds = (now - grt) / 1000 - 24 * 60 * 60 * dnum - 60 * 60 * hnum - 60 * mnum;
+    snum = Math.round(seconds);
+    if (String(snum).length == 1) {
+      snum = "0" + snum;
+    }
+  }
+
+  // 更新网页中显示的网站运行时间
+  function updateHtml() {
+    const footer = document.getElementById("footer");
+    if (!footer) return
+    let currentTimeHtml = "";
+    if (nowHour < 18 && nowHour >= 9) {
+      // 如果是上班时间，默认就是"安知鱼-上班摸鱼中.svg"图片，不需要更改
+      currentTimeHtml = `本站居然运行了 ${dnum} 天<span id='runtime'> ${hnum} 小时 ${mnum} 分 ${snum} 秒 </span><i class='anzhiyufont anzhiyu-icon-heartbeat' style='color:red'></i>`;
+    } else {
+      // 如果是下班时间，插入"安知鱼-下班啦.svg"图片
+      let img = document.querySelector("#workboard .workSituationImg");
+      if (img != null) {
+        img.src = "";
+        img.title = "";
+        img.alt = "";
+      }
+
+      currentTimeHtml = `本站居然运行了 ${dnum} 天<span id='runtime'> ${hnum} 小时 ${mnum} 分 ${snum} 秒 </span><i class='anzhiyufont anzhiyu-icon-heartbeat' style='color:red'></i>`;
+    }
+
+    if (document.getElementById("runtimeTextTip")) {
+      document.getElementById("runtimeTextTip").innerHTML = currentTimeHtml;
+    }
+  }
+
+  setInterval(() => {
+    updateTime();
+    updateHtml();
+  }, 1000);
+})();</script><script src="https://cdn.bootcdn.net/ajax/libs/algoliasearch/4.9.3/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.cbd.int/instantsearch.js@4.60.0/dist/instantsearch.production.min.js"></script><script src="/js/search/algolia.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.cbd.int/mermaid@10.2.4/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  anzhiyu.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>(() => {
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo.joker2yue.cn/',
+      region: '',
+      onCommentLoaded: () => {
+        anzhiyu.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(runFn,0)
+    else getScript('https://cdn.bootcdn.net/ajax/libs/twikoo/1.6.39/twikoo.all.min.js').then(runFn)
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo.joker2yue.cn/',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const runFn = () => {
+    init();
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) anzhiyu.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else {
+      loadTwikoo()
+    }
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script><input type="hidden" name="page-type" id="page-type" value="post"></div><script>window.addEventListener('load', () => {
+  const changeContent = (content) => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[图片]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[链接]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[代码]') // replace code
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const getComment = () => {
+    const runTwikoo = () => {
+      twikoo.getRecentComments({
+        envId: 'https://twikoo.joker2yue.cn/',
+        region: '',
+        pageSize: 6,
+        includeReply: true
+      }).then(function (res) {
+        const twikooArray = res.map(e => {
+          return {
+            'content': changeContent(e.comment),
+            'avatar': e.avatar,
+            'nick': e.nick,
+            'url': e.url + '#' + e.id,
+            'date': new Date(e.created).toISOString()
+          }
+        })
+
+        saveToLocal.set('twikoo-newest-comments', JSON.stringify(twikooArray), 10/(60*24))
+        generateHtml(twikooArray)
+      }).catch(function (err) {
+        const $dom = document.querySelector('#card-newest-comments .aside-list')
+        $dom.textContent= "无法获取评论，请确认相关配置是否正确"
+      })
+    }
+
+    if (typeof twikoo === 'object') {
+      runTwikoo()
+    } else {
+      getScript('https://cdn.bootcdn.net/ajax/libs/twikoo/1.6.39/twikoo.all.min.js').then(runTwikoo)
+    }
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (true) {
+          const name = 'data-lazy-src'
+          result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'><div class='name'><span>${array[i].nick} </span></div></a>`
+        }
+        
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}' title='${array[i].content}'>${array[i].content}</a>
+        <time datetime="${array[i].date}">${anzhiyu.diffDate(array[i].date, true)}</time></div>
+        </div>`
+      }
+    } else {
+      result += '没有评论'
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom && ($dom.innerHTML= result)
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('twikoo-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><script async data-pjax src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.1/bubble/bubble.js"></script><script>var visitorMail = "visitor@joker2yue.cn";
+</script><script async data-pjax src="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/waterfall/waterfall.js"></script><script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/qrcodejs/1.0.0/qrcode.min.js"></script><script src="/js/anzhiyu/right_click_menu.js"></script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.9/icon/ali_iconfont_css.css"><script async src="https://at.alicdn.com/t/c/font_3320075_10tn9j0ga3lb.js"></script><script> window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); }; </script><script> window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); }; </script><script defer data-pjax src="/_vercel/insights/script.js"></script><script defer data-pjax src="/_vercel/speed-insights/script.js"></script><script defer data-pjax src="/js/joker.js"></script><script src="/js/mobile-toc-mask.js"></script><script src="/js/code-expanded.js"></script><script src="/js/fancybox-popstate.js"></script><script src="/js/progressive-load.js"></script><script src="/js/welcome.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/dist/canvas-nest.min.js"></script><script src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-show-text" src="https://cdn.bootcdn.net/ajax/libs/butterfly-extsrc/1.1.4/click-show-text.min.js" data-mobile="true" data-text="富强,民主,文明,和谐,自由,平等,公正,法治,爱国,敬业,诚信,友善" data-fontsize="15px" data-random="false" async="async"></script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/aplayer/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.cbd.int/anzhiyu-blog-static@1.0.1/js/APlayer.min.js"></script><script src="https://cdn.cbd.int/meting@2.0.1/dist/Meting.min.js"></script><script src="https://cdn.cbd.int/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["meta[property=\"og:image\"]","meta[property=\"og:title\"]","meta[property=\"og:url\"]","meta[property=\"og:type\"]","meta[property=\"og:site_name\"]","meta[property=\"og:description\"]","head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"]):not([href="/music/"]):not([href="/images/"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+  // removeEventListener scroll 
+  anzhiyu.removeGlobalFnEvent('pjax')
+  anzhiyu.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404')
+  }
+})</script><script async data-pjax src="https://busuanzi.sukap.cn/busuanzi.pure.mini.js"></script><script charset="UTF-8" src="https://cdn.cbd.int/anzhiyu-theme-static@1.1.5/accesskey/accesskey.js"></script></div><div id="popup-window"><div class="popup-window-title">通知</div><div class="popup-window-divider"></div><div class="popup-window-content"><div class="popup-tip">你好呀</div><div class="popup-link"><i class="anzhiyufont anzhiyu-icon-arrow-circle-right"></i></div></div></div></body></html>

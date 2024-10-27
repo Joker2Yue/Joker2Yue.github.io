@@ -112,6 +112,11 @@ blockquote {
     max-height: calc(100vh - 160px) !important;
 }
 
+#aside-content #card-toc .toc-content:not(.is-expand) .toc-item.active .toc-child {
+    padding-left: 9px !important;
+    margin-left: 9px !important;
+}
+
 #aside-content #card-toc .toc-content:not(.is-expand) .toc-child {
     border-left: 1px solid var(--dark-grey);
 }
@@ -237,8 +242,9 @@ span {
     -moz-user-select: none; /* 对 Firefox 有效 */
     -ms-user-select: none; /* 对 IE10+ 有效 */
 }
+
 /* 开启代码的复制 */
-table .code span{
+table .code span {
     user-select: auto; /* 对现代浏览器有效 */
     -webkit-user-select: auto; /* 对 Chrome 和 Safari 有效 */
     -moz-user-select: auto; /* 对 Firefox 有效 */
