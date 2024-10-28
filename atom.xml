@@ -48,6 +48,44 @@
   </entry>
   
   <entry>
+    <title>踩坑-Mybatis的空格问题</title>
+    <link href="https://blog.joker2yue.cn/post/cai-keng-mybatis-kong-ge-wen-ti/"/>
+    <id>https://blog.joker2yue.cn/post/cai-keng-mybatis-kong-ge-wen-ti/</id>
+    <published>2024-08-27T12:46:25.000Z</published>
+    <updated>2024-08-27T12:46:25.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;这是一些定义：&lt;/p&gt;
+&lt;figure class=&quot;highlight xml&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span</summary>
+        
+      
+    
+    
+    
+    <category term="经验分享" scheme="https://blog.joker2yue.cn/categories/%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/"/>
+    
+    <category term="实习日记" scheme="https://blog.joker2yue.cn/categories/%E5%AE%9E%E4%B9%A0%E6%97%A5%E8%AE%B0/"/>
+    
+    <category term="技术" scheme="https://blog.joker2yue.cn/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    <category term="必看" scheme="https://blog.joker2yue.cn/categories/%E5%BF%85%E7%9C%8B/"/>
+    
+    
+    <category term="必看" scheme="https://blog.joker2yue.cn/tags/%E5%BF%85%E7%9C%8B/"/>
+    
+    <category term="技术" scheme="https://blog.joker2yue.cn/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+    <category term="Java" scheme="https://blog.joker2yue.cn/tags/Java/"/>
+    
+    <category term="Mybatis" scheme="https://blog.joker2yue.cn/tags/Mybatis/"/>
+    
+  </entry>
+  
+  <entry>
     <title>使用Optional类优化代码中多层if嵌套</title>
     <link href="https://blog.joker2yue.cn/post/shi-yong-optional-lei-you-hua-dai-ma-zhong-duo-ceng-if-qian-tao/"/>
     <id>https://blog.joker2yue.cn/post/shi-yong-optional-lei-you-hua-dai-ma-zhong-duo-ceng-if-qian-tao/</id>
@@ -69,9 +107,81 @@
     
     <category term="实习日记" scheme="https://blog.joker2yue.cn/categories/%E5%AE%9E%E4%B9%A0%E6%97%A5%E8%AE%B0/"/>
     
+    <category term="技术" scheme="https://blog.joker2yue.cn/categories/%E6%8A%80%E6%9C%AF/"/>
+    
     <category term="必看" scheme="https://blog.joker2yue.cn/categories/%E5%BF%85%E7%9C%8B/"/>
     
+    
+    <category term="必看" scheme="https://blog.joker2yue.cn/tags/%E5%BF%85%E7%9C%8B/"/>
+    
+    <category term="技术" scheme="https://blog.joker2yue.cn/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+    <category term="Java" scheme="https://blog.joker2yue.cn/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>踩坑-FastJson解析问题</title>
+    <link href="https://blog.joker2yue.cn/post/cai-keng-fastjson-jie-xi-wen-ti/"/>
+    <id>https://blog.joker2yue.cn/post/cai-keng-fastjson-jie-xi-wen-ti/</id>
+    <published>2024-08-10T12:46:25.000Z</published>
+    <updated>2024-08-10T12:46:25.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;业务要求，从一些指定的接口获取json，然后转成指定的&lt;code&gt;List&amp;lt;T&amp;gt;&lt;/code&gt;，我写的逻辑如下：&lt;/p&gt;
+&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td</summary>
+        
+      
+    
+    
+    
+    <category term="经验分享" scheme="https://blog.joker2yue.cn/categories/%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/"/>
+    
+    <category term="实习日记" scheme="https://blog.joker2yue.cn/categories/%E5%AE%9E%E4%B9%A0%E6%97%A5%E8%AE%B0/"/>
+    
     <category term="技术" scheme="https://blog.joker2yue.cn/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    <category term="必看" scheme="https://blog.joker2yue.cn/categories/%E5%BF%85%E7%9C%8B/"/>
+    
+    
+    <category term="必看" scheme="https://blog.joker2yue.cn/tags/%E5%BF%85%E7%9C%8B/"/>
+    
+    <category term="技术" scheme="https://blog.joker2yue.cn/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+    <category term="Java" scheme="https://blog.joker2yue.cn/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Feign接收超大Json与超时关闭</title>
+    <link href="https://blog.joker2yue.cn/post/feign-jie-shou-chao-da-json-yu-chao-shi-guan-bi/"/>
+    <id>https://blog.joker2yue.cn/post/feign-jie-shou-chao-da-json-yu-chao-shi-guan-bi/</id>
+    <published>2024-08-07T12:46:25.000Z</published>
+    <updated>2024-08-07T12:46:25.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;这是我在实习期间使用Feign遇到的两个坑，顺手便记录下来。&lt;/p&gt;
+&lt;h4 id=&quot;Feign数据量过大而导致json截断的问题&quot;&gt;Feign数据量过大而导致json截断的问题&lt;a class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="经验分享" scheme="https://blog.joker2yue.cn/categories/%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/"/>
+    
+    <category term="实习日记" scheme="https://blog.joker2yue.cn/categories/%E5%AE%9E%E4%B9%A0%E6%97%A5%E8%AE%B0/"/>
+    
+    <category term="技术" scheme="https://blog.joker2yue.cn/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    <category term="必看" scheme="https://blog.joker2yue.cn/categories/%E5%BF%85%E7%9C%8B/"/>
     
     
     <category term="必看" scheme="https://blog.joker2yue.cn/tags/%E5%BF%85%E7%9C%8B/"/>
@@ -659,111 +769,6 @@
     <category term="技术" scheme="https://blog.joker2yue.cn/tags/%E6%8A%80%E6%9C%AF/"/>
     
     <category term="Linux" scheme="https://blog.joker2yue.cn/tags/Linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>软件设计师-20，面向对象的程序设计与实现</title>
-    <link href="https://blog.joker2yue.cn/post/ruan-jian-she-ji-shi-20/"/>
-    <id>https://blog.joker2yue.cn/post/ruan-jian-she-ji-shi-20/</id>
-    <published>2023-10-18T14:20:22.000Z</published>
-    <updated>2023-10-18T14:20:22.000Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;&lt;strong&gt;C++基本语法、Java基本语法、解题技巧、真题讲解&lt;/strong&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;NULL&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h4 id=&quot;大纲&quot;&gt;大纲&lt;a class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="软考" scheme="https://blog.joker2yue.cn/categories/%E8%BD%AF%E8%80%83/"/>
-    
-    
-    <category term="软考" scheme="https://blog.joker2yue.cn/tags/%E8%BD%AF%E8%80%83/"/>
-    
-    <category term="连载" scheme="https://blog.joker2yue.cn/tags/%E8%BF%9E%E8%BD%BD/"/>
-    
-    <category term="大学课程" scheme="https://blog.joker2yue.cn/tags/%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B/"/>
-    
-    <category term="软件设计师" scheme="https://blog.joker2yue.cn/tags/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%B8%88/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>软件设计师-19，下午题-算法设计与C语言实现</title>
-    <link href="https://blog.joker2yue.cn/post/ruan-jian-she-ji-shi-19/"/>
-    <id>https://blog.joker2yue.cn/post/ruan-jian-she-ji-shi-19/</id>
-    <published>2023-10-18T12:20:22.000Z</published>
-    <updated>2023-10-18T12:20:22.000Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;&lt;strong&gt;程序设计语言、算法分析、算法分类、解题技巧、真题讲解&lt;/strong&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;NULL&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h4 id=&quot;大纲&quot;&gt;大纲&lt;a class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="软考" scheme="https://blog.joker2yue.cn/categories/%E8%BD%AF%E8%80%83/"/>
-    
-    
-    <category term="软考" scheme="https://blog.joker2yue.cn/tags/%E8%BD%AF%E8%80%83/"/>
-    
-    <category term="连载" scheme="https://blog.joker2yue.cn/tags/%E8%BF%9E%E8%BD%BD/"/>
-    
-    <category term="大学课程" scheme="https://blog.joker2yue.cn/tags/%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B/"/>
-    
-    <category term="软件设计师" scheme="https://blog.joker2yue.cn/tags/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%B8%88/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>软件设计师-18，下午题-UML建模</title>
-    <link href="https://blog.joker2yue.cn/post/ruan-jian-she-ji-shi-18/"/>
-    <id>https://blog.joker2yue.cn/post/ruan-jian-she-ji-shi-18/</id>
-    <published>2023-10-17T20:20:22.000Z</published>
-    <updated>2023-10-17T20:20:22.000Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;&lt;strong&gt;用例图、类图、序列图、通信图、活动图、状态图、解题技巧、真题讲解&lt;/strong&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;NULL&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h4 id=&quot;大纲&quot;&gt;大纲&lt;a class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="软考" scheme="https://blog.joker2yue.cn/categories/%E8%BD%AF%E8%80%83/"/>
-    
-    
-    <category term="软考" scheme="https://blog.joker2yue.cn/tags/%E8%BD%AF%E8%80%83/"/>
-    
-    <category term="连载" scheme="https://blog.joker2yue.cn/tags/%E8%BF%9E%E8%BD%BD/"/>
-    
-    <category term="大学课程" scheme="https://blog.joker2yue.cn/tags/%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B/"/>
-    
-    <category term="软件设计师" scheme="https://blog.joker2yue.cn/tags/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%B8%88/"/>
     
   </entry>
   
