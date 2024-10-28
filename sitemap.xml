@@ -1459,13 +1459,6 @@
   </url>
   
   <url>
-    <loc>https://blog.joker2yue.cn/categories/Hexo/</loc>
-    <lastmod>2024-10-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.joker2yue.cn/categories/%E6%8A%80%E6%9C%AF/</loc>
     <lastmod>2024-10-28</lastmod>
     <changefreq>weekly</changefreq>
@@ -1473,21 +1466,7 @@
   </url>
   
   <url>
-    <loc>https://blog.joker2yue.cn/categories/%E8%BD%AC%E8%BD%BD%E6%96%87%E7%AB%A0/</loc>
-    <lastmod>2024-10-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.joker2yue.cn/categories/%E5%BF%85%E7%9C%8B/</loc>
-    <lastmod>2024-10-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.joker2yue.cn/categories/%E5%A4%A7%E6%A8%A1%E5%9E%8B/</loc>
+    <loc>https://blog.joker2yue.cn/categories/Hexo/</loc>
     <lastmod>2024-10-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1501,7 +1480,28 @@
   </url>
   
   <url>
+    <loc>https://blog.joker2yue.cn/categories/%E5%BF%85%E7%9C%8B/</loc>
+    <lastmod>2024-10-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.joker2yue.cn/categories/%E8%BD%AC%E8%BD%BD%E6%96%87%E7%AB%A0/</loc>
+    <lastmod>2024-10-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.joker2yue.cn/categories/%E8%B7%9F%E9%9A%8F%E7%8B%82%E7%A5%9E%E5%AD%A6Java/</loc>
+    <lastmod>2024-10-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.joker2yue.cn/categories/%E5%A4%A7%E6%A8%A1%E5%9E%8B/</loc>
     <lastmod>2024-10-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1522,6 +1522,13 @@
   </url>
   
   <url>
+    <loc>https://blog.joker2yue.cn/categories/Java/%E5%AE%9E%E4%B9%A0%E6%97%A5%E8%AE%B0/%E6%8A%80%E6%9C%AF/</loc>
+    <lastmod>2024-10-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.joker2yue.cn/categories/%E8%B7%9F%E9%9A%8F%E9%BB%91%E9%A9%AC%E5%AD%A6%E5%89%8D%E7%AB%AF/</loc>
     <lastmod>2024-10-28</lastmod>
     <changefreq>weekly</changefreq>
@@ -1530,13 +1537,6 @@
   
   <url>
     <loc>https://blog.joker2yue.cn/categories/%E8%B7%9F%E9%9A%8F%E9%BB%91%E9%A9%AC%E9%9D%A2Java/</loc>
-    <lastmod>2024-10-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.joker2yue.cn/categories/Java/%E5%AE%9E%E4%B9%A0%E6%97%A5%E8%AE%B0/%E6%8A%80%E6%9C%AF/</loc>
     <lastmod>2024-10-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
