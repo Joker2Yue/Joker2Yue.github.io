@@ -34,11 +34,11 @@
     
     
     
+    <category term="实习日记" scheme="https://blog.joker2yue.cn/categories/%E5%AE%9E%E4%B9%A0%E6%97%A5%E8%AE%B0/"/>
+    
+    <category term="技术" scheme="https://blog.joker2yue.cn/categories/%E6%8A%80%E6%9C%AF/"/>
+    
     <category term="Java" scheme="https://blog.joker2yue.cn/categories/Java/"/>
-    
-    <category term="实习日记" scheme="https://blog.joker2yue.cn/categories/Java/%E5%AE%9E%E4%B9%A0%E6%97%A5%E8%AE%B0/"/>
-    
-    <category term="技术" scheme="https://blog.joker2yue.cn/categories/Java/%E5%AE%9E%E4%B9%A0%E6%97%A5%E8%AE%B0/%E6%8A%80%E6%9C%AF/"/>
     
     
     <category term="数据库" scheme="https://blog.joker2yue.cn/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
@@ -213,13 +213,13 @@
     
     
     
+    <category term="技术" scheme="https://blog.joker2yue.cn/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    <category term="Java" scheme="https://blog.joker2yue.cn/categories/Java/"/>
+    
     <category term="跟随黑马面Java" scheme="https://blog.joker2yue.cn/categories/%E8%B7%9F%E9%9A%8F%E9%BB%91%E9%A9%AC%E9%9D%A2Java/"/>
     
-    <category term="Java" scheme="https://blog.joker2yue.cn/categories/%E8%B7%9F%E9%9A%8F%E9%BB%91%E9%A9%AC%E9%9D%A2Java/Java/"/>
-    
-    <category term="面试" scheme="https://blog.joker2yue.cn/categories/%E8%B7%9F%E9%9A%8F%E9%BB%91%E9%A9%AC%E9%9D%A2Java/Java/%E9%9D%A2%E8%AF%95/"/>
-    
-    <category term="技术" scheme="https://blog.joker2yue.cn/categories/%E8%B7%9F%E9%9A%8F%E9%BB%91%E9%A9%AC%E9%9D%A2Java/Java/%E9%9D%A2%E8%AF%95/%E6%8A%80%E6%9C%AF/"/>
+    <category term="面试" scheme="https://blog.joker2yue.cn/categories/%E9%9D%A2%E8%AF%95/"/>
     
     
     <category term="连载" scheme="https://blog.joker2yue.cn/tags/%E8%BF%9E%E8%BD%BD/"/>
@@ -253,13 +253,13 @@
     
     
     
+    <category term="技术" scheme="https://blog.joker2yue.cn/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    <category term="Java" scheme="https://blog.joker2yue.cn/categories/Java/"/>
+    
     <category term="跟随黑马面Java" scheme="https://blog.joker2yue.cn/categories/%E8%B7%9F%E9%9A%8F%E9%BB%91%E9%A9%AC%E9%9D%A2Java/"/>
     
-    <category term="Java" scheme="https://blog.joker2yue.cn/categories/%E8%B7%9F%E9%9A%8F%E9%BB%91%E9%A9%AC%E9%9D%A2Java/Java/"/>
-    
-    <category term="面试" scheme="https://blog.joker2yue.cn/categories/%E8%B7%9F%E9%9A%8F%E9%BB%91%E9%A9%AC%E9%9D%A2Java/Java/%E9%9D%A2%E8%AF%95/"/>
-    
-    <category term="技术" scheme="https://blog.joker2yue.cn/categories/%E8%B7%9F%E9%9A%8F%E9%BB%91%E9%A9%AC%E9%9D%A2Java/Java/%E9%9D%A2%E8%AF%95/%E6%8A%80%E6%9C%AF/"/>
+    <category term="面试" scheme="https://blog.joker2yue.cn/categories/%E9%9D%A2%E8%AF%95/"/>
     
     
     <category term="连载" scheme="https://blog.joker2yue.cn/tags/%E8%BF%9E%E8%BD%BD/"/>
@@ -293,13 +293,13 @@
     
     
     
+    <category term="技术" scheme="https://blog.joker2yue.cn/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    <category term="Java" scheme="https://blog.joker2yue.cn/categories/Java/"/>
+    
     <category term="跟随黑马面Java" scheme="https://blog.joker2yue.cn/categories/%E8%B7%9F%E9%9A%8F%E9%BB%91%E9%A9%AC%E9%9D%A2Java/"/>
     
-    <category term="Java" scheme="https://blog.joker2yue.cn/categories/%E8%B7%9F%E9%9A%8F%E9%BB%91%E9%A9%AC%E9%9D%A2Java/Java/"/>
-    
-    <category term="面试" scheme="https://blog.joker2yue.cn/categories/%E8%B7%9F%E9%9A%8F%E9%BB%91%E9%A9%AC%E9%9D%A2Java/Java/%E9%9D%A2%E8%AF%95/"/>
-    
-    <category term="技术" scheme="https://blog.joker2yue.cn/categories/%E8%B7%9F%E9%9A%8F%E9%BB%91%E9%A9%AC%E9%9D%A2Java/Java/%E9%9D%A2%E8%AF%95/%E6%8A%80%E6%9C%AF/"/>
+    <category term="面试" scheme="https://blog.joker2yue.cn/categories/%E9%9D%A2%E8%AF%95/"/>
     
     
     <category term="连载" scheme="https://blog.joker2yue.cn/tags/%E8%BF%9E%E8%BD%BD/"/>
@@ -333,13 +333,13 @@
     
     
     
+    <category term="技术" scheme="https://blog.joker2yue.cn/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    <category term="Java" scheme="https://blog.joker2yue.cn/categories/Java/"/>
+    
     <category term="跟随黑马面Java" scheme="https://blog.joker2yue.cn/categories/%E8%B7%9F%E9%9A%8F%E9%BB%91%E9%A9%AC%E9%9D%A2Java/"/>
     
-    <category term="Java" scheme="https://blog.joker2yue.cn/categories/%E8%B7%9F%E9%9A%8F%E9%BB%91%E9%A9%AC%E9%9D%A2Java/Java/"/>
-    
-    <category term="面试" scheme="https://blog.joker2yue.cn/categories/%E8%B7%9F%E9%9A%8F%E9%BB%91%E9%A9%AC%E9%9D%A2Java/Java/%E9%9D%A2%E8%AF%95/"/>
-    
-    <category term="技术" scheme="https://blog.joker2yue.cn/categories/%E8%B7%9F%E9%9A%8F%E9%BB%91%E9%A9%AC%E9%9D%A2Java/Java/%E9%9D%A2%E8%AF%95/%E6%8A%80%E6%9C%AF/"/>
+    <category term="面试" scheme="https://blog.joker2yue.cn/categories/%E9%9D%A2%E8%AF%95/"/>
     
     
     <category term="连载" scheme="https://blog.joker2yue.cn/tags/%E8%BF%9E%E8%BD%BD/"/>
@@ -373,13 +373,13 @@
     
     
     
+    <category term="技术" scheme="https://blog.joker2yue.cn/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    <category term="Java" scheme="https://blog.joker2yue.cn/categories/Java/"/>
+    
     <category term="跟随黑马面Java" scheme="https://blog.joker2yue.cn/categories/%E8%B7%9F%E9%9A%8F%E9%BB%91%E9%A9%AC%E9%9D%A2Java/"/>
     
-    <category term="Java" scheme="https://blog.joker2yue.cn/categories/%E8%B7%9F%E9%9A%8F%E9%BB%91%E9%A9%AC%E9%9D%A2Java/Java/"/>
-    
-    <category term="面试" scheme="https://blog.joker2yue.cn/categories/%E8%B7%9F%E9%9A%8F%E9%BB%91%E9%A9%AC%E9%9D%A2Java/Java/%E9%9D%A2%E8%AF%95/"/>
-    
-    <category term="技术" scheme="https://blog.joker2yue.cn/categories/%E8%B7%9F%E9%9A%8F%E9%BB%91%E9%A9%AC%E9%9D%A2Java/Java/%E9%9D%A2%E8%AF%95/%E6%8A%80%E6%9C%AF/"/>
+    <category term="面试" scheme="https://blog.joker2yue.cn/categories/%E9%9D%A2%E8%AF%95/"/>
     
     
     <category term="连载" scheme="https://blog.joker2yue.cn/tags/%E8%BF%9E%E8%BD%BD/"/>
@@ -415,13 +415,13 @@
     
     
     
+    <category term="技术" scheme="https://blog.joker2yue.cn/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    <category term="Java" scheme="https://blog.joker2yue.cn/categories/Java/"/>
+    
     <category term="跟随黑马面Java" scheme="https://blog.joker2yue.cn/categories/%E8%B7%9F%E9%9A%8F%E9%BB%91%E9%A9%AC%E9%9D%A2Java/"/>
     
-    <category term="Java" scheme="https://blog.joker2yue.cn/categories/%E8%B7%9F%E9%9A%8F%E9%BB%91%E9%A9%AC%E9%9D%A2Java/Java/"/>
-    
-    <category term="面试" scheme="https://blog.joker2yue.cn/categories/%E8%B7%9F%E9%9A%8F%E9%BB%91%E9%A9%AC%E9%9D%A2Java/Java/%E9%9D%A2%E8%AF%95/"/>
-    
-    <category term="技术" scheme="https://blog.joker2yue.cn/categories/%E8%B7%9F%E9%9A%8F%E9%BB%91%E9%A9%AC%E9%9D%A2Java/Java/%E9%9D%A2%E8%AF%95/%E6%8A%80%E6%9C%AF/"/>
+    <category term="面试" scheme="https://blog.joker2yue.cn/categories/%E9%9D%A2%E8%AF%95/"/>
     
     
     <category term="连载" scheme="https://blog.joker2yue.cn/tags/%E8%BF%9E%E8%BD%BD/"/>
@@ -459,13 +459,13 @@
     
     
     
+    <category term="技术" scheme="https://blog.joker2yue.cn/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    <category term="Java" scheme="https://blog.joker2yue.cn/categories/Java/"/>
+    
     <category term="跟随黑马面Java" scheme="https://blog.joker2yue.cn/categories/%E8%B7%9F%E9%9A%8F%E9%BB%91%E9%A9%AC%E9%9D%A2Java/"/>
     
-    <category term="Java" scheme="https://blog.joker2yue.cn/categories/%E8%B7%9F%E9%9A%8F%E9%BB%91%E9%A9%AC%E9%9D%A2Java/Java/"/>
-    
-    <category term="面试" scheme="https://blog.joker2yue.cn/categories/%E8%B7%9F%E9%9A%8F%E9%BB%91%E9%A9%AC%E9%9D%A2Java/Java/%E9%9D%A2%E8%AF%95/"/>
-    
-    <category term="技术" scheme="https://blog.joker2yue.cn/categories/%E8%B7%9F%E9%9A%8F%E9%BB%91%E9%A9%AC%E9%9D%A2Java/Java/%E9%9D%A2%E8%AF%95/%E6%8A%80%E6%9C%AF/"/>
+    <category term="面试" scheme="https://blog.joker2yue.cn/categories/%E9%9D%A2%E8%AF%95/"/>
     
     
     <category term="连载" scheme="https://blog.joker2yue.cn/tags/%E8%BF%9E%E8%BD%BD/"/>
@@ -505,13 +505,13 @@
     
     
     
+    <category term="技术" scheme="https://blog.joker2yue.cn/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    <category term="Java" scheme="https://blog.joker2yue.cn/categories/Java/"/>
+    
     <category term="跟随黑马面Java" scheme="https://blog.joker2yue.cn/categories/%E8%B7%9F%E9%9A%8F%E9%BB%91%E9%A9%AC%E9%9D%A2Java/"/>
     
-    <category term="Java" scheme="https://blog.joker2yue.cn/categories/%E8%B7%9F%E9%9A%8F%E9%BB%91%E9%A9%AC%E9%9D%A2Java/Java/"/>
-    
-    <category term="面试" scheme="https://blog.joker2yue.cn/categories/%E8%B7%9F%E9%9A%8F%E9%BB%91%E9%A9%AC%E9%9D%A2Java/Java/%E9%9D%A2%E8%AF%95/"/>
-    
-    <category term="技术" scheme="https://blog.joker2yue.cn/categories/%E8%B7%9F%E9%9A%8F%E9%BB%91%E9%A9%AC%E9%9D%A2Java/Java/%E9%9D%A2%E8%AF%95/%E6%8A%80%E6%9C%AF/"/>
+    <category term="面试" scheme="https://blog.joker2yue.cn/categories/%E9%9D%A2%E8%AF%95/"/>
     
     
     <category term="连载" scheme="https://blog.joker2yue.cn/tags/%E8%BF%9E%E8%BD%BD/"/>
@@ -549,13 +549,13 @@
     
     
     
+    <category term="技术" scheme="https://blog.joker2yue.cn/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    <category term="Java" scheme="https://blog.joker2yue.cn/categories/Java/"/>
+    
     <category term="跟随黑马面Java" scheme="https://blog.joker2yue.cn/categories/%E8%B7%9F%E9%9A%8F%E9%BB%91%E9%A9%AC%E9%9D%A2Java/"/>
     
-    <category term="Java" scheme="https://blog.joker2yue.cn/categories/%E8%B7%9F%E9%9A%8F%E9%BB%91%E9%A9%AC%E9%9D%A2Java/Java/"/>
-    
-    <category term="面试" scheme="https://blog.joker2yue.cn/categories/%E8%B7%9F%E9%9A%8F%E9%BB%91%E9%A9%AC%E9%9D%A2Java/Java/%E9%9D%A2%E8%AF%95/"/>
-    
-    <category term="技术" scheme="https://blog.joker2yue.cn/categories/%E8%B7%9F%E9%9A%8F%E9%BB%91%E9%A9%AC%E9%9D%A2Java/Java/%E9%9D%A2%E8%AF%95/%E6%8A%80%E6%9C%AF/"/>
+    <category term="面试" scheme="https://blog.joker2yue.cn/categories/%E9%9D%A2%E8%AF%95/"/>
     
     
     <category term="连载" scheme="https://blog.joker2yue.cn/tags/%E8%BF%9E%E8%BD%BD/"/>
@@ -593,13 +593,13 @@
     
     
     
+    <category term="技术" scheme="https://blog.joker2yue.cn/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    <category term="Java" scheme="https://blog.joker2yue.cn/categories/Java/"/>
+    
     <category term="跟随黑马面Java" scheme="https://blog.joker2yue.cn/categories/%E8%B7%9F%E9%9A%8F%E9%BB%91%E9%A9%AC%E9%9D%A2Java/"/>
     
-    <category term="Java" scheme="https://blog.joker2yue.cn/categories/%E8%B7%9F%E9%9A%8F%E9%BB%91%E9%A9%AC%E9%9D%A2Java/Java/"/>
-    
-    <category term="面试" scheme="https://blog.joker2yue.cn/categories/%E8%B7%9F%E9%9A%8F%E9%BB%91%E9%A9%AC%E9%9D%A2Java/Java/%E9%9D%A2%E8%AF%95/"/>
-    
-    <category term="技术" scheme="https://blog.joker2yue.cn/categories/%E8%B7%9F%E9%9A%8F%E9%BB%91%E9%A9%AC%E9%9D%A2Java/Java/%E9%9D%A2%E8%AF%95/%E6%8A%80%E6%9C%AF/"/>
+    <category term="面试" scheme="https://blog.joker2yue.cn/categories/%E9%9D%A2%E8%AF%95/"/>
     
     
     <category term="连载" scheme="https://blog.joker2yue.cn/tags/%E8%BF%9E%E8%BD%BD/"/>
@@ -726,6 +726,12 @@
       
     
     
+    
+    <category term="经验分享" scheme="https://blog.joker2yue.cn/categories/%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/"/>
+    
+    <category term="技术" scheme="https://blog.joker2yue.cn/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    <category term="必看" scheme="https://blog.joker2yue.cn/categories/%E5%BF%85%E7%9C%8B/"/>
     
     <category term="大模型" scheme="https://blog.joker2yue.cn/categories/%E5%A4%A7%E6%A8%A1%E5%9E%8B/"/>
     
